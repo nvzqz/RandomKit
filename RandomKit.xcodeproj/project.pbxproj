@@ -6,11 +6,18 @@
 	objectVersion = 46;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		528200EA1BC9D770001FDD58 /* RandomKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528200E91BC9D770001FDD58 /* RandomKit.swift */; settings = {ASSET_TAGS = (); }; };
+		528200EB1BC9D770001FDD58 /* RandomKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528200E91BC9D770001FDD58 /* RandomKit.swift */; settings = {ASSET_TAGS = (); }; };
+		528200EC1BC9D770001FDD58 /* RandomKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528200E91BC9D770001FDD58 /* RandomKit.swift */; settings = {ASSET_TAGS = (); }; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		528200911BC9C4A2001FDD58 /* RandomKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RandomKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5282009F1BC9C4B6001FDD58 /* RandomKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RandomKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		528200AC1BC9C4C0001FDD58 /* RandomKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RandomKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		528200B51BC9C53B001FDD58 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		528200E91BC9D770001FDD58 /* RandomKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RandomKit.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +66,7 @@
 		528200B41BC9C53B001FDD58 /* RandomKit */ = {
 			isa = PBXGroup;
 			children = (
+				528200E91BC9D770001FDD58 /* RandomKit.swift */,
 				528200B51BC9C53B001FDD58 /* Info.plist */,
 			);
 			path = RandomKit;
@@ -151,6 +159,7 @@
 		528200861BC9C460001FDD58 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 0700;
 				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = "Nikolai Vazquez";
 				TargetAttributes = {
@@ -213,6 +222,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				528200EA1BC9D770001FDD58 /* RandomKit.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -220,6 +230,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				528200EB1BC9D770001FDD58 /* RandomKit.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -227,6 +238,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				528200EC1BC9D770001FDD58 /* RandomKit.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -588,6 +600,7 @@
 				528200981BC9C4A2001FDD58 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		528200A41BC9C4B6001FDD58 /* Build configuration list for PBXNativeTarget "RandomKit-iOS" */ = {
 			isa = XCConfigurationList;
@@ -596,6 +609,7 @@
 				528200A61BC9C4B6001FDD58 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		528200B11BC9C4C0001FDD58 /* Build configuration list for PBXNativeTarget "RandomKit-watchOS" */ = {
 			isa = XCConfigurationList;
@@ -604,6 +618,7 @@
 				528200B31BC9C4C0001FDD58 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
