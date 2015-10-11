@@ -2,12 +2,12 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:LICENSE.md">
-   </FileRef>
-   <FileRef
       location = "group:RandomKit.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:RandomKit.playground">
+   </FileRef>
+   <FileRef
+      location = "group:LICENSE.md">
    </FileRef>
 </Workspace>
