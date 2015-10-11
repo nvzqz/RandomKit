@@ -29,9 +29,9 @@ import Foundation
 
 extension String {
 
-    public static func random(length: UInt, _ characterInterval: ClosedInterval<Character> = " "..."~") -> String {
+    public static func random(length: UInt, _ interval: ClosedInterval<Character> = " "..."~") -> String {
         return (0 ..< length).reduce("") { value, _ in
-            value + String(Character.random(characterInterval))
+            value + String(Character.random(interval))
         }
     }
 

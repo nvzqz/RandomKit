@@ -30,7 +30,7 @@ import Foundation
 extension Array {
 
     public func random() -> Element {
-        return self[Int.random(0, self.count - 1)]
+        return self[Int.random(0...(self.count - 1))]
     }
 
 }

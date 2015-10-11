@@ -38,7 +38,7 @@ import WatchKit
 extension CGFloat {
 
     public static func random() -> CGFloat {
-        return CGFloat(Float.random(0.0, 1.0))
+        return CGFloat(Float.random(0.0...1.0))
     }
     
 }

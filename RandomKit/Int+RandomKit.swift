@@ -28,7 +28,7 @@
 import Foundation
 
 extension Int {
-    public static func random(min: Int = 0, _ max: Int = 100) -> Int {
-        return min + Int(arc4random_uniform(UInt32(max - min + 1)))
+    public static func random(interval: ClosedInterval<Int> = 0...100) -> Int {
+        return interval.start + Int(arc4random_uniform(UInt32(interval.end - interval.start + 1)))
     }
 }

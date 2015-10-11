@@ -29,8 +29,8 @@ import Foundation
 
 extension Float {
 
-    public static func random(min: Float = 0.0, _ max: Float = 1.0) -> Float {
-        return min + (max - min) * (Float(arc4random()) / Float(UInt32.max))
+    public static func random(interval: ClosedInterval<Float> = 0.0...1.0) -> Float {
+        return interval.start + (interval.start - interval.end) * (Float(arc4random()) / Float(UInt32.max))
     }
 
 }

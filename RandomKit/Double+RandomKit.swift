@@ -29,8 +29,8 @@ import Foundation
 
 extension Double {
 
-    public static func random(min: Double = 0.0, _ max: Double = 1.0) -> Double {
-        return min + (max - min) * (Double(arc4random()) / Double(UInt32.max))
+    public static func random(interval: ClosedInterval<Double> = 0.0...1.0) -> Double {
+        return interval.start + (interval.start - interval.end) * (Double(arc4random()) / Double(UInt32.max))
     }
 
 }
