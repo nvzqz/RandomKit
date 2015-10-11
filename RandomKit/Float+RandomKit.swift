@@ -35,7 +35,7 @@ extension Float {
     ///     - interval: The interval within which the number
     ///       will be generated. Default value is `0.0...1.0`.
     public static func random(interval: ClosedInterval<Float> = 0.0...1.0) -> Float {
-        return interval.start + (interval.start - interval.end) * (Float(arc4random()) / Float(UInt32.max))
+        return interval.start + (interval.end - interval.start) * (Float(arc4random()) / Float(UInt32.max))
     }
 
 }

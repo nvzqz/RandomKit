@@ -13,6 +13,24 @@ class RandomKitTests: XCTestCase {
 
     let testCount = 1_000_000
 
+    func testRandomDouble() {
+        let min = -1.5
+        let max =  0.5
+        for _ in 0...testCount {
+            let r = Double.random(min...max)
+            XCTAssertTrue(r >= min && r <= max, "Random `Double` is out of bounds.")
+        }
+    }
+
+    func testRandomFloat() {
+        let min: Float = -1.5
+        let max: Float =  0.5
+        for _ in 0...testCount {
+            let r = Float.random(min...max)
+            XCTAssertTrue(r >= min && r <= max, "Random `Float` is out of bounds.")
+        }
+    }
+
     func testRandomBool() {
         let falseCount = (0...testCount).reduce(0) { count, _ in
             Bool.random() ? count : count + 1
