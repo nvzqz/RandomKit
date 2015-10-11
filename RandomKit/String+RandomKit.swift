@@ -28,9 +28,19 @@
 import Foundation
 
 extension String {
+
     public static func random(length: UInt, _ characterInterval: ClosedInterval<Character> = " "..."~") -> String {
         return (0 ..< length).reduce("") { value, _ in
             value + String(Character.random(characterInterval))
         }
     }
+
+    public static func random(length: UInt, _ characterSet: NSCharacterSet) -> String {
+        guard length > 0 else { return "" }
+        let characters = characterSet.asCharacterArray
+        return (0 ..< length).reduce("") { value, _ in
+            value + String(characters.random())
+        }
+    }
+
 }

@@ -1,5 +1,5 @@
 //
-//  Character+RandomKit.swift
+//  NSCharacterSet+RandomKit.swift
 //  RandomKit
 //
 //  The MIT License (MIT)
@@ -27,32 +27,22 @@
 
 import Foundation
 
-extension Character {
+extension NSCharacterSet {
 
-    public static func random(interval: ClosedInterval<Character> = " "..."~") -> Character {
-        var randomValue: UInt32 {
-            let start   = interval.start.scalar.value
-            let end     = interval.end.scalar.value
-            let greater = max(start, end)
-            let lesser  = min(start, end)
-            return lesser + arc4random_uniform(greater - lesser + 1)
+    internal var asCharacterArray: [Character] {
+        var value: [Character] = []
+        for plane: UTF32Char in 0...16 {
+            if self.hasMemberInPlane(UInt8(plane)) {
+                var char = UTF32Char()
+                for char = plane << 16; char < (plane + 1) << 16; char++ {
+                    if  let string = NSString(bytes: &char, length: 4, encoding: NSUTF32LittleEndianStringEncoding) as? String where self.longCharacterIsMember(char),
+                        let char: UnicodeScalar = string.unicodeScalars.first {
+                            value.append(Character(char))
+                    }
+                }
+            }
         }
-        return Character(UnicodeScalar(randomValue))
-    }
-
-    public static func random(characterSet: NSCharacterSet) -> Character {
-        return characterSet.asCharacterArray.random()
-    }
-
-    internal var scalar: UnicodeScalar {
-        get {
-            return String(self).unicodeScalars.first!
-        }
-        mutating set {
-            self = Character(newValue)
-        }
+        return value
     }
 
 }
-
-
