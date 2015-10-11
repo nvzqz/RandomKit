@@ -12,6 +12,9 @@
 		528200EC1BC9D770001FDD58 /* RandomKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528200E91BC9D770001FDD58 /* RandomKit.swift */; settings = {ASSET_TAGS = (); }; };
 		528200F41BC9FA42001FDD58 /* RandomKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528200F31BC9FA42001FDD58 /* RandomKitTests.swift */; };
 		528200F61BC9FA42001FDD58 /* RandomKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 528200911BC9C4A2001FDD58 /* RandomKit.framework */; settings = {ASSET_TAGS = (); }; };
+		528201141BCABEB3001FDD58 /* Character+RandomKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528201131BCABEB3001FDD58 /* Character+RandomKit.swift */; settings = {ASSET_TAGS = (); }; };
+		528201151BCABEB3001FDD58 /* Character+RandomKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528201131BCABEB3001FDD58 /* Character+RandomKit.swift */; settings = {ASSET_TAGS = (); }; };
+		528201161BCABEB3001FDD58 /* Character+RandomKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528201131BCABEB3001FDD58 /* Character+RandomKit.swift */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -33,6 +36,7 @@
 		528200F11BC9FA42001FDD58 /* RandomKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RandomKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		528200F31BC9FA42001FDD58 /* RandomKitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomKitTests.swift; sourceTree = "<group>"; };
 		528200F51BC9FA42001FDD58 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		528201131BCABEB3001FDD58 /* Character+RandomKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Character+RandomKit.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,6 +96,7 @@
 			isa = PBXGroup;
 			children = (
 				528200E91BC9D770001FDD58 /* RandomKit.swift */,
+				528201131BCABEB3001FDD58 /* Character+RandomKit.swift */,
 				528200B51BC9C53B001FDD58 /* Info.plist */,
 			);
 			path = RandomKit;
@@ -286,6 +291,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				528200EA1BC9D770001FDD58 /* RandomKit.swift in Sources */,
+				528201141BCABEB3001FDD58 /* Character+RandomKit.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -294,6 +300,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				528200EB1BC9D770001FDD58 /* RandomKit.swift in Sources */,
+				528201151BCABEB3001FDD58 /* Character+RandomKit.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -302,6 +309,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				528200EC1BC9D770001FDD58 /* RandomKit.swift in Sources */,
+				528201161BCABEB3001FDD58 /* Character+RandomKit.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -794,6 +802,7 @@
 				528200FB1BC9FA42001FDD58 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
