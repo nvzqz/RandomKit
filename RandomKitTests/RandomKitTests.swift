@@ -11,15 +11,29 @@ import RandomKit
 
 class RandomKitTests: XCTestCase {
 
+    let testCount = 1_000_000
+
     let min = Character(UnicodeScalar(0))
     let max = Character(UnicodeScalar(UInt8.max))
 
     var interval: ClosedInterval<Character> { return min...max }
 
     func testRandomCharacter() {
-        let r1 = Character.random(self.interval)
-        let r2 = Character.random(self.interval)
-        XCTAssertNotEqual(r1, r2, "Random characters are equal")
+        let sameCount = (0...testCount).reduce(0) { count, _ in
+            let r1 = Character.random(self.interval)
+            let r2 = Character.random(self.interval)
+            return count + (r1 == r2 ? 1 : 0)
+        }
+        XCTAssertFalse(sameCount > testCount / 100, "Too many equal random characters")
+    }
+
+    func testRandomString() {
+        let sameCount = (0...(testCount/2)).reduce(0) { count, _ in
+            let r1 = String.random(10, interval)
+            let r2 = String.random(10, interval)
+            return count + (r1 == r2 ? 1 : 0)
+        }
+        XCTAssertFalse(sameCount > 1, "Too many equal random strings")
     }
 
 }

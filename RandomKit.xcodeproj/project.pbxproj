@@ -15,6 +15,9 @@
 		528201141BCABEB3001FDD58 /* Character+RandomKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528201131BCABEB3001FDD58 /* Character+RandomKit.swift */; settings = {ASSET_TAGS = (); }; };
 		528201151BCABEB3001FDD58 /* Character+RandomKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528201131BCABEB3001FDD58 /* Character+RandomKit.swift */; settings = {ASSET_TAGS = (); }; };
 		528201161BCABEB3001FDD58 /* Character+RandomKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528201131BCABEB3001FDD58 /* Character+RandomKit.swift */; settings = {ASSET_TAGS = (); }; };
+		528201181BCAC395001FDD58 /* String+RandomKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528201171BCAC395001FDD58 /* String+RandomKit.swift */; settings = {ASSET_TAGS = (); }; };
+		528201191BCAC395001FDD58 /* String+RandomKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528201171BCAC395001FDD58 /* String+RandomKit.swift */; settings = {ASSET_TAGS = (); }; };
+		5282011A1BCAC395001FDD58 /* String+RandomKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528201171BCAC395001FDD58 /* String+RandomKit.swift */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,6 +40,7 @@
 		528200F31BC9FA42001FDD58 /* RandomKitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomKitTests.swift; sourceTree = "<group>"; };
 		528200F51BC9FA42001FDD58 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		528201131BCABEB3001FDD58 /* Character+RandomKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Character+RandomKit.swift"; sourceTree = "<group>"; };
+		528201171BCAC395001FDD58 /* String+RandomKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+RandomKit.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +101,7 @@
 			children = (
 				528200E91BC9D770001FDD58 /* RandomKit.swift */,
 				528201131BCABEB3001FDD58 /* Character+RandomKit.swift */,
+				528201171BCAC395001FDD58 /* String+RandomKit.swift */,
 				528200B51BC9C53B001FDD58 /* Info.plist */,
 			);
 			path = RandomKit;
@@ -291,6 +296,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				528200EA1BC9D770001FDD58 /* RandomKit.swift in Sources */,
+				528201181BCAC395001FDD58 /* String+RandomKit.swift in Sources */,
 				528201141BCABEB3001FDD58 /* Character+RandomKit.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -300,6 +306,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				528200EB1BC9D770001FDD58 /* RandomKit.swift in Sources */,
+				528201191BCAC395001FDD58 /* String+RandomKit.swift in Sources */,
 				528201151BCABEB3001FDD58 /* Character+RandomKit.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -309,6 +316,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				528200EC1BC9D770001FDD58 /* RandomKit.swift in Sources */,
+				5282011A1BCAC395001FDD58 /* String+RandomKit.swift in Sources */,
 				528201161BCABEB3001FDD58 /* Character+RandomKit.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
