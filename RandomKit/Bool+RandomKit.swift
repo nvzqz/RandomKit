@@ -28,7 +28,8 @@
 import Foundation
 
 extension Bool {
+
     public static func random() -> Bool {
-        return Int.random() % 2 == 0
+        return Int.random(0...1) == 0
     }
 }

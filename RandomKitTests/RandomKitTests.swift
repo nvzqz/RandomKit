@@ -13,6 +13,14 @@ class RandomKitTests: XCTestCase {
 
     let testCount = 1_000_000
 
+    func testRandomBool() {
+        let falseCount = (0...testCount).reduce(0) { count, _ in
+            Bool.random() ? count : count + 1
+        }
+        let percentFalse = Double(falseCount)/Double(testCount) * 100
+        XCTAssertTrue(percentFalse > 49.75 && percentFalse < 50.75, "One happens more often than the other.")
+    }
+
     let min = Character(UnicodeScalar(0))
     let max = Character(UnicodeScalar(UInt8.max))
 
