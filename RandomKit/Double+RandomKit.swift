@@ -1,5 +1,5 @@
 //
-//  CGFloat+RandomKit.swift
+//  Double+RandomKit.swift
 //  RandomKit
 //
 //  The MIT License (MIT)
@@ -27,18 +27,10 @@
 
 import Foundation
 
-#if os(OSX)
-import Cocoa
-#elseif os(iOS)
-import UIKit
-#elseif os(watchOS)
-import WatchKit
-#endif
+extension Double {
 
-extension CGFloat {
-
-    public static func random() -> CGFloat {
-        return CGFloat(Float.random(0.0, 1.0))
+    public static func random(min: Double = 0.0, _ max: Double = 1.0) -> Double {
+        return min + (max - min) * (Double(arc4random()) / Double(UInt32.max))
     }
-    
+
 }
