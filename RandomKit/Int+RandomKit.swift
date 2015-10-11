@@ -1,5 +1,5 @@
 //
-//  RandomKit.swift
+//  Int+RandomKit.swift
 //  RandomKit
 //
 //  The MIT License (MIT)
@@ -32,11 +32,3 @@ extension Int {
         return min + Int(arc4random_uniform(UInt32(max - min + 1)))
     }
 }
-
-extension Bool {
-    public static func random() -> Bool {
-        return Int.random() % 2 == 0
-    }
-}
-
-
