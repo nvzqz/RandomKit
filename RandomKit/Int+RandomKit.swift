@@ -28,6 +28,12 @@
 import Foundation
 
 extension Int {
+    
+    /// Generates a random `Int` inside of the closed interval.
+    ///
+    /// - Parameters:
+    ///     - interval: The interval within which the number
+    ///       will be generated. Default value is `0...100`.
     public static func random(interval: ClosedInterval<Int> = 0...100) -> Int {
         return interval.start + Int(arc4random_uniform(UInt32(interval.end - interval.start + 1)))
     }

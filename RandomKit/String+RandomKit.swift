@@ -29,12 +29,26 @@ import Foundation
 
 extension String {
 
+    /// Generates a random `String` of a given length inside of
+    /// the closed interval.
+    ///
+    /// - Parameters:
+    ///     - length: The length for the generated string.
+    ///     - interval: The interval within which the string
+    ///       will be generated. Default value is `" "..."~"`.
     public static func random(length: UInt, _ interval: ClosedInterval<Character> = " "..."~") -> String {
         return (0 ..< length).reduce("") { value, _ in
             value + String(Character.random(interval))
         }
     }
 
+    /// Generates a random `String` of a given length inside of
+    /// the character set.
+    ///
+    /// - Parameters:
+    ///     - length: The length for the generated string.
+    ///     - characterSet: The character set within which the string
+    ///       will be generated.
     public static func random(length: UInt, _ characterSet: NSCharacterSet) -> String {
         guard length > 0 else { return "" }
         let characters = characterSet.asCharacterArray

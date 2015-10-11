@@ -29,6 +29,11 @@ import Foundation
 
 extension Character {
 
+    /// Generates a random `Character` inside of the closed interval.
+    ///
+    /// - Parameters:
+    ///     - interval: The interval within which the character
+    ///       will be generated. Default value is `" "..."~"`.
     public static func random(interval: ClosedInterval<Character> = " "..."~") -> Character {
         var randomValue: UInt32 {
             let start   = interval.start.scalar.value
@@ -40,6 +45,11 @@ extension Character {
         return Character(UnicodeScalar(randomValue))
     }
 
+    /// Generates a random `Character` inside of the character set.
+    ///
+    /// - Parameters:
+    ///     - characterSet: The character set within which the character
+    ///       will be generated.
     public static func random(characterSet: NSCharacterSet) -> Character {
         return characterSet.asCharacterArray.random()
     }

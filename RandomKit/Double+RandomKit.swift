@@ -29,6 +29,11 @@ import Foundation
 
 extension Double {
 
+    /// Generates a random `Double` inside of the closed interval.
+    ///
+    /// - Parameters:
+    ///     - interval: The interval within which the number
+    ///       will be generated. Default value is `0.0...1.0`.
     public static func random(interval: ClosedInterval<Double> = 0.0...1.0) -> Double {
         return interval.start + (interval.start - interval.end) * (Double(arc4random()) / Double(UInt32.max))
     }

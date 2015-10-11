@@ -46,6 +46,13 @@ extension _RKColorType {
 import Cocoa
 
 extension NSColor: _RKColorType {
+
+    /// Returns a random color.
+    ///
+    /// - Parameters:
+    ///     - randomAlpha: If `true`, the alpha value will
+    ///       be random. If `false`, the alpha value will
+    ///       be `1.0`. Default value is `false`.
     public static func random(randomAlpha: Bool = false) -> NSColor {
         return _random(randomAlpha)
     }
@@ -56,6 +63,13 @@ extension NSColor: _RKColorType {
 import UIKit
 
 extension UIColor: _RKColorType {
+
+    /// Returns a random color.
+    ///
+    /// - Parameters:
+    ///     - randomAlpha: If `true`, the alpha value will
+    ///       be random. If `false`, the alpha value will
+    ///       be `1.0`. Default value is `false`.
     public static func random(randomAlpha: Bool = false) -> UIColor {
         return _random(randomAlpha)
     }
@@ -66,6 +80,13 @@ extension UIColor: _RKColorType {
 import WatchKit
 
 extension UIColor: _RKColorType {
+
+    /// Returns a random color.
+    ///
+    /// - Parameters:
+    ///     - randomAlpha: If `true`, the alpha value will
+    ///       be random. If `false`, the alpha value will
+    ///       be `1.0`. Default value is `false`.
     public static func random(randomAlpha: Bool = false) -> UIColor {
         return _random(randomAlpha)
     }

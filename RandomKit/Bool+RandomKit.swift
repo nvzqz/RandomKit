@@ -29,6 +29,7 @@ import Foundation
 
 extension Bool {
 
+    /// Generates a random `Bool`.
     public static func random() -> Bool {
         return Int.random(0...1) == 0
     }

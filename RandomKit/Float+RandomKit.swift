@@ -29,6 +29,11 @@ import Foundation
 
 extension Float {
 
+    /// Generates a random `Float` inside of the closed interval.
+    ///
+    /// - Parameters:
+    ///     - interval: The interval within which the number
+    ///       will be generated. Default value is `0.0...1.0`.
     public static func random(interval: ClosedInterval<Float> = 0.0...1.0) -> Float {
         return interval.start + (interval.start - interval.end) * (Float(arc4random()) / Float(UInt32.max))
     }

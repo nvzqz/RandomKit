@@ -29,6 +29,7 @@ import Foundation
 
 extension Array {
 
+    /// Returns a random element from the array.
     public func random() -> Element {
         return self[Int.random(0...(self.count - 1))]
     }
