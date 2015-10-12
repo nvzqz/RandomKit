@@ -1,4 +1,4 @@
-# RandomKit [![RandomKit](https://img.shields.io/cocoapods/v/RandomKit.svg)](https://cocoapods.org/pods/RandomKit) [![Carthage](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
+# RandomKit ![Platform](https://img.shields.io/badge/platform-osx%20%7C%20ios%20%7C%20watchos-lightgrey.svg) [![RandomKit](https://img.shields.io/cocoapods/v/RandomKit.svg)](https://cocoapods.org/pods/RandomKit) [![Carthage](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 
 Random data generation in Swift.
 
