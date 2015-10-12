@@ -61,6 +61,8 @@ manager for Objective-C and Swift.
 
 ## Usage
 
+Try it out for yourself! Download the repo and open 'RandomKit.playground'.
+
 ### `Int`
 
 ```swift
@@ -76,6 +78,9 @@ Float.random(-10...10)  //  5.167088
 CGFloat.random()        //  0.699803650379181
 ```
 
+### `Bool`
+`Bool.random()` has a 50/50 chance of being `true`.
+
 ### `String` and `Character`
 
 ```swift
@@ -88,10 +93,13 @@ Character.random("A"..."z") // "s"
 Character.random(.uppercaseLetterCharacterSet()) // "𝝙"
 ```
 
-### `Array`
+### `CollectionType`
+
+All types that conform to `CollectionType` have a `random` property
+that returns a random element, or `nil` if the collection is empty.
 
 ```swift
-["Bob", "Cindy", "May"].random()
+["Bob", "Cindy", "May", "Charles", "Javier"].random  // "Charles"
 ```
 
 ### `NSColor` and `UIColor`
