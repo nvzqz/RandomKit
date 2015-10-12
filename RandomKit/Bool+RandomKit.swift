@@ -27,10 +27,11 @@
 
 import Foundation
 
-extension Bool {
+extension Bool: RandomType {
 
     /// Generates a random `Bool`.
     public static func random() -> Bool {
         return Int.random(0...1) == 0
     }
+
 }

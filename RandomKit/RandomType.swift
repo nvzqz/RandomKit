@@ -1,5 +1,5 @@
 //
-//  CGFloat+RandomKit.swift
+//  RandomType.swift
 //  RandomKit
 //
 //  The MIT License (MIT)
@@ -25,23 +25,10 @@
 //  THE SOFTWARE.
 //
 
-import Foundation
+/// A type that can generate a random value.
+public protocol RandomType {
 
-#if os(OSX)
-import Cocoa
-#elseif os(iOS)
-import UIKit
-#elseif os(watchOS)
-import WatchKit
-#endif
+    /// Generates a random value of `Self`.
+    static func random() -> Self
 
-extension CGFloat: RandomType {
-
-    /// Generates a random `CGFloat`.
-    ///
-    /// - Returns: Random value within `0.0...1.0`.
-    public static func random() -> CGFloat {
-        return CGFloat(Float.random(0.0...1.0))
-    }
-    
 }

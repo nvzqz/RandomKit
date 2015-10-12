@@ -27,14 +27,21 @@
 
 import Foundation
 
-extension Character {
+extension Character: RandomType {
+
+    /// Generates a random `Character`.
+    ///
+    /// - Returns: Random value within `" "..."~"`.
+    public static func random() -> Character {
+        return random(" "..."~")
+    }
 
     /// Generates a random `Character` inside of the closed interval.
     ///
     /// - Parameters:
     ///     - interval: The interval within which the character
-    ///       will be generated. Default value is `" "..."~"`.
-    public static func random(interval: ClosedInterval<Character> = " "..."~") -> Character {
+    ///       will be generated.
+    public static func random(interval: ClosedInterval<Character>) -> Character {
         var randomValue: UInt32 {
             let start   = interval.start.scalar.value
             let end     = interval.end.scalar.value

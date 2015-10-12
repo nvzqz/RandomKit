@@ -27,14 +27,21 @@
 
 import Foundation
 
-extension Float {
+extension Float: RandomType {
+
+    /// Generates a random `Float`.
+    ///
+    /// - Returns: Random value within `0.0...1.0`.
+    public static func random() -> Float {
+        return random(0.0...1.0)
+    }
 
     /// Generates a random `Float` inside of the closed interval.
     ///
     /// - Parameters:
     ///     - interval: The interval within which the number
-    ///       will be generated. Default value is `0.0...1.0`.
-    public static func random(interval: ClosedInterval<Float> = 0.0...1.0) -> Float {
+    ///       will be generated.
+    public static func random(interval: ClosedInterval<Float>) -> Float {
         return interval.start + (interval.end - interval.start) * (Float(arc4random()) / Float(UInt32.max))
     }
 

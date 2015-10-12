@@ -27,14 +27,21 @@
 
 import Foundation
 
-extension Double {
+extension Double: RandomType {
+
+    /// Generates a random `Double`.
+    ///
+    /// - Returns: Random value within `0.0...1.0`.
+    public static func random() -> Double {
+        return random(0.0...1.0)
+    }
 
     /// Generates a random `Double` inside of the closed interval.
     ///
     /// - Parameters:
     ///     - interval: The interval within which the number
-    ///       will be generated. Default value is `0.0...1.0`.
-    public static func random(interval: ClosedInterval<Double> = 0.0...1.0) -> Double {
+    ///       will be generated.
+    public static func random(interval: ClosedInterval<Double>) -> Double {
         return interval.start + (interval.end - interval.start) * (Double(arc4random()) / Double(UInt32.max))
     }
 

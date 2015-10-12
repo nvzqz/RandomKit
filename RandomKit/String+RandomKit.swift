@@ -27,10 +27,17 @@
 
 import Foundation
 
-extension String {
+extension String: RandomType {
 
     /// The default length for randomly generated strings.
     public static var RandomLength: UInt = 10
+
+    /// Generates a random `String`.
+    ///
+    /// - Returns: Random value within `" "..."~"` with length of `RandomLength`.
+    public static func random() -> String {
+        return random(RandomLength, " "..."~")
+    }
 
     /// Generates a random `String` of a given length inside of
     /// the closed interval.
@@ -39,8 +46,8 @@ extension String {
     ///     - length: The length for the generated string.
     ///       Default value is `RandomLength`.
     ///     - interval: The interval within which the string
-    ///       will be generated. Default value is `" "..."~"`.
-    public static func random(length: UInt = RandomLength, _ interval: ClosedInterval<Character> = " "..."~") -> String {
+    ///       will be generated.
+    public static func random(length: UInt = RandomLength, _ interval: ClosedInterval<Character>) -> String {
         return (0 ..< length).reduce("") { value, _ in
             value + String(Character.random(interval))
         }

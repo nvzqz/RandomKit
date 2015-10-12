@@ -27,14 +27,21 @@
 
 import Foundation
 
-extension Int {
+extension Int: RandomType {
+
+    /// Generates a random `Int`.
+    ///
+    /// - Returns: Random value within `0...100`.
+    public static func random() -> Int {
+        return random(0...100)
+    }
     
     /// Generates a random `Int` inside of the closed interval.
     ///
     /// - Parameters:
     ///     - interval: The interval within which the number
-    ///       will be generated. Default value is `0...100`.
-    public static func random(interval: ClosedInterval<Int> = 0...100) -> Int {
+    ///       will be generated.
+    public static func random(interval: ClosedInterval<Int>) -> Int {
         return interval.start + Int(arc4random_uniform(UInt32(interval.end - interval.start + 1)))
     }
 }
