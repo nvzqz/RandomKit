@@ -62,4 +62,13 @@ class RandomKitTests: XCTestCase {
         XCTAssertFalse(sameCount > 1, "Too many equal random strings")
     }
 
+    func testRandomDictionaryValue() {
+        let emptyDict: [String : String] = [:]
+        XCTAssertNil(emptyDict.random(), "Random element in empty dictionary is not nil???")
+        let dict = ["k1" : "v1", "k2" : "v2", "k3" : "v3"]
+        for _ in 1...dict.count {
+            XCTAssertNotNil(dict.random(), "Random element in non-empty dictionary is nil")
+        }
+    }
+
 }
