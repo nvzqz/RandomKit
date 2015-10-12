@@ -53,7 +53,7 @@ extension String {
         guard length > 0 else { return "" }
         let characters = characterSet.asCharacterArray
         return (0 ..< length).reduce("") { value, _ in
-            value + String(characters.random())
+            value + String(characters.random!)
         }
     }
 

@@ -1,5 +1,5 @@
 //
-//  Dictionary+RandomKit.swift
+//  CollectionType+RandomKit.swift
 //  RandomKit
 //
 //  The MIT License (MIT)
@@ -27,13 +27,14 @@
 
 import Foundation
 
-extension Dictionary {
+extension CollectionType {
 
     /// Returns a random element of `self`, or `nil` if `self` is empty.
-    public func random() -> Element? {
+    public var random: Self.Generator.Element? {
         guard !self.isEmpty else { return nil }
-        let key = Array(self.keys).random()
-        return (key, self[key]!)
+        let distance = startIndex.distanceTo(endIndex)
+        let randomIntMax = arc4random_uniform(UInt32(distance.toIntMax())).toIntMax()
+        return self[startIndex.advancedBy(Index.Distance(randomIntMax))]
     }
 
 }
