@@ -50,8 +50,8 @@ extension Character {
     /// - Parameters:
     ///     - characterSet: The character set within which the character
     ///       will be generated.
-    public static func random(characterSet: NSCharacterSet) -> Character {
-        return characterSet.asCharacterArray.random!
+    public static func random(characterSet: NSCharacterSet) -> Character? {
+        return characterSet.asCharacterArray.random
     }
 
     internal var scalar: UnicodeScalar {
