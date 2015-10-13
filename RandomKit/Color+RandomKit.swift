@@ -32,12 +32,11 @@ private protocol _RKColorType {
 }
 
 extension _RKColorType {
-    static func _random(randomAlpha: Bool) -> Self {
-        return Self(
-            red:   CGFloat.random(),
-            green: CGFloat.random(),
-            blue:  CGFloat.random(),
-            alpha: randomAlpha ? CGFloat.random() : 1.0)
+    static func _random(alpha flag: Bool) -> Self {
+        return Self(red:   CGFloat.random(),
+                    green: CGFloat.random(),
+                    blue:  CGFloat.random(),
+                    alpha: flag ? CGFloat.random() : 1.0)
     }
 }
 
@@ -50,11 +49,11 @@ extension NSColor: _RKColorType {
     /// Returns a random color.
     ///
     /// - Parameters:
-    ///     - randomAlpha: If `true`, the alpha value will
+    ///     - alpha: If `true`, the alpha value will
     ///       be random. If `false`, the alpha value will
     ///       be `1.0`. Default value is `false`.
-    public static func random(randomAlpha: Bool = false) -> NSColor {
-        return _random(randomAlpha)
+    public static func random(alpha flag: Bool = false) -> NSColor {
+        return _random(alpha: flag)
     }
 }
 
@@ -67,11 +66,11 @@ extension UIColor: _RKColorType {
     /// Returns a random color.
     ///
     /// - Parameters:
-    ///     - randomAlpha: If `true`, the alpha value will
+    ///     - alpha: If `true`, the alpha value will
     ///       be random. If `false`, the alpha value will
     ///       be `1.0`. Default value is `false`.
-    public static func random(randomAlpha: Bool = false) -> UIColor {
-        return _random(randomAlpha)
+    public static func random(alpha flag: Bool = false) -> UIColor {
+        return _random(alpha: flag)
     }
 }
 
@@ -84,11 +83,11 @@ extension UIColor: _RKColorType {
     /// Returns a random color.
     ///
     /// - Parameters:
-    ///     - randomAlpha: If `true`, the alpha value will
+    ///     - alpha: If `true`, the alpha value will
     ///       be random. If `false`, the alpha value will
     ///       be `1.0`. Default value is `false`.
-    public static func random(randomAlpha: Bool = false) -> UIColor {
-        return _random(randomAlpha)
+    public static func random(alpha flag: Bool = false) -> UIColor {
+        return _random(alpha: flag)
     }
 }
 
