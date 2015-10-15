@@ -25,6 +25,9 @@
 		521D60B41BCF2E4700CEC3F5 /* Bit+RandomKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521D60B31BCF2E4700CEC3F5 /* Bit+RandomKit.swift */; settings = {ASSET_TAGS = (); }; };
 		521D60B51BCF2E4700CEC3F5 /* Bit+RandomKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521D60B31BCF2E4700CEC3F5 /* Bit+RandomKit.swift */; settings = {ASSET_TAGS = (); }; };
 		521D60B61BCF2E4700CEC3F5 /* Bit+RandomKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521D60B31BCF2E4700CEC3F5 /* Bit+RandomKit.swift */; settings = {ASSET_TAGS = (); }; };
+		521D60BC1BCF317400CEC3F5 /* NSArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521D60BB1BCF317400CEC3F5 /* NSArray.swift */; settings = {ASSET_TAGS = (); }; };
+		521D60BD1BCF317400CEC3F5 /* NSArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521D60BB1BCF317400CEC3F5 /* NSArray.swift */; settings = {ASSET_TAGS = (); }; };
+		521D60BE1BCF317400CEC3F5 /* NSArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521D60BB1BCF317400CEC3F5 /* NSArray.swift */; settings = {ASSET_TAGS = (); }; };
 		526BA1FD1BCB77A300495B34 /* CollectionType+RandomKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526BA1FC1BCB77A300495B34 /* CollectionType+RandomKit.swift */; settings = {ASSET_TAGS = (); }; };
 		526BA1FE1BCB77A300495B34 /* CollectionType+RandomKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526BA1FC1BCB77A300495B34 /* CollectionType+RandomKit.swift */; settings = {ASSET_TAGS = (); }; };
 		526BA1FF1BCB77A300495B34 /* CollectionType+RandomKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526BA1FC1BCB77A300495B34 /* CollectionType+RandomKit.swift */; settings = {ASSET_TAGS = (); }; };
@@ -70,6 +73,7 @@
 		521320CF1BCB032400A3D599 /* Double+RandomKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Double+RandomKit.swift"; sourceTree = "<group>"; };
 		521320D31BCB0C9800A3D599 /* Float+RandomKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Float+RandomKit.swift"; sourceTree = "<group>"; };
 		521D60B31BCF2E4700CEC3F5 /* Bit+RandomKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Bit+RandomKit.swift"; sourceTree = "<group>"; };
+		521D60BB1BCF317400CEC3F5 /* NSArray.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSArray.swift; sourceTree = "<group>"; };
 		526BA1FC1BCB77A300495B34 /* CollectionType+RandomKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CollectionType+RandomKit.swift"; sourceTree = "<group>"; };
 		526BA2001BCB818700495B34 /* RandomType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RandomType.swift; sourceTree = "<group>"; };
 		526BA2261BCC9A7B00495B34 /* NSDate+RandomKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDate+RandomKit.swift"; sourceTree = "<group>"; };
@@ -152,6 +156,7 @@
 				528201131BCABEB3001FDD58 /* Character+RandomKit.swift */,
 				528201171BCAC395001FDD58 /* String+RandomKit.swift */,
 				526BA1FC1BCB77A300495B34 /* CollectionType+RandomKit.swift */,
+				521D60BB1BCF317400CEC3F5 /* NSArray.swift */,
 				521320C21BCAFD3E00A3D599 /* CGFloat+RandomKit.swift */,
 				521320CB1BCB025800A3D599 /* Color+RandomKit.swift */,
 				526BA22A1BCC9F4900495B34 /* NSURL+RandomKit.swift */,
@@ -350,6 +355,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				521D60BC1BCF317400CEC3F5 /* NSArray.swift in Sources */,
 				526BA22B1BCC9F4900495B34 /* NSURL+RandomKit.swift in Sources */,
 				526BA2271BCC9A7B00495B34 /* NSDate+RandomKit.swift in Sources */,
 				521320AF1BCAEBC300A3D599 /* NSCharacterSet+RandomKit.swift in Sources */,
@@ -371,6 +377,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				521D60BD1BCF317400CEC3F5 /* NSArray.swift in Sources */,
 				526BA22C1BCC9F4900495B34 /* NSURL+RandomKit.swift in Sources */,
 				526BA2281BCC9A7B00495B34 /* NSDate+RandomKit.swift in Sources */,
 				521320B01BCAEBC300A3D599 /* NSCharacterSet+RandomKit.swift in Sources */,
@@ -392,6 +399,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				521D60BE1BCF317400CEC3F5 /* NSArray.swift in Sources */,
 				526BA22D1BCC9F4900495B34 /* NSURL+RandomKit.swift in Sources */,
 				526BA2291BCC9A7B00495B34 /* NSDate+RandomKit.swift in Sources */,
 				521320B11BCAEBC300A3D599 /* NSCharacterSet+RandomKit.swift in Sources */,
