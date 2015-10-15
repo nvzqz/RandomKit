@@ -1,5 +1,5 @@
 //
-//  NSArray.swift
+//  SequenceType+RandomKit.swift
 //  RandomKit
 //
 //  The MIT License (MIT)
@@ -27,13 +27,11 @@
 
 import Foundation
 
-extension NSArray {
+extension SequenceType {
 
-    /// A random object in the array. (read-only)
-    ///
-    /// If the array is empty, returns `nil`.
-    public var randomObject: AnyObject? {
-        return objectAtIndex(Int.random(0 ... count - 1))
+    /// Returns a random element of `self`, or `nil` if `self` is empty.
+    public var random: Self.Generator.Element? {
+        return Array(self).random
     }
-
+    
 }
