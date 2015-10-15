@@ -65,6 +65,8 @@ Try it out for yourself! Download the repo and open 'RandomKit.playground'.
 
 ### `Int`
 
+Generate a random `Int` from within an interval or `0...100` by default.
+
 ```swift
 Int.random()        // An Int within 0 and 100
 Int.random(10...20) // An Int within 10 and 20
@@ -72,19 +74,27 @@ Int.random(10...20) // An Int within 10 and 20
 
 ### `Double`, `Float`, and `CGFloat`
 
+Generate a random floating point value from within an interval or `0.0...1.0` by
+default.
+
 ```swift
 Double.random(-10...10) // -4.03042337718197
 Float.random(-10...10)  //  5.167088
 CGFloat.random()        //  0.699803650379181
 ```
 
-### `Bool`
-`Bool.random()` has a 50/50 chance of being `true`.
+### `Bool` and `Bit`
+
+`Bool.random()` and `Bit.random()` have a 50/50 chance of being `true` and `One`
+respectively.
 
 ### `String` and `Character`
 
+Generate a random `String` or `Character` from within a `Character` interval or
+from an `NSCharacterSet`.
+
 ```swift
-String.random(10) // "}+[=Ng>$w1"
+String.random(10) // Default: " "..."~" -> "}+[=Ng>$w1"
 String.random(10, "A"..."z") // "poUtXJIbv["
 String.random(10, .uppercaseLetterCharacterSet()) // ṤՈ𝕮𝝘ꝻṄԱＭĐŦ
 
@@ -93,23 +103,48 @@ Character.random("A"..."z") // "s"
 Character.random(.uppercaseLetterCharacterSet()) // "𝝙"
 ```
 
-### `CollectionType`
+The default random `String` length can be changed by altering `String.RandomLength`.
 
-All types that conform to `CollectionType` have a `random` property
-that returns a random element, or `nil` if the collection is empty.
+### `SequenceType` and `CollectionType`
+
+All types that conform to `SequenceType` and/or `CollectionType` have a `random`
+property that returns a random element, or `nil` if the collection is empty.
 
 ```swift
 ["Bob", "Cindy", "May", "Charles", "Javier"].random  // "Charles"
 ```
 
-### `NSColor` and `UIColor`
+### `NSURL`
+
+Generate a random NSURL from a list of values.
 
 ```swift
-NSColor.random()     // r 0.694 g 0.506 b 0.309 a 1.0
-NSColor.random(true) // r 0.859 g 0.57  b 0.409 a 0.047
+NSURL.random()  // https://medium.com/
+                // https://stackoverflow.com/
+                // https://github.com/
+                // ...
+```
 
-UIColor.random()     // r 0.488 g 0.805 b 0.679 a 1.0
-UIColor.random(true) // r 0.444 g 0.121 b 0.602 a 0.085
+You can change the possible values yourself by altering `NSURL.RandomValues`.
+
+### `NSDate`
+
+Generate a random date between two `NSTimeInterval` values, or between `0.0` and `NSTimeInterval(UInt32.max)`.
+
+```swift
+NSDate.random()  // "Aug 28, 2006, 3:38 AM"
+```
+
+### `NSColor` and `UIColor`
+
+Generate a random color with or without the alpha being random as well.
+
+```swift
+NSColor.random()            // r 0.694 g 0.506 b 0.309 a 1.0
+NSColor.random(alpha: true) // r 0.859 g 0.57  b 0.409 a 0.047
+
+UIColor.random()            // r 0.488 g 0.805 b 0.679 a 1.0
+UIColor.random(alpha: true) // r 0.444 g 0.121 b 0.602 a 0.085
 ```
 
 ## License
