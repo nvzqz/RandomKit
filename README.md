@@ -1,6 +1,31 @@
-# RandomKit ![Platform](https://img.shields.io/badge/platform-osx%20%7C%20ios%20%7C%20watchos-lightgrey.svg) [![RandomKit](https://img.shields.io/cocoapods/v/RandomKit.svg)](https://cocoapods.org/pods/RandomKit) [![Carthage](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
+<p align="center">
+    <img src="https://github.com/nvzqz/RandomKit/raw/assets/banner.png" alt="RandomKit">
+</p>
 
-Random data generation in Swift.
+<p align="center">
+    <img src="https://img.shields.io/badge/platform-osx%20%7C%20ios%20%7C%20watchos-lightgrey.svg"
+         alt="Platform">
+    <img src="https://img.shields.io/badge/language-swift-orange.svg"
+         alt="Language: Swift">
+    <a href="https://cocoapods.org/pods/RandomKit">
+        <img src="https://img.shields.io/cocoapods/v/RandomKit.svg"
+             alt="CocoaPods - RandomKit">
+    </a>
+    <a href="https://github.com/Carthage/Carthage">
+        <img src="https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat"
+             alt="Carthage">
+    </a>
+    <img src="https://img.shields.io/badge/license-MIT-000000.svg"
+         alt="License">
+</p>
+
+<p align="center">
+    <a href="#installation">Installation</a>
+  • <a href="#usage">Usage</a>
+  • <a href="#license">License</a>
+</p>
+
+RandomKit is a Swift framework that makes random data generation simple and easy.
 
 ## Installation
 
