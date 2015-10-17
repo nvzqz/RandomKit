@@ -171,4 +171,33 @@ public struct Random {
         return Int(number)!
     }
 
+    public enum HonorificType {
+
+        case Any, Common, Formal, Professional, Religious
+
+        internal var titles: [String] {
+            switch self {
+            case .Any:
+                return [Common, Formal, Professional, Religious]
+                    .reduce([]) { $0 + $1.titles }
+            case .Common:
+                return ["Mr.", "Master", "Mz.", "Ms.", "Mrs.", "Mx."]
+            case .Formal:
+                return ["Sir", "Madam", "Lord", "Lady"]
+            case .Professional:
+                return ["Dr.", "Prof."]
+            case .Religious:
+                return ["Br.", "Sr.", "Fr.", "Rev.", "Pr.", "Elder", "Rabbi"]
+            }
+        }
+    }
+
+    /// Generates a random English honorific for a given type.
+    ///
+    /// - Parameter type: The type of the generated honorific.
+    ///                   Default value is `.Any`.
+    public static func fakeEnglishHonorific(type: HonorificType = .Any) -> String {
+        return type.titles.random!
+    }
+
 }
