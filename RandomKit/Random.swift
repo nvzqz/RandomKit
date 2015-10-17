@@ -44,7 +44,7 @@ public struct Random {
     }
 
     public enum USState: String {
-        case _Random
+        case _Any
         case Alabama
         case Alaska
         case Arizona
@@ -167,9 +167,9 @@ public struct Random {
     /// Generates a random fake phone number for a given US state.
     ///
     /// - Parameter state: The US state for the area code of the generated
-    ///             number. Default value is `._Random`.
-    public static func fakePhoneNumber(state: USState = ._Random) -> Int {
-        let areaCode = state == ._Random
+    ///             number. Default value is `._Any`.
+    public static func fakePhoneNumber(state: USState = ._Any) -> Int {
+        let areaCode = state == ._Any
             ? areaCodes.random!.1.random!
             : areaCodes[state]!.random!
         let number = (1...7).reduce(String(areaCode)) { number, _ in
@@ -186,7 +186,7 @@ public struct Random {
 
     public enum HonorificType {
 
-        case Any, Common, Formal, Professional, Religious
+        case _Any, Common, Formal, Professional, Religious
 
         private func anyProperties<T>(block: (HonorificType) -> [T]) -> [T] {
             return [Common, Formal, Professional, Religious].reduce([]) {
@@ -222,10 +222,10 @@ public struct Random {
     ///
     /// - Parameters:
     ///     - type: The type of the generated honorific.
-    ///       Default value is `.Any`.
+    ///       Default value is `._Any`.
     ///     - gender: The gender for the generated honorific.
     ///       Default value is `.Either`.
-    public static func fakeEnglishHonorific(type honorificType: HonorificType = .Any, gender: GenderType = .Either) -> String {
+    public static func fakeEnglishHonorific(type honorificType: HonorificType = ._Any, gender: GenderType = .Either) -> String {
         return honorificType.titles(gender).random!
     }
 
