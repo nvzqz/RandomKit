@@ -27,6 +27,8 @@
 
 RandomKit is a Swift framework that makes random data generation simple and easy.
 
+[Dash Docs](dash-feed://http%3A%2F%2Fcocoadocs%2Eorg%2Fdocsets%2FRandomKit%2FRandomKit%2Exml)
+
 ## Installation
 
 ### Compatibility
