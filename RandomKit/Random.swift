@@ -225,8 +225,8 @@ public struct Random {
     ///       Default value is `.Any`.
     ///     - gender: The gender for the generated honorific.
     ///       Default value is `.Either`.
-    public static func fakeEnglishHonorific(type: HonorificType = .Any, gender: GenderType = .Either) -> String {
-        return type.titles(gender).random!
+    public static func fakeEnglishHonorific(type honorificType: HonorificType = .Any, gender: GenderType = .Either) -> String {
+        return honorificType.titles(gender).random!
     }
 
 }
