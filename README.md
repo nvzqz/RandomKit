@@ -88,6 +88,42 @@ manager for Objective-C and Swift.
 
 Try it out for yourself! Download the repo and open 'RandomKit.playground'.
 
+### Fake Random Data
+
+Fake data can be generated from static methods found in `Random`.
+
+#### Gender
+
+Generate a random gender with a 50/50 chance of being "Male" or "Female".
+
+```swift
+Random.fakeGender()
+```
+
+#### Phone Number
+
+Generate a random phone number for a given US state.
+
+```swift
+Random.fakePhoneNumber()          // 5808680873
+Random.fakePhoneNumber(.Florida)  // 7865276359
+```
+
+The default value for state is `._Any`.
+
+#### English Honorific
+
+Generate a random English honorific for a given type and gender.
+
+```swift
+Random.fakeEnglishHonorific()                              // "Prof."
+Random.fakeEnglishHonorific(type: .Professional)           // "Dr."
+Random.fakeEnglishHonorific(type: .Common, gender: .Male)  // "Mr."
+Random.fakeEnglishHonorific(gender: .Female)               // "Lady"
+```
+
+The default values for type and gender are `._Any` and `.Either` respectively.
+
 ### `Int`
 
 Generate a random `Int` from within an interval or `0...100` by default.
