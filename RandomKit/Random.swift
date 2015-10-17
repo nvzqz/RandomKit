@@ -164,4 +164,9 @@ public struct Random {
         return Int(number)!
     }
 
+    /// Generates a random gender: "Male" or "Female".
+    public static var gender: String {
+        return Bool.random() ? "Male" : "Female"
+    }
+
 }
