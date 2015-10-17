@@ -32,7 +32,7 @@ public struct Random {
     // MARK: - Fake Data
 
     /// Generates a random fake gender: "Male" or "Female".
-    public static var fakeGender: String {
+    public static func fakeGender() -> String {
         return Bool.random() ? "Male" : "Female"
     }
 
