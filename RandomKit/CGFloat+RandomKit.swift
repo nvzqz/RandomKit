@@ -41,7 +41,16 @@ extension CGFloat: RandomType {
     ///
     /// - Returns: Random value within `0.0...1.0`.
     public static func random() -> CGFloat {
-        return CGFloat(NativeType.random(0.0...1.0))
+        return random(0.0...1.0)
+    }
+
+    /// Generates a random `CGFloat` inside of the closed interval.
+    ///
+    /// - Parameters:
+    ///     - interval: The interval within which the number
+    ///       will be generated.
+    public static func random(interval: ClosedInterval<NativeType>) -> CGFloat {
+        return CGFloat(NativeType.random(interval))
     }
     
 }
