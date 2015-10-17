@@ -205,7 +205,7 @@ public struct Random {
             case (.Formal, .Female):
                 return ["Madam", "Lady"]
             case (.Professional, _):
-                return ["Dr.", "Prof"]
+                return ["Dr.", "Prof."]
             case (.Religious, .Male):
                 return ["Br.", "Fr.", "Pr.", "Elder", "Rabbi", "Rev."]
             case (.Religious, .Female):
