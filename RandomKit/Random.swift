@@ -29,6 +29,13 @@ import Foundation
 
 public struct Random {
 
+    // MARK: - Fake Data
+
+    /// Generates a random fake gender: "Male" or "Female".
+    public static var fakeGender: String {
+        return Bool.random() ? "Male" : "Female"
+    }
+
     public enum USState: String {
         case _Random
         case Alabama
@@ -150,11 +157,11 @@ public struct Random {
         .Wyoming         : [307]
     ]
 
-    /// Generates a random phone number for a given US state.
+    /// Generates a random fake phone number for a given US state.
     ///
     /// - Parameter state: The US state for the area code of the generated
     ///             number. Default value is `._Random`.
-    public static func phoneNumber(state: USState = ._Random) -> Int {
+    public static func fakePhoneNumber(state: USState = ._Random) -> Int {
         let areaCode = state == ._Random
             ? areaCodes.random!.1.random!
             : areaCodes[state]!.random!
@@ -162,11 +169,6 @@ public struct Random {
             return number + String(Int.random(0...9))
         }
         return Int(number)!
-    }
-
-    /// Generates a random gender: "Male" or "Female".
-    public static var gender: String {
-        return Bool.random() ? "Male" : "Female"
     }
 
 }
