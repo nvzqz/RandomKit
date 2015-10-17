@@ -507,7 +507,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.nikolaivazquez.RandomKit-OSX";
+				PRODUCT_BUNDLE_IDENTIFIER = com.nikolaivazquez.RandomKit;
 				PRODUCT_NAME = RandomKit;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
@@ -557,7 +557,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.nikolaivazquez.RandomKit-OSX";
+				PRODUCT_BUNDLE_IDENTIFIER = com.nikolaivazquez.RandomKit;
 				PRODUCT_NAME = RandomKit;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
@@ -612,7 +612,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.nikolaivazquez.RandomKit-iOS";
+				PRODUCT_BUNDLE_IDENTIFIER = com.nikolaivazquez.RandomKit;
 				PRODUCT_NAME = RandomKit;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -662,7 +662,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.nikolaivazquez.RandomKit-iOS";
+				PRODUCT_BUNDLE_IDENTIFIER = com.nikolaivazquez.RandomKit;
 				PRODUCT_NAME = RandomKit;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -718,7 +718,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.nikolaivazquez.RandomKit-watchOS";
+				PRODUCT_BUNDLE_IDENTIFIER = com.nikolaivazquez.RandomKit;
 				PRODUCT_NAME = RandomKit;
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -768,7 +768,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.nikolaivazquez.RandomKit-watchOS";
+				PRODUCT_BUNDLE_IDENTIFIER = com.nikolaivazquez.RandomKit;
 				PRODUCT_NAME = RandomKit;
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
