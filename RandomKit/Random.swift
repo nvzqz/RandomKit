@@ -27,6 +27,13 @@
 
 import Foundation
 
+internal extension Array where Element : Hashable {
+    private func removeDuplicates() -> Array {
+        var seen: [Element : Bool] = [:]
+        return filter { seen.updateValue(true, forKey: $0) == nil }
+    }
+}
+
 public struct Random {
 
     // MARK: - Fake Data
@@ -171,33 +178,55 @@ public struct Random {
         return Int(number)!
     }
 
+    public enum GenderType {
+        case Male
+        case Female
+        case Either
+    }
+
     public enum HonorificType {
 
         case Any, Common, Formal, Professional, Religious
 
-        internal var titles: [String] {
-            switch self {
-            case .Any:
-                return [Common, Formal, Professional, Religious]
-                    .reduce([]) { $0 + $1.titles }
-            case .Common:
-                return ["Mr.", "Master", "Mz.", "Ms.", "Mrs.", "Mx."]
-            case .Formal:
-                return ["Sir", "Madam", "Lord", "Lady"]
-            case .Professional:
-                return ["Dr.", "Prof."]
-            case .Religious:
-                return ["Br.", "Sr.", "Fr.", "Rev.", "Pr.", "Elder", "Rabbi"]
+        private func anyProperties<T>(block: (HonorificType) -> [T]) -> [T] {
+            return [Common, Formal, Professional, Religious].reduce([]) {
+                $0 + block($1)
+            }
+        }
+
+        internal func titles(gender: GenderType) -> [String] {
+            switch (self, gender) {
+            case (.Common, .Male):
+                return ["Mr.", "Master", "Mx."]
+            case (.Common, .Female):
+                return ["Mz.", "Ms.", "Mrs.", "Mx."]
+            case (.Formal, .Male):
+                return ["Sir", "Lord"]
+            case (.Formal, .Female):
+                return ["Madam", "Lady"]
+            case (.Professional, _):
+                return ["Dr.", "Prof"]
+            case (.Religious, .Male):
+                return ["Br.", "Fr.", "Pr.", "Elder", "Rabbi", "Rev."]
+            case (.Religious, .Female):
+                return ["Sr.", "Rev."]
+            case (_, .Either):
+                return (titles(.Male) + titles(.Female)).removeDuplicates()
+            default:
+                return anyProperties { $0.titles(gender) }
             }
         }
     }
 
     /// Generates a random English honorific for a given type.
     ///
-    /// - Parameter type: The type of the generated honorific.
-    ///                   Default value is `.Any`.
-    public static func fakeEnglishHonorific(type: HonorificType = .Any) -> String {
-        return type.titles.random!
+    /// - Parameters:
+    ///     - type: The type of the generated honorific.
+    ///       Default value is `.Any`.
+    ///     - gender: The gender for the generated honorific.
+    ///       Default value is `.Either`.
+    public static func fakeEnglishHonorific(type: HonorificType = .Any, gender: GenderType = .Either) -> String {
+        return type.titles(gender).random!
     }
 
 }
