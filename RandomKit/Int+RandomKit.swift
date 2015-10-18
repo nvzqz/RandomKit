@@ -25,8 +25,6 @@
 //  THE SOFTWARE.
 //
 
-import Foundation
-
 extension Int: RandomType {
 
     /// Generates a random `Int`.

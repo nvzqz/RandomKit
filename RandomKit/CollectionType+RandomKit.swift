@@ -25,8 +25,6 @@
 //  THE SOFTWARE.
 //
 
-import Foundation
-
 extension CollectionType {
 
     /// Returns a random element of `self`, or `nil` if `self` is empty.

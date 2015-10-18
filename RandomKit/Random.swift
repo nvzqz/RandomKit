@@ -25,8 +25,6 @@
 //  THE SOFTWARE.
 //
 
-import Foundation
-
 internal extension Array where Element : Hashable {
     private func removeDuplicates() -> Array {
         var seen: [Element : Bool] = [:]

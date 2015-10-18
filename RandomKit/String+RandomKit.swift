@@ -25,8 +25,6 @@
 //  THE SOFTWARE.
 //
 
-import Foundation
-
 extension String: RandomType {
 
     /// The default length for randomly generated strings.
@@ -50,23 +48,6 @@ extension String: RandomType {
     public static func random(length: UInt = RandomLength, _ interval: ClosedInterval<Character>) -> String {
         return (0 ..< length).reduce("") { value, _ in
             value + String(Character.random(interval))
-        }
-    }
-
-    /// Generates a random `String` of a given length inside of
-    /// the character set.
-    ///
-    /// - Parameters:
-    ///     - length: The length for the generated string.
-    ///       Default value is `RandomLength`.
-    ///     - characterSet: The character set within which the string
-    ///       will be generated.
-    public static func random(length: UInt = RandomLength, _ characterSet: NSCharacterSet) -> String {
-        guard length > 0 else { return "" }
-        let characters = characterSet.asCharacterArray
-        return (0 ..< length).reduce("") { value, _ in
-            guard let character = characters.random else { return value }
-            return value + String(character)
         }
     }
 

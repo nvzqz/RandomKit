@@ -25,8 +25,6 @@
 //  THE SOFTWARE.
 //
 
-import Foundation
-
 extension Bit: RandomType {
 
     /// Generates a random `Bit`.

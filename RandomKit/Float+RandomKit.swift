@@ -25,8 +25,6 @@
 //  THE SOFTWARE.
 //
 
-import Foundation
-
 extension Float: RandomType {
 
     /// Generates a random `Float`.

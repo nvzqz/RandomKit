@@ -25,8 +25,6 @@
 //  THE SOFTWARE.
 //
 
-import Foundation
-
 extension Bool: RandomType {
 
     /// Generates a random `Bool`.

@@ -25,8 +25,6 @@
 //  THE SOFTWARE.
 //
 
-import Foundation
-
 extension Character: RandomType {
 
     /// Generates a random `Character`.
@@ -52,15 +50,6 @@ extension Character: RandomType {
         return Character(UnicodeScalar(randomValue))
     }
 
-    /// Generates a random `Character` inside of the character set.
-    ///
-    /// - Parameters:
-    ///     - characterSet: The character set within which the character
-    ///       will be generated.
-    public static func random(characterSet: NSCharacterSet) -> Character? {
-        return characterSet.asCharacterArray.random
-    }
-
     internal var scalar: UnicodeScalar {
         get {
             return String(self).unicodeScalars.first!
@@ -71,5 +60,3 @@ extension Character: RandomType {
     }
 
 }
-
-
