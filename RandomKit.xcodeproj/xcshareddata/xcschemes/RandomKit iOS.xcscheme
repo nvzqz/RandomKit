@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "528200901BC9C4A2001FDD58"
+               BlueprintIdentifier = "5282009E1BC9C4B6001FDD58"
                BuildableName = "RandomKit.framework"
-               BlueprintName = "RandomKit-OSX"
+               BlueprintName = "RandomKit iOS"
                ReferencedContainer = "container:RandomKit.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -45,9 +45,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "528200901BC9C4A2001FDD58"
+            BlueprintIdentifier = "5282009E1BC9C4B6001FDD58"
             BuildableName = "RandomKit.framework"
-            BlueprintName = "RandomKit-OSX"
+            BlueprintName = "RandomKit iOS"
             ReferencedContainer = "container:RandomKit.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -63,9 +63,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "528200901BC9C4A2001FDD58"
+            BlueprintIdentifier = "5282009E1BC9C4B6001FDD58"
             BuildableName = "RandomKit.framework"
-            BlueprintName = "RandomKit-OSX"
+            BlueprintName = "RandomKit iOS"
             ReferencedContainer = "container:RandomKit.xcodeproj">
          </BuildableReference>
       </MacroExpansion>

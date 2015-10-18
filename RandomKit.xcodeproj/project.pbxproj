@@ -86,7 +86,7 @@
 		5282009F1BC9C4B6001FDD58 /* RandomKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RandomKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		528200AC1BC9C4C0001FDD58 /* RandomKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RandomKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		528200B51BC9C53B001FDD58 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		528200F11BC9FA42001FDD58 /* RandomKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RandomKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		528200F11BC9FA42001FDD58 /* RandomKit Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "RandomKit Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		528200F31BC9FA42001FDD58 /* RandomKitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomKitTests.swift; sourceTree = "<group>"; };
 		528200F51BC9FA42001FDD58 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		528201131BCABEB3001FDD58 /* Character+RandomKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Character+RandomKit.swift"; sourceTree = "<group>"; };
@@ -143,7 +143,7 @@
 				528200911BC9C4A2001FDD58 /* RandomKit.framework */,
 				5282009F1BC9C4B6001FDD58 /* RandomKit.framework */,
 				528200AC1BC9C4C0001FDD58 /* RandomKit.framework */,
-				528200F11BC9FA42001FDD58 /* RandomKitTests.xctest */,
+				528200F11BC9FA42001FDD58 /* RandomKit Tests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -208,9 +208,9 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		528200901BC9C4A2001FDD58 /* RandomKit-OSX */ = {
+		528200901BC9C4A2001FDD58 /* RandomKit OSX */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 528200991BC9C4A2001FDD58 /* Build configuration list for PBXNativeTarget "RandomKit-OSX" */;
+			buildConfigurationList = 528200991BC9C4A2001FDD58 /* Build configuration list for PBXNativeTarget "RandomKit OSX" */;
 			buildPhases = (
 				5282008C1BC9C4A2001FDD58 /* Sources */,
 				5282008D1BC9C4A2001FDD58 /* Frameworks */,
@@ -221,14 +221,14 @@
 			);
 			dependencies = (
 			);
-			name = "RandomKit-OSX";
+			name = "RandomKit OSX";
 			productName = "RandomKit-OSX";
 			productReference = 528200911BC9C4A2001FDD58 /* RandomKit.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		5282009E1BC9C4B6001FDD58 /* RandomKit-iOS */ = {
+		5282009E1BC9C4B6001FDD58 /* RandomKit iOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 528200A41BC9C4B6001FDD58 /* Build configuration list for PBXNativeTarget "RandomKit-iOS" */;
+			buildConfigurationList = 528200A41BC9C4B6001FDD58 /* Build configuration list for PBXNativeTarget "RandomKit iOS" */;
 			buildPhases = (
 				5282009A1BC9C4B6001FDD58 /* Sources */,
 				5282009B1BC9C4B6001FDD58 /* Frameworks */,
@@ -239,14 +239,14 @@
 			);
 			dependencies = (
 			);
-			name = "RandomKit-iOS";
+			name = "RandomKit iOS";
 			productName = "RandomKit-iOS";
 			productReference = 5282009F1BC9C4B6001FDD58 /* RandomKit.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		528200AB1BC9C4C0001FDD58 /* RandomKit-watchOS */ = {
+		528200AB1BC9C4C0001FDD58 /* RandomKit watchOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 528200B11BC9C4C0001FDD58 /* Build configuration list for PBXNativeTarget "RandomKit-watchOS" */;
+			buildConfigurationList = 528200B11BC9C4C0001FDD58 /* Build configuration list for PBXNativeTarget "RandomKit watchOS" */;
 			buildPhases = (
 				528200A71BC9C4C0001FDD58 /* Sources */,
 				528200A81BC9C4C0001FDD58 /* Frameworks */,
@@ -257,14 +257,14 @@
 			);
 			dependencies = (
 			);
-			name = "RandomKit-watchOS";
+			name = "RandomKit watchOS";
 			productName = "RandomKit-watchOS";
 			productReference = 528200AC1BC9C4C0001FDD58 /* RandomKit.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		528200F01BC9FA42001FDD58 /* RandomKitTests */ = {
+		528200F01BC9FA42001FDD58 /* RandomKit Tests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 528200F91BC9FA42001FDD58 /* Build configuration list for PBXNativeTarget "RandomKitTests" */;
+			buildConfigurationList = 528200F91BC9FA42001FDD58 /* Build configuration list for PBXNativeTarget "RandomKit Tests" */;
 			buildPhases = (
 				528200ED1BC9FA42001FDD58 /* Sources */,
 				528200EE1BC9FA42001FDD58 /* Frameworks */,
@@ -275,9 +275,9 @@
 			dependencies = (
 				528200F81BC9FA42001FDD58 /* PBXTargetDependency */,
 			);
-			name = RandomKitTests;
+			name = "RandomKit Tests";
 			productName = RandomKitTests;
-			productReference = 528200F11BC9FA42001FDD58 /* RandomKitTests.xctest */;
+			productReference = 528200F11BC9FA42001FDD58 /* RandomKit Tests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -316,10 +316,10 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				528200901BC9C4A2001FDD58 /* RandomKit-OSX */,
-				5282009E1BC9C4B6001FDD58 /* RandomKit-iOS */,
-				528200AB1BC9C4C0001FDD58 /* RandomKit-watchOS */,
-				528200F01BC9FA42001FDD58 /* RandomKitTests */,
+				528200901BC9C4A2001FDD58 /* RandomKit OSX */,
+				5282009E1BC9C4B6001FDD58 /* RandomKit iOS */,
+				528200AB1BC9C4C0001FDD58 /* RandomKit watchOS */,
+				528200F01BC9FA42001FDD58 /* RandomKit Tests */,
 			);
 		};
 /* End PBXProject section */
@@ -438,7 +438,7 @@
 /* Begin PBXTargetDependency section */
 		528200F81BC9FA42001FDD58 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 528200901BC9C4A2001FDD58 /* RandomKit-OSX */;
+			target = 528200901BC9C4A2001FDD58 /* RandomKit OSX */;
 			targetProxy = 528200F71BC9FA42001FDD58 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -880,7 +880,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		528200991BC9C4A2001FDD58 /* Build configuration list for PBXNativeTarget "RandomKit-OSX" */ = {
+		528200991BC9C4A2001FDD58 /* Build configuration list for PBXNativeTarget "RandomKit OSX" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				528200971BC9C4A2001FDD58 /* Debug */,
@@ -889,7 +889,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		528200A41BC9C4B6001FDD58 /* Build configuration list for PBXNativeTarget "RandomKit-iOS" */ = {
+		528200A41BC9C4B6001FDD58 /* Build configuration list for PBXNativeTarget "RandomKit iOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				528200A51BC9C4B6001FDD58 /* Debug */,
@@ -898,7 +898,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		528200B11BC9C4C0001FDD58 /* Build configuration list for PBXNativeTarget "RandomKit-watchOS" */ = {
+		528200B11BC9C4C0001FDD58 /* Build configuration list for PBXNativeTarget "RandomKit watchOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				528200B21BC9C4C0001FDD58 /* Debug */,
@@ -907,7 +907,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		528200F91BC9FA42001FDD58 /* Build configuration list for PBXNativeTarget "RandomKitTests" */ = {
+		528200F91BC9FA42001FDD58 /* Build configuration list for PBXNativeTarget "RandomKit Tests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				528200FA1BC9FA42001FDD58 /* Debug */,
