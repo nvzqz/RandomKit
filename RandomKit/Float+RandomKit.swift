@@ -40,7 +40,7 @@ extension Float: RandomType {
     ///     - interval: The interval within which the number
     ///       will be generated.
     public static func random(interval: ClosedInterval<Float>) -> Float {
-        return interval.start + (interval.end - interval.start) * Float(drand48())
+        return interval.start + (interval.end - interval.start) * (Float(arc4random()) / Float(UInt32.max))
     }
 
 }

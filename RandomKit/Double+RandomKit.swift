@@ -40,7 +40,7 @@ extension Double: RandomType {
     ///     - interval: The interval within which the number
     ///       will be generated.
     public static func random(interval: ClosedInterval<Double>) -> Double {
-        return interval.start + (interval.end - interval.start) * drand48()
+        return interval.start + (interval.end - interval.start) * (Double(arc4random()) / Double(UInt32.max))
     }
 
 }
