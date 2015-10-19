@@ -124,7 +124,9 @@ Random.fakeEnglishHonorific(gender: .Female)               // "Lady"
 
 The default values for type and gender are `._Any` and `.Either` respectively.
 
-### `Int`
+### Swift Types
+
+#### `Int`
 
 Generate a random `Int` from within an interval or `0...100` by default.
 
@@ -133,7 +135,7 @@ Int.random()        // An Int within 0 and 100
 Int.random(10...20) // An Int within 10 and 20
 ```
 
-### `Double`, `Float`, and `CGFloat`
+#### `Double`, `Float`, and `CGFloat`
 
 Generate a random floating point value from within an interval or `0.0...1.0` by
 default.
@@ -144,29 +146,34 @@ Float.random(-10...10)  //  5.167088
 CGFloat.random()        //  0.699803650379181
 ```
 
-### `Bool` and `Bit`
+#### `Bool` and `Bit`
 
 `Bool.random()` and `Bit.random()` have a 50/50 chance of being `true` and `One`
 respectively.
 
-### `String` and `Character`
+#### `String` and `Character`
 
 Generate a random `String` or `Character` from within a `Character` interval or
-from an `NSCharacterSet`.
+`" "..."~"` by default.
 
 ```swift
-String.random(10) // Default: " "..."~" -> "}+[=Ng>$w1"
+String.random(10)            // "}+[=Ng>$w1"
 String.random(10, "A"..."z") // "poUtXJIbv["
-String.random(10, .uppercaseLetterCharacterSet()) // ṤՈ𝕮𝝘ꝻṄԱＭĐŦ
 
-Character.random() // "#"
-Character.random("A"..."z") // "s"
-Character.random(.uppercaseLetterCharacterSet()) // "𝝙"
+Character.random()           // "#"
+Character.random("A"..."z")  // "s"
 ```
 
 The default random `String` length can be changed by altering `String.RandomLength`.
 
-### `SequenceType` and `CollectionType`
+A random `String` or `Character` can also be generated from an `NSCharacterSet`.
+
+```swift
+String.random(10, .uppercaseLetterCharacterSet()) // "ṤՈ𝕮𝝘ꝻṄԱＭĐŦ"
+Character.random(.uppercaseLetterCharacterSet())  // "𝝙"
+```
+
+#### `SequenceType` and `CollectionType`
 
 All types that conform to `SequenceType` and/or `CollectionType` have a `random`
 property that returns a random element, or `nil` if the collection is empty.
@@ -175,7 +182,9 @@ property that returns a random element, or `nil` if the collection is empty.
 ["Bob", "Cindy", "May", "Charles", "Javier"].random  // "Charles"
 ```
 
-### `NSURL`
+### Objective-C Types
+
+#### `NSURL`
 
 Generate a random NSURL from a list of values.
 
@@ -188,15 +197,16 @@ NSURL.random()  // https://medium.com/
 
 You can change the possible values yourself by altering `NSURL.RandomValues`.
 
-### `NSDate`
+#### `NSDate`
 
-Generate a random date between two `NSTimeInterval` values, or between `0.0` and `NSTimeInterval(UInt32.max)`.
+Generate a random date between two `NSTimeInterval` values, or between `0.0` and
+`NSTimeInterval(UInt32.max)`.
 
 ```swift
 NSDate.random()  // "Aug 28, 2006, 3:38 AM"
 ```
 
-### `NSColor` and `UIColor`
+#### `NSColor` and `UIColor`
 
 Generate a random color with or without the alpha being random as well.
 
@@ -206,6 +216,14 @@ NSColor.random(alpha: true) // r 0.859 g 0.57  b 0.409 a 0.047
 
 UIColor.random()            // r 0.488 g 0.805 b 0.679 a 1.0
 UIColor.random(alpha: true) // r 0.444 g 0.121 b 0.602 a 0.085
+```
+
+#### `NSCharacterSet`
+
+Get a random character from a character set.
+
+```swift
+NSCharacterSet.uppercaseLetterCharacterSet().randomCharacter // "Ǩ"
 ```
 
 ## License
