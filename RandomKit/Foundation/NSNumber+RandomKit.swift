@@ -1,5 +1,5 @@
 //
-//  NSDecimalNumber+RandomKit.swift
+//  NSNumber+RandomKit.swift
 //  RandomKit
 //
 //  The MIT License (MIT)
@@ -27,22 +27,23 @@
 
 import Foundation
 
-extension NSDecimalNumber {
+extension NSNumber: RandomType {
 
-    /// Generates a random decimal number.
+    /// Generates a random number.
     ///
-    /// - Returns: Random value within `0.0...1.0`.
-    public override static func random() -> Self {
-        return random(0.0...1.0)
+    /// - Returns: Random value within `0...100`.
+    public class func random() -> Self {
+        return random(0...100)
     }
 
-    /// Generates a random decimal number inside of the closed interval.
+    /// Generates a random number inside of the closed interval.
     ///
     /// - Parameters:
     ///     - interval: The interval within which the number
     ///       will be generated.
-    public static func random(interval: ClosedInterval<Double>) -> Self {
-        return self.init(floatLiteral: Double.random(interval))
+    public static func random(interval: ClosedInterval<Int>) -> Self {
+        return self.init(long: Int.random(interval))
     }
-
+    
 }
+
