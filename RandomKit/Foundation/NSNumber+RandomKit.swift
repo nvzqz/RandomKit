@@ -41,7 +41,7 @@ extension NSNumber: RandomType {
     /// - Parameters:
     ///     - interval: The interval within which the number
     ///       will be generated.
-    public static func random(interval: ClosedInterval<Int>) -> Self {
+    public class func random(interval: ClosedInterval<Int>) -> Self {
         return self.init(long: Int.random(interval))
     }
     

@@ -32,7 +32,7 @@ extension NSDecimalNumber {
     /// Generates a random decimal number.
     ///
     /// - Returns: Random value within `0.0...1.0`.
-    public override static func random() -> Self {
+    public override class func random() -> Self {
         return random(0.0...1.0)
     }
 
@@ -41,7 +41,7 @@ extension NSDecimalNumber {
     /// - Parameters:
     ///     - interval: The interval within which the number
     ///       will be generated.
-    public static func random(interval: ClosedInterval<Double>) -> Self {
+    public class func random(interval: ClosedInterval<Double>) -> Self {
         return self.init(floatLiteral: Double.random(interval))
     }
 

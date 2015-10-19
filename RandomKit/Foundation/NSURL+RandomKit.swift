@@ -31,7 +31,7 @@ extension NSURL {
     /// - Parameters:
     ///     - values: The values from which the URL is generated.
     ///       Default value is `RandomValues`.
-    public static func random(fromValues values: [String] = RandomValues) -> NSURL? {
+    public class func random(fromValues values: [String] = RandomValues) -> NSURL? {
         guard let value = values.random else {
             return NSURL()
         }

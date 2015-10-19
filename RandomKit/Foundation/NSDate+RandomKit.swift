@@ -32,7 +32,7 @@ extension NSDate: RandomType {
     /// Generates a random date.
     ///
     /// - Returns: Random date within `0.0...NSTimeInterval(UInt32.max)`.
-    public static func random() -> Self {
+    public class func random() -> Self {
         return random(0.0...NSTimeInterval(UInt32.max))
     }
 
@@ -41,7 +41,7 @@ extension NSDate: RandomType {
     /// - Parameters:
     ///     - interval: The interval within which the date
     ///       will be generated.
-    public static func random(interval: ClosedInterval<NSTimeInterval>) -> Self {
+    public class func random(interval: ClosedInterval<NSTimeInterval>) -> Self {
         return self.init(timeIntervalSince1970: .random(interval))
     }
 
