@@ -25,15 +25,7 @@
 //  THE SOFTWARE.
 //
 
-import Foundation
-
-#if os(OSX)
-import Cocoa
-#elseif os(iOS)
-import UIKit
-#elseif os(watchOS)
-import WatchKit
-#endif
+import CoreGraphics
 
 extension CGFloat: RandomType {
 
