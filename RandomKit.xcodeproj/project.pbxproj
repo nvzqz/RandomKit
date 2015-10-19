@@ -46,6 +46,9 @@
 		526FA7481BD41A53002F0DC0 /* RandomKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 526FA7471BD41A53002F0DC0 /* RandomKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		526FA7491BD41A53002F0DC0 /* RandomKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 526FA7471BD41A53002F0DC0 /* RandomKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		526FA74A1BD41A53002F0DC0 /* RandomKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 526FA7471BD41A53002F0DC0 /* RandomKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		5276D2DA1BD4B24300023DCD /* NSDecimalNumber+RandomKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5276D2D91BD4B24300023DCD /* NSDecimalNumber+RandomKit.swift */; settings = {ASSET_TAGS = (); }; };
+		5276D2DB1BD4B24300023DCD /* NSDecimalNumber+RandomKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5276D2D91BD4B24300023DCD /* NSDecimalNumber+RandomKit.swift */; settings = {ASSET_TAGS = (); }; };
+		5276D2DC1BD4B24300023DCD /* NSDecimalNumber+RandomKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5276D2D91BD4B24300023DCD /* NSDecimalNumber+RandomKit.swift */; settings = {ASSET_TAGS = (); }; };
 		528200F41BC9FA42001FDD58 /* RandomKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528200F31BC9FA42001FDD58 /* RandomKitTests.swift */; };
 		528200F61BC9FA42001FDD58 /* RandomKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 528200911BC9C4A2001FDD58 /* RandomKit.framework */; settings = {ASSET_TAGS = (); }; };
 		528201141BCABEB3001FDD58 /* Character+RandomKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528201131BCABEB3001FDD58 /* Character+RandomKit.swift */; settings = {ASSET_TAGS = (); }; };
@@ -86,6 +89,7 @@
 		526BA2261BCC9A7B00495B34 /* NSDate+RandomKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDate+RandomKit.swift"; sourceTree = "<group>"; };
 		526BA22A1BCC9F4900495B34 /* NSURL+RandomKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSURL+RandomKit.swift"; sourceTree = "<group>"; };
 		526FA7471BD41A53002F0DC0 /* RandomKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RandomKit.h; sourceTree = "<group>"; };
+		5276D2D91BD4B24300023DCD /* NSDecimalNumber+RandomKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDecimalNumber+RandomKit.swift"; sourceTree = "<group>"; };
 		528200911BC9C4A2001FDD58 /* RandomKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RandomKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5282009F1BC9C4B6001FDD58 /* RandomKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RandomKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		528200AC1BC9C4C0001FDD58 /* RandomKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RandomKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -136,6 +140,7 @@
 			isa = PBXGroup;
 			children = (
 				521320C21BCAFD3E00A3D599 /* CGFloat+RandomKit.swift */,
+				5276D2D91BD4B24300023DCD /* NSDecimalNumber+RandomKit.swift */,
 				521320AE1BCAEBC300A3D599 /* NSCharacterSet+RandomKit.swift */,
 				521320CB1BCB025800A3D599 /* Color+RandomKit.swift */,
 				526BA22A1BCC9F4900495B34 /* NSURL+RandomKit.swift */,
@@ -382,6 +387,7 @@
 				521320AF1BCAEBC300A3D599 /* NSCharacterSet+RandomKit.swift in Sources */,
 				521320D01BCB032400A3D599 /* Double+RandomKit.swift in Sources */,
 				526BA2011BCB818700495B34 /* RandomType.swift in Sources */,
+				5276D2DA1BD4B24300023DCD /* NSDecimalNumber+RandomKit.swift in Sources */,
 				528201201BCAD12C001FDD58 /* Int+RandomKit.swift in Sources */,
 				521320CC1BCB025800A3D599 /* Color+RandomKit.swift in Sources */,
 				521D60D01BD198B900CEC3F5 /* Random.swift in Sources */,
@@ -405,6 +411,7 @@
 				521320B01BCAEBC300A3D599 /* NSCharacterSet+RandomKit.swift in Sources */,
 				521320D11BCB032400A3D599 /* Double+RandomKit.swift in Sources */,
 				526BA2021BCB818700495B34 /* RandomType.swift in Sources */,
+				5276D2DB1BD4B24300023DCD /* NSDecimalNumber+RandomKit.swift in Sources */,
 				528201211BCAD12C001FDD58 /* Int+RandomKit.swift in Sources */,
 				521320CD1BCB025800A3D599 /* Color+RandomKit.swift in Sources */,
 				521D60D11BD198B900CEC3F5 /* Random.swift in Sources */,
@@ -428,6 +435,7 @@
 				521320B11BCAEBC300A3D599 /* NSCharacterSet+RandomKit.swift in Sources */,
 				521320D21BCB032400A3D599 /* Double+RandomKit.swift in Sources */,
 				526BA2031BCB818700495B34 /* RandomType.swift in Sources */,
+				5276D2DC1BD4B24300023DCD /* NSDecimalNumber+RandomKit.swift in Sources */,
 				528201221BCAD12C001FDD58 /* Int+RandomKit.swift in Sources */,
 				521320CE1BCB025800A3D599 /* Color+RandomKit.swift in Sources */,
 				521D60D21BD198B900CEC3F5 /* Random.swift in Sources */,
