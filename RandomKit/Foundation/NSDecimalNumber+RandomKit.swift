@@ -27,15 +27,22 @@
 
 import Foundation
 
-extension NSDecimalNumber {
+extension NSDecimalNumber: RandomType {
 
-    /// Generates a random `NSDecimalNumber` inside of the closed interval.
+    /// Generates a random decimal number.
+    ///
+    /// - Returns: Random value within `0.0...1.0`.
+    public static func random() -> Self {
+        return random(0.0...1.0)
+    }
+
+    /// Generates a random decimal number inside of the closed interval.
     ///
     /// - Parameters:
     ///     - interval: The interval within which the number
-    ///       will be generated. Default value is `0.0...1.0`.
-    public static func random(interval: ClosedInterval<Double> = 0.0...1.0) -> NSDecimalNumber {
-        return NSDecimalNumber(floatLiteral: Double.random(interval))
+    ///       will be generated.
+    public static func random(interval: ClosedInterval<Double>) -> Self {
+        return self.init(floatLiteral: Double.random(interval))
     }
 
 }

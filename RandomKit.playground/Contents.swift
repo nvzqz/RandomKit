@@ -2,8 +2,5 @@
 # RandomKit
 Use this playground to try out RandomKit
 */
-import Foundation
+import Cocoa
 import RandomKit
-
-
-NSDecimalNumber.random()

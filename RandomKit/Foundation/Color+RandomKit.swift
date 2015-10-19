@@ -25,72 +25,66 @@
 //  THE SOFTWARE.
 //
 
-import Foundation
-
-private protocol _RKColorType {
-    init(red: CGFloat, green: CGFloat, blue: CGFloat, alpha: CGFloat)
-}
-
-extension _RKColorType {
-    static func _random(alpha flag: Bool) -> Self {
-        return Self(red:   CGFloat.random(),
-                    green: CGFloat.random(),
-                    blue:  CGFloat.random(),
-                    alpha: flag ? CGFloat.random() : 1.0)
-    }
-}
-
-
 #if os(OSX)
 import Cocoa
 
-extension NSColor: _RKColorType {
+extension NSColor: RandomType {
 
-    /// Returns a random color.
+    /// Generates a random color.
+    ///
+    /// - Returns: Random color without random alpha.
+    public static func random() -> Self {
+        return random(alpha: false)
+    }
+
+    /// Generates a random color.
     ///
     /// - Parameters:
-    ///     - alpha: If `true`, the alpha value will
-    ///       be random. If `false`, the alpha value will
-    ///       be `1.0`. Default value is `false`.
-    public static func random(alpha flag: Bool = false) -> NSColor {
-        return _random(alpha: flag)
+    ///     - alpha: If `true`, the alpha value will be random.
+    ///              If `false`, the alpha value will be `1.0`.
+    public static func random(alpha flag: Bool) -> Self {
+        return self.init(
+            red:   CGFloat.random(),
+            green: CGFloat.random(),
+            blue:  CGFloat.random(),
+            alpha: flag ? CGFloat.random() : 1.0)
     }
-}
 
+}
 
 #elseif os(iOS)
 import UIKit
 
-extension UIColor: _RKColorType {
-
-    /// Returns a random color.
-    ///
-    /// - Parameters:
-    ///     - alpha: If `true`, the alpha value will
-    ///       be random. If `false`, the alpha value will
-    ///       be `1.0`. Default value is `false`.
-    public static func random(alpha flag: Bool = false) -> UIColor {
-        return _random(alpha: flag)
-    }
-}
-
-
 #elseif os(watchOS)
 import WatchKit
 
-extension UIColor: _RKColorType {
+#endif
 
-    /// Returns a random color.
+
+#if os(iOS) || os(watchOS)
+extension UIColor: RandomType {
+
+    /// Generates a random color.
+    ///
+    /// - Returns: Random color without random alpha.
+    public static func random() -> Self {
+        return random(alpha: false)
+    }
+
+    /// Generates a random color.
     ///
     /// - Parameters:
-    ///     - alpha: If `true`, the alpha value will
-    ///       be random. If `false`, the alpha value will
-    ///       be `1.0`. Default value is `false`.
-    public static func random(alpha flag: Bool = false) -> UIColor {
-        return _random(alpha: flag)
+    ///     - alpha: If `true`, the alpha value will be random.
+    ///              If `false`, the alpha value will be `1.0`.
+    public static func random(alpha flag: Bool) -> Self {
+        return self.init(
+            red:   CGFloat.random(),
+            green: CGFloat.random(),
+            blue:  CGFloat.random(),
+            alpha: flag ? CGFloat.random() : 1.0)
     }
-}
 
+}
 #endif
 
 

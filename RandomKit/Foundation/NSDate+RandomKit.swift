@@ -27,15 +27,22 @@
 
 import Foundation
 
-extension NSDate {
+extension NSDate: RandomType {
 
-    /// Generates a random `NSDate` inside of the closed interval.
+    /// Generates a random date.
+    ///
+    /// - Returns: Random date within `0.0...NSTimeInterval(UInt32.max)`.
+    public static func random() -> Self {
+        return random(0.0...NSTimeInterval(UInt32.max))
+    }
+
+    /// Generates a random date inside of the closed interval.
     ///
     /// - Parameters:
     ///     - interval: The interval within which the date
-    ///       will be generated. Default value is `0.0...Double(UInt32.max)`
-    public static func random(interval: ClosedInterval<NSTimeInterval> = 0.0 ... Double(UInt32.max)) -> NSDate {
-        return NSDate(timeIntervalSince1970: .random(interval))
+    ///       will be generated.
+    public static func random(interval: ClosedInterval<NSTimeInterval>) -> Self {
+        return self.init(timeIntervalSince1970: .random(interval))
     }
 
 }
