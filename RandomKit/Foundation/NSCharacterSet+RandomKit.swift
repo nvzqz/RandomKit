@@ -35,7 +35,7 @@ extension Character {
     ///     - characterSet: The character set within which the character
     ///       will be generated.
     public static func random(characterSet: NSCharacterSet) -> Character? {
-        return characterSet.asCharacterArray.random
+        return characterSet.randomCharacter
     }
 
 }
@@ -63,7 +63,12 @@ extension String {
 
 extension NSCharacterSet {
 
-    internal var asCharacterArray: [Character] {
+    /// Returns a random character from `self`, or `nil` if `self` is empty.
+    public var randomCharacter: Character? {
+        return self.asCharacterArray.random
+    }
+
+    private var asCharacterArray: [Character] {
         var value: [Character] = []
         for plane: UTF32Char in 0...16 {
             if self.hasMemberInPlane(UInt8(plane)) {
