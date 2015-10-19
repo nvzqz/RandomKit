@@ -170,6 +170,7 @@ A random `String` or `Character` can also be generated from an `NSCharacterSet`.
 
 ```swift
 String.random(10, .uppercaseLetterCharacterSet()) // "ṤՈ𝕮𝝘ꝻṄԱＭĐŦ"
+
 Character.random(.uppercaseLetterCharacterSet())  // "𝝙"
 ```
 
@@ -180,6 +181,16 @@ property that returns a random element, or `nil` if the collection is empty.
 
 ```swift
 ["Bob", "Cindy", "May", "Charles", "Javier"].random  // "Charles"
+
+"Hello".characters.random  // "e"
+```
+
+Even Objective-C types that conform to either protocol get this property.
+
+```swift
+NSDictionary(dictionary: ["k1":"v1", "k2":"v2"]).random      // (k1, v1)
+
+NSSet(array: ["First", "Second", "Third", "Fourth"]).random  // "Third"
 ```
 
 ### Objective-C Types
