@@ -36,13 +36,22 @@ extension NSNumber: RandomType {
         return random(0...100)
     }
 
-    /// Generates a random number inside of the closed interval.
+    /// Generates a random integer inside of the closed interval.
     ///
     /// - Parameters:
-    ///     - interval: The interval within which the number
+    ///     - interval: The interval within which the integer
     ///       will be generated.
     public class func random(interval: ClosedInterval<Int>) -> Self {
-        return self.init(long: Int.random(interval))
+        return self.init(long: .random(interval))
+    }
+
+    /// Generates a random double inside of the closed interval.
+    ///
+    /// - Parameters:
+    ///     - interval: The interval within which the double
+    ///       will be generated.
+    public class func random(interval: ClosedInterval<Double>) -> Self {
+        return self.init(double: .random(interval))
     }
     
 }
