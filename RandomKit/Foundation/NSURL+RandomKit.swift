@@ -18,24 +18,32 @@ private var _RandomValues = [
     "https://www.youtube.com/"
 ]
 
-extension NSURL {
+extension NSURL: RandomType {
 
-    /// The default values from which a random `NSURL` is generated.
-    public static var RandomValues: [String] {
+    /// The default values from which a random URL is generated.
+    public class var RandomValues: [String] {
         get { return _RandomValues     }
         set { _RandomValues = newValue }
     }
 
-    /// Generates a random `NSURL` from within the given values.
+    /// Generates a random URL.
+    ///
+    /// - Returns: A random URL within `RandomValues`.
+    public class func random() -> Self {
+        return random(fromValues: RandomValues)
+    }
+
+    /// Generates a random URL from within the given values.
+    ///
+    /// If `values` is empty, a URL pointing to www.google.com is returned.
     ///
     /// - Parameters:
     ///     - values: The values from which the URL is generated.
-    ///       Default value is `RandomValues`.
-    public class func random(fromValues values: [String] = RandomValues) -> NSURL? {
-        guard let value = values.random else {
-            return NSURL()
+    public class func random(fromValues values: [String]) -> Self {
+        guard let value = values.random, url = self.init(string: value) else {
+            return self.init(string: "https://www.google.com/")!
         }
-        return NSURL(string: value)
+        return url
     }
 
 }
