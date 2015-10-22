@@ -36,4 +36,20 @@ extension CGRect: RandomType {
         return CGRect(origin: .random(), size: .random())
     }
 
+    /// Generates a random `CGRect` inside of the closed intervals.
+    ///
+    /// - Parameters:
+    ///     - xInterval: The interval within which `x` will be generated.
+    ///     - yInterval: The interval within which `y` will be generated.
+    ///     - widthInterval: The interval within which `width` will be generated.
+    ///     - heightInterval: The interval within which `height` will be generated.
+    public static func random(
+          xInterval:      ClosedInterval<CGFloat.NativeType>,
+        _ yInterval:      ClosedInterval<CGFloat.NativeType>,
+        _ widthInterval:  ClosedInterval<CGFloat.NativeType>,
+        _ heightInterval: ClosedInterval<CGFloat.NativeType>)
+    -> CGRect {
+        return CGRect(origin: .random(xInterval, yInterval), size: .random(widthInterval, heightInterval))
+    }
+
 }
