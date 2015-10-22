@@ -31,9 +31,9 @@ extension CGPoint: RandomType {
 
     /// Generates a random `CGPoint`.
     ///
-    /// - Returns: Random value within `0.0...1.0` for both `x` and `y`.
+    /// - Returns: Random value within `0...100` for both `x` and `y`.
     public static func random() -> CGPoint {
-        return random(0.0...1.0, 0.0...1.0)
+        return random(0...100, 0...100)
     }
 
     /// Generates a random `CGPoint` inside of the closed intervals.
