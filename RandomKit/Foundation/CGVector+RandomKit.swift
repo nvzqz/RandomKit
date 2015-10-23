@@ -27,7 +27,7 @@
 
 import CoreGraphics
 
-extension CGVector {
+extension CGVector: RandomType {
 
     /// Generates a random `CGVector`.
     ///
