@@ -28,7 +28,7 @@
 extension String: RandomType {
 
     /// The default length for randomly generated strings.
-    public static var RandomLength: UInt = 10
+    public static let RandomLength: UInt = 10
 
     /// Generates a random `String`.
     ///
