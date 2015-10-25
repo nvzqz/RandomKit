@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "52C96A1E1BD9828F00C3CBE0"
-               BuildableName = "RandomKit tvOS.framework"
+               BuildableName = "RandomKit.framework"
                BlueprintName = "RandomKit tvOS"
                ReferencedContainer = "container:RandomKit.xcodeproj">
             </BuildableReference>
@@ -46,7 +46,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "52C96A1E1BD9828F00C3CBE0"
-            BuildableName = "RandomKit tvOS.framework"
+            BuildableName = "RandomKit.framework"
             BlueprintName = "RandomKit tvOS"
             ReferencedContainer = "container:RandomKit.xcodeproj">
          </BuildableReference>
@@ -64,7 +64,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "52C96A1E1BD9828F00C3CBE0"
-            BuildableName = "RandomKit tvOS.framework"
+            BuildableName = "RandomKit.framework"
             BlueprintName = "RandomKit tvOS"
             ReferencedContainer = "container:RandomKit.xcodeproj">
          </BuildableReference>
