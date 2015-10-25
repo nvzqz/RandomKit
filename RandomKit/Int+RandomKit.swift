@@ -25,8 +25,6 @@
 //  THE SOFTWARE.
 //
 
-import C
-
 extension Int: RandomType {
 
     /// Generates a random `Int`.

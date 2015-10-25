@@ -25,8 +25,6 @@
 //  THE SOFTWARE.
 //
 
-import C
-
 extension Double: RandomType {
 
     /// Generates a random `Double`.

@@ -25,8 +25,6 @@
 //  THE SOFTWARE.
 //
 
-import C
-
 extension Character: RandomType {
 
     /// Generates a random `Character`.

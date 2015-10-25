@@ -1,5 +1,5 @@
 //
-//  C.h
+//  RandomKit.h
 //  RandomKit
 //
 //  The MIT License (MIT)
@@ -25,9 +25,5 @@
 //  THE SOFTWARE.
 //
 
-#ifndef C_h
-#define C_h
-
 #include <stdlib.h>
 
-#endif /* C_h */

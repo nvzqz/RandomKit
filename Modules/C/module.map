@@ -1,4 +1,0 @@
-module C [system] {
-    header "C.h"
-    export *
-}
