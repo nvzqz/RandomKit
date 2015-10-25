@@ -206,8 +206,6 @@ NSURL.random()  // https://medium.com/
                 // ...
 ```
 
-You can change the possible values yourself by altering `NSURL.RandomValues`.
-
 #### `NSDate`
 
 Generate a random date between two `NSTimeInterval` values, or between `0.0` and
