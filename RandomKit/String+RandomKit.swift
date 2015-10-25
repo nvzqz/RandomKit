@@ -27,14 +27,11 @@
 
 extension String: RandomType {
 
-    /// The default length for randomly generated strings.
-    public static let RandomLength: UInt = 10
-
     /// Generates a random `String`.
     ///
-    /// - Returns: Random value within `" "..."~"` with length of `RandomLength`.
+    /// - Returns: Random value within `" "..."~"` with length of `10`.
     public static func random() -> String {
-        return random(RandomLength, " "..."~")
+        return random(10, " "..."~")
     }
 
     /// Generates a random `String` of a given length inside of
@@ -42,10 +39,10 @@ extension String: RandomType {
     ///
     /// - Parameters:
     ///     - length: The length for the generated string.
-    ///       Default value is `RandomLength`.
+    ///       Default value is `10`.
     ///     - interval: The interval within which the string
     ///       will be generated.
-    public static func random(length: UInt = RandomLength, _ interval: ClosedInterval<Character>) -> String {
+    public static func random(length: UInt = 10, _ interval: ClosedInterval<Character>) -> String {
         return (0 ..< length).reduce("") { value, _ in
             value + String(Character.random(interval))
         }

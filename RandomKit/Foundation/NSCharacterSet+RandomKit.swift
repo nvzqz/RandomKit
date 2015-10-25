@@ -47,10 +47,10 @@ extension String {
     ///
     /// - Parameters:
     ///     - length: The length for the generated string.
-    ///       Default value is `RandomLength`.
+    ///       Default value is `10`.
     ///     - characterSet: The character set within which the string
     ///       will be generated.
-    public static func random(length: UInt = RandomLength, _ characterSet: NSCharacterSet) -> String {
+    public static func random(length: UInt = 10, _ characterSet: NSCharacterSet) -> String {
         guard length > 0 else { return "" }
         let characters = characterSet.asCharacterArray
         return (0 ..< length).reduce("") { value, _ in

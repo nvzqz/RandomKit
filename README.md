@@ -166,8 +166,6 @@ Character.random()           // "#"
 Character.random("A"..."z")  // "s"
 ```
 
-The default random `String` length can be changed by altering `String.RandomLength`.
-
 A random `String` or `Character` can also be generated from an `NSCharacterSet`.
 
 ```swift

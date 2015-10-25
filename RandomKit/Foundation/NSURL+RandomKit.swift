@@ -8,29 +8,28 @@
 
 import Foundation
 
-private var _RandomValues = [
-    "https://github.com/",
-    "https://bitbucket.org/",
-    "https://stackoverflow.com/",
-    "https://www.reddit.com/",
-    "https://medium.com/",
-    "https://www.google.com/",
-    "https://www.youtube.com/"
-]
-
 extension NSURL: RandomType {
-
-    /// The default values from which a random URL is generated.
-    public class var RandomValues: [String] {
-        get { return _RandomValues     }
-        set { _RandomValues = newValue }
-    }
 
     /// Generates a random URL.
     ///
-    /// - Returns: A random URL within `RandomValues`.
+    /// - Returns: A random URL within:
+    ///     - https://github.com/
+    ///     - https://bitbucket.org/
+    ///     - https://stackoverflow.com/
+    ///     - https://www.reddit.com/
+    ///     - https://medium.com/
+    ///     - https://www.google.com/
+    ///     - https://www.youtube.com/
     public class func random() -> Self {
-        return random(fromValues: RandomValues)
+        return random(fromValues: [
+            "https://github.com/",
+            "https://bitbucket.org/",
+            "https://stackoverflow.com/",
+            "https://www.reddit.com/",
+            "https://medium.com/",
+            "https://www.google.com/",
+            "https://www.youtube.com/"
+        ])
     }
 
     /// Generates a random URL from within the given values.
