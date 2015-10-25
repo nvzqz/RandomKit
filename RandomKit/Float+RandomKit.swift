@@ -25,6 +25,8 @@
 //  THE SOFTWARE.
 //
 
+import C
+
 extension Float: RandomType {
 
     /// Generates a random `Float`.

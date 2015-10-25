@@ -75,6 +75,10 @@
 		528201241BCAD144001FDD58 /* Bool+RandomKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528201231BCAD144001FDD58 /* Bool+RandomKit.swift */; };
 		528201251BCAD144001FDD58 /* Bool+RandomKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528201231BCAD144001FDD58 /* Bool+RandomKit.swift */; };
 		528201261BCAD144001FDD58 /* Bool+RandomKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528201231BCAD144001FDD58 /* Bool+RandomKit.swift */; };
+		5292C0511BDC9A2000444B9B /* C.h in Headers */ = {isa = PBXBuildFile; fileRef = 5292C0501BDC9A2000444B9B /* C.h */; };
+		5292C0521BDC9A2000444B9B /* C.h in Headers */ = {isa = PBXBuildFile; fileRef = 5292C0501BDC9A2000444B9B /* C.h */; };
+		5292C0531BDC9A2000444B9B /* C.h in Headers */ = {isa = PBXBuildFile; fileRef = 5292C0501BDC9A2000444B9B /* C.h */; };
+		5292C0541BDC9A2000444B9B /* C.h in Headers */ = {isa = PBXBuildFile; fileRef = 5292C0501BDC9A2000444B9B /* C.h */; };
 		52C96A271BD982C500C3CBE0 /* CGFloat+RandomKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521320C21BCAFD3E00A3D599 /* CGFloat+RandomKit.swift */; };
 		52C96A281BD982C500C3CBE0 /* CGPoint+RandomKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5265C3661BD5D94000BE2B00 /* CGPoint+RandomKit.swift */; };
 		52C96A291BD982C500C3CBE0 /* CGSize+RandomKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5265C36A1BD5DE2900BE2B00 /* CGSize+RandomKit.swift */; };
@@ -139,6 +143,8 @@
 		528201171BCAC395001FDD58 /* String+RandomKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+RandomKit.swift"; sourceTree = "<group>"; };
 		5282011F1BCAD12C001FDD58 /* Int+RandomKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Int+RandomKit.swift"; sourceTree = "<group>"; };
 		528201231BCAD144001FDD58 /* Bool+RandomKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Bool+RandomKit.swift"; sourceTree = "<group>"; };
+		5292C0501BDC9A2000444B9B /* C.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = C.h; sourceTree = "<group>"; };
+		5292C0551BDC9A7900444B9B /* module.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; path = module.map; sourceTree = "<group>"; };
 		52C96A1F1BD9828F00C3CBE0 /* RandomKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RandomKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -202,6 +208,7 @@
 		528200851BC9C460001FDD58 = {
 			isa = PBXGroup;
 			children = (
+				5292C04D1BDC98E300444B9B /* Modules */,
 				528200B41BC9C53B001FDD58 /* RandomKit */,
 				528200F21BC9FA42001FDD58 /* RandomKitTests */,
 				528200921BC9C4A2001FDD58 /* Products */,
@@ -250,6 +257,23 @@
 			path = RandomKitTests;
 			sourceTree = "<group>";
 		};
+		5292C04D1BDC98E300444B9B /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				5292C04F1BDC99EB00444B9B /* C */,
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
+		5292C04F1BDC99EB00444B9B /* C */ = {
+			isa = PBXGroup;
+			children = (
+				5292C0551BDC9A7900444B9B /* module.map */,
+				5292C0501BDC9A2000444B9B /* C.h */,
+			);
+			path = C;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -257,6 +281,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5292C0511BDC9A2000444B9B /* C.h in Headers */,
 				526FA7481BD41A53002F0DC0 /* RandomKit.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -265,6 +290,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5292C0521BDC9A2000444B9B /* C.h in Headers */,
 				526FA7491BD41A53002F0DC0 /* RandomKit.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -273,6 +299,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5292C0531BDC9A2000444B9B /* C.h in Headers */,
 				526FA74A1BD41A53002F0DC0 /* RandomKit.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -281,6 +308,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5292C0541BDC9A2000444B9B /* C.h in Headers */,
 				52C96A3C1BD982C500C3CBE0 /* RandomKit.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -665,6 +693,7 @@
 				PRODUCT_NAME = RandomKit;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
+				SWIFT_INCLUDE_PATHS = "$(SRCROOT)/Modules/**";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -715,6 +744,7 @@
 				PRODUCT_NAME = RandomKit;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
+				SWIFT_INCLUDE_PATHS = "$(SRCROOT)/Modules/**";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
@@ -770,6 +800,7 @@
 				PRODUCT_NAME = RandomKit;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SWIFT_INCLUDE_PATHS = "$(SRCROOT)/Modules/**";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
@@ -820,6 +851,7 @@
 				PRODUCT_NAME = RandomKit;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SWIFT_INCLUDE_PATHS = "$(SRCROOT)/Modules/**";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -876,6 +908,7 @@
 				PRODUCT_NAME = RandomKit;
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
+				SWIFT_INCLUDE_PATHS = "$(SRCROOT)/Modules/**";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = 4;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -926,6 +959,7 @@
 				PRODUCT_NAME = RandomKit;
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
+				SWIFT_INCLUDE_PATHS = "$(SRCROOT)/Modules/**";
 				TARGETED_DEVICE_FAMILY = 4;
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -1069,6 +1103,7 @@
 				PRODUCT_NAME = RandomKit;
 				SDKROOT = appletvos;
 				SKIP_INSTALL = YES;
+				SWIFT_INCLUDE_PATHS = "$(SRCROOT)/Modules/**";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = 3;
 				TVOS_DEPLOYMENT_TARGET = 9.0;
@@ -1119,6 +1154,7 @@
 				PRODUCT_NAME = RandomKit;
 				SDKROOT = appletvos;
 				SKIP_INSTALL = YES;
+				SWIFT_INCLUDE_PATHS = "$(SRCROOT)/Modules/**";
 				TARGETED_DEVICE_FAMILY = 3;
 				TVOS_DEPLOYMENT_TARGET = 9.0;
 				VALIDATE_PRODUCT = YES;
@@ -1182,6 +1218,7 @@
 				52C96A261BD9828F00C3CBE0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

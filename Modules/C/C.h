@@ -1,5 +1,5 @@
 //
-//  Double+RandomKit.swift
+//  C.h
 //  RandomKit
 //
 //  The MIT License (MIT)
@@ -25,24 +25,9 @@
 //  THE SOFTWARE.
 //
 
-import C
+#ifndef C_h
+#define C_h
 
-extension Double: RandomType {
+#include <stdlib.h>
 
-    /// Generates a random `Double`.
-    ///
-    /// - Returns: Random value within `0.0...1.0`.
-    public static func random() -> Double {
-        return random(0.0...1.0)
-    }
-
-    /// Generates a random `Double` inside of the closed interval.
-    ///
-    /// - Parameters:
-    ///     - interval: The interval within which the number
-    ///       will be generated.
-    public static func random(interval: ClosedInterval<Double>) -> Double {
-        return interval.start + (interval.end - interval.start) * (Double(arc4random()) / Double(UInt32.max))
-    }
-
-}
+#endif /* C_h */
