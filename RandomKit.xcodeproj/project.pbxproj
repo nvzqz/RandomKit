@@ -58,9 +58,6 @@
 		526BA22B1BCC9F4900495B34 /* NSURL+RandomKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526BA22A1BCC9F4900495B34 /* NSURL+RandomKit.swift */; };
 		526BA22C1BCC9F4900495B34 /* NSURL+RandomKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526BA22A1BCC9F4900495B34 /* NSURL+RandomKit.swift */; };
 		526BA22D1BCC9F4900495B34 /* NSURL+RandomKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526BA22A1BCC9F4900495B34 /* NSURL+RandomKit.swift */; };
-		526FA7481BD41A53002F0DC0 /* RandomKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 526FA7471BD41A53002F0DC0 /* RandomKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		526FA7491BD41A53002F0DC0 /* RandomKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 526FA7471BD41A53002F0DC0 /* RandomKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		526FA74A1BD41A53002F0DC0 /* RandomKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 526FA7471BD41A53002F0DC0 /* RandomKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		528200F41BC9FA42001FDD58 /* RandomKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528200F31BC9FA42001FDD58 /* RandomKitTests.swift */; };
 		528200F61BC9FA42001FDD58 /* RandomKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 528200911BC9C4A2001FDD58 /* RandomKit.framework */; };
 		528201141BCABEB3001FDD58 /* Character+RandomKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528201131BCABEB3001FDD58 /* Character+RandomKit.swift */; };
@@ -100,7 +97,6 @@
 		52C96A391BD982C500C3CBE0 /* String+RandomKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528201171BCAC395001FDD58 /* String+RandomKit.swift */; };
 		52C96A3A1BD982C500C3CBE0 /* SequenceType+RandomKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521D60C71BCF370000CEC3F5 /* SequenceType+RandomKit.swift */; };
 		52C96A3B1BD982C500C3CBE0 /* CollectionType+RandomKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526BA1FC1BCB77A300495B34 /* CollectionType+RandomKit.swift */; };
-		52C96A3C1BD982C500C3CBE0 /* RandomKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 526FA7471BD41A53002F0DC0 /* RandomKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -131,7 +127,6 @@
 		526BA2001BCB818700495B34 /* RandomType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RandomType.swift; sourceTree = "<group>"; };
 		526BA2261BCC9A7B00495B34 /* NSDate+RandomKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDate+RandomKit.swift"; sourceTree = "<group>"; };
 		526BA22A1BCC9F4900495B34 /* NSURL+RandomKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSURL+RandomKit.swift"; sourceTree = "<group>"; };
-		526FA7471BD41A53002F0DC0 /* RandomKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RandomKit.h; sourceTree = "<group>"; };
 		528200911BC9C4A2001FDD58 /* RandomKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RandomKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5282009F1BC9C4B6001FDD58 /* RandomKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RandomKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		528200AC1BC9C4C0001FDD58 /* RandomKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RandomKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -242,7 +237,6 @@
 				528201171BCAC395001FDD58 /* String+RandomKit.swift */,
 				521D60C71BCF370000CEC3F5 /* SequenceType+RandomKit.swift */,
 				526BA1FC1BCB77A300495B34 /* CollectionType+RandomKit.swift */,
-				526FA7471BD41A53002F0DC0 /* RandomKit.h */,
 				528200B51BC9C53B001FDD58 /* Info.plist */,
 			);
 			path = RandomKit;
@@ -282,7 +276,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				5292C0511BDC9A2000444B9B /* C.h in Headers */,
-				526FA7481BD41A53002F0DC0 /* RandomKit.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -291,7 +284,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				5292C0521BDC9A2000444B9B /* C.h in Headers */,
-				526FA7491BD41A53002F0DC0 /* RandomKit.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -300,7 +292,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				5292C0531BDC9A2000444B9B /* C.h in Headers */,
-				526FA74A1BD41A53002F0DC0 /* RandomKit.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -309,7 +300,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				5292C0541BDC9A2000444B9B /* C.h in Headers */,
-				52C96A3C1BD982C500C3CBE0 /* RandomKit.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
