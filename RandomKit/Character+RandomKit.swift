@@ -25,7 +25,7 @@
 //  THE SOFTWARE.
 //
 
-extension Character: RandomType {
+extension Character : RandomType, RandomIntervalType {
 
     /// Generates a random `Character`.
     ///
@@ -50,7 +50,7 @@ extension Character: RandomType {
         return Character(UnicodeScalar(randomValue))
     }
 
-    internal var scalar: UnicodeScalar {
+    private var scalar: UnicodeScalar {
         get {
             return String(self).unicodeScalars.first!
         }

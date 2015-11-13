@@ -25,7 +25,7 @@
 //  THE SOFTWARE.
 //
 
-extension Int: RandomType {
+extension Int : RandomType, RandomIntervalType {
 
     /// Generates a random `Int`.
     ///

@@ -25,7 +25,7 @@
 //  THE SOFTWARE.
 //
 
-extension Double: RandomType {
+extension Double : RandomType, RandomIntervalType {
 
     /// Generates a random `Double`.
     ///

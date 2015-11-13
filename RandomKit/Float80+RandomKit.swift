@@ -25,7 +25,7 @@
 //  THE SOFTWARE.
 //
 
-extension Float80: RandomType {
+extension Float80 : RandomType, RandomIntervalType {
 
     /// Generates a random `Float80`.
     ///
