@@ -35,17 +35,36 @@ public protocol RandomType {
 
 extension RandomType {
 
+    /// Returns a generator for random values of `Self`.
     public static func randomGenerator() -> AnyGenerator<Self> {
-        return anyGenerator {
-            return Self.random()
-        }
+        return anyGenerator { Self.random() }
     }
-}
 
-extension RandomType {
-    
+    /// Returns a sequence of random values of `Self`.
     public static func randomSequence() -> AnySequence<Self> {
         return AnySequence(randomGenerator())
+    }
+
+}
+
+/// A type that can generate a random value from inside of a closed interval.
+public protocol RandomIntervalType : RandomType, Comparable {
+
+    /// Returns a random value of `Self` inside of the closed interval.
+    static func random(interval: ClosedInterval<Self>) -> Self
+
+}
+
+extension RandomIntervalType {
+
+    /// Returns a generator for random values of `Self` inside of the closed interval.
+    public static func randomGenerator(interval: ClosedInterval<Self>) -> AnyGenerator<Self> {
+        return anyGenerator { Self.random(interval) }
+    }
+
+    /// Returns a sequence of random values of `Self` inside of the closed interval.
+    public static func randomSequence(interval: ClosedInterval<Self>) -> AnySequence<Self> {
+        return AnySequence(randomGenerator(interval))
     }
 
 }
