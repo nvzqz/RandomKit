@@ -32,3 +32,21 @@ public protocol RandomType {
     static func random() -> Self
 
 }
+
+extension RandomType {
+
+    public static func randomGenerator() -> AnyGenerator<Self> {
+        return anyGenerator {
+            return Self.random()
+        }
+    }
+}
+
+extension RandomType {
+    
+    public static func randomSequence() -> AnySequence<Self> {
+        return AnySequence(randomGenerator())
+    }
+
+}
+

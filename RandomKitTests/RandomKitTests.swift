@@ -70,5 +70,23 @@ class RandomKitTests: XCTestCase {
             XCTAssertNotNil(dict.random, "Random element in non-empty dictionary is nil")
         }
     }
+    
+    func testRandomGenerator() {
+        let generator = Int.randomGenerator()
+        for _ in 0...10 {
+            let element = generator.next()
+            XCTAssertNotNil(element)
+        }
+        
+        let max = 10
+        var i = 0
+        for value in Int.randomSequence() {
+            XCTAssertNotNil(value)
+            i++
+            if i > max {
+                break
+            }
+        }
+    }
 
 }
