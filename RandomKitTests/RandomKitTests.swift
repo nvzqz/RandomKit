@@ -71,21 +71,36 @@ class RandomKitTests: XCTestCase {
         }
     }
     
-    func testRandomGenerator() {
-        let generator = Int.randomGenerator()
-        for _ in 0...10 {
-            let element = generator.next()
-            XCTAssertNotNil(element)
-        }
-        
-        let max = 10
-        var i = 0
-        for value in Int.randomSequence() {
-            XCTAssertNotNil(value)
-            i++
-            if i > max {
-                break
+    func testRandomGeneratorAndSequence() {
+        do {
+            let g = Int.randomGenerator()
+            for _ in 0...10 {
+                XCTAssertNotNil(g.next())
             }
+        }
+        do {
+            let c = 10
+            var i = 0
+            var a = [Int]()
+            for v in Int.randomSequence() {
+                if i++ >= c { break }
+                a.append(v)
+            }
+            XCTAssertEqual(a.count, c)
+        }
+        do {
+            var i = 0
+            let c = 10
+            let g = Int.randomGenerator(maxCount: c)
+            while let _ = g.next() {
+                i++
+            }
+            XCTAssertEqual(i, c)
+        }
+        do {
+            let c = 10
+            let s = Int.randomSequence(maxCount: c)
+            XCTAssertEqual(Array(s).count, c)
         }
     }
 

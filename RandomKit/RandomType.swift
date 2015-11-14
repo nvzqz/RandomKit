@@ -35,14 +35,25 @@ public protocol RandomType {
 
 extension RandomType {
 
-    /// Returns a generator for random values of `Self`.
+    /// Returns a generator for infinite random values of `Self`.
     public static func randomGenerator() -> AnyGenerator<Self> {
         return anyGenerator { Self.random() }
     }
 
-    /// Returns a sequence of random values of `Self`.
+    /// Returns a generator for random values of `Self` within `maxCount`.
+    public static func randomGenerator(maxCount count: Int) -> AnyGenerator<Self> {
+        var n = 0
+        return anyGenerator { n++ < count ? Self.random() : nil }
+    }
+
+    /// Returns a sequence of infinite random values of `Self`.
     public static func randomSequence() -> AnySequence<Self> {
         return AnySequence(randomGenerator())
+    }
+
+    /// Returns a sequence of random values of `Self` within `maxCount`.
+    public static func randomSequence(maxCount count: Int) -> AnySequence<Self> {
+        return AnySequence(randomGenerator(maxCount: count))
     }
 
 }
@@ -57,15 +68,26 @@ public protocol RandomIntervalType : RandomType, Comparable {
 
 extension RandomIntervalType {
 
-    /// Returns a generator for random values of `Self` inside of the closed interval.
+    /// Returns a generator for infinite random values of `Self` inside of the closed interval.
     public static func randomGenerator(interval: ClosedInterval<Self>) -> AnyGenerator<Self> {
         return anyGenerator { Self.random(interval) }
     }
 
-    /// Returns a sequence of random values of `Self` inside of the closed interval.
+    /// Returns a generator for random values of `Self` inside of the closed interval within `maxCount`.
+    public static func randomGenerator(interval: ClosedInterval<Self>, maxCount count: Int) -> AnyGenerator<Self> {
+        var n = 0
+        return anyGenerator { n++ < count ? Self.random(interval) : nil }
+    }
+
+    /// Returns a sequence of infinite random values of `Self` inside of the closed interval.
     public static func randomSequence(interval: ClosedInterval<Self>) -> AnySequence<Self> {
         return AnySequence(randomGenerator(interval))
     }
 
+    /// Returns a sequence of random values of `Self` inside of the closed interval within `maxCount`.
+    public static func randomSequence(interval: ClosedInterval<Self>, maxCount count: Int) -> AnySequence<Self> {
+        return AnySequence(randomGenerator(interval, maxCount: count))
+    }
+    
 }
 
