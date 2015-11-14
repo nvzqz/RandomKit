@@ -70,6 +70,15 @@ class RandomKitTests: XCTestCase {
             XCTAssertNotNil(dict.random, "Random element in non-empty dictionary is nil")
         }
     }
+
+    func testArrayShuffleTime() {
+        let a1 = (0 ..< 10000).reduce([]) { $0 + [$1] }
+        var a2: [Int] = []
+        self.measureBlock {
+            a2 = a1.shuffled
+        }
+        XCTAssertNotEqual(a1, a2)
+    }
     
     func testRandomGeneratorAndSequence() {
         do {
