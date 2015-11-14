@@ -42,3 +42,12 @@ extension Array {
     }
 
 }
+
+extension Array where Element: RandomType {
+
+    /// Construct a Array of random elements.
+    public init(randomCount: Int) {
+        self = Array(Element.randomSequence(maxCount: randomCount))
+    }
+
+}
