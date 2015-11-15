@@ -79,6 +79,18 @@ class RandomKitTests: XCTestCase {
         }
         XCTAssertNotEqual(a1, a2)
     }
+
+    func testDictionaryShuffleTime() {
+        let d1: [Int : Int] = (0 ..< 1000).reduce(Dictionary(minimumCapacity: 1000)) { (var dict, n) in
+            dict[n] = n
+            return dict
+        }
+        var d2: [Int : Int] = [:]
+        self.measureBlock {
+            d2 = d1.shuffled
+        }
+        XCTAssertNotEqual(d1, d2)
+    }
     
     func testRandomGeneratorAndSequence() {
         do {
