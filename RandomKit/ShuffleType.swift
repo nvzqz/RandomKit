@@ -1,5 +1,5 @@
 //
-//  String+RandomKit.swift
+//  ShuffleType.swift
 //  RandomKit
 //
 //  The MIT License (MIT)
@@ -25,47 +25,19 @@
 //  THE SOFTWARE.
 //
 
-extension String: RandomType {
+/// A type whose elements can be shuffled.
+public protocol ShuffleType {
 
-    /// Generates a random `String`.
-    ///
-    /// - Returns: Random value within `" "..."~"` with length of `10`.
-    public static func random() -> String {
-        return random(10, " "..."~")
-    }
-
-    /// Generates a random `String` of a given length inside of
-    /// the closed interval.
-    ///
-    /// - Parameters:
-    ///     - length: The length for the generated string.
-    ///       Default value is `10`.
-    ///     - interval: The interval within which the string
-    ///       will be generated.
-    public static func random(length: UInt = 10, _ interval: ClosedInterval<Character>) -> String {
-        return (0 ..< length).reduce("") { value, _ in
-            value + String(Character.random(interval))
-        }
-    }
+    /// Shuffles the elements in `self` and returns the result.
+    func shuffle() -> Self
 
 }
 
-extension String: ShuffleType {
+public extension ShuffleType {
 
-    /// Shuffles the elements in `self` and returns the result.
-    public func shuffle() -> String {
-        return Array(characters).shuffle().reduce("") {
-            $0 + String($1)
-        }
-    }
-
-}
-
-extension String.CharacterView: ShuffleType {
-
-    /// Shuffles the elements in `self` and returns the result.
-    public func shuffle() -> String.CharacterView {
-        return String(self).shuffle().characters
+    /// Shuffles the elements in `self`.
+    public mutating func shuffleInPlace() {
+        self = self.shuffle()
     }
 
 }

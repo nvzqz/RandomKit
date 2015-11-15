@@ -25,20 +25,15 @@
 //  THE SOFTWARE.
 //
 
-extension Array {
+extension Array: ShuffleType {
 
-    /// Returns `self` with its elements shuffled.
+    /// Shuffles the elements in `self` and returns the result.
     public func shuffle() -> Array {
         return indices.reduce(self) { (var array, i) in
             let j = Int.random(startIndex ... endIndex - 1)
             if j != i { (array[i], array[j]) = (array[j], array[i]) }
             return array
         }
-    }
-
-    /// Shuffles the elements in `self`.
-    public mutating func shuffleInPlace() {
-        self = self.shuffle()
     }
 
 }

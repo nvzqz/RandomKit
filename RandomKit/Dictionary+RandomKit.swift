@@ -25,11 +25,9 @@
 //  THE SOFTWARE.
 //
 
-import Foundation
+extension Dictionary: ShuffleType {
 
-extension Dictionary {
-
-    /// Returns `self` with its values shuffled.
+    /// Shuffles the elements in `self` and returns the result.
     public func shuffle() -> Dictionary {
         let values = Array(self.values).shuffle()
         return zip(keys, values).reduce(Dictionary(minimumCapacity: values.count)) { (var dict, pair) in
@@ -37,11 +35,6 @@ extension Dictionary {
             dict[key] = value
             return dict
         }
-    }
-
-    /// Shuffles the values in `self`.
-    public mutating func shuffleInPlace() {
-        self = self.shuffle()
     }
 
 }
