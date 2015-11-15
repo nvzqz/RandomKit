@@ -91,6 +91,17 @@ class RandomKitTests: XCTestCase {
         }
         XCTAssertNotEqual(d1, d2)
     }
+
+    func testStringShuffleTime() {
+        let str1 = (0 ..< 10000).reduce("") { str, _ in
+            str + String(Int.random(0...9))
+        }
+        var str2 = ""
+        self.measureBlock {
+            str2 = str1.shuffle()
+        }
+        XCTAssertNotEqual(str1, str2)
+    }
     
     func testRandomGeneratorAndSequence() {
         do {

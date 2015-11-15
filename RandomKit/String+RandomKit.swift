@@ -48,4 +48,26 @@ extension String: RandomType {
         }
     }
 
+    public func shuffle() -> String {
+        return Array(characters).shuffle().reduce("") {
+            $0 + String($1)
+        }
+    }
+
+    public mutating func shuffleInPlace() {
+        self = self.shuffle()
+    }
+
+}
+
+extension String.CharacterView {
+
+    public func shuffle() -> String.CharacterView {
+        return String(self).shuffle().characters
+    }
+
+    public mutating func shuffleInPlace() {
+        self = self.shuffle()
+    }
+
 }
