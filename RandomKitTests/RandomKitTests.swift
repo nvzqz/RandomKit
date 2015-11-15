@@ -75,7 +75,7 @@ class RandomKitTests: XCTestCase {
         let a1 = (0 ..< 10000).reduce([]) { $0 + [$1] }
         var a2: [Int] = []
         self.measureBlock {
-            a2 = a1.shuffled
+            a2 = a1.shuffle()
         }
         XCTAssertNotEqual(a1, a2)
     }
@@ -87,7 +87,7 @@ class RandomKitTests: XCTestCase {
         }
         var d2: [Int : Int] = [:]
         self.measureBlock {
-            d2 = d1.shuffled
+            d2 = d1.shuffle()
         }
         XCTAssertNotEqual(d1, d2)
     }

@@ -30,8 +30,8 @@ import Foundation
 extension Dictionary {
 
     /// Returns `self` with its values shuffled.
-    public var shuffled: Dictionary {
-        let values = Array(self.values).shuffled
+    public func shuffle() -> Dictionary {
+        let values = Array(self.values).shuffle()
         return zip(keys, values).reduce(Dictionary(minimumCapacity: values.count)) { (var dict, pair) in
             let (key, value) = pair
             dict[key] = value
@@ -40,8 +40,8 @@ extension Dictionary {
     }
 
     /// Shuffles the values in `self`.
-    public mutating func shuffle() {
-        self = self.shuffled
+    public mutating func shuffleInPlace() {
+        self = self.shuffle()
     }
 
 }

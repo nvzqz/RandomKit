@@ -28,7 +28,7 @@
 extension Array {
 
     /// Returns `self` with its elements shuffled.
-    public var shuffled: Array {
+    public func shuffle() -> Array {
         return indices.reduce(self) { (var array, i) in
             let j = Int.random(startIndex ... endIndex - 1)
             if j != i { (array[i], array[j]) = (array[j], array[i]) }
@@ -37,8 +37,8 @@ extension Array {
     }
 
     /// Shuffles the elements in `self`.
-    public mutating func shuffle() {
-        self = self.shuffled
+    public mutating func shuffleInPlace() {
+        self = self.shuffle()
     }
 
 }
