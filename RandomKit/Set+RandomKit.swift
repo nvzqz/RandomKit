@@ -27,13 +27,35 @@
 
 extension Set where Element: RandomType {
 
-    /// Construct a Set of random elements.
-    public init(randomCount: Int) {
-        self = Element.randomSequence(maxCount: randomCount).reduce(Set(minimumCapacity: randomCount)) { (var set, var element) in
-            while set.contains(element) { element = Element.random() }
+    private init(_ randomCount: Int, _ sequence: AnySequence<Element>, @autoclosure _ elementGenerator: () -> Element) {
+        self = sequence.reduce(Set(minimumCapacity: randomCount)) { (var set, var element) in
+            while set.contains(element) { element = elementGenerator() }
             set.insert(element)
             return set
         }
+    }
+
+    /// Construct a Set of random elements.
+    public init(randomCount: Int) {
+        self.init(
+            randomCount,
+            Element.randomSequence(maxCount: randomCount),
+            Element.random())
+    }
+
+}
+
+extension Set where Element: RandomIntervalType {
+
+    /// Construct a Set of random elements from inside of the closed interval.
+    ///
+    /// - Precondition: Number of elements within `interval` >= `randomCount`.
+    ///
+    public init(randomCount: Int, _ interval: ClosedInterval<Element>) {
+        self.init(
+            randomCount,
+            Element.randomSequence(interval, maxCount: randomCount),
+            Element.random(interval))
     }
 
 }
