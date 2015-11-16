@@ -62,7 +62,33 @@ class RandomKitTests: XCTestCase {
         XCTAssertFalse(sameCount > 1, "Too many equal random strings")
     }
 
-    func testRandomCollectionType() {
+    func testRandomFromArrayTime() {
+        let arr = Array(0 ..< 10000)
+        self.measureBlock {
+            XCTAssertNotNil(arr.random)
+        }
+    }
+
+    func testRandomFromSetTime() {
+        let set = Set(0 ..< 10000)
+        self.measureBlock {
+            XCTAssertNotNil(set.random)
+        }
+    }
+
+    func testRandomFromDictTime() {
+        let count = 10000
+        let dict: [Int : Int] = (0 ..< count).reduce(Dictionary(minimumCapacity: count)) { (var dict, num) in
+            dict[num] = num
+            return dict
+        }
+        NSLog("done with making dict")
+        self.measureBlock {
+            XCTAssertNotNil(dict.random)
+        }
+    }
+
+    func testRandomFromCollectionType() {
         let arr = ["A", "B", "C", "D", "E", "F", "H", "I"]
         let dict = ["k1" : "v1", "k2" : "v2", "k3" : "v3"]
         for _ in 0...testCount {
