@@ -38,3 +38,22 @@ extension Dictionary: ShuffleType {
     }
 
 }
+
+extension Dictionary where Key: RandomType, Value: RandomType {
+    
+    /// Construct a Dictionary of random elements.
+    public init(randomCount: Int) {
+        let keys = Key.randomSequence(maxCount: randomCount)
+        let values = Value.randomSequence(maxCount: randomCount)
+        self = zip(keys, values).reduce(Dictionary(minimumCapacity: randomCount)) { (var dict, pair) in
+            let (key, value) = pair
+            var finalKey = key
+            while dict[finalKey] != nil { // in case of duplicate key
+                finalKey = Key.random()
+            }
+            dict[key] = value
+            return dict
+        }
+    }
+    
+}

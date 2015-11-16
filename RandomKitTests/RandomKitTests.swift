@@ -136,4 +136,13 @@ class RandomKitTests: XCTestCase {
         }
     }
 
+    func testRandomArrayAndDictionnary() {
+        let c = 10
+        let array = Array<Int>(randomCount: c)
+        XCTAssertEqual(array.count, c)
+
+        let dictionary = Dictionary<Int, String>(randomCount: c)
+        XCTAssertEqual(dictionary.count, c)
+    }
+
 }
