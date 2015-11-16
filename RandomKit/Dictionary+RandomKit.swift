@@ -40,20 +40,41 @@ extension Dictionary: ShuffleType {
 }
 
 extension Dictionary where Key: RandomType, Value: RandomType {
-    
-    /// Construct a Dictionary of random elements.
-    public init(randomCount: Int) {
-        let keys = Key.randomSequence(maxCount: randomCount)
-        let values = Value.randomSequence(maxCount: randomCount)
+
+    private init(_ randomCount: Int, _ keys: AnySequence<Key>, _ values: AnySequence<Value>, @autoclosure _ keyGenerator: () -> Key) {
         self = zip(keys, values).reduce(Dictionary(minimumCapacity: randomCount)) { (var dict, pair) in
-            let (key, value) = pair
-            var finalKey = key
-            while dict[finalKey] != nil { // in case of duplicate key
-                finalKey = Key.random()
+            var (key, value) = pair
+            while dict[key] != nil { // in case of duplicate key
+                key = keyGenerator()
             }
-            dict[finalKey] = value
+            dict[key] = value
             return dict
         }
     }
     
+    /// Construct a Dictionary of random elements.
+    public init(randomCount: Int) {
+        self.init(
+            randomCount,
+            Key.randomSequence(maxCount: randomCount),
+            Value.randomSequence(maxCount: randomCount),
+            Key.random())
+    }
+    
+}
+
+extension Dictionary where Key: RandomIntervalType, Value: RandomIntervalType {
+
+    /// Construct a Dictionary of random elements from inside of the closed intervals.
+    ///
+    /// - Precondition: Number of elements within `keyInterval` >= `randomCount`.
+    ///
+    public init(randomCount: Int, _ keyInterval: ClosedInterval<Key>, _ valueInterval: ClosedInterval<Value>) {
+        self.init(
+            randomCount,
+            Key.randomSequence(keyInterval, maxCount: randomCount),
+            Value.randomSequence(valueInterval, maxCount: randomCount),
+            Key.random(keyInterval))
+    }
+
 }
