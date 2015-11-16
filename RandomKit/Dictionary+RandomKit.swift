@@ -51,7 +51,7 @@ extension Dictionary where Key: RandomType, Value: RandomType {
             while dict[finalKey] != nil { // in case of duplicate key
                 finalKey = Key.random()
             }
-            dict[key] = value
+            dict[finalKey] = value
             return dict
         }
     }
