@@ -40,9 +40,18 @@ extension Array: ShuffleType {
 
 extension Array where Element: RandomType {
 
-    /// Construct a Array of random elements.
+    /// Construct an Array of random elements.
     public init(randomCount: Int) {
         self = Array(Element.randomSequence(maxCount: randomCount))
+    }
+
+}
+
+extension Array where Element: RandomIntervalType {
+
+    /// Construct an Array of random elements from inside of the closed interval.
+    public init(randomCount: Int, _ interval: ClosedInterval<Element>) {
+        self = Array(Element.randomSequence(interval, maxCount: randomCount))
     }
 
 }
