@@ -60,7 +60,7 @@ extension Array {
     
     /// Returns an array of randomly choosen elements.
     ///
-    /// If `elementCount` > `count` a copy of this array is returned
+    /// If `elementCount` >= `count` a copy of this array is returned
     ///
     /// - Parameters:
     ///     - elementCount: The number of element to return
@@ -68,7 +68,7 @@ extension Array {
         if elementCount <= 0  {
             return []
         }
-        if elementCount == 0 || elementCount > self.count {
+        if elementCount >= self.count {
             return Array(self)
         }
         // Algorithm R
@@ -86,7 +86,7 @@ extension Array {
 
     /// Returns an array of `elementCount` randomly choosen elements.
     ///
-    /// If `elementCount` > `count` or `weights.count` < `count` 
+    /// If `elementCount` >= `count` or `weights.count` < `count`
     /// a copy of this array is returned
     ///
     /// - Parameters:
@@ -96,7 +96,7 @@ extension Array {
         if elementCount <= 0  {
             return []
         }
-        if elementCount > self.count || weights.count < self.count {
+        if elementCount >= self.count || weights.count < self.count {
             return Array(self)
         }
 
