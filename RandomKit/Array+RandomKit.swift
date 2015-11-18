@@ -55,3 +55,66 @@ extension Array where Element: RandomIntervalType {
     }
 
 }
+
+extension Array {
+    
+    /// Returns an array of randomly choosen elements.
+    ///
+    /// If `elementCount` >= `count` a copy of this array is returned
+    ///
+    /// - Parameters:
+    ///     - elementCount: The number of element to return
+    public func randomSlice(elementCount: Int) -> Array {
+        if elementCount <= 0  {
+            return []
+        }
+        if elementCount >= self.count {
+            return Array(self)
+        }
+        // Algorithm R
+        // fill the reservoir array
+        var result = Array(self[0..<elementCount])
+        // replace elements with gradually decreasing probability
+        for i in elementCount..<self.count {
+            let j = Int.random(ClosedInterval<Int>(0,i-1))
+            if j < elementCount {
+                result[j] = self[i]
+            }
+        }
+        return result
+    }
+
+    /// Returns an array of `elementCount` randomly choosen elements.
+    ///
+    /// If `elementCount` >= `count` or `weights.count` < `count`
+    /// a copy of this array is returned
+    ///
+    /// - Parameters:
+    ///     - elementCount: The number of element to return
+    ///     - weights: Apply weights on element.
+    public func randomSlice(elementCount: Int, weights: [Double]) -> Array {
+        if elementCount <= 0  {
+            return []
+        }
+        if elementCount >= self.count || weights.count < self.count {
+            return Array(self)
+        }
+
+        // Algorithm A-Chao
+        var result = Array(self[0..<elementCount])
+        var weightSum: Double = weights[0..<elementCount].reduce(0.0) { (total, value) in
+            total + value
+        }
+        for i in elementCount..<self.count {
+            let p = weights[i] / weightSum
+            let j = Double.random(0.0...1.0)
+            if j <= p {
+                let index = Int.random(ClosedInterval<Int>(0,elementCount-1))
+                result[index] = self[i]
+            }
+            weightSum += weights[i]
+        }
+        return result
+    }
+
+}

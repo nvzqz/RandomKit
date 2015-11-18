@@ -13,6 +13,15 @@ class RandomKitTests: XCTestCase {
 
     let testCount = 1_000_000
 
+    func testRandomInt() {
+        let min = -10
+        let max =  10
+        for _ in 0...testCount {
+            let r = Int.random(min...max)
+            XCTAssertTrue(r >= min && r <= max, "Random `Int` is out of bounds.")
+        }
+    }
+
     func testRandomDouble() {
         let min = -1.5
         let max =  0.5
@@ -177,4 +186,47 @@ class RandomKitTests: XCTestCase {
         XCTAssertEqual(dict.count, 10)
     }
 
+    func testRandomArraySlice() {
+        let count = 10
+        let array: [Int] = Array(randomCount: count)
+        let sliceCount = count / 2
+    
+        var result = array.randomSlice(sliceCount)
+        XCTAssertEqual(result.count, sliceCount)
+        let simpleSlice = Array(array[0..<sliceCount])
+        XCTAssertNotEqual(result, simpleSlice)
+        
+        result = array.randomSlice(count) // all
+        XCTAssertEqual(result.count, count)
+        
+        result = array.randomSlice(count * 2) // too much
+        XCTAssertEqual(result.count, count)
+
+        result = array.randomSlice(0) // nothing
+        XCTAssertEqual(result.count, 0)
+
+        let weightsArray: [[Double]] = [
+            Array(randomCount: count),
+            Array(randomCount: count, ClosedInterval(0,100))
+        ]
+
+        for weights in weightsArray {
+            result = array.randomSlice(count, weights: weights) // all
+            XCTAssertEqual(result.count, count)
+            
+            result = array.randomSlice(sliceCount, weights: weights)
+            XCTAssertEqual(result.count, sliceCount)
+            //let simpleSlice = Array(array[0..<sliceCount])
+            // XCTAssertNotEqual(result, simpleSlice) // cannot be sure, depends and weights
+
+            result = array.randomSlice(count * 2, weights: weights) // too much
+            XCTAssertEqual(result.count, count)
+
+            result = array.randomSlice(count * 2, weights: Array(randomCount: count / 2)) // partial weights
+            XCTAssertEqual(result.count, count)
+            
+            result = array.randomSlice(0, weights: weights) // nothing
+            XCTAssertEqual(result.count, 0)
+        }
+    }
 }
