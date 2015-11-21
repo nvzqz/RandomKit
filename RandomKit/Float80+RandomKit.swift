@@ -25,6 +25,8 @@
 //  THE SOFTWARE.
 //
 
+#if os(OSX)
+
 extension Float80 : RandomType, RandomIntervalType {
 
     /// Generates a random `Float80`.
@@ -44,3 +46,5 @@ extension Float80 : RandomType, RandomIntervalType {
     }
 
 }
+
+#endif
