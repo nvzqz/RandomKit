@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
     s.name                      = "RandomKit"
-    s.version                   = "1.5.0"
+    s.version                   = "1.6.0"
     s.summary                   = "Random data generation in Swift."
     s.homepage                  = "https://github.com/nvzqz/RandomKit"
     s.license                   = { :type => "MIT", :file => "LICENSE.md" }
