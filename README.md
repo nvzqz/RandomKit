@@ -131,6 +131,116 @@ Random.fakeEnglishHonorific(gender: .Female)               // "Lady"
 
 The default values for type and gender are `._Any` and `.Either` respectively.
 
+### Protocols
+
+#### `RandomType`
+
+A protocol for types that can generate random values.
+
+##### `randomGenerator()`
+
+Returns a generator for infinite random values of `Self`.
+
+```swift
+let generator = Int.randomGenerator()
+while let val = generator.next() {
+    print(val)  // 62
+}               // 66
+                // 45...
+```
+
+##### `randomGenerator(maxCount:)`
+
+Returns a generator for random values of `Self` within `maxCount`.
+
+```swift
+let generator = Int.randomGenerator(maxCount: 2)
+while let val = generator.next() {
+    print(val)  // 45
+}               // 79
+```
+
+##### `randomSequence()`
+
+Returns a sequence of infinite random values of `Self`.
+
+```swift
+for val in Int.randomSequence() {
+    print(val)  // 10
+}               // 83
+                // 47...
+```
+
+##### `randomSequence(maxCount:)`
+
+Returns a sequence of random values of `Self` within `maxCount`.
+
+```swift
+for val in Int.randomSequence(maxCount: 2) {
+    print(val)  // 8
+}               // 56
+```
+
+##### `Array(randomCount:)`
+
+Creates an Array of random elements within `randomCount`.
+
+```swift
+[Int](randomCount: 7)     // [3, 55, 100, 50, 77, 23, 49]
+[String](randomCount: 2)  // [";qYFOH10no", "V,Q[+koi>n"]
+```
+
+##### `Dictionary(randomCount:)`
+
+Creates a Dictionary of random key-value pairs within `randomCount`.
+
+```swift
+[Int : Int](randomCount: 3)  // [43: 45, 56: 16, 44: 89]
+```
+
+##### `Set(randomCount:)`
+
+Creates a Set of random elements within `randomCount`.
+
+```swift
+Set<Int>(randomCount: 5)  // {15, 78, 68, 77, 40}
+```
+
+###### Warning:
+
+The `randomCount` parameter must be greater than the total number of possible
+values that the given `RandomType` can produce. Otherwise, the initializer will
+never finish.
+
+An example of this is using `Bool` with a `randomCount` greater than 2.
+
+#### `RandomIntervalType`
+
+A protocol for types that can generate random values within a closed interval.
+
+```swift
+Int.random(-100...100)       // -79
+Character.random("a"..."z")  // "f"
+```
+
+There are also random generators and random sequences available to
+`RandomIntervalType` that can be made for values within an interval.
+
+#### `ShuffleType`
+
+A protocol for types whose elements can be shuffled.
+
+```swift
+// Array
+[1, 2, 3, 4, 5].shuffle()  // [3, 4, 1, 5, 2]
+
+// Dictionary
+["a": 1, "b": 2, "c": 3].shuffle()  // ["a": 3, "b": 1, "c": 2]
+```
+
+There is also the `shuffleInPlace()` method that shuffles the values in `self`
+rather than return the shuffled result.
+
 ### Swift Types
 
 #### `Int`
@@ -142,14 +252,15 @@ Int.random()        // An Int within 0 and 100
 Int.random(10...20) // An Int within 10 and 20
 ```
 
-#### `Double` and `Float`
+#### `Double`, `Float`, and `Float80`
 
 Generate a random floating point value from within an interval or `0.0...1.0` by
 default.
 
 ```swift
-Double.random(-10...10) // -4.03042337718197
-Float.random(-10...10)  //  5.167088
+Double.random(-10...10)  // -4.03042337718197
+Float.random(-10...10)   //  5.167088
+Float80.random(-10...10) // -3.63204542399198874
 ```
 
 #### `Bool` and `Bit`
