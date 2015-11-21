@@ -133,7 +133,7 @@ The default values for type and gender are `._Any` and `.Either` respectively.
 
 ### Protocols
 
-#### `RandomType`
+#### RandomType
 
 A protocol for types that can generate random values.
 
@@ -214,7 +214,7 @@ never finish.
 
 An example of this is using `Bool` with a `randomCount` greater than 2.
 
-#### `RandomIntervalType`
+#### RandomIntervalType
 
 A protocol for types that can generate random values within a closed interval.
 
@@ -226,7 +226,7 @@ Character.random("a"..."z")  // "f"
 There are also random generators and random sequences available to
 `RandomIntervalType` that can be made for values within an interval.
 
-#### `ShuffleType`
+#### ShuffleType
 
 A protocol for types whose elements can be shuffled.
 
@@ -243,7 +243,7 @@ rather than return the shuffled result.
 
 ### Swift Types
 
-#### `Int`
+#### Int
 
 Generate a random `Int` from within an interval or `0...100` by default.
 
@@ -252,7 +252,7 @@ Int.random()        // An Int within 0 and 100
 Int.random(10...20) // An Int within 10 and 20
 ```
 
-#### `Double`, `Float`, and `Float80`
+#### Double, Float, and Float80
 
 Generate a random floating point value from within an interval or `0.0...1.0` by
 default.
@@ -263,12 +263,12 @@ Float.random(-10...10)   //  5.167088
 Float80.random(-10...10) // -3.63204542399198874
 ```
 
-#### `Bool` and `Bit`
+#### Bool and Bit
 
 `Bool.random()` and `Bit.random()` have a 50/50 chance of being `true` and `One`
 respectively.
 
-#### `String` and `Character`
+#### String and Character
 
 Generate a random `String` or `Character` from within a `Character` interval or
 `" "..."~"` by default.
@@ -289,7 +289,7 @@ String.random(10, .uppercaseLetterCharacterSet()) // "ṤՈ𝕮𝝘ꝻṄԱＭĐ
 Character.random(.uppercaseLetterCharacterSet())  // "𝝙"
 ```
 
-#### `SequenceType` and `CollectionType`
+#### SequenceType and CollectionType
 
 All types that conform to `SequenceType` and/or `CollectionType` have a `random`
 property that returns a random element, or `nil` if the collection is empty.
@@ -310,7 +310,7 @@ NSSet(array: ["First", "Second", "Third", "Fourth"]).random  // "Third"
 
 ### Objective-C Types
 
-#### `NSURL`
+#### NSURL
 
 Generate a random NSURL from a list of values.
 
@@ -321,7 +321,7 @@ NSURL.random()  // https://medium.com/
                 // ...
 ```
 
-#### `NSDate`
+#### NSDate
 
 Generate a random date between two `NSTimeInterval` values, or between `0.0` and
 `NSTimeInterval(UInt32.max)`.
@@ -330,7 +330,7 @@ Generate a random date between two `NSTimeInterval` values, or between `0.0` and
 NSDate.random()  // "Aug 28, 2006, 3:38 AM"
 ```
 
-#### `NSColor` and `UIColor`
+#### NSColor and UIColor
 
 Generate a random color with or without the alpha being random as well.
 
@@ -342,7 +342,7 @@ UIColor.random()            // r 0.488 g 0.805 b 0.679 a 1.0
 UIColor.random(alpha: true) // r 0.444 g 0.121 b 0.602 a 0.085
 ```
 
-#### `NSNumber`
+#### NSNumber
 
 Generate a random number from within an integer or double interval, or `0...100` by default.
 
@@ -352,7 +352,7 @@ NSNumber.random(-50...100)  // -27
 NSNumber.random(0...200.0)  // 149.6156950363926
 ```
 
-#### `NSCharacterSet`
+#### NSCharacterSet
 
 Get a random character from a character set.
 
@@ -362,7 +362,7 @@ NSCharacterSet.uppercaseLetterCharacterSet().randomCharacter // "Ǩ"
 
 #### CoreGraphics Types
 
-##### `CGFloat`
+##### CGFloat
 
 Generate a random float like how you would with Double.random() or Float.random(). The default interval is `0.0...1.0`.
 
@@ -371,7 +371,7 @@ CGFloat.random()         // 0.699803650379181
 CGFloat.random(0...100)  // 43.27969591675319
 ```
 
-##### `CGPoint`
+##### CGPoint
 
 Generate a random point from within intervals for x and y.
 
@@ -380,7 +380,7 @@ CGPoint.random()                 // {x 70.093 y 95.721}
 CGPoint.random(0...200, 0...10)  // {x 73.795 y 0.991}
 ```
 
-##### `CGSize`
+##### CGSize
 
 Generate a random size from within intervals for width and height.
 
@@ -389,7 +389,7 @@ CGSize.random()                 // {w 3.744  h 35.932}
 CGSize.random(0...50, 0...400)  // {w 38.271 h 239.636}
 ```
 
-##### `CGRect`
+##### CGRect
 
 Generate a random rectangle from within intervals for x, y, width, and height.
 
@@ -398,7 +398,7 @@ CGRect.random()                                 // {x 3.872  y 46.15  w 8.852  h
 CGRect.random(0...50, 0...100, 0...25, 0...10)  // {x 13.212 y 79.147 w 20.656 h 5.663}
 ```
 
-##### `CGVector`
+##### CGVector
 
 Generate a random vector from within intervals for dx and dy.
 
