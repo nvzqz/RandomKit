@@ -34,10 +34,8 @@ internal extension Array where Element : Hashable {
 
 public struct Random {
 
-    // MARK: - Fake Data
-
     /// Generates a random fake gender: "Male" or "Female".
-    public static func fakeGender() -> String {
+    public static func gender() -> String {
         return Bool.random() ? "Male" : "Female"
     }
 
@@ -166,7 +164,7 @@ public struct Random {
     ///
     /// - Parameter state: The US state for the area code of the generated
     ///             number. Default value is `._Any`.
-    public static func fakePhoneNumber(state: USState = ._Any) -> Int {
+    public static func phoneNumber(state: USState = ._Any) -> Int {
         let areaCode = state == ._Any
             ? areaCodes.random!.1.random!
             : areaCodes[state]!.random!
@@ -223,7 +221,7 @@ public struct Random {
     ///       Default value is `._Any`.
     ///     - gender: The gender for the generated honorific.
     ///       Default value is `.Either`.
-    public static func fakeEnglishHonorific(type honorificType: HonorificType = ._Any, gender: GenderType = .Either) -> String {
+    public static func englishHonorific(type honorificType: HonorificType = ._Any, gender: GenderType = .Either) -> String {
         return honorificType.titles(gender).random!
     }
 

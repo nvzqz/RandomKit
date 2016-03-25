@@ -240,6 +240,9 @@
 		52F9E6DA1CA5B4DF00039162 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				52F9E6EF1CA5B4E000039162 /* Random.swift */,
+				52F9E6F01CA5B4E000039162 /* RandomType.swift */,
+				52F9E6F31CA5B4E000039162 /* ShuffleType.swift */,
 				52F9E6DB1CA5B4DF00039162 /* Array+RandomKit.swift */,
 				52F9E6DC1CA5B4DF00039162 /* Bit+RandomKit.swift */,
 				52F9E6DD1CA5B4DF00039162 /* Bool+RandomKit.swift */,
@@ -260,11 +263,8 @@
 				52F9E6EC1CA5B4E000039162 /* NSDate+RandomKit.swift */,
 				52F9E6ED1CA5B4E000039162 /* NSNumber+RandomKit.swift */,
 				52F9E6EE1CA5B4E000039162 /* NSURL+RandomKit.swift */,
-				52F9E6EF1CA5B4E000039162 /* Random.swift */,
-				52F9E6F01CA5B4E000039162 /* RandomType.swift */,
 				52F9E6F11CA5B4E000039162 /* SequenceType+RandomKit.swift */,
 				52F9E6F21CA5B4E000039162 /* Set+RandomKit.swift */,
-				52F9E6F31CA5B4E000039162 /* ShuffleType.swift */,
 				52F9E6F41CA5B4E000039162 /* String+RandomKit.swift */,
 			);
 			path = Sources;
