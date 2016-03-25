@@ -1,5 +1,5 @@
 //
-//  Character+RandomKit.swift
+//  CollectionType+RandomKit.swift
 //  RandomKit
 //
 //  The MIT License (MIT)
@@ -25,38 +25,20 @@
 //  THE SOFTWARE.
 //
 
-extension Character : RandomType, RandomIntervalType {
+#if os(OSX) || os(iOS) || os(watchOS) || os(tvOS)
+    import Darwin
+#elseif os(Linux)
+    import Glibc
+#endif
 
-    /// Generates a random `Character`.
-    ///
-    /// - Returns: Random value within `" "..."~"`.
-    public static func random() -> Character {
-        return random(" "..."~")
-    }
+extension CollectionType {
 
-    /// Generates a random `Character` inside of the closed interval.
-    ///
-    /// - Parameters:
-    ///     - interval: The interval within which the character
-    ///       will be generated.
-    public static func random(interval: ClosedInterval<Character>) -> Character {
-        var randomValue: UInt32 {
-            let start   = interval.start.scalar.value
-            let end     = interval.end.scalar.value
-            let greater = max(start, end)
-            let lesser  = min(start, end)
-            return lesser + arc4random_uniform(greater - lesser + 1)
-        }
-        return Character(UnicodeScalar(randomValue))
-    }
-
-    private var scalar: UnicodeScalar {
-        get {
-            return String(self).unicodeScalars.first!
-        }
-        mutating set {
-            self = Character(newValue)
-        }
+    /// Returns a random element of `self`, or `nil` if `self` is empty.
+    public var random: Self.Generator.Element? {
+        guard !self.isEmpty else { return nil }
+        let distance = startIndex.distanceTo(endIndex)
+        let randomIntMax = arc4random_uniform(UInt32(distance.toIntMax())).toIntMax()
+        return self[startIndex.advancedBy(Index.Distance(randomIntMax))]
     }
 
 }

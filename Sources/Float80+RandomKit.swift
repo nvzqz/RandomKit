@@ -1,5 +1,5 @@
 //
-//  Int+RandomKit.swift
+//  Float80+RandomKit.swift
 //  RandomKit
 //
 //  The MIT License (MIT)
@@ -25,21 +25,28 @@
 //  THE SOFTWARE.
 //
 
-extension Int : RandomType, RandomIntervalType {
+#if os(OSX)
 
-    /// Generates a random `Int`.
+import Darwin
+
+extension Float80 : RandomType, RandomIntervalType {
+
+    /// Generates a random `Float80`.
     ///
-    /// - Returns: Random value within `0...100`.
-    public static func random() -> Int {
-        return random(0...100)
+    /// - Returns: Random value within `0.0...1.0`.
+    public static func random() -> Float80 {
+        return random(0.0...1.0)
     }
-    
-    /// Generates a random `Int` inside of the closed interval.
+
+    /// Generates a random `Float80` inside of the closed interval.
     ///
     /// - Parameters:
     ///     - interval: The interval within which the number
     ///       will be generated.
-    public static func random(interval: ClosedInterval<Int>) -> Int {
-        return interval.start + Int(arc4random_uniform(UInt32(interval.end - interval.start + 1)))
+    public static func random(interval: ClosedInterval<Float80>) -> Float80 {
+        return interval.start + (interval.end - interval.start) * (Float80(arc4random()) / Float80(UInt32.max))
     }
+
 }
+
+#endif

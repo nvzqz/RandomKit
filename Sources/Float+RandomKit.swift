@@ -1,5 +1,5 @@
 //
-//  Double+RandomKit.swift
+//  Float+RandomKit.swift
 //  RandomKit
 //
 //  The MIT License (MIT)
@@ -25,22 +25,28 @@
 //  THE SOFTWARE.
 //
 
-extension Double : RandomType, RandomIntervalType {
+#if os(OSX) || os(iOS) || os(watchOS) || os(tvOS)
+    import Darwin
+#elseif os(Linux)
+    import Glibc
+#endif
 
-    /// Generates a random `Double`.
+extension Float : RandomType, RandomIntervalType {
+
+    /// Generates a random `Float`.
     ///
     /// - Returns: Random value within `0.0...1.0`.
-    public static func random() -> Double {
+    public static func random() -> Float {
         return random(0.0...1.0)
     }
 
-    /// Generates a random `Double` inside of the closed interval.
+    /// Generates a random `Float` inside of the closed interval.
     ///
     /// - Parameters:
     ///     - interval: The interval within which the number
     ///       will be generated.
-    public static func random(interval: ClosedInterval<Double>) -> Double {
-        return interval.start + (interval.end - interval.start) * (Double(arc4random()) / Double(UInt32.max))
+    public static func random(interval: ClosedInterval<Float>) -> Float {
+        return interval.start + (interval.end - interval.start) * (Float(arc4random()) / Float(UInt32.max))
     }
 
 }
