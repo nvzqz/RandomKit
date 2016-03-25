@@ -162,6 +162,7 @@
 		52F9E6F31CA5B4E000039162 /* ShuffleType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShuffleType.swift; sourceTree = "<group>"; };
 		52F9E6F41CA5B4E000039162 /* String+RandomKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+RandomKit.swift"; sourceTree = "<group>"; };
 		52F9E75E1CA5B4EB00039162 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		52F9E7601CA5BBBA00039162 /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -212,6 +213,7 @@
 				528200F21BC9FA42001FDD58 /* RandomKitTests */,
 				528200921BC9C4A2001FDD58 /* Products */,
 				524083961CA5B31E00AB8851 /* RandomKit.playground */,
+				52F9E7601CA5BBBA00039162 /* Package.swift */,
 				524083971CA5B35800AB8851 /* LICENSE.md */,
 			);
 			sourceTree = "<group>";
