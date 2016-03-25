@@ -40,7 +40,8 @@ extension Set where Element: RandomType {
         self.init(
             randomCount,
             Element.randomSequence(maxCount: randomCount),
-            Element.random())
+            Element.random()
+        )
     }
 
 }
@@ -55,7 +56,8 @@ extension Set where Element: RandomIntervalType {
         self.init(
             randomCount,
             Element.randomSequence(interval, maxCount: randomCount),
-            Element.random(interval))
+            Element.random(interval)
+        )
     }
 
 }

@@ -37,13 +37,16 @@ extension RandomType {
 
     /// Returns a generator for infinite random values of `Self`.
     public static func randomGenerator() -> AnyGenerator<Self> {
-        return anyGenerator { Self.random() }
+        return AnyGenerator { random() }
     }
 
     /// Returns a generator for random values of `Self` within `maxCount`.
     public static func randomGenerator(maxCount count: Int) -> AnyGenerator<Self> {
         var n = 0
-        return anyGenerator { n++ < count ? Self.random() : nil }
+        return AnyGenerator {
+            defer { n += 1 }
+            return n < count ? random() : nil
+        }
     }
 
     /// Returns a sequence of infinite random values of `Self`.
@@ -70,13 +73,16 @@ extension RandomIntervalType {
 
     /// Returns a generator for infinite random values of `Self` inside of the closed interval.
     public static func randomGenerator(interval: ClosedInterval<Self>) -> AnyGenerator<Self> {
-        return anyGenerator { Self.random(interval) }
+        return AnyGenerator { random(interval) }
     }
 
     /// Returns a generator for random values of `Self` inside of the closed interval within `maxCount`.
     public static func randomGenerator(interval: ClosedInterval<Self>, maxCount count: Int) -> AnyGenerator<Self> {
         var n = 0
-        return anyGenerator { n++ < count ? Self.random(interval) : nil }
+        return AnyGenerator {
+            defer { n += 1 }
+            return n < count ? random(interval) : nil
+        }
     }
 
     /// Returns a sequence of infinite random values of `Self` inside of the closed interval.
