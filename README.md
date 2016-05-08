@@ -208,7 +208,7 @@ Set<Int>(randomCount: 5)  // {15, 78, 68, 77, 40}
 
 ###### Warning:
 
-The `randomCount` parameter must be greater than the total number of possible
+The `randomCount` parameter must be less than the total number of possible
 values that the given `RandomType` can produce. Otherwise, the initializer will
 never finish.
 
