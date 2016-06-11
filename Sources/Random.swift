@@ -164,14 +164,14 @@ public struct Random {
     ///
     /// - Parameter state: The US state for the area code of the generated
     ///             number. Default value is `._Any`.
-    public static func phoneNumber(state: USState = ._Any) -> Int {
+    public static func phoneNumber(state: USState = ._Any) -> Int64 {
         let areaCode = state == ._Any
             ? areaCodes.random!.1.random!
             : areaCodes[state]!.random!
         let number = (1...7).reduce(String(areaCode)) { number, _ in
             return number + String(Int.random(0...9))
         }
-        return Int(number)!
+        return Int64(number)!
     }
 
     public enum GenderType {
