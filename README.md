@@ -36,8 +36,8 @@ RandomKit is a Swift framework that makes random data generation simple and easy
 ### Compatibility
 
 - Xcode
-    - Version:  **7.0**
-    - Language: **Swift 2.0**
+    - Version:  **8.0**
+    - Language: **Swift 3.0**
 - OS X
     - Compatible With:   **OS X 10.11**
     - Deployment Target: **OS X 10.9**
