@@ -42,7 +42,7 @@ extension String: RandomType {
     ///       Default value is `10`.
     ///     - interval: The interval within which the string
     ///       will be generated.
-    public static func random(length: UInt = 10, _ interval: ClosedInterval<Character>) -> String {
+    public static func random(_ length: UInt = 10, _ interval: ClosedRange<Character>) -> String {
         return (0 ..< length).reduce("") { value, _ in
             value + String(Character.random(interval))
         }

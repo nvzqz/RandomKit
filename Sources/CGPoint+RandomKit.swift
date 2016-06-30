@@ -41,7 +41,7 @@ extension CGPoint: RandomType {
     /// - Parameters:
     ///     - xInterval: The interval within which `x` will be generated.
     ///     - yInterval: The interval within which `y` will be generated.
-    public static func random(xInterval: ClosedInterval<CGFloat.NativeType>, _ yInterval: ClosedInterval<CGFloat.NativeType>) -> CGPoint {
+    public static func random(_ xInterval: ClosedRange<CGFloat.NativeType>, _ yInterval: ClosedRange<CGFloat.NativeType>) -> CGPoint {
         return CGPoint(x: CGFloat.random(xInterval), y: CGFloat.random(yInterval))
     }
 

@@ -30,10 +30,13 @@ extension Dictionary: ShuffleType {
     /// Shuffles the elements in `self` and returns the result.
     public func shuffle() -> Dictionary {
         let values = Array(self.values).shuffle()
-        return zip(keys, values).reduce(Dictionary(minimumCapacity: values.count)) { (var dict, pair) in
+        return zip(keys, values).reduce(Dictionary(minimumCapacity: values.count)) { (dict, pair) in
+            var mutableDict = dict
+
             let (key, value) = pair
-            dict[key] = value
-            return dict
+            mutableDict[key] = value
+
+            return mutableDict
         }
     }
 
@@ -41,14 +44,17 @@ extension Dictionary: ShuffleType {
 
 extension Dictionary where Key: RandomType, Value: RandomType {
 
-    private init(_ randomCount: Int, _ keys: AnySequence<Key>, _ values: AnySequence<Value>, @autoclosure _ keyGenerator: () -> Key) {
-        self = zip(keys, values).reduce(Dictionary(minimumCapacity: randomCount)) { (var dict, pair) in
+    private init(_ randomCount: Int, _ keys: AnySequence<Key>, _ values: AnySequence<Value>, _ keyGenerator: @autoclosure() -> Key) {
+        self = zip(keys, values).reduce(Dictionary(minimumCapacity: randomCount)) { (dict, pair) in
+            var mutableDict = dict
             var (key, value) = pair
+
             while dict[key] != nil { // in case of duplicate key
                 key = keyGenerator()
             }
-            dict[key] = value
-            return dict
+            mutableDict[key] = value
+
+            return mutableDict
         }
     }
     
@@ -69,7 +75,7 @@ extension Dictionary where Key: RandomIntervalType, Value: RandomIntervalType {
     ///
     /// - Precondition: Number of elements within `keyInterval` >= `randomCount`.
     ///
-    public init(randomCount: Int, _ keyInterval: ClosedInterval<Key>, _ valueInterval: ClosedInterval<Value>) {
+    public init(randomCount: Int, _ keyInterval: ClosedRange<Key>, _ valueInterval: ClosedRange<Value>) {
         self.init(
             randomCount,
             Key.randomSequence(keyInterval, maxCount: randomCount),

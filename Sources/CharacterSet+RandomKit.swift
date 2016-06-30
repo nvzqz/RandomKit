@@ -34,7 +34,7 @@ extension Character {
     /// - Parameters:
     ///     - characterSet: The character set within which the character
     ///       will be generated.
-    public static func random(characterSet: NSCharacterSet) -> Character? {
+    public static func random(_ characterSet: CharacterSet) -> Character? {
         return characterSet.randomCharacter
     }
 
@@ -50,7 +50,7 @@ extension String {
     ///       Default value is `10`.
     ///     - characterSet: The character set within which the string
     ///       will be generated.
-    public static func random(length: UInt = 10, _ characterSet: NSCharacterSet) -> String {
+    public static func random(_ length: UInt = 10, _ characterSet: CharacterSet) -> String {
         guard length > 0 else { return "" }
         let characters = characterSet.asCharacterArray
         return (0 ..< length).reduce("") { value, _ in
@@ -61,7 +61,7 @@ extension String {
 
 }
 
-extension NSCharacterSet {
+extension CharacterSet {
 
     /// Returns a random character from `self`, or `nil` if `self` is empty.
     public var randomCharacter: Character? {
@@ -71,13 +71,16 @@ extension NSCharacterSet {
     private var asCharacterArray: [Character] {
         var value: [Character] = []
         for plane: UTF32Char in 0...16 {
-            if self.hasMemberInPlane(UInt8(plane)) {
-                var char = UTF32Char()
-                for char = plane << 16; char < (plane + 1) << 16; char++ {
-                    if  let string = NSString(bytes: &char, length: 4, encoding: NSUTF32LittleEndianStringEncoding) as? String where self.longCharacterIsMember(char),
+            if self.hasMember(inPlane: UInt8(plane)) {
+                var char: UTF32Char = plane << 16
+
+                while char < (plane + 1) {
+                    if  let string = NSString(bytes: &char, length: 4, encoding: String.Encoding.utf32LittleEndian.rawValue) as? String where self.contains(UnicodeScalar(char)),
                         let char: UnicodeScalar = string.unicodeScalars.first {
-                            value.append(Character(char))
+                        value.append(Character(char))
                     }
+                    
+                    char += 1
                 }
             }
         }

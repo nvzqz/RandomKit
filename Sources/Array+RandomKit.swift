@@ -29,10 +29,14 @@ extension Array: ShuffleType {
 
     /// Shuffles the elements in `self` and returns the result.
     public func shuffle() -> Array {
-        return indices.reduce(self) { (var array, i) in
+        return indices.reduce(self) { (array, i) in
+			var mutableArray = array
+
             let j = Int.random(startIndex ... endIndex - 1)
-            if j != i { (array[i], array[j]) = (array[j], array[i]) }
-            return array
+            if j != i {
+				swap(&mutableArray[i], &mutableArray[j])
+			}
+            return mutableArray
         }
     }
 
@@ -50,7 +54,7 @@ extension Array where Element: RandomType {
 extension Array where Element: RandomIntervalType {
 
     /// Construct an Array of random elements from inside of the closed interval.
-    public init(randomCount: Int, _ interval: ClosedInterval<Element>) {
+    public init(randomCount: Int, _ interval: ClosedRange<Element>) {
         self = Array(Element.randomSequence(interval, maxCount: randomCount))
     }
 
@@ -64,7 +68,7 @@ extension Array {
     ///
     /// - Parameters:
     ///     - elementCount: The number of element to return
-    public func randomSlice(elementCount: Int) -> Array {
+    public func randomSlice(_ elementCount: Int) -> Array {
         if elementCount <= 0  {
             return []
         }
@@ -76,7 +80,7 @@ extension Array {
         var result = Array(self[0..<elementCount])
         // replace elements with gradually decreasing probability
         for i in elementCount..<self.count {
-            let j = Int.random(ClosedInterval<Int>(0,i-1))
+            let j = Int.random((0 ... i-1))
             if j < elementCount {
                 result[j] = self[i]
             }
@@ -92,7 +96,7 @@ extension Array {
     /// - Parameters:
     ///     - elementCount: The number of element to return
     ///     - weights: Apply weights on element.
-    public func randomSlice(elementCount: Int, weights: [Double]) -> Array {
+    public func randomSlice(_ elementCount: Int, weights: [Double]) -> Array {
         if elementCount <= 0  {
             return []
         }
@@ -109,7 +113,7 @@ extension Array {
             let p = weights[i] / weightSum
             let j = Double.random(0.0...1.0)
             if j <= p {
-                let index = Int.random(ClosedInterval<Int>(0,elementCount-1))
+                let index = Int.random((0 ... elementCount-1))
                 result[index] = self[i]
             }
             weightSum += weights[i]

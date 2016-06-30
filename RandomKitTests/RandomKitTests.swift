@@ -51,7 +51,7 @@ class RandomKitTests: XCTestCase {
     let min = Character(UnicodeScalar(0))
     let max = Character(UnicodeScalar(UInt8.max))
 
-    var interval: ClosedInterval<Character> { return min...max }
+    var interval: ClosedRange<Character> { return min...max }
 
     func testRandomCharacter() {
         let sameCount = (0...testCount).reduce(0) { count, _ in
@@ -73,30 +73,27 @@ class RandomKitTests: XCTestCase {
 
     func testRandomFromArrayTime() {
         let arr = Array(0 ..< 10000)
-        self.measureBlock {
+        self.measure {
             XCTAssertNotNil(arr.random)
         }
     }
 
     func testRandomFromSetTime() {
         let set = Set(0 ..< 10000)
-        self.measureBlock {
+        self.measure {
             XCTAssertNotNil(set.random)
         }
     }
 
     func testRandomFromDictTime() {
-        let count = 10000
-        let dict: [Int : Int] = (0 ..< count).reduce(Dictionary(minimumCapacity: count)) { (var dict, num) in
-            dict[num] = num
-            return dict
-        }
+        let dict: [Int : Int] = RandomKitTests.randomDictionaryOfCount(10000)
+
         NSLog("done with making dict")
-        self.measureBlock {
+        self.measure {
             XCTAssertNotNil(dict.random)
         }
     }
-
+    
     func testRandomFromCollectionType() {
         let arr = ["A", "B", "C", "D", "E", "F", "H", "I"]
         let dict = ["k1" : "v1", "k2" : "v2", "k3" : "v3"]
@@ -107,21 +104,18 @@ class RandomKitTests: XCTestCase {
     }
 
     func testArrayShuffleTime() {
-        let a1 = (0 ..< 10000).reduce([]) { $0 + [$1] }
+        let a1: [Int] = (0 ..< 10000).reduce([]) { $0 + [$1] }
         var a2: [Int] = []
-        self.measureBlock {
+        self.measure {
             a2 = a1.shuffle()
         }
         XCTAssertNotEqual(a1, a2)
     }
 
     func testDictionaryShuffleTime() {
-        let d1: [Int : Int] = (0 ..< 1000).reduce(Dictionary(minimumCapacity: 1000)) { (var dict, n) in
-            dict[n] = n
-            return dict
-        }
+        let d1: [Int : Int] = RandomKitTests.randomDictionaryOfCount(1000)
         var d2: [Int : Int] = [:]
-        self.measureBlock {
+        self.measure {
             d2 = d1.shuffle()
         }
         XCTAssertNotEqual(d1, d2)
@@ -132,7 +126,7 @@ class RandomKitTests: XCTestCase {
             str + String(Int.random(0...9))
         }
         var str2 = ""
-        self.measureBlock {
+        self.measure {
             str2 = str1.shuffle()
         }
         XCTAssertNotEqual(str1, str2)
@@ -150,7 +144,9 @@ class RandomKitTests: XCTestCase {
             var i = 0
             var a = [Int]()
             for v in Int.randomSequence() {
-                if i++ >= c { break }
+                defer { i += 1 }
+
+                if i >= c { break }
                 a.append(v)
             }
             XCTAssertEqual(a.count, c)
@@ -160,7 +156,7 @@ class RandomKitTests: XCTestCase {
             let c = 10
             let g = Int.randomGenerator(maxCount: c)
             while let _ = g.next() {
-                i++
+                i += 1
             }
             XCTAssertEqual(i, c)
         }
@@ -207,7 +203,7 @@ class RandomKitTests: XCTestCase {
 
         let weightsArray: [[Double]] = [
             Array(randomCount: count),
-            Array(randomCount: count, ClosedInterval(0,100))
+            Array(randomCount: count, (0 ... 100))
         ]
 
         for weights in weightsArray {
@@ -227,6 +223,15 @@ class RandomKitTests: XCTestCase {
             
             result = array.randomSlice(0, weights: weights) // nothing
             XCTAssertEqual(result.count, 0)
+        }
+    }
+
+    private static func randomDictionaryOfCount(_ count: Int) -> [Int : Int] {
+        return (0 ..< count).reduce(Dictionary(minimumCapacity: count)) { (dict, num) in
+            var mutableDict = dict
+
+            mutableDict[num] = num
+            return mutableDict
         }
     }
 }

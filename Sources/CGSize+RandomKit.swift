@@ -41,7 +41,7 @@ extension CGSize: RandomType {
     /// - Parameters:
     ///     - widthInterval: The interval within which `width` will be generated.
     ///     - heightInterval: The interval within which `height` will be generated.
-    public static func random(widthInterval: ClosedInterval<CGFloat.NativeType>, _ heightInterval: ClosedInterval<CGFloat.NativeType>) -> CGSize {
+    public static func random(_ widthInterval: ClosedRange<CGFloat.NativeType>, _ heightInterval: ClosedRange<CGFloat.NativeType>) -> CGSize {
         return CGSize(width: CGFloat.random(widthInterval), height: CGFloat.random(heightInterval))
     }
 
