@@ -263,10 +263,9 @@ Float.random(-10...10)   //  5.167088
 Float80.random(-10...10) // -3.63204542399198874
 ```
 
-#### Bool and Bit
+#### Bool
 
-`Bool.random()` and `Bit.random()` have a 50/50 chance of being `true` and `One`
-respectively.
+`Bool.random()` has a 50/50 chance of being `true`.
 
 #### String and Character
 
@@ -289,9 +288,9 @@ String.random(10, .uppercaseLetterCharacterSet()) // "ṤՈ𝕮𝝘ꝻṄԱＭĐ
 Character.random(.uppercaseLetterCharacterSet())  // "𝝙"
 ```
 
-#### SequenceType and CollectionType
+#### Sequence and Collection
 
-All types that conform to `SequenceType` and/or `CollectionType` have a `random`
+All types that conform to `Sequence` and/or `Collection` have a `random`
 property that returns a random element, or `nil` if the collection is empty.
 
 ```swift
@@ -310,24 +309,24 @@ NSSet(array: ["First", "Second", "Third", "Fourth"]).random  // "Third"
 
 ### Objective-C Types
 
-#### NSURL
+#### URL
 
-Generate a random NSURL from a list of values.
+Generate a random `URL` from a list of values.
 
 ```swift
-NSURL.random()  // https://medium.com/
-                // https://stackoverflow.com/
-                // https://github.com/
-                // ...
+URL.random()  // https://medium.com/
+              // https://stackoverflow.com/
+              // https://github.com/
+              // ...
 ```
 
-#### NSDate
+#### Date
 
-Generate a random date between two `NSTimeInterval` values, or between `0.0` and
-`NSTimeInterval(UInt32.max)`.
+Generate a random date between two `TimeInterval` values, or between `0.0` and
+`TimeInterval(UInt32.max)`.
 
 ```swift
-NSDate.random()  // "Aug 28, 2006, 3:38 AM"
+Date.random()  // "Aug 28, 2006, 3:38 AM"
 ```
 
 #### NSColor and UIColor
@@ -352,12 +351,12 @@ NSNumber.random(-50...100)  // -27
 NSNumber.random(0...200.0)  // 149.6156950363926
 ```
 
-#### NSCharacterSet
+#### CharacterSet
 
 Get a random character from a character set.
 
 ```swift
-NSCharacterSet.uppercaseLetterCharacterSet().randomCharacter // "Ǩ"
+CharacterSet.uppercaseLetterCharacterSet().randomCharacter // "Ǩ"
 ```
 
 #### CoreGraphics Types
