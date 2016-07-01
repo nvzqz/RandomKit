@@ -45,8 +45,8 @@ extension Double : RandomType, RandomIntervalType {
     /// - Parameters:
     ///     - interval: The interval within which the number
     ///       will be generated.
-    public static func random(interval: ClosedInterval<Double>) -> Double {
-        return interval.start + (interval.end - interval.start) * (Double(arc4random()) / Double(UInt32.max))
+    public static func random(_ interval: ClosedRange<Double>) -> Double {
+        return interval.lowerBound + (interval.upperBound - interval.lowerBound) * (Double(arc4random()) / Double(UInt32.max))
     }
 
 }

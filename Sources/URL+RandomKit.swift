@@ -27,7 +27,7 @@
 
 import Foundation
 
-extension NSURL: RandomType {
+extension URL: RandomType {
 
     /// Generates a random URL.
     ///
@@ -39,7 +39,7 @@ extension NSURL: RandomType {
     ///     - https://medium.com/
     ///     - https://www.google.com/
     ///     - https://www.youtube.com/
-    public class func random() -> Self {
+    public static func random() -> URL {
         return random(fromValues: [
             "https://github.com/",
             "https://bitbucket.org/",
@@ -57,7 +57,7 @@ extension NSURL: RandomType {
     ///
     /// - Parameters:
     ///     - values: The values from which the URL is generated.
-    public class func random(fromValues values: [String]) -> Self {
+    public static func random(fromValues values: [String]) -> URL {
         guard let value = values.random, url = self.init(string: value) else {
             return self.init(string: "https://www.google.com/")!
         }

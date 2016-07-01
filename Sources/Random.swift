@@ -164,7 +164,7 @@ public struct Random {
     ///
     /// - Parameter state: The US state for the area code of the generated
     ///             number. Default value is `._Any`.
-    public static func phoneNumber(state: USState = ._Any) -> Int64 {
+    public static func phoneNumber(_ state: USState = ._Any) -> Int64 {
         let areaCode = state == ._Any
             ? areaCodes.random!.1.random!
             : areaCodes[state]!.random!
@@ -175,39 +175,39 @@ public struct Random {
     }
 
     public enum GenderType {
-        case Male
-        case Female
-        case Either
+        case male
+        case female
+        case either
     }
 
     public enum HonorificType {
 
-        case _Any, Common, Formal, Professional, Religious
+        case _Any, common, formal, professional, religious
 
-        private func anyProperties<T>(block: (HonorificType) -> [T]) -> [T] {
-            return [Common, Formal, Professional, Religious].reduce([]) {
+        private func anyProperties<T>(_ block: (HonorificType) -> [T]) -> [T] {
+            return [common, formal, professional, religious].reduce([]) {
                 $0 + block($1)
             }
         }
 
-        internal func titles(gender: GenderType) -> [String] {
+        internal func titles(_ gender: GenderType) -> [String] {
             switch (self, gender) {
-            case (.Common, .Male):
+            case (.common, .male):
                 return ["Mr.", "Master", "Mx."]
-            case (.Common, .Female):
+            case (.common, .female):
                 return ["Mz.", "Ms.", "Mrs.", "Mx."]
-            case (.Formal, .Male):
+            case (.formal, .male):
                 return ["Sir", "Lord"]
-            case (.Formal, .Female):
+            case (.formal, .female):
                 return ["Madam", "Lady"]
-            case (.Professional, _):
+            case (.professional, _):
                 return ["Dr.", "Prof."]
-            case (.Religious, .Male):
+            case (.religious, .male):
                 return ["Br.", "Fr.", "Pr.", "Elder", "Rabbi", "Rev."]
-            case (.Religious, .Female):
+            case (.religious, .female):
                 return ["Sr.", "Rev."]
-            case (_, .Either):
-                return (titles(.Male) + titles(.Female)).removeDuplicates()
+            case (_, .either):
+                return (titles(.male) + titles(.female)).removeDuplicates()
             default:
                 return anyProperties { $0.titles(gender) }
             }
@@ -221,7 +221,7 @@ public struct Random {
     ///       Default value is `._Any`.
     ///     - gender: The gender for the generated honorific.
     ///       Default value is `.Either`.
-    public static func englishHonorific(type honorificType: HonorificType = ._Any, gender: GenderType = .Either) -> String {
+    public static func englishHonorific(type honorificType: HonorificType = ._Any, gender: GenderType = .either) -> String {
         return honorificType.titles(gender).random!
     }
 

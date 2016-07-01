@@ -27,11 +27,15 @@
 
 extension Set where Element: RandomType {
 
-    private init(_ randomCount: Int, _ sequence: AnySequence<Element>, @autoclosure _ elementGenerator: () -> Element) {
-        self = sequence.reduce(Set(minimumCapacity: randomCount)) { (var set, var element) in
-            while set.contains(element) { element = elementGenerator() }
-            set.insert(element)
-            return set
+    private init(_ randomCount: Int, _ sequence: AnySequence<Element>, _ elementGenerator: @autoclosure () -> Element) {
+        self = sequence.reduce(Set(minimumCapacity: randomCount)) { (set, element) in
+			var mutableSet = set
+			var mutableElement = element
+
+            while set.contains(mutableElement) { mutableElement = elementGenerator() }
+            mutableSet.insert(mutableElement)
+
+			return mutableSet
         }
     }
 
@@ -52,7 +56,7 @@ extension Set where Element: RandomIntervalType {
     ///
     /// - Precondition: Number of elements within `interval` >= `randomCount`.
     ///
-    public init(randomCount: Int, _ interval: ClosedInterval<Element>) {
+    public init(randomCount: Int, _ interval: ClosedRange<Element>) {
         self.init(
             randomCount,
             Element.randomSequence(interval, maxCount: randomCount),

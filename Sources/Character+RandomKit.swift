@@ -45,10 +45,10 @@ extension Character : RandomType, RandomIntervalType {
     /// - Parameters:
     ///     - interval: The interval within which the character
     ///       will be generated.
-    public static func random(interval: ClosedInterval<Character>) -> Character {
+    public static func random(_ interval: ClosedRange<Character>) -> Character {
         var randomValue: UInt32 {
-            let start   = interval.start.scalar.value
-            let end     = interval.end.scalar.value
+            let start   = interval.lowerBound.scalar.value
+            let end     = interval.upperBound.scalar.value
             let greater = max(start, end)
             let lesser  = min(start, end)
             return lesser + arc4random_uniform(greater - lesser + 1)

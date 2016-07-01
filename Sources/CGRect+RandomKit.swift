@@ -44,10 +44,10 @@ extension CGRect: RandomType {
     ///     - widthInterval: The interval within which `width` will be generated.
     ///     - heightInterval: The interval within which `height` will be generated.
     public static func random(
-          xInterval:      ClosedInterval<CGFloat.NativeType>,
-        _ yInterval:      ClosedInterval<CGFloat.NativeType>,
-        _ widthInterval:  ClosedInterval<CGFloat.NativeType>,
-        _ heightInterval: ClosedInterval<CGFloat.NativeType>)
+        _ xInterval:      ClosedRange<CGFloat.NativeType>,
+        _ yInterval:      ClosedRange<CGFloat.NativeType>,
+        _ widthInterval:  ClosedRange<CGFloat.NativeType>,
+        _ heightInterval: ClosedRange<CGFloat.NativeType>)
     -> CGRect {
         return CGRect(origin: .random(xInterval, yInterval), size: .random(widthInterval, heightInterval))
     }

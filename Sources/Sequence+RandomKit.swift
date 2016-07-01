@@ -1,5 +1,5 @@
 //
-//  CollectionType+RandomKit.swift
+//  Sequence+RandomKit.swift
 //  RandomKit
 //
 //  The MIT License (MIT)
@@ -25,20 +25,11 @@
 //  THE SOFTWARE.
 //
 
-#if os(OSX) || os(iOS) || os(watchOS) || os(tvOS)
-    import Darwin
-#elseif os(Linux)
-    import Glibc
-#endif
-
-extension CollectionType {
+extension Sequence {
 
     /// Returns a random element of `self`, or `nil` if `self` is empty.
-    public var random: Self.Generator.Element? {
-        guard !self.isEmpty else { return nil }
-        let distance = startIndex.distanceTo(endIndex)
-        let randomIntMax = arc4random_uniform(UInt32(distance.toIntMax())).toIntMax()
-        return self[startIndex.advancedBy(Index.Distance(randomIntMax))]
+    public var random: Self.Iterator.Element? {
+        return Array(self).random
     }
-
+    
 }

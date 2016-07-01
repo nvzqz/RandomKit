@@ -1,5 +1,5 @@
 //
-//  Bit+RandomKit.swift
+//  NSDate+RandomKit.swift
 //  RandomKit
 //
 //  The MIT License (MIT)
@@ -25,11 +25,24 @@
 //  THE SOFTWARE.
 //
 
-extension Bit: RandomType {
+import Foundation
 
-    /// Generates a random `Bit`.
-    public static func random() -> Bit {
-        return Bool.random() ? .One : .Zero
+extension Date: RandomType {
+
+    /// Generates a random date.
+    ///
+    /// - Returns: Random date within `0.0...NSTimeInterval(UInt32.max)`.
+    public static func random() -> Date {
+        return random(0.0...TimeInterval(UInt32.max))
+    }
+
+    /// Generates a random date inside of the closed interval.
+    ///
+    /// - Parameters:
+    ///     - interval: The interval within which the date
+    ///       will be generated.
+    public static func random(_ interval: ClosedRange<TimeInterval>) -> Date {
+        return self.init(timeIntervalSince1970: .random(interval))
     }
 
 }

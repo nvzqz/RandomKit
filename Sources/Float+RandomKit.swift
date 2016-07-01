@@ -45,8 +45,8 @@ extension Float : RandomType, RandomIntervalType {
     /// - Parameters:
     ///     - interval: The interval within which the number
     ///       will be generated.
-    public static func random(interval: ClosedInterval<Float>) -> Float {
-        return interval.start + (interval.end - interval.start) * (Float(arc4random()) / Float(UInt32.max))
+    public static func random(_ interval: ClosedRange<Float>) -> Float {
+        return interval.lowerBound + (interval.upperBound - interval.lowerBound) * (Float(arc4random()) / Float(UInt32.max))
     }
 
 }

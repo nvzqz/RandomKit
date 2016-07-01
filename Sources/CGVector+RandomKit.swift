@@ -41,7 +41,7 @@ extension CGVector: RandomType {
     /// - Parameters:
     ///     - dxInterval: The interval within which `dx` will be generated.
     ///     - dyInterval: The interval within which `dy` will be generated.
-    public static func random(dxInterval: ClosedInterval<CGFloat.NativeType>, _ dyInterval: ClosedInterval<CGFloat.NativeType>) -> CGVector {
+    public static func random(_ dxInterval: ClosedRange<CGFloat.NativeType>, _ dyInterval: ClosedRange<CGFloat.NativeType>) -> CGVector {
         let rx = CGFloat.NativeType.random(dxInterval)
         let ry = CGFloat.NativeType.random(dyInterval)
         return CGVector(dx: CGFloat(rx), dy: CGFloat(ry))

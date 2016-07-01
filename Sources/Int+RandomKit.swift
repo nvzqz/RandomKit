@@ -45,7 +45,7 @@ extension Int : RandomType, RandomIntervalType {
     /// - Parameters:
     ///     - interval: The interval within which the number
     ///       will be generated.
-    public static func random(interval: ClosedInterval<Int>) -> Int {
-        return interval.start + Int(arc4random_uniform(UInt32(interval.end - interval.start + 1)))
+    public static func random(_ interval: ClosedRange<Int>) -> Int {
+        return interval.lowerBound + Int(arc4random_uniform(UInt32(interval.upperBound - interval.lowerBound + 1)))
     }
 }

@@ -41,8 +41,8 @@ extension NSNumber: RandomType {
     /// - Parameters:
     ///     - interval: The interval within which the integer
     ///       will be generated.
-    public class func random(interval: ClosedInterval<Int>) -> Self {
-        return self.init(long: .random(interval))
+    public class func random(_ interval: ClosedRange<Int>) -> Self {
+        return self.init(value: .random(interval))
     }
 
     /// Generates a random double inside of the closed interval.
@@ -50,8 +50,8 @@ extension NSNumber: RandomType {
     /// - Parameters:
     ///     - interval: The interval within which the double
     ///       will be generated.
-    public class func random(interval: ClosedInterval<Double>) -> Self {
-        return self.init(double: .random(interval))
+    public class func random(_ interval: ClosedRange<Double>) -> Self {
+        return self.init(value: .random(interval))
     }
     
 }

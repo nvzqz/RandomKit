@@ -1,5 +1,5 @@
 //
-//  NSDate+RandomKit.swift
+//  CollectionType+RandomKit.swift
 //  RandomKit
 //
 //  The MIT License (MIT)
@@ -25,24 +25,21 @@
 //  THE SOFTWARE.
 //
 
-import Foundation
+#if os(OSX) || os(iOS) || os(watchOS) || os(tvOS)
+    import Darwin
+#elseif os(Linux)
+    import Glibc
+#endif
 
-extension NSDate: RandomType {
+extension Collection where IndexDistance == Int {
 
-    /// Generates a random date.
-    ///
-    /// - Returns: Random date within `0.0...NSTimeInterval(UInt32.max)`.
-    public class func random() -> Self {
-        return random(0.0...NSTimeInterval(UInt32.max))
-    }
+    /// Returns a random element of `self`, or `nil` if `self` is empty.
+    public var random: Self.Iterator.Element? {
+        guard !self.isEmpty else { return nil }
+        let distance = self.distance(from: startIndex, to: endIndex)
+        let elementIndex = Int(arc4random_uniform(UInt32(distance)))
 
-    /// Generates a random date inside of the closed interval.
-    ///
-    /// - Parameters:
-    ///     - interval: The interval within which the date
-    ///       will be generated.
-    public class func random(interval: ClosedInterval<NSTimeInterval>) -> Self {
-        return self.init(timeIntervalSince1970: .random(interval))
+        return self[self.index(self.startIndex, offsetBy: elementIndex)]
     }
 
 }
