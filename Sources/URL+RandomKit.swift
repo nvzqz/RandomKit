@@ -58,7 +58,7 @@ extension URL: RandomType {
     /// - Parameters:
     ///     - values: The values from which the URL is generated.
     public static func random(fromValues values: [String]) -> URL {
-        guard let value = values.random, url = self.init(string: value) else {
+        guard let value = values.random, let url = self.init(string: value) else {
             return self.init(string: "https://www.google.com/")!
         }
         return url
