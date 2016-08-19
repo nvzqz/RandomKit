@@ -27,7 +27,7 @@
 
 extension Set where Element: RandomType {
 
-    private init(_ randomCount: Int, _ sequence: AnySequence<Element>, _ elementGenerator: @autoclosure () -> Element) {
+    fileprivate init(_ randomCount: Int, _ sequence: AnySequence<Element>, _ elementGenerator: @autoclosure () -> Element) {
         self = sequence.reduce(Set(minimumCapacity: randomCount)) { (set, element) in
 			var mutableSet = set
 			var mutableElement = element
