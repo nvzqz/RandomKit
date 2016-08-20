@@ -26,7 +26,7 @@
 //
 
 internal extension Array where Element : Hashable {
-    private func removeDuplicates() -> Array {
+    fileprivate func removeDuplicates() -> Array {
         var seen: [Element : Bool] = [:]
         return filter { seen.updateValue(true, forKey: $0) == nil }
     }
@@ -185,7 +185,7 @@ public struct Random {
         case _Any, common, formal, professional, religious
 
         private func anyProperties<T>(_ block: (HonorificType) -> [T]) -> [T] {
-            return [common, formal, professional, religious].reduce([]) {
+            return [HonorificType.common, HonorificType.formal, HonorificType.professional, HonorificType.religious].reduce([]) {
                 $0 + block($1)
             }
         }

@@ -53,7 +53,7 @@ extension Character : RandomType, RandomIntervalType {
             let lesser  = min(start, end)
             return lesser + arc4random_uniform(greater - lesser + 1)
         }
-        return Character(UnicodeScalar(randomValue))
+        return Character(UnicodeScalar(randomValue)!)
     }
 
     private var scalar: UnicodeScalar {

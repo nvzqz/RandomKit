@@ -68,14 +68,14 @@ extension CharacterSet {
         return self.asCharacterArray.random
     }
 
-    private var asCharacterArray: [Character] {
+    fileprivate var asCharacterArray: [Character] {
         var value: [Character] = []
         for plane: UTF32Char in 0...16 {
             if self.hasMember(inPlane: UInt8(plane)) {
                 var char: UTF32Char = plane << 16
 
                 while char < (plane + 1) {
-                    if  let string = NSString(bytes: &char, length: 4, encoding: String.Encoding.utf32LittleEndian.rawValue) as? String where self.contains(UnicodeScalar(char)),
+                    if let string = NSString(bytes: &char, length: 4, encoding: String.Encoding.utf32LittleEndian.rawValue) as? String, self.contains(UnicodeScalar(char)!),
                         let char: UnicodeScalar = string.unicodeScalars.first {
                         value.append(Character(char))
                     }
