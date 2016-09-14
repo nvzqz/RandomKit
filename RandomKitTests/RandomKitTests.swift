@@ -234,4 +234,22 @@ class RandomKitTests: XCTestCase {
             return mutableDict
         }
     }
+    
+    func testRandomGaussian() {
+        let count = 100
+        let mean: Double = 0
+        let standardDeviation: Double = 1
+        let distribution: RandomDistribution = .gaussian(mean: mean, standardDeviation: standardDeviation)
+        let array: [Double] = Array(randomCount: count, distribution: distribution)
+        
+        
+        XCTAssertEqual(array.count, count)
+        
+        var sum: Double = 0
+        for e in array {
+            sum += e
+        }
+        let theMean = sum / Double(count)
+        print("Computed mean \(theMean) must have a value close to \(mean)")
+    }
 }

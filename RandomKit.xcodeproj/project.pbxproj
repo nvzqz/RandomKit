@@ -109,6 +109,10 @@
 		52F9E75A1CA5B4E000039162 /* String+RandomKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F9E6F41CA5B4E000039162 /* String+RandomKit.swift */; };
 		52F9E75B1CA5B4E000039162 /* String+RandomKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F9E6F41CA5B4E000039162 /* String+RandomKit.swift */; };
 		52F9E75C1CA5B4E000039162 /* String+RandomKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F9E6F41CA5B4E000039162 /* String+RandomKit.swift */; };
+		C4A1933B1D8997E600BC64CD /* RandomDistribution.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4A1933A1D8997E600BC64CD /* RandomDistribution.swift */; };
+		C4A1933C1D8997E600BC64CD /* RandomDistribution.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4A1933A1D8997E600BC64CD /* RandomDistribution.swift */; };
+		C4A1933D1D8997E600BC64CD /* RandomDistribution.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4A1933A1D8997E600BC64CD /* RandomDistribution.swift */; };
+		C4A1933E1D8997E600BC64CD /* RandomDistribution.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4A1933A1D8997E600BC64CD /* RandomDistribution.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -158,6 +162,7 @@
 		52F9E6F41CA5B4E000039162 /* String+RandomKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+RandomKit.swift"; sourceTree = "<group>"; };
 		52F9E75E1CA5B4EB00039162 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		52F9E7601CA5BBBA00039162 /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
+		C4A1933A1D8997E600BC64CD /* RandomDistribution.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RandomDistribution.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -240,6 +245,7 @@
 				52F9E6EF1CA5B4E000039162 /* Random.swift */,
 				52F9E6F01CA5B4E000039162 /* RandomType.swift */,
 				52F9E6F31CA5B4E000039162 /* ShuffleType.swift */,
+				C4A1933A1D8997E600BC64CD /* RandomDistribution.swift */,
 				52F9E6DB1CA5B4DF00039162 /* Array+RandomKit.swift */,
 				52F9E6DD1CA5B4DF00039162 /* Bool+RandomKit.swift */,
 				52F9E6DE1CA5B4DF00039162 /* CGFloat+RandomKit.swift */,
@@ -494,6 +500,7 @@
 				52F9E7291CA5B4E000039162 /* Float+RandomKit.swift in Sources */,
 				52F9E6FD1CA5B4E000039162 /* Bool+RandomKit.swift in Sources */,
 				52F9E7491CA5B4E000039162 /* RandomType.swift in Sources */,
+				C4A1933B1D8997E600BC64CD /* RandomDistribution.swift in Sources */,
 				52F9E7351CA5B4E000039162 /* CharacterSet+RandomKit.swift in Sources */,
 				52F9E7191CA5B4E000039162 /* Collection+RandomKit.swift in Sources */,
 				52F9E74D1CA5B4E000039162 /* Sequence+RandomKit.swift in Sources */,
@@ -526,6 +533,7 @@
 				52F9E72A1CA5B4E000039162 /* Float+RandomKit.swift in Sources */,
 				52F9E6FE1CA5B4E000039162 /* Bool+RandomKit.swift in Sources */,
 				52F9E74A1CA5B4E000039162 /* RandomType.swift in Sources */,
+				C4A1933C1D8997E600BC64CD /* RandomDistribution.swift in Sources */,
 				52F9E7361CA5B4E000039162 /* CharacterSet+RandomKit.swift in Sources */,
 				52F9E71A1CA5B4E000039162 /* Collection+RandomKit.swift in Sources */,
 				52F9E74E1CA5B4E000039162 /* Sequence+RandomKit.swift in Sources */,
@@ -558,6 +566,7 @@
 				52F9E72B1CA5B4E000039162 /* Float+RandomKit.swift in Sources */,
 				52F9E6FF1CA5B4E000039162 /* Bool+RandomKit.swift in Sources */,
 				52F9E74B1CA5B4E000039162 /* RandomType.swift in Sources */,
+				C4A1933D1D8997E600BC64CD /* RandomDistribution.swift in Sources */,
 				52F9E7371CA5B4E000039162 /* CharacterSet+RandomKit.swift in Sources */,
 				52F9E71B1CA5B4E000039162 /* Collection+RandomKit.swift in Sources */,
 				52F9E74F1CA5B4E000039162 /* Sequence+RandomKit.swift in Sources */,
@@ -598,6 +607,7 @@
 				52F9E72C1CA5B4E000039162 /* Float+RandomKit.swift in Sources */,
 				52F9E7001CA5B4E000039162 /* Bool+RandomKit.swift in Sources */,
 				52F9E74C1CA5B4E000039162 /* RandomType.swift in Sources */,
+				C4A1933E1D8997E600BC64CD /* RandomDistribution.swift in Sources */,
 				52F9E7381CA5B4E000039162 /* CharacterSet+RandomKit.swift in Sources */,
 				52F9E71C1CA5B4E000039162 /* Collection+RandomKit.swift in Sources */,
 				52F9E7501CA5B4E000039162 /* Sequence+RandomKit.swift in Sources */,
