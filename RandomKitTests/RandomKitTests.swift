@@ -234,15 +234,14 @@ class RandomKitTests: XCTestCase {
             return mutableDict
         }
     }
-    
+
     func testRandomGaussian() {
-        let count = 100
+        let count = 1000
         let mean: Double = 0
         let standardDeviation: Double = 1
         let distribution: RandomDistribution = .gaussian(mean: mean, standardDeviation: standardDeviation)
         let array: [Double] = Array(randomCount: count, distribution: distribution)
-        
-        
+
         XCTAssertEqual(array.count, count)
         
         var sum: Double = 0
@@ -251,5 +250,27 @@ class RandomKitTests: XCTestCase {
         }
         let theMean = sum / Double(count)
         print("Computed mean \(theMean) must have a value close to \(mean)")
+        
+        let m = DistributionMoment(data: array)
+        let k = m.excessKurtosis
+        let s = m.skewness
+        
+        XCTAssertEqual(round10(m.mean), round10(theMean))
+        
+        // Check if could be a gauss/ normal distribution
+        XCTAssertEqual(round(k), 0, "\(k)")
+        XCTAssertEqual(round(s), 0, "\(s)")
+        
     }
+
+    func roundToPlaces(_ value: Double, places: Int) -> Double {
+        let divisor = pow(10.0, Double(places))
+        return round(value * divisor) / divisor
+    }
+
+    func round10(_ value: Double) -> Double {
+        return roundToPlaces(value, places: 10)
+    }
+
 }
+
