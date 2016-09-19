@@ -126,7 +126,7 @@ extension RandomDistribuableType {
         assert(shape > 0)
         assert(scale > 0)
         let u = Self.random(0...1)
-        return scale * -(1 - u).log().pow(1 / shape)
+        return scale * -((1 - u).log()).pow(1 / shape)
     }
 
     // Generate a random value from gaussian or normal distribution
@@ -288,3 +288,159 @@ extension Float: RandomDistribuableType {
     public static var nextGaussianValue: Float? = nil
 }
 
+
+// MARK:- Discret distribution
+
+// Type of random discret random distribution.
+// https://en.wikipedia.org/wiki/Probability_distribution#Discrete_probability_distribution
+public enum DiscretRandomDistribution<T: DiscretRandomDistribuableType> {
+    
+    public typealias Probability = Double // must be between 0 & 1
+    
+    // https://en.wikipedia.org/wiki/Bernoulli_distribution
+    case bernoulli(probability: Probability)
+    // https://en.wikipedia.org/wiki/Binomial_distribution
+    case binomial(trials: Int, probability: Probability)
+    // https://en.wikipedia.org/wiki/Geometric_distribution
+    case geometric(probability: Probability)
+    // https://en.wikipedia.org/wiki/Poisson_distribution
+    case poisson(frequency: Double)
+    // https://en.wikipedia.org/wiki/Discrete_uniform_distribution
+    case uniform(min: T, max: T)
+}
+
+/// A type that can generate a random value using specified `DiscretRandomDistribution`
+public protocol DiscretRandomDistribuableType: RandomType, RandomIntervalType, ExpressibleByIntegerLiteral, Equatable {
+    static var bernoulliValues: (Self, Self) {get}
+    
+    // Maths Operators (like IntegerArithmetic)
+    static func +(lhs: Self, rhs: Self) -> Self
+    static func *(lhs: Self, rhs: Self) -> Self
+
+}
+
+extension DiscretRandomDistribuableType {
+
+    public typealias BernoulliProbability = DiscretRandomDistribution<Self>.Probability
+
+    // Generate a random value from specified distribution.
+    public static func random(distribution: DiscretRandomDistribution<Self>) -> Self {
+        switch(distribution) {
+          case .bernoulli(let p):
+            return randomBernoulli(probability: p)
+        case .binomial(let n, let p):
+            return randomBinomial(trials:n, probability: p)
+        case .geometric(let p):
+            return randomGeometric(probability: p)
+        case .poisson(let λ):
+            return randomPoisson(frequency: λ)
+        case .uniform(let min, let max):
+            return random(min...max)
+        }
+    }
+
+    // Generate a random value from bernouilli distribution.
+    // https://en.wikipedia.org/wiki/Bernoulli_distribution
+    // - parameter probability: probability p parameter of bernouilli distribution. Must be > 0 and <1.
+    public static func randomBernoulli(probability p: BernoulliProbability)  -> Self {
+        let b = Self.bernoulliValues
+        return Bool.randomBernoulli(probability: p) ? b.1 : b.0
+    }
+
+    // Generate a random value from binomial distribution.
+    // https://en.wikipedia.org/wiki/Binomial_distribution
+    // - parameter trials: trials parameter of binomial distribution.
+    // - parameter probability: probability p parameter of binomial distribution. Must be > 0 and <1.
+    public static func randomBinomial(trials n: Int, probability p: BernoulliProbability) -> Self {
+        let y: [Self] = (0..<n).map({ _ in randomBernoulli(probability: p) })
+        return y.reduce(0, +)
+    }
+    
+    // Generate a random value from geometric distribution.
+    // https://en.wikipedia.org/wiki/Geometric_distribution
+    // - parameter probability: probability p parameter of geometric distribution. Must be > 0 and <1.
+    public static func randomGeometric(probability p: BernoulliProbability) -> Self {
+        let b = Self.bernoulliValues
+        var x = b.0
+        while randomBernoulli(probability: p) != b.1 {
+            x = x + b.1
+        }
+        return x
+    }
+    
+    // Generate a random value from poisson distribution.
+    // https://en.wikipedia.org/wiki/Poisson_distribution
+    // - parameter frequency: λ parameter of poisson distribution. Must be > 0 and exp(-λ)!= 0.
+    public static func randomPoisson(frequency λ: Double) -> Self {
+        var x: Self = 0
+        var xD: Double = 0
+        var p = exp(-λ)
+        precondition(p != 0)
+        var s = p
+        let u = Double.random(0...1) // XXX eclusive range?
+        while u > s {
+            x = x + 1
+            xD = xD + 1
+            p *= λ / xD
+            s = s + p
+        }
+        return x
+    }
+
+}
+
+// MARK: - Iterator & Sequence
+extension DiscretRandomDistribuableType {
+    
+    /// Returns a generator for random values using `distribution`.
+    public static func randomIterator(distribution: DiscretRandomDistribution<Self>) -> AnyIterator<Self> {
+        return AnyIterator { random(distribution: distribution) }
+    }
+    
+    /// Returns a generator for random values using `distribution` within `maxCount`.
+    public static func randomIterator(maxCount count: Int, distribution: DiscretRandomDistribution<Self>) -> AnyIterator<Self> {
+        var n = 0
+        return AnyIterator {
+            defer { n += 1 }
+            return n < count ? random(distribution: distribution) : nil
+        }
+    }
+    
+    /// Returns a sequence of infinite random values using specified distribution.
+    public static func randomSequence(distribution: DiscretRandomDistribution<Self>) -> AnySequence<Self> {
+        return AnySequence(randomIterator(distribution: distribution))
+    }
+
+    /// Returns a sequence of random values using specified distribution within `maxCount`.
+    public static func randomSequence(maxCount count: Int, distribution: DiscretRandomDistribution<Self>) -> AnySequence<Self> {
+        return AnySequence(randomIterator(maxCount: count, distribution: distribution))
+    }
+
+}
+
+// MARK: Array
+extension Array where Element: DiscretRandomDistribuableType {
+    
+    /// Construct an Array of random elements using `distribution`.
+    public init(randomCount: Int, distribution: DiscretRandomDistribution<Element>) {
+        self = Array(Element.randomSequence(maxCount: randomCount, distribution: distribution))
+    }
+    
+}
+
+// MARK: Implement DiscretRandomDistribuableType
+extension Int: DiscretRandomDistribuableType {
+    public static var bernoulliValues: (Int, Int) { return (0, 1) }
+}
+
+extension Bool {
+    
+    // Generate a Bool random value from bernouilli distribution.
+    // https://en.wikipedia.org/wiki/Bernoulli_distribution
+    // - parameter probability: probability p parameter of bernouilli distribution. Must be > 0 and <1.
+    public static func randomBernoulli(probability p: Double) -> Bool {
+        let x = Double.random(0...1)
+        return x < p
+    }
+
+}
