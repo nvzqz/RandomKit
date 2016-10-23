@@ -31,7 +31,7 @@
     import Glibc
 #endif
 
-extension Double : RandomType, RandomIntervalType {
+extension Double : RandomProtocol, RandomIntervalType {
 
     /// Generates a random `Double`.
     ///

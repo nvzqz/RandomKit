@@ -25,7 +25,7 @@
 //  THE SOFTWARE.
 //
 
-extension Dictionary: ShuffleType {
+extension Dictionary: ShuffleProtocol {
 
     /// Shuffles the elements in `self` and returns the result.
     public func shuffle() -> Dictionary {
@@ -42,7 +42,7 @@ extension Dictionary: ShuffleType {
 
 }
 
-extension Dictionary where Key: RandomType, Value: RandomType {
+extension Dictionary where Key: RandomProtocol, Value: RandomProtocol {
 
     fileprivate init(_ randomCount: Int, _ keys: AnySequence<Key>, _ values: AnySequence<Value>, _ keyGenerator: @autoclosure() -> Key) {
         self = zip(keys, values).reduce(Dictionary(minimumCapacity: randomCount)) { (dict, pair) in

@@ -27,7 +27,7 @@
 
 import Foundation
 
-extension URL: RandomType {
+extension URL: RandomProtocol {
 
     /// Generates a random URL.
     ///

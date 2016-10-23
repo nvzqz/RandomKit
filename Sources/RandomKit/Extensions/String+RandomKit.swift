@@ -25,7 +25,7 @@
 //  THE SOFTWARE.
 //
 
-extension String: RandomType {
+extension String: RandomProtocol {
 
     /// Generates a random `String`.
     ///
@@ -50,7 +50,7 @@ extension String: RandomType {
 
 }
 
-extension String: ShuffleType {
+extension String: ShuffleProtocol {
 
     /// Shuffles the elements in `self` and returns the result.
     public func shuffle() -> String {
@@ -61,7 +61,7 @@ extension String: ShuffleType {
 
 }
 
-extension String.CharacterView: ShuffleType {
+extension String.CharacterView: ShuffleProtocol {
 
     /// Shuffles the elements in `self` and returns the result.
     public func shuffle() -> String.CharacterView {

@@ -31,7 +31,7 @@
     import Glibc
 #endif
 
-extension Character : RandomType, RandomIntervalType {
+extension Character : RandomProtocol, RandomIntervalType {
 
     /// Generates a random `Character`.
     ///

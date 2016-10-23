@@ -27,7 +27,7 @@
 
 import CoreGraphics
 
-extension CGPoint: RandomType {
+extension CGPoint: RandomProtocol {
 
     /// Generates a random `CGPoint`.
     ///

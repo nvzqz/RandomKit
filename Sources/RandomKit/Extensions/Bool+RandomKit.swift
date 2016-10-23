@@ -25,7 +25,7 @@
 //  THE SOFTWARE.
 //
 
-extension Bool: RandomType {
+extension Bool: RandomProtocol {
 
     /// Generates a random `Bool`.
     public static func random() -> Bool {

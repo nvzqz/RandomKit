@@ -27,7 +27,7 @@
 
 import CoreGraphics
 
-extension CGSize: RandomType {
+extension CGSize: RandomProtocol {
 
     /// Generates a random `CGSize`.
     ///

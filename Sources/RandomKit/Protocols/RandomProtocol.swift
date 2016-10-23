@@ -1,5 +1,5 @@
 //
-//  RandomType.swift
+//  RandomProtocol.swift
 //  RandomKit
 //
 //  The MIT License (MIT)
@@ -26,14 +26,14 @@
 //
 
 /// A type that can generate a random value.
-public protocol RandomType {
+public protocol RandomProtocol {
 
     /// Generates a random value of `Self`.
     static func random() -> Self
 
 }
 
-extension RandomType {
+extension RandomProtocol {
 
     /// Returns a generator for infinite random values of `Self`.
     public static func randomGenerator() -> AnyIterator<Self> {
@@ -62,7 +62,7 @@ extension RandomType {
 }
 
 /// A type that can generate a random value from inside of a closed interval.
-public protocol RandomIntervalType : RandomType, Comparable {
+public protocol RandomIntervalType : RandomProtocol, Comparable {
 
     /// Returns a random value of `Self` inside of the closed interval.
     static func random(_ interval: ClosedRange<Self>) -> Self

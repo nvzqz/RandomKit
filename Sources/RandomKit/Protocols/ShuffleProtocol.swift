@@ -1,5 +1,5 @@
 //
-//  ShuffleType.swift
+//  ShuffleProtocol.swift
 //  RandomKit
 //
 //  The MIT License (MIT)
@@ -26,14 +26,14 @@
 //
 
 /// A type whose elements can be shuffled.
-public protocol ShuffleType {
+public protocol ShuffleProtocol {
 
     /// Shuffles the elements in `self` and returns the result.
     func shuffle() -> Self
 
 }
 
-public extension ShuffleType {
+public extension ShuffleProtocol {
 
     /// Shuffles the elements in `self`.
     public mutating func shuffleInPlace() {

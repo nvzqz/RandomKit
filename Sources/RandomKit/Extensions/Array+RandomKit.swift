@@ -25,7 +25,7 @@
 //  THE SOFTWARE.
 //
 
-extension Array: ShuffleType {
+extension Array: ShuffleProtocol {
 
     /// Shuffles the elements in `self` and returns the result.
     public func shuffle() -> Array {
@@ -42,7 +42,7 @@ extension Array: ShuffleType {
 
 }
 
-extension Array where Element: RandomType {
+extension Array where Element: RandomProtocol {
 
     /// Construct an Array of random elements.
     public init(randomCount: Int) {

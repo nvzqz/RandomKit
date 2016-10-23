@@ -28,7 +28,7 @@
 #if os(OSX)
 import Cocoa
 
-extension NSColor: RandomType {
+extension NSColor: RandomProtocol {
 
     /// Generates a random color.
     ///
@@ -62,7 +62,7 @@ import WatchKit
 
 
 #if os(iOS) || os(watchOS)
-extension UIColor: RandomType {
+extension UIColor: RandomProtocol {
 
     /// Generates a random color.
     ///

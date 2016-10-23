@@ -27,7 +27,7 @@
 
 import CoreGraphics
 
-extension CGFloat: RandomType {
+extension CGFloat: RandomProtocol {
 
     /// Generates a random `CGFloat`.
     ///

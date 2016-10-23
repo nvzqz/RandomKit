@@ -27,7 +27,7 @@
 
 import CoreGraphics
 
-extension CGRect: RandomType {
+extension CGRect: RandomProtocol {
 
     /// Generates a random `CGRect`.
     ///

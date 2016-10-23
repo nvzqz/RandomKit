@@ -31,7 +31,7 @@
     import Glibc
 #endif
 
-extension Float : RandomType, RandomIntervalType {
+extension Float : RandomProtocol, RandomIntervalType {
 
     /// Generates a random `Float`.
     ///

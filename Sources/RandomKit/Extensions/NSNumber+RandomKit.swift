@@ -27,7 +27,7 @@
 
 import Foundation
 
-extension NSNumber: RandomType {
+extension NSNumber: RandomProtocol {
 
     /// Generates a random number.
     ///
