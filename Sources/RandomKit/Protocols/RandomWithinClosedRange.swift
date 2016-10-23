@@ -35,28 +35,32 @@ public protocol RandomWithinClosedRange: RandomProtocol, Comparable {
 
 extension RandomWithinClosedRange {
 
-    /// Returns a generator for infinite random values of `Self` within the closed range.
-    public static func randomGenerator(within closedRange: ClosedRange<Self>) -> AnyIterator<Self> {
+    /// Returns an iterator for infinite random values of `Self` within the closed range.
+    public static func randomIterator(within closedRange: ClosedRange<Self>) -> AnyIterator<Self> {
         return AnyIterator { random(within: closedRange) }
     }
 
-    /// Returns a generator for random values of `Self` within the closed range within `maxCount`.
-    public static func randomGenerator(within closedRange: ClosedRange<Self>, maxCount count: Int) -> AnyIterator<Self> {
+    /// Returns an iterator for random values of `Self` within the closed range within `maxCount`.
+    public static func randomIterator(within closedRange: ClosedRange<Self>, maxCount: Int) -> AnyIterator<Self> {
         var n = 0
         return AnyIterator {
-            defer { n += 1 }
-            return n < count ? random(within: closedRange) : nil
+            guard n != maxCount else {
+                return nil
+            }
+            let value = random(within: closedRange)
+            n += 1
+            return value
         }
     }
 
     /// Returns a sequence of infinite random values of `Self` within the closed range.
     public static func randomSequence(within closedRange: ClosedRange<Self>) -> AnySequence<Self> {
-        return AnySequence(randomGenerator(within: closedRange))
+        return AnySequence(randomIterator(within: closedRange))
     }
 
     /// Returns a sequence of random values of `Self` within the closed range within `maxCount`.
-    public static func randomSequence(within closedRange: ClosedRange<Self>, maxCount count: Int) -> AnySequence<Self> {
-        return AnySequence(randomGenerator(within: closedRange, maxCount: count))
+    public static func randomSequence(within closedRange: ClosedRange<Self>, maxCount: Int) -> AnySequence<Self> {
+        return AnySequence(randomIterator(within: closedRange, maxCount: maxCount))
     }
     
 }
