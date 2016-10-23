@@ -62,5 +62,5 @@ extension RandomWithinClosedRange {
     public static func randomSequence(within closedRange: ClosedRange<Self>, maxCount: Int) -> AnySequence<Self> {
         return AnySequence(randomIterator(within: closedRange, maxCount: maxCount))
     }
-    
+
 }

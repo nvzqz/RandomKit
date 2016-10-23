@@ -93,7 +93,7 @@ class RandomKitTests: XCTestCase {
             XCTAssertNotNil(dict.random)
         }
     }
-    
+
     func testRandomFromCollectionType() {
         let arr = ["A", "B", "C", "D", "E", "F", "H", "I"]
         let dict = ["k1" : "v1", "k2" : "v2", "k3" : "v3"]
@@ -131,7 +131,7 @@ class RandomKitTests: XCTestCase {
         }
         XCTAssertNotEqual(str1, str2)
     }
-    
+
     func testRandomGeneratorAndSequence() {
         do {
             let g = Int.randomGenerator()
@@ -186,15 +186,15 @@ class RandomKitTests: XCTestCase {
         let count = 10
         let array: [Int] = Array(randomCount: count)
         let sliceCount = count / 2
-    
+
         var result = array.randomSlice(sliceCount)
         XCTAssertEqual(result.count, sliceCount)
         let simpleSlice = Array(array[0..<sliceCount])
         XCTAssertNotEqual(result, simpleSlice)
-        
+
         result = array.randomSlice(count) // all
         XCTAssertEqual(result.count, count)
-        
+
         result = array.randomSlice(count * 2) // too much
         XCTAssertEqual(result.count, count)
 
@@ -209,7 +209,7 @@ class RandomKitTests: XCTestCase {
         for weights in weightsArray {
             result = array.randomSlice(count, weights: weights) // all
             XCTAssertEqual(result.count, count)
-            
+
             result = array.randomSlice(sliceCount, weights: weights)
             XCTAssertEqual(result.count, sliceCount)
             //let simpleSlice = Array(array[0..<sliceCount])
@@ -220,7 +220,7 @@ class RandomKitTests: XCTestCase {
 
             result = array.randomSlice(count * 2, weights: Array(randomCount: count / 2)) // partial weights
             XCTAssertEqual(result.count, count)
-            
+
             result = array.randomSlice(0, weights: weights) // nothing
             XCTAssertEqual(result.count, 0)
         }

@@ -57,7 +57,7 @@ extension Dictionary where Key: RandomProtocol, Value: RandomProtocol {
             return mutableDict
         }
     }
-    
+
     /// Construct a Dictionary of random elements.
     public init(randomCount: Int) {
         self.init(
@@ -66,7 +66,7 @@ extension Dictionary where Key: RandomProtocol, Value: RandomProtocol {
             Value.randomSequence(maxCount: randomCount),
             Key.random())
     }
-    
+
 }
 
 extension Dictionary where Key: RandomWithinClosedRange, Value: RandomWithinClosedRange {

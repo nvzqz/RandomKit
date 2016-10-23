@@ -42,5 +42,5 @@ extension CGFloat: RandomProtocol {
     public static func random(within closedRange: ClosedRange<NativeType>) -> CGFloat {
         return CGFloat(NativeType.random(within: closedRange))
     }
-    
+
 }

@@ -31,5 +31,5 @@ extension Sequence {
     public var random: Self.Iterator.Element? {
         return Array(self).random
     }
-    
+
 }

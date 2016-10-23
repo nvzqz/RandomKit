@@ -61,7 +61,7 @@ extension Array where Element: RandomWithinClosedRange {
 }
 
 extension Array {
-    
+
     /// Returns an array of randomly choosen elements.
     ///
     /// If `elementCount` >= `count` a copy of this array is returned

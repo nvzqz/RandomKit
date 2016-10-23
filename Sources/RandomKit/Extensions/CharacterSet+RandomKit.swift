@@ -79,7 +79,7 @@ extension CharacterSet {
                         let char: UnicodeScalar = string.unicodeScalars.first {
                         value.append(Character(char))
                     }
-                    
+
                     char += 1
                 }
             }

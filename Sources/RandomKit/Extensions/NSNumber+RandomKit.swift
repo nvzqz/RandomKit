@@ -49,6 +49,6 @@ extension NSNumber: RandomProtocol {
     public class func random(within closedRange: ClosedRange<Double>) -> Self {
         return .init(value: .random(within: closedRange))
     }
-    
+
 }
 
