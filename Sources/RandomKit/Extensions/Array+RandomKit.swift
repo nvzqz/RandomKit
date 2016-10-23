@@ -28,7 +28,7 @@
 extension Array: ShuffleProtocol {
 
     /// Shuffles the elements in `self` and returns the result.
-    public func shuffle() -> Array {
+    public func shuffled() -> Array {
         return indices.reduce(self) { (array, i) in
 			var mutableArray = array
 

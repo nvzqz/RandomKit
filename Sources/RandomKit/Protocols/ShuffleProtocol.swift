@@ -29,15 +29,18 @@
 public protocol ShuffleProtocol {
 
     /// Shuffles the elements in `self` and returns the result.
-    func shuffle() -> Self
+    func shuffled() -> Self
+
+    /// Shuffles the elements in `self`.
+    mutating func shuffle()
 
 }
 
 public extension ShuffleProtocol {
 
     /// Shuffles the elements in `self`.
-    public mutating func shuffleInPlace() {
-        self = self.shuffle()
+    public mutating func shuffle() {
+        self = shuffled()
     }
 
 }

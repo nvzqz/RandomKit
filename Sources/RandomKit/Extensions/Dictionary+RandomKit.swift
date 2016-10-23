@@ -28,8 +28,8 @@
 extension Dictionary: ShuffleProtocol {
 
     /// Shuffles the elements in `self` and returns the result.
-    public func shuffle() -> Dictionary {
-        let values = Array(self.values).shuffle()
+    public func shuffled() -> Dictionary {
+        let values = Array(self.values).shuffled()
         return zip(keys, values).reduce(Dictionary(minimumCapacity: values.count)) { (dict, pair) in
             var mutableDict = dict
 

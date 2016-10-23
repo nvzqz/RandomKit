@@ -53,8 +53,8 @@ extension String: RandomProtocol {
 extension String: ShuffleProtocol {
 
     /// Shuffles the elements in `self` and returns the result.
-    public func shuffle() -> String {
-        return Array(characters).shuffle().reduce("") {
+    public func shuffled() -> String {
+        return Array(characters).shuffled().reduce("") {
             $0 + String($1)
         }
     }
@@ -64,8 +64,8 @@ extension String: ShuffleProtocol {
 extension String.CharacterView: ShuffleProtocol {
 
     /// Shuffles the elements in `self` and returns the result.
-    public func shuffle() -> String.CharacterView {
-        return String(self).shuffle().characters
+    public func shuffled() -> String.CharacterView {
+        return String(self).shuffled().characters
     }
 
 }
