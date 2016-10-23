@@ -17,7 +17,7 @@ class RandomKitTests: XCTestCase {
         let min = -10
         let max =  10
         for _ in 0...testCount {
-            let r = Int.random(min...max)
+            let r = Int.random(within: min...max)
             XCTAssertTrue(r >= min && r <= max, "Random `Int` is out of bounds.")
         }
     }
@@ -26,7 +26,7 @@ class RandomKitTests: XCTestCase {
         let min = -1.5
         let max =  0.5
         for _ in 0...testCount {
-            let r = Double.random(min...max)
+            let r = Double.random(within: min...max)
             XCTAssertTrue(r >= min && r <= max, "Random `Double` is out of bounds.")
         }
     }
@@ -35,7 +35,7 @@ class RandomKitTests: XCTestCase {
         let min: Float = -1.5
         let max: Float =  0.5
         for _ in 0...testCount {
-            let r = Float.random(min...max)
+            let r = Float.random(within: min...max)
             XCTAssertTrue(r >= min && r <= max, "Random `Float` is out of bounds.")
         }
     }
@@ -51,12 +51,12 @@ class RandomKitTests: XCTestCase {
     let min = Character(UnicodeScalar(0))
     let max = Character(UnicodeScalar(UInt8.max))
 
-    var interval: ClosedRange<Character> { return min...max }
+    var range: ClosedRange<Character> { return min...max }
 
     func testRandomCharacter() {
         let sameCount = (0...testCount).reduce(0) { count, _ in
-            let r1 = Character.random(self.interval)
-            let r2 = Character.random(self.interval)
+            let r1 = Character.random(within: self.range)
+            let r2 = Character.random(within: self.range)
             return count + (r1 == r2 ? 1 : 0)
         }
         XCTAssertFalse(sameCount > testCount / 100, "Too many equal random characters")
@@ -64,8 +64,8 @@ class RandomKitTests: XCTestCase {
 
     func testRandomString() {
         let sameCount = (0...(testCount/2)).reduce(0) { count, _ in
-            let r1 = String.random(10, interval)
-            let r2 = String.random(10, interval)
+            let r1 = String.random(ofLength: 10, within: range)
+            let r2 = String.random(ofLength: 10, within: range)
             return count + (r1 == r2 ? 1 : 0)
         }
         XCTAssertFalse(sameCount > 1, "Too many equal random strings")
@@ -107,7 +107,7 @@ class RandomKitTests: XCTestCase {
         let a1: [Int] = (0 ..< 10000).reduce([]) { $0 + [$1] }
         var a2: [Int] = []
         self.measure {
-            a2 = a1.shuffle()
+            a2 = a1.shuffled()
         }
         XCTAssertNotEqual(a1, a2)
     }
@@ -116,18 +116,18 @@ class RandomKitTests: XCTestCase {
         let d1: [Int : Int] = RandomKitTests.randomDictionaryOfCount(1000)
         var d2: [Int : Int] = [:]
         self.measure {
-            d2 = d1.shuffle()
+            d2 = d1.shuffled()
         }
         XCTAssertNotEqual(d1, d2)
     }
 
     func testStringShuffleTime() {
         let str1 = (0 ..< 10000).reduce("") { str, _ in
-            str + String(Int.random(0...9))
+            str + String(Int.random(within: 0...9))
         }
         var str2 = ""
         self.measure {
-            str2 = str1.shuffle()
+            str2 = str1.shuffled()
         }
         XCTAssertNotEqual(str1, str2)
     }
@@ -203,7 +203,7 @@ class RandomKitTests: XCTestCase {
 
         let weightsArray: [[Double]] = [
             Array(randomCount: count),
-            Array(randomCount: count, (0 ... 100))
+            Array(randomCount: count, within: 0...100)
         ]
 
         for weights in weightsArray {
