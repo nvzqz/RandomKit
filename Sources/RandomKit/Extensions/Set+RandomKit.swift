@@ -50,17 +50,17 @@ extension Set where Element: RandomProtocol {
 
 }
 
-extension Set where Element: RandomIntervalType {
+extension Set where Element: RandomWithinClosedRange {
 
-    /// Construct a Set of random elements from inside of the closed interval.
+    /// Construct a Set of random elements from within the closed range.
     ///
-    /// - Precondition: Number of elements within `interval` >= `randomCount`.
+    /// - Precondition: Number of elements within `closedRange` >= `randomCount`.
     ///
-    public init(randomCount: Int, _ interval: ClosedRange<Element>) {
+    public init(randomCount: Int, within closedRange: ClosedRange<Element>) {
         self.init(
             randomCount,
-            Element.randomSequence(interval, maxCount: randomCount),
-            Element.random(interval)
+            Element.randomSequence(within: closedRange, maxCount: randomCount),
+            Element.random(within: closedRange)
         )
     }
 

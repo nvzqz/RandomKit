@@ -33,25 +33,21 @@ extension NSNumber: RandomProtocol {
     ///
     /// - Returns: Random value within `0...100`.
     public class func random() -> Self {
-        return random(0...100)
+        return random(within: 0...100)
     }
 
-    /// Generates a random integer inside of the closed interval.
+    /// Generates a random integer within the closed range.
     ///
-    /// - Parameters:
-    ///     - interval: The interval within which the integer
-    ///       will be generated.
-    public class func random(_ interval: ClosedRange<Int>) -> Self {
-        return self.init(value: .random(interval))
+    /// - parameter closedRange: The range within which the integer will be generated.
+    public class func random(within closedRange: ClosedRange<Int>) -> Self {
+        return .init(value: .random(within: closedRange))
     }
 
-    /// Generates a random double inside of the closed interval.
+    /// Generates a random double within the closed range.
     ///
-    /// - Parameters:
-    ///     - interval: The interval within which the double
-    ///       will be generated.
-    public class func random(_ interval: ClosedRange<Double>) -> Self {
-        return self.init(value: .random(interval))
+    /// - parameter closedRange: The range within which the double will be generated.
+    public class func random(within closedRange: ClosedRange<Double>) -> Self {
+        return .init(value: .random(within: closedRange))
     }
     
 }

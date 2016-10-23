@@ -33,16 +33,14 @@ extension Date: RandomProtocol {
     ///
     /// - Returns: Random date within `0.0...NSTimeInterval(UInt32.max)`.
     public static func random() -> Date {
-        return random(0.0...TimeInterval(UInt32.max))
+        return random(within: 0.0...TimeInterval(UInt32.max))
     }
 
-    /// Generates a random date inside of the closed interval.
+    /// Generates a random date within the closed range.
     ///
-    /// - Parameters:
-    ///     - interval: The interval within which the date
-    ///       will be generated.
-    public static func random(_ interval: ClosedRange<TimeInterval>) -> Date {
-        return self.init(timeIntervalSince1970: .random(interval))
+    /// - parameter closedRange: The range within which the date will be generated.
+    public static func random(within closedRange: ClosedRange<TimeInterval>) -> Date {
+        return .init(timeIntervalSince1970: .random(within: closedRange))
     }
 
 }

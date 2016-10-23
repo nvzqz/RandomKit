@@ -1,5 +1,5 @@
 //
-//  Bool+RandomKit.swift
+//  RandomWithinRange.swift
 //  RandomKit
 //
 //  The MIT License (MIT)
@@ -25,11 +25,10 @@
 //  THE SOFTWARE.
 //
 
-extension Bool: RandomProtocol {
+/// A type that can generate an optional random value from within a range.
+public protocol RandomWithinRange: RandomProtocol, Comparable {
 
-    /// Generates a random `Bool`.
-    public static func random() -> Bool {
-        return Int.random(within: 0...1) == 0
-    }
+    /// Returns an optional random value of `Self` inside of the range.
+    static func random(within range: Range<Self>) -> Self?
 
 }

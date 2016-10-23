@@ -69,18 +69,18 @@ extension Dictionary where Key: RandomProtocol, Value: RandomProtocol {
     
 }
 
-extension Dictionary where Key: RandomIntervalType, Value: RandomIntervalType {
+extension Dictionary where Key: RandomWithinClosedRange, Value: RandomWithinClosedRange {
 
-    /// Construct a Dictionary of random elements from inside of the closed intervals.
+    /// Construct a Dictionary of random elements from within the closed ranges.
     ///
-    /// - Precondition: Number of elements within `keyInterval` >= `randomCount`.
+    /// - Precondition: Number of elements within `keyRange` >= `randomCount`.
     ///
-    public init(randomCount: Int, _ keyInterval: ClosedRange<Key>, _ valueInterval: ClosedRange<Value>) {
+    public init(randomCount: Int, _ keyRange: ClosedRange<Key>, _ valueRange: ClosedRange<Value>) {
         self.init(
             randomCount,
-            Key.randomSequence(keyInterval, maxCount: randomCount),
-            Value.randomSequence(valueInterval, maxCount: randomCount),
-            Key.random(keyInterval))
+            Key.randomSequence(within: keyRange, maxCount: randomCount),
+            Value.randomSequence(within: valueRange, maxCount: randomCount),
+            Key.random(within: keyRange))
     }
 
 }

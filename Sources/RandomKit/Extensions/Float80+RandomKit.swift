@@ -29,22 +29,21 @@
 
 import Darwin
 
-extension Float80 : RandomProtocol, RandomIntervalType {
+extension Float80 : RandomProtocol, RandomWithinClosedRange {
 
     /// Generates a random `Float80`.
     ///
     /// - Returns: Random value within `0.0...1.0`.
     public static func random() -> Float80 {
-        return random(0.0...1.0)
+        return random(within: 0.0...1.0)
     }
 
-    /// Generates a random `Float80` inside of the closed interval.
+    /// Generates a random `Float80` within the closed range.
     ///
-    /// - Parameters:
-    ///     - interval: The interval within which the number
-    ///       will be generated.
-    public static func random(_ interval: ClosedRange<Float80>) -> Float80 {
-        return interval.lowerBound + (interval.upperBound - interval.lowerBound) * (Float80(arc4random()) / Float80(UInt32.max))
+    /// - parameter closedRange: The range within which the number will be generated.
+    public static func random(within closedRange: ClosedRange<Float80>) -> Float80 {
+        let value = (closedRange.upperBound - closedRange.lowerBound) * (Float80(arc4random()) / Float80(UInt32.max))
+        return closedRange.lowerBound + value
     }
 
 }

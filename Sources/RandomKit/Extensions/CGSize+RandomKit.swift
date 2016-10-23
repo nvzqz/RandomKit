@@ -33,16 +33,16 @@ extension CGSize: RandomProtocol {
     ///
     /// - Returns: Random value within `0...100` for both `width` and `height`.
     public static func random() -> CGSize {
-        return random(0...100, 0...100)
+        return random(within: 0...100, 0...100)
     }
 
-    /// Generates a random `CGSize` inside of the closed intervals.
+    /// Generates a random `CGSize` within the closed ranges.
     ///
-    /// - Parameters:
-    ///     - widthInterval: The interval within which `width` will be generated.
-    ///     - heightInterval: The interval within which `height` will be generated.
-    public static func random(_ widthInterval: ClosedRange<CGFloat.NativeType>, _ heightInterval: ClosedRange<CGFloat.NativeType>) -> CGSize {
-        return CGSize(width: CGFloat.random(widthInterval), height: CGFloat.random(heightInterval))
+    /// - parameter widthRange: The range within which `width` will be generated.
+    /// - parameter heightRange: The range within which `height` will be generated.
+    public static func random(within widthRange: ClosedRange<CGFloat.NativeType>,
+                              _ heightRange: ClosedRange<CGFloat.NativeType>) -> CGSize {
+        return CGSize(width: CGFloat.random(within: widthRange), height: CGFloat.random(within: heightRange))
     }
 
 }

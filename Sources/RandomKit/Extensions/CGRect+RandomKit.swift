@@ -36,20 +36,20 @@ extension CGRect: RandomProtocol {
         return CGRect(origin: .random(), size: .random())
     }
 
-    /// Generates a random `CGRect` inside of the closed intervals.
+    /// Generates a random `CGRect` within the closed ranges.
     ///
     /// - Parameters:
-    ///     - xInterval: The interval within which `x` will be generated.
-    ///     - yInterval: The interval within which `y` will be generated.
-    ///     - widthInterval: The interval within which `width` will be generated.
-    ///     - heightInterval: The interval within which `height` will be generated.
+    ///     - xRange: The range within which `x` will be generated.
+    ///     - yRange: The range within which `y` will be generated.
+    ///     - widthRange: The range within which `width` will be generated.
+    ///     - heightRange: The range within which `height` will be generated.
     public static func random(
-        _ xInterval:      ClosedRange<CGFloat.NativeType>,
-        _ yInterval:      ClosedRange<CGFloat.NativeType>,
-        _ widthInterval:  ClosedRange<CGFloat.NativeType>,
-        _ heightInterval: ClosedRange<CGFloat.NativeType>)
+        within xRange: ClosedRange<CGFloat.NativeType>,
+        _ yRange:      ClosedRange<CGFloat.NativeType>,
+        _ widthRange:  ClosedRange<CGFloat.NativeType>,
+        _ heightRange: ClosedRange<CGFloat.NativeType>)
     -> CGRect {
-        return CGRect(origin: .random(xInterval, yInterval), size: .random(widthInterval, heightInterval))
+        return CGRect(origin: .random(within: xRange, yRange), size: .random(within: widthRange, heightRange))
     }
 
 }

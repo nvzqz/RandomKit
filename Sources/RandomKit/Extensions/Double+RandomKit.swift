@@ -31,22 +31,17 @@
     import Glibc
 #endif
 
-extension Double : RandomProtocol, RandomIntervalType {
+extension Double : RandomProtocol, RandomWithinClosedRange {
 
     /// Generates a random `Double`.
     ///
     /// - Returns: Random value within `0.0...1.0`.
     public static func random() -> Double {
-        return random(0.0...1.0)
+        return random(within: 0.0...1.0)
     }
 
-    /// Generates a random `Double` inside of the closed interval.
-    ///
-    /// - Parameters:
-    ///     - interval: The interval within which the number
-    ///       will be generated.
-    public static func random(_ interval: ClosedRange<Double>) -> Double {
-        return interval.lowerBound + (interval.upperBound - interval.lowerBound) * (Double(arc4random()) / Double(UInt32.max))
+    public static func random(within closedRange: ClosedRange<Double>) -> Double {
+        return closedRange.lowerBound + (closedRange.upperBound - closedRange.lowerBound) * (Double(arc4random()) / Double(UInt32.max))
     }
 
 }

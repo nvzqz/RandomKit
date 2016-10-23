@@ -33,17 +33,17 @@ extension CGVector: RandomProtocol {
     ///
     /// - Returns: Random value within `0...100` for both `dx` and `dy`.
     public static func random() -> CGVector {
-        return random(0...100, 0...100)
+        return random(within: 0...100, 0...100)
     }
 
-    /// Generates a random `CGVector` inside of the closed intervals.
+    /// Generates a random `CGVector` within the closed ranges.
     ///
-    /// - Parameters:
-    ///     - dxInterval: The interval within which `dx` will be generated.
-    ///     - dyInterval: The interval within which `dy` will be generated.
-    public static func random(_ dxInterval: ClosedRange<CGFloat.NativeType>, _ dyInterval: ClosedRange<CGFloat.NativeType>) -> CGVector {
-        let rx = CGFloat.NativeType.random(dxInterval)
-        let ry = CGFloat.NativeType.random(dyInterval)
+    /// - parameter dxRange: The range within which `dx` will be generated.
+    /// - parameter dyRange: The range within which `dy` will be generated.
+    public static func random(within dxRange: ClosedRange<CGFloat.NativeType>,
+                              _ dyRange: ClosedRange<CGFloat.NativeType>) -> CGVector {
+        let rx = CGFloat.NativeType.random(within: dxRange)
+        let ry = CGFloat.NativeType.random(within: dyRange)
         return CGVector(dx: CGFloat(rx), dy: CGFloat(ry))
     }
 

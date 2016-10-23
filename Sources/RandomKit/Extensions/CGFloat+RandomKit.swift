@@ -33,16 +33,14 @@ extension CGFloat: RandomProtocol {
     ///
     /// - Returns: Random value within `0.0...1.0`.
     public static func random() -> CGFloat {
-        return random(0.0...1.0)
+        return random(within: 0.0...1.0)
     }
 
-    /// Generates a random `CGFloat` inside of the closed interval.
+    /// Generates a random `CGFloat` within the closed range.
     ///
-    /// - Parameters:
-    ///     - interval: The interval within which the number
-    ///       will be generated.
-    public static func random(_ interval: ClosedRange<NativeType>) -> CGFloat {
-        return CGFloat(NativeType.random(interval))
+    /// - parameter closedRange: The range within which the number will be generated.
+    public static func random(within closedRange: ClosedRange<NativeType>) -> CGFloat {
+        return CGFloat(NativeType.random(within: closedRange))
     }
     
 }

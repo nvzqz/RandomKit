@@ -31,20 +31,16 @@ extension String: RandomProtocol {
     ///
     /// - Returns: Random value within `" "..."~"` with length of `10`.
     public static func random() -> String {
-        return random(10, " "..."~")
+        return random(ofLength: 10, within: " "..."~")
     }
 
-    /// Generates a random `String` of a given length inside of
-    /// the closed interval.
+    /// Generates a random `String` of a given length inside of the closed range.
     ///
-    /// - Parameters:
-    ///     - length: The length for the generated string.
-    ///       Default value is `10`.
-    ///     - interval: The interval within which the string
-    ///       will be generated.
-    public static func random(_ length: UInt = 10, _ interval: ClosedRange<Character>) -> String {
+    /// - Parameter length: The length for the generated string. Default value is `10`.
+    /// - parameter closedRange: The range within which the string will be generated.
+    public static func random(ofLength length: UInt = 10, within closedRange: ClosedRange<Character>) -> String {
         return (0 ..< length).reduce("") { value, _ in
-            value + String(Character.random(interval))
+            value + String(Character.random(within: closedRange))
         }
     }
 

@@ -31,22 +31,18 @@
     import Glibc
 #endif
 
-extension Float : RandomProtocol, RandomIntervalType {
+extension Float : RandomProtocol, RandomWithinClosedRange {
 
     /// Generates a random `Float`.
     ///
     /// - Returns: Random value within `0.0...1.0`.
     public static func random() -> Float {
-        return random(0.0...1.0)
+        return random(within: 0.0...1.0)
     }
 
-    /// Generates a random `Float` inside of the closed interval.
-    ///
-    /// - Parameters:
-    ///     - interval: The interval within which the number
-    ///       will be generated.
-    public static func random(_ interval: ClosedRange<Float>) -> Float {
-        return interval.lowerBound + (interval.upperBound - interval.lowerBound) * (Float(arc4random()) / Float(UInt32.max))
+    public static func random(within closedRange: ClosedRange<Float>) -> Float {
+        let value = (closedRange.upperBound - closedRange.lowerBound) * (Float(arc4random()) / Float(UInt32.max))
+        return closedRange.lowerBound + value
     }
 
 }

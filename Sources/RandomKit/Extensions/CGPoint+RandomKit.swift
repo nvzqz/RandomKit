@@ -33,16 +33,17 @@ extension CGPoint: RandomProtocol {
     ///
     /// - Returns: Random value within `0...100` for both `x` and `y`.
     public static func random() -> CGPoint {
-        return random(0...100, 0...100)
+        return random(within: 0...100, 0...100)
     }
 
-    /// Generates a random `CGPoint` inside of the closed intervals.
+    /// Generates a random `CGPoint` within the closed ranged.
     ///
     /// - Parameters:
-    ///     - xInterval: The interval within which `x` will be generated.
-    ///     - yInterval: The interval within which `y` will be generated.
-    public static func random(_ xInterval: ClosedRange<CGFloat.NativeType>, _ yInterval: ClosedRange<CGFloat.NativeType>) -> CGPoint {
-        return CGPoint(x: CGFloat.random(xInterval), y: CGFloat.random(yInterval))
+    ///     - xRange: The range within which `x` will be generated.
+    ///     - yRange: The range within which `y` will be generated.
+    public static func random(within xRange: ClosedRange<CGFloat.NativeType>,
+                              _ yRange: ClosedRange<CGFloat.NativeType>) -> CGPoint {
+        return CGPoint(x: CGFloat.random(within: xRange), y: CGFloat.random(within: yRange))
     }
 
 }

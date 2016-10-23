@@ -32,7 +32,7 @@ extension Array: ShuffleProtocol {
         return indices.reduce(self) { (array, i) in
 			var mutableArray = array
 
-            let j = Int.random(startIndex ... endIndex - 1)
+            let j = Int.random(within: startIndex ... endIndex - 1)
             if j != i {
 				swap(&mutableArray[i], &mutableArray[j])
 			}
@@ -46,16 +46,16 @@ extension Array where Element: RandomProtocol {
 
     /// Construct an Array of random elements.
     public init(randomCount: Int) {
-        self = Array(Element.randomSequence(maxCount: randomCount))
+        self.init(Element.randomSequence(maxCount: randomCount))
     }
 
 }
 
-extension Array where Element: RandomIntervalType {
+extension Array where Element: RandomWithinClosedRange {
 
-    /// Construct an Array of random elements from inside of the closed interval.
-    public init(randomCount: Int, _ interval: ClosedRange<Element>) {
-        self = Array(Element.randomSequence(interval, maxCount: randomCount))
+    /// Construct an Array of random elements from within the closed range.
+    public init(randomCount: Int, within closedRange: ClosedRange<Element>) {
+        self.init(Element.randomSequence(within: closedRange, maxCount: randomCount))
     }
 
 }
@@ -80,7 +80,7 @@ extension Array {
         var result = Array(self[0..<elementCount])
         // replace elements with gradually decreasing probability
         for i in elementCount..<self.count {
-            let j = Int.random((0 ... i-1))
+            let j = Int.random(within: 0 ... i-1)
             if j < elementCount {
                 result[j] = self[i]
             }
@@ -111,9 +111,9 @@ extension Array {
         }
         for i in elementCount..<self.count {
             let p = weights[i] / weightSum
-            let j = Double.random(0.0...1.0)
+            let j = Double.random(within: 0.0...1.0)
             if j <= p {
-                let index = Int.random((0 ... elementCount-1))
+                let index = Int.random(within: 0 ... elementCount-1)
                 result[index] = self[i]
             }
             weightSum += weights[i]

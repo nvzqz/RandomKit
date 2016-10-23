@@ -31,24 +31,19 @@
     import Glibc
 #endif
 
-extension Character : RandomProtocol, RandomIntervalType {
+extension Character : RandomProtocol, RandomWithinClosedRange {
 
     /// Generates a random `Character`.
     ///
     /// - Returns: Random value within `" "..."~"`.
     public static func random() -> Character {
-        return random(" "..."~")
+        return random(within: " "..."~")
     }
 
-    /// Generates a random `Character` inside of the closed interval.
-    ///
-    /// - Parameters:
-    ///     - interval: The interval within which the character
-    ///       will be generated.
-    public static func random(_ interval: ClosedRange<Character>) -> Character {
+    public static func random(within closedRange: ClosedRange<Character>) -> Character {
         var randomValue: UInt32 {
-            let start   = interval.lowerBound.scalar.value
-            let end     = interval.upperBound.scalar.value
+            let start   = closedRange.lowerBound.scalar.value
+            let end     = closedRange.upperBound.scalar.value
             let greater = max(start, end)
             let lesser  = min(start, end)
             return lesser + arc4random_uniform(greater - lesser + 1)
