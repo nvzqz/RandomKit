@@ -42,12 +42,12 @@ extension NSColor: RandomType {
     /// - Parameters:
     ///     - alpha: If `true`, the alpha value will be random.
     ///              If `false`, the alpha value will be `1.0`.
-    public class func random(alpha flag: Bool) -> Self {
+    public class func random(alpha: Bool) -> Self {
         return self.init(
             red:   CGFloat.random(),
             green: CGFloat.random(),
             blue:  CGFloat.random(),
-            alpha: flag ? CGFloat.random() : 1.0)
+            alpha: alpha ? CGFloat.random() : 1.0)
     }
 
 }
@@ -76,12 +76,12 @@ extension UIColor: RandomType {
     /// - Parameters:
     ///     - alpha: If `true`, the alpha value will be random.
     ///              If `false`, the alpha value will be `1.0`.
-    public class func random(alpha flag: Bool) -> Self {
+    public class func random(alpha: Bool) -> Self {
         return self.init(
             red:   CGFloat.random(),
             green: CGFloat.random(),
             blue:  CGFloat.random(),
-            alpha: flag ? CGFloat.random() : 1.0)
+            alpha: alpha ? CGFloat.random() : 1.0)
     }
 
 }
