@@ -40,6 +40,7 @@ extension Int : RandomProtocol, RandomWithinClosedRange {
         return random(within: 0...100)
     }
 
+    /// Returns a random value of `Self` inside of the closed range.
     public static func random(within closedRange: ClosedRange<Int>) -> Int {
         let value = Int(arc4random_uniform(UInt32(closedRange.upperBound - closedRange.lowerBound + 1)))
         return closedRange.lowerBound + value

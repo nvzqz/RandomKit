@@ -40,6 +40,7 @@ extension Character : RandomProtocol, RandomWithinClosedRange {
         return random(within: " "..."~")
     }
 
+    /// Returns a random value of `Self` inside of the closed range.
     public static func random(within closedRange: ClosedRange<Character>) -> Character {
         var randomValue: UInt32 {
             let start   = closedRange.lowerBound.scalar.value

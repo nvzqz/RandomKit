@@ -40,6 +40,7 @@ extension Double : RandomProtocol, RandomWithinClosedRange {
         return random(within: 0.0...1.0)
     }
 
+    /// Returns a random value of `Self` inside of the closed range.
     public static func random(within closedRange: ClosedRange<Double>) -> Double {
         return closedRange.lowerBound + (closedRange.upperBound - closedRange.lowerBound) * (Double(arc4random()) / Double(UInt32.max))
     }

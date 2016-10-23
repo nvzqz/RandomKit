@@ -40,6 +40,7 @@ extension Float : RandomProtocol, RandomWithinClosedRange {
         return random(within: 0.0...1.0)
     }
 
+    /// Returns a random value of `Self` inside of the closed range.
     public static func random(within closedRange: ClosedRange<Float>) -> Float {
         let value = (closedRange.upperBound - closedRange.lowerBound) * (Float(arc4random()) / Float(UInt32.max))
         return closedRange.lowerBound + value
