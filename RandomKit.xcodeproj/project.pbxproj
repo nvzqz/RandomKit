@@ -254,7 +254,7 @@
 			children = (
 				52F9E6DA1CA5B4DF00039162 /* Sources */,
 				525EB2BC1DBD606F00E8B246 /* Support */,
-				528200F21BC9FA42001FDD58 /* RandomKitTests */,
+				528200F21BC9FA42001FDD58 /* Tests */,
 				528200921BC9C4A2001FDD58 /* Products */,
 				524083961CA5B31E00AB8851 /* RandomKit.playground */,
 				52F9E7601CA5BBBA00039162 /* Package.swift */,
@@ -274,13 +274,13 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		528200F21BC9FA42001FDD58 /* RandomKitTests */ = {
+		528200F21BC9FA42001FDD58 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
 				528200F31BC9FA42001FDD58 /* RandomKitTests.swift */,
 				528200F51BC9FA42001FDD58 /* Info.plist */,
 			);
-			path = RandomKitTests;
+			path = Tests;
 			sourceTree = "<group>";
 		};
 		52F9E6DA1CA5B4DF00039162 /* Sources */ = {
@@ -1056,7 +1056,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				INFOPLIST_FILE = RandomKitTests/Info.plist;
+				INFOPLIST_FILE = Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				MTL_ENABLE_DEBUG_INFO = YES;
@@ -1099,7 +1099,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				INFOPLIST_FILE = RandomKitTests/Info.plist;
+				INFOPLIST_FILE = Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				MTL_ENABLE_DEBUG_INFO = NO;
