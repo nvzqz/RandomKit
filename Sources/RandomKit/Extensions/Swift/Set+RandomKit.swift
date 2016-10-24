@@ -49,8 +49,7 @@ extension Set where Element: RandomWithinClosedRange {
 
     /// Construct a Set of random elements from within the closed range.
     ///
-    /// - Precondition: Number of elements within `closedRange` >= `randomCount`.
-    ///
+    /// - precondition: Number of elements within `closedRange` >= `randomCount`.
     public init(randomCount: Int, within closedRange: ClosedRange<Element>) {
         self.init(randomCount,
                   Element.randomSequence(within: closedRange, maxCount: randomCount),

@@ -31,7 +31,7 @@ extension URL: Random {
 
     /// Generates a random URL.
     ///
-    /// - Returns: A random URL within:
+    /// - returns: A random URL within:
     ///     - https://github.com/
     ///     - https://bitbucket.org/
     ///     - https://stackoverflow.com/
@@ -55,8 +55,7 @@ extension URL: Random {
     ///
     /// If `values` is empty, a URL pointing to www.google.com is returned.
     ///
-    /// - Parameters:
-    ///     - values: The values from which the URL is generated.
+    /// - parameter values: The values from which the URL is generated.
     public static func random(fromValues values: [String]) -> URL {
         guard let value = values.random, let url = self.init(string: value) else {
             return self.init(string: "https://www.google.com/")!

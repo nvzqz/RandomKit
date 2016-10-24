@@ -33,7 +33,7 @@ extension CGSize: Random {
 
     /// Generates a random `CGSize`.
     ///
-    /// - Returns: Random value within `0...100` for both `width` and `height`.
+    /// - returns: Random value within `0...100` for both `width` and `height`.
     public static func random() -> CGSize {
         return random(within: 0...100, 0...100)
     }

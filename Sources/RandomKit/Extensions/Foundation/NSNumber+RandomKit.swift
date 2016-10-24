@@ -31,7 +31,7 @@ extension NSNumber: Random {
 
     /// Generates a random number.
     ///
-    /// - Returns: Random value within `0...100`.
+    /// - returns: Random value within `0...100`.
     public class func random() -> Self {
         return random(within: 0...100)
     }

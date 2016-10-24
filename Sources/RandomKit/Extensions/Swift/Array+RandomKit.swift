@@ -58,8 +58,7 @@ extension Array {
     ///
     /// If `elementCount` >= `count` a copy of this array is returned
     ///
-    /// - Parameters:
-    ///     - elementCount: The number of element to return
+    /// - parameter elementCount: The number of element to return
     public func randomSlice(_ elementCount: Int) -> Array {
         if elementCount <= 0  {
             return []
@@ -85,9 +84,8 @@ extension Array {
     /// If `elementCount` >= `count` or `weights.count` < `count`
     /// a copy of this array is returned
     ///
-    /// - Parameters:
-    ///     - elementCount: The number of element to return
-    ///     - weights: Apply weights on element.
+    /// - parameter elementCount: The number of element to return
+    /// - parameter weights: Apply weights on element.
     public func randomSlice(_ elementCount: Int, weights: [Double]) -> Array {
         if elementCount <= 0  {
             return []

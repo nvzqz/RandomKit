@@ -31,9 +31,7 @@ extension Character {
 
     /// Generates a random `Character` inside of the character set.
     ///
-    /// - Parameters:
-    ///     - characterSet: The character set within which the character
-    ///       will be generated.
+    /// - parameter characterSet: The character set within which the character will be generated.
     public static func random(from characterSet: CharacterSet) -> Character? {
         return characterSet.randomCharacter
     }
@@ -45,11 +43,8 @@ extension String {
     /// Generates a random `String` of a given length inside of
     /// the character set.
     ///
-    /// - Parameters:
-    ///     - length: The length for the generated string.
-    ///       Default value is `10`.
-    ///     - characterSet: The character set within which the string
-    ///       will be generated.
+    /// - parameter length: The length for the generated string. Default value is `10`.
+    /// - parameter haracterSet: The character set within which the string will be generated.
     public static func random(ofLength length: UInt = 10, from characterSet: CharacterSet) -> String {
         guard length != 0 else { return "" }
         let characters = characterSet.asCharacterArray

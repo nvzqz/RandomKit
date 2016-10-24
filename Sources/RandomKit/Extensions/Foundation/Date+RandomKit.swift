@@ -31,7 +31,7 @@ extension Date: Random {
 
     /// Generates a random date.
     ///
-    /// - Returns: Random date within `0.0...NSTimeInterval(UInt32.max)`.
+    /// - returns: Random date within `0.0...NSTimeInterval(UInt32.max)`.
     public static func random() -> Date {
         return random(within: 0.0...TimeInterval(UInt32.max))
     }

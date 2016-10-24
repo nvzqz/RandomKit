@@ -33,7 +33,7 @@ extension CGVector: Random {
 
     /// Generates a random `CGVector`.
     ///
-    /// - Returns: Random value within `0...100` for both `dx` and `dy`.
+    /// - returns: Random value within `0...100` for both `dx` and `dy`.
     public static func random() -> CGVector {
         return random(within: 0...100, 0...100)
     }

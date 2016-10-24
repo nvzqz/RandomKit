@@ -33,18 +33,17 @@ extension CGRect: Random {
 
     /// Generates a random `CGRect`.
     ///
-    /// - Returns: Random value from random `CGPoint` and `CGSize`.
+    /// - returns: Random value from random `CGPoint` and `CGSize`.
     public static func random() -> CGRect {
         return CGRect(origin: .random(), size: .random())
     }
 
     /// Generates a random `CGRect` within the closed ranges.
     ///
-    /// - Parameters:
-    ///     - xRange: The range within which `x` will be generated.
-    ///     - yRange: The range within which `y` will be generated.
-    ///     - widthRange: The range within which `width` will be generated.
-    ///     - heightRange: The range within which `height` will be generated.
+    /// - parameter xRange: The range within which `x` will be generated.
+    /// - parameter yRange: The range within which `y` will be generated.
+    /// - parameter widthRange: The range within which `width` will be generated.
+    /// - parameter heightRange: The range within which `height` will be generated.
     public static func random(
         within xRange: ClosedRange<CGFloat.NativeType>,
         _ yRange:      ClosedRange<CGFloat.NativeType>,

@@ -32,16 +32,14 @@ extension NSColor: Random {
 
     /// Generates a random color.
     ///
-    /// - Returns: Random color without random alpha.
+    /// - returns: Random color without random alpha.
     public class func random() -> Self {
         return random(alpha: false)
     }
 
     /// Generates a random color.
     ///
-    /// - Parameters:
-    ///     - alpha: If `true`, the alpha value will be random.
-    ///              If `false`, the alpha value will be `1.0`.
+    /// - parameter alpha: If `true`, the alpha value will be random. If `false`, the alpha value will be `1.0`.
     public class func random(alpha: Bool) -> Self {
         return self.init(
             red:   CGFloat.random(),
@@ -66,16 +64,14 @@ extension UIColor: Random {
 
     /// Generates a random color.
     ///
-    /// - Returns: Random color without random alpha.
+    /// - returns: Random color without random alpha.
     public class func random() -> Self {
         return random(alpha: false)
     }
 
     /// Generates a random color.
     ///
-    /// - Parameters:
-    ///     - alpha: If `true`, the alpha value will be random.
-    ///              If `false`, the alpha value will be `1.0`.
+    /// - parameter alpha: If `true`, the alpha value will be random. If `false`, the alpha value will be `1.0`.
     public class func random(alpha: Bool) -> Self {
         return self.init(
             red:   CGFloat.random(),

@@ -29,7 +29,7 @@ extension String: Random {
 
     /// Generates a random `String`.
     ///
-    /// - Returns: Random value within `" "..."~"` with length of `10`.
+    /// - returns: Random value within `" "..."~"` with length of `10`.
     public static func random() -> String {
         var result = ""
         for _ in 0 ..< 10 {

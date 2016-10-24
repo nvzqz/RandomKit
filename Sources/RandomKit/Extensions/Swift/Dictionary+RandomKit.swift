@@ -70,8 +70,7 @@ extension Dictionary where Key: RandomWithinClosedRange, Value: RandomWithinClos
 
     /// Construct a Dictionary of random elements from within the closed ranges.
     ///
-    /// - Precondition: Number of elements within `keyRange` >= `randomCount`.
-    ///
+    /// - precondition: Number of elements within `keyRange` >= `randomCount`.
     public init(randomCount: Int, _ keyRange: ClosedRange<Key>, _ valueRange: ClosedRange<Value>) {
         self.init(randomCount,
                   Key.randomSequence(within: keyRange, maxCount: randomCount),
