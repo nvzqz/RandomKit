@@ -25,10 +25,10 @@
 //  THE SOFTWARE.
 //
 
-/// A type that can generate a random value limited to a max value.
+/// A type that can generate a random value and has a `max` value.
 public protocol RandomWithMax: Random {
 
-    /// Generates a random value of `Self` limited to `max`.
-    static func random(withMax max: Self) -> Self
+    /// The maximum obtainable value of `Self`.
+    static var max: Self { get }
 
 }
