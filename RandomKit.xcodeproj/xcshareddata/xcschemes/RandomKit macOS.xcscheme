@@ -16,7 +16,7 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "528200901BC9C4A2001FDD58"
                BuildableName = "RandomKit.framework"
-               BlueprintName = "RandomKit OSX"
+               BlueprintName = "RandomKit macOS"
                ReferencedContainer = "container:RandomKit.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -45,7 +45,7 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "528200901BC9C4A2001FDD58"
             BuildableName = "RandomKit.framework"
-            BlueprintName = "RandomKit OSX"
+            BlueprintName = "RandomKit macOS"
             ReferencedContainer = "container:RandomKit.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -67,7 +67,7 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "528200901BC9C4A2001FDD58"
             BuildableName = "RandomKit.framework"
-            BlueprintName = "RandomKit OSX"
+            BlueprintName = "RandomKit macOS"
             ReferencedContainer = "container:RandomKit.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -85,7 +85,7 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "528200901BC9C4A2001FDD58"
             BuildableName = "RandomKit.framework"
-            BlueprintName = "RandomKit OSX"
+            BlueprintName = "RandomKit macOS"
             ReferencedContainer = "container:RandomKit.xcodeproj">
          </BuildableReference>
       </MacroExpansion>

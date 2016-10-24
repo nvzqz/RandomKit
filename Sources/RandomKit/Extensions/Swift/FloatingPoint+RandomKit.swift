@@ -46,7 +46,7 @@ extension Double: RandomWithinClosedRange {
 extension Float: RandomWithinClosedRange {
 }
 
-#if os(OSX)
+#if os(macOS)
 extension Float80: RandomWithinClosedRange {
 }
 #endif

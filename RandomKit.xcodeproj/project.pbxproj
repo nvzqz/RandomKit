@@ -380,9 +380,9 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		528200901BC9C4A2001FDD58 /* RandomKit OSX */ = {
+		528200901BC9C4A2001FDD58 /* RandomKit macOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 528200991BC9C4A2001FDD58 /* Build configuration list for PBXNativeTarget "RandomKit OSX" */;
+			buildConfigurationList = 528200991BC9C4A2001FDD58 /* Build configuration list for PBXNativeTarget "RandomKit macOS" */;
 			buildPhases = (
 				5282008C1BC9C4A2001FDD58 /* Sources */,
 				5282008D1BC9C4A2001FDD58 /* Frameworks */,
@@ -393,7 +393,7 @@
 			);
 			dependencies = (
 			);
-			name = "RandomKit OSX";
+			name = "RandomKit macOS";
 			productName = "RandomKit-OSX";
 			productReference = 528200911BC9C4A2001FDD58 /* RandomKit.framework */;
 			productType = "com.apple.product-type.framework";
@@ -511,7 +511,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				528200901BC9C4A2001FDD58 /* RandomKit OSX */,
+				528200901BC9C4A2001FDD58 /* RandomKit macOS */,
 				5282009E1BC9C4B6001FDD58 /* RandomKit iOS */,
 				528200AB1BC9C4C0001FDD58 /* RandomKit watchOS */,
 				52C96A1E1BD9828F00C3CBE0 /* RandomKit tvOS */,
@@ -720,7 +720,7 @@
 /* Begin PBXTargetDependency section */
 		528200F81BC9FA42001FDD58 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 528200901BC9C4A2001FDD58 /* RandomKit OSX */;
+			target = 528200901BC9C4A2001FDD58 /* RandomKit macOS */;
 			targetProxy = 528200F71BC9FA42001FDD58 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -1301,7 +1301,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		528200991BC9C4A2001FDD58 /* Build configuration list for PBXNativeTarget "RandomKit OSX" */ = {
+		528200991BC9C4A2001FDD58 /* Build configuration list for PBXNativeTarget "RandomKit macOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				528200971BC9C4A2001FDD58 /* Debug */,
