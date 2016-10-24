@@ -51,12 +51,15 @@ extension String {
     ///     - characterSet: The character set within which the string
     ///       will be generated.
     public static func random(ofLength length: UInt = 10, from characterSet: CharacterSet) -> String {
-        guard length > 0 else { return "" }
+        guard length != 0 else { return "" }
         let characters = characterSet.asCharacterArray
-        return (0 ..< length).reduce("") { value, _ in
-            guard let character = characters.random else { return value }
-            return value + String(character)
+        var i: UInt = 0
+        var result = ""
+        while i != length, let character = characters.random {
+            result.append(character)
+            i += 1
         }
+        return result
     }
 
 }
