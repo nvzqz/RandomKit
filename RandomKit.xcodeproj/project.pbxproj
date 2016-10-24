@@ -7,10 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		523D8B001DBEAB0F006FF58C /* FloatingPoint+RandomKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523D8AFF1DBEAB0F006FF58C /* FloatingPoint+RandomKit.swift */; };
-		523D8B011DBEAB0F006FF58C /* FloatingPoint+RandomKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523D8AFF1DBEAB0F006FF58C /* FloatingPoint+RandomKit.swift */; };
-		523D8B021DBEAB0F006FF58C /* FloatingPoint+RandomKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523D8AFF1DBEAB0F006FF58C /* FloatingPoint+RandomKit.swift */; };
-		523D8B031DBEAB0F006FF58C /* FloatingPoint+RandomKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523D8AFF1DBEAB0F006FF58C /* FloatingPoint+RandomKit.swift */; };
 		523D8B041DBEAC19006FF58C /* RandomWithinRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525EB3381DBD7A2100E8B246 /* RandomWithinRange.swift */; };
 		523D8B051DBEAC19006FF58C /* RandomWithinRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525EB3381DBD7A2100E8B246 /* RandomWithinRange.swift */; };
 		523D8B061DBEAC1A006FF58C /* RandomWithinRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525EB3381DBD7A2100E8B246 /* RandomWithinRange.swift */; };
@@ -37,10 +33,6 @@
 		523D8B221DBEADD1006FF58C /* CGVector+RandomKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523D8B101DBEADD1006FF58C /* CGVector+RandomKit.swift */; };
 		523D8B231DBEADD1006FF58C /* CGVector+RandomKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523D8B101DBEADD1006FF58C /* CGVector+RandomKit.swift */; };
 		523D8B241DBEADD1006FF58C /* CGVector+RandomKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523D8B101DBEADD1006FF58C /* CGVector+RandomKit.swift */; };
-		523D8B261DBEAF94006FF58C /* UnicodeScalar+RandomKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523D8B251DBEAF94006FF58C /* UnicodeScalar+RandomKit.swift */; };
-		523D8B271DBEAF94006FF58C /* UnicodeScalar+RandomKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523D8B251DBEAF94006FF58C /* UnicodeScalar+RandomKit.swift */; };
-		523D8B281DBEAF94006FF58C /* UnicodeScalar+RandomKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523D8B251DBEAF94006FF58C /* UnicodeScalar+RandomKit.swift */; };
-		523D8B291DBEAF94006FF58C /* UnicodeScalar+RandomKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523D8B251DBEAF94006FF58C /* UnicodeScalar+RandomKit.swift */; };
 		525EB2C11DBD696B00E8B246 /* Random.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525EB2BF1DBD696B00E8B246 /* Random.swift */; };
 		525EB2C21DBD696B00E8B246 /* Random.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525EB2BF1DBD696B00E8B246 /* Random.swift */; };
 		525EB2C31DBD696B00E8B246 /* Random.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525EB2BF1DBD696B00E8B246 /* Random.swift */; };
@@ -49,68 +41,12 @@
 		525EB2C61DBD696B00E8B246 /* Shuffleable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525EB2C01DBD696B00E8B246 /* Shuffleable.swift */; };
 		525EB2C71DBD696B00E8B246 /* Shuffleable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525EB2C01DBD696B00E8B246 /* Shuffleable.swift */; };
 		525EB2C81DBD696B00E8B246 /* Shuffleable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525EB2C01DBD696B00E8B246 /* Shuffleable.swift */; };
-		525EB2E01DBD697200E8B246 /* Array+RandomKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525EB2CA1DBD697200E8B246 /* Array+RandomKit.swift */; };
-		525EB2E11DBD697200E8B246 /* Array+RandomKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525EB2CA1DBD697200E8B246 /* Array+RandomKit.swift */; };
-		525EB2E21DBD697200E8B246 /* Array+RandomKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525EB2CA1DBD697200E8B246 /* Array+RandomKit.swift */; };
-		525EB2E31DBD697200E8B246 /* Array+RandomKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525EB2CA1DBD697200E8B246 /* Array+RandomKit.swift */; };
-		525EB2E41DBD697200E8B246 /* Bool+RandomKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525EB2CB1DBD697200E8B246 /* Bool+RandomKit.swift */; };
-		525EB2E51DBD697200E8B246 /* Bool+RandomKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525EB2CB1DBD697200E8B246 /* Bool+RandomKit.swift */; };
-		525EB2E61DBD697200E8B246 /* Bool+RandomKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525EB2CB1DBD697200E8B246 /* Bool+RandomKit.swift */; };
-		525EB2E71DBD697200E8B246 /* Bool+RandomKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525EB2CB1DBD697200E8B246 /* Bool+RandomKit.swift */; };
-		525EB2FC1DBD697200E8B246 /* Character+RandomKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525EB2D11DBD697200E8B246 /* Character+RandomKit.swift */; };
-		525EB2FD1DBD697200E8B246 /* Character+RandomKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525EB2D11DBD697200E8B246 /* Character+RandomKit.swift */; };
-		525EB2FE1DBD697200E8B246 /* Character+RandomKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525EB2D11DBD697200E8B246 /* Character+RandomKit.swift */; };
-		525EB2FF1DBD697200E8B246 /* Character+RandomKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525EB2D11DBD697200E8B246 /* Character+RandomKit.swift */; };
-		525EB3001DBD697200E8B246 /* CharacterSet+RandomKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525EB2D21DBD697200E8B246 /* CharacterSet+RandomKit.swift */; };
-		525EB3011DBD697200E8B246 /* CharacterSet+RandomKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525EB2D21DBD697200E8B246 /* CharacterSet+RandomKit.swift */; };
-		525EB3021DBD697200E8B246 /* CharacterSet+RandomKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525EB2D21DBD697200E8B246 /* CharacterSet+RandomKit.swift */; };
-		525EB3031DBD697200E8B246 /* CharacterSet+RandomKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525EB2D21DBD697200E8B246 /* CharacterSet+RandomKit.swift */; };
-		525EB3041DBD697200E8B246 /* Collection+RandomKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525EB2D31DBD697200E8B246 /* Collection+RandomKit.swift */; };
-		525EB3051DBD697200E8B246 /* Collection+RandomKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525EB2D31DBD697200E8B246 /* Collection+RandomKit.swift */; };
-		525EB3061DBD697200E8B246 /* Collection+RandomKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525EB2D31DBD697200E8B246 /* Collection+RandomKit.swift */; };
-		525EB3071DBD697200E8B246 /* Collection+RandomKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525EB2D31DBD697200E8B246 /* Collection+RandomKit.swift */; };
-		525EB3081DBD697200E8B246 /* Color+RandomKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525EB2D41DBD697200E8B246 /* Color+RandomKit.swift */; };
-		525EB3091DBD697200E8B246 /* Color+RandomKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525EB2D41DBD697200E8B246 /* Color+RandomKit.swift */; };
-		525EB30A1DBD697200E8B246 /* Color+RandomKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525EB2D41DBD697200E8B246 /* Color+RandomKit.swift */; };
-		525EB30B1DBD697200E8B246 /* Color+RandomKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525EB2D41DBD697200E8B246 /* Color+RandomKit.swift */; };
-		525EB30C1DBD697200E8B246 /* Date+RandomKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525EB2D51DBD697200E8B246 /* Date+RandomKit.swift */; };
-		525EB30D1DBD697200E8B246 /* Date+RandomKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525EB2D51DBD697200E8B246 /* Date+RandomKit.swift */; };
-		525EB30E1DBD697200E8B246 /* Date+RandomKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525EB2D51DBD697200E8B246 /* Date+RandomKit.swift */; };
-		525EB30F1DBD697200E8B246 /* Date+RandomKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525EB2D51DBD697200E8B246 /* Date+RandomKit.swift */; };
-		525EB3101DBD697200E8B246 /* Dictionary+RandomKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525EB2D61DBD697200E8B246 /* Dictionary+RandomKit.swift */; };
-		525EB3111DBD697200E8B246 /* Dictionary+RandomKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525EB2D61DBD697200E8B246 /* Dictionary+RandomKit.swift */; };
-		525EB3121DBD697200E8B246 /* Dictionary+RandomKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525EB2D61DBD697200E8B246 /* Dictionary+RandomKit.swift */; };
-		525EB3131DBD697200E8B246 /* Dictionary+RandomKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525EB2D61DBD697200E8B246 /* Dictionary+RandomKit.swift */; };
-		525EB3241DBD697200E8B246 /* NSNumber+RandomKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525EB2DB1DBD697200E8B246 /* NSNumber+RandomKit.swift */; };
-		525EB3251DBD697200E8B246 /* NSNumber+RandomKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525EB2DB1DBD697200E8B246 /* NSNumber+RandomKit.swift */; };
-		525EB3261DBD697200E8B246 /* NSNumber+RandomKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525EB2DB1DBD697200E8B246 /* NSNumber+RandomKit.swift */; };
-		525EB3271DBD697200E8B246 /* NSNumber+RandomKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525EB2DB1DBD697200E8B246 /* NSNumber+RandomKit.swift */; };
-		525EB3281DBD697200E8B246 /* Sequence+RandomKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525EB2DC1DBD697200E8B246 /* Sequence+RandomKit.swift */; };
-		525EB3291DBD697200E8B246 /* Sequence+RandomKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525EB2DC1DBD697200E8B246 /* Sequence+RandomKit.swift */; };
-		525EB32A1DBD697200E8B246 /* Sequence+RandomKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525EB2DC1DBD697200E8B246 /* Sequence+RandomKit.swift */; };
-		525EB32B1DBD697200E8B246 /* Sequence+RandomKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525EB2DC1DBD697200E8B246 /* Sequence+RandomKit.swift */; };
-		525EB32C1DBD697200E8B246 /* Set+RandomKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525EB2DD1DBD697200E8B246 /* Set+RandomKit.swift */; };
-		525EB32D1DBD697200E8B246 /* Set+RandomKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525EB2DD1DBD697200E8B246 /* Set+RandomKit.swift */; };
-		525EB32E1DBD697200E8B246 /* Set+RandomKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525EB2DD1DBD697200E8B246 /* Set+RandomKit.swift */; };
-		525EB32F1DBD697200E8B246 /* Set+RandomKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525EB2DD1DBD697200E8B246 /* Set+RandomKit.swift */; };
-		525EB3301DBD697200E8B246 /* String+RandomKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525EB2DE1DBD697200E8B246 /* String+RandomKit.swift */; };
-		525EB3311DBD697200E8B246 /* String+RandomKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525EB2DE1DBD697200E8B246 /* String+RandomKit.swift */; };
-		525EB3321DBD697200E8B246 /* String+RandomKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525EB2DE1DBD697200E8B246 /* String+RandomKit.swift */; };
-		525EB3331DBD697200E8B246 /* String+RandomKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525EB2DE1DBD697200E8B246 /* String+RandomKit.swift */; };
-		525EB3341DBD697200E8B246 /* URL+RandomKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525EB2DF1DBD697200E8B246 /* URL+RandomKit.swift */; };
-		525EB3351DBD697200E8B246 /* URL+RandomKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525EB2DF1DBD697200E8B246 /* URL+RandomKit.swift */; };
-		525EB3361DBD697200E8B246 /* URL+RandomKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525EB2DF1DBD697200E8B246 /* URL+RandomKit.swift */; };
-		525EB3371DBD697200E8B246 /* URL+RandomKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525EB2DF1DBD697200E8B246 /* URL+RandomKit.swift */; };
 		525EB3391DBD7A2100E8B246 /* RandomWithinRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525EB3381DBD7A2100E8B246 /* RandomWithinRange.swift */; };
 		525EB33B1DBD829000E8B246 /* RandomWithinClosedRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525EB33A1DBD829000E8B246 /* RandomWithinClosedRange.swift */; };
 		525EB3501DBDDF5700E8B246 /* RandomWithMax.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525EB34F1DBDDF5700E8B246 /* RandomWithMax.swift */; };
 		525EB3511DBDDF5700E8B246 /* RandomWithMax.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525EB34F1DBDDF5700E8B246 /* RandomWithMax.swift */; };
 		525EB3521DBDDF5700E8B246 /* RandomWithMax.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525EB34F1DBDDF5700E8B246 /* RandomWithMax.swift */; };
 		525EB3531DBDDF5700E8B246 /* RandomWithMax.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525EB34F1DBDDF5700E8B246 /* RandomWithMax.swift */; };
-		525EB3551DBDE1C100E8B246 /* Integer+RandomKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525EB3541DBDE1C100E8B246 /* Integer+RandomKit.swift */; };
-		525EB3561DBDE1C100E8B246 /* Integer+RandomKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525EB3541DBDE1C100E8B246 /* Integer+RandomKit.swift */; };
-		525EB3571DBDE1C100E8B246 /* Integer+RandomKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525EB3541DBDE1C100E8B246 /* Integer+RandomKit.swift */; };
-		525EB3581DBDE1C100E8B246 /* Integer+RandomKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525EB3541DBDE1C100E8B246 /* Integer+RandomKit.swift */; };
 		525EB35F1DBDE70A00E8B246 /* RandomToMax.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525EB35E1DBDE70A00E8B246 /* RandomToMax.swift */; };
 		525EB3601DBDE70A00E8B246 /* RandomToMax.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525EB35E1DBDE70A00E8B246 /* RandomToMax.swift */; };
 		525EB3611DBDE70A00E8B246 /* RandomToMax.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525EB35E1DBDE70A00E8B246 /* RandomToMax.swift */; };
@@ -123,6 +59,70 @@
 		525EB36A1DBE70CE00E8B246 /* RandomWithMin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525EB3681DBE70CE00E8B246 /* RandomWithMin.swift */; };
 		525EB36B1DBE70CE00E8B246 /* RandomWithMin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525EB3681DBE70CE00E8B246 /* RandomWithMin.swift */; };
 		525EB36C1DBE70CE00E8B246 /* RandomWithMin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525EB3681DBE70CE00E8B246 /* RandomWithMin.swift */; };
+		52737DFA1DBEBEED009B5E9D /* Array+RandomKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52737DEF1DBEBEED009B5E9D /* Array+RandomKit.swift */; };
+		52737DFB1DBEBEED009B5E9D /* Array+RandomKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52737DEF1DBEBEED009B5E9D /* Array+RandomKit.swift */; };
+		52737DFC1DBEBEED009B5E9D /* Array+RandomKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52737DEF1DBEBEED009B5E9D /* Array+RandomKit.swift */; };
+		52737DFD1DBEBEED009B5E9D /* Array+RandomKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52737DEF1DBEBEED009B5E9D /* Array+RandomKit.swift */; };
+		52737DFE1DBEBEED009B5E9D /* Bool+RandomKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52737DF01DBEBEED009B5E9D /* Bool+RandomKit.swift */; };
+		52737DFF1DBEBEED009B5E9D /* Bool+RandomKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52737DF01DBEBEED009B5E9D /* Bool+RandomKit.swift */; };
+		52737E001DBEBEED009B5E9D /* Bool+RandomKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52737DF01DBEBEED009B5E9D /* Bool+RandomKit.swift */; };
+		52737E011DBEBEED009B5E9D /* Bool+RandomKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52737DF01DBEBEED009B5E9D /* Bool+RandomKit.swift */; };
+		52737E021DBEBEED009B5E9D /* Character+RandomKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52737DF11DBEBEED009B5E9D /* Character+RandomKit.swift */; };
+		52737E031DBEBEED009B5E9D /* Character+RandomKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52737DF11DBEBEED009B5E9D /* Character+RandomKit.swift */; };
+		52737E041DBEBEED009B5E9D /* Character+RandomKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52737DF11DBEBEED009B5E9D /* Character+RandomKit.swift */; };
+		52737E051DBEBEED009B5E9D /* Character+RandomKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52737DF11DBEBEED009B5E9D /* Character+RandomKit.swift */; };
+		52737E061DBEBEED009B5E9D /* Collection+RandomKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52737DF21DBEBEED009B5E9D /* Collection+RandomKit.swift */; };
+		52737E071DBEBEED009B5E9D /* Collection+RandomKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52737DF21DBEBEED009B5E9D /* Collection+RandomKit.swift */; };
+		52737E081DBEBEED009B5E9D /* Collection+RandomKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52737DF21DBEBEED009B5E9D /* Collection+RandomKit.swift */; };
+		52737E091DBEBEED009B5E9D /* Collection+RandomKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52737DF21DBEBEED009B5E9D /* Collection+RandomKit.swift */; };
+		52737E0A1DBEBEED009B5E9D /* Dictionary+RandomKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52737DF31DBEBEED009B5E9D /* Dictionary+RandomKit.swift */; };
+		52737E0B1DBEBEED009B5E9D /* Dictionary+RandomKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52737DF31DBEBEED009B5E9D /* Dictionary+RandomKit.swift */; };
+		52737E0C1DBEBEED009B5E9D /* Dictionary+RandomKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52737DF31DBEBEED009B5E9D /* Dictionary+RandomKit.swift */; };
+		52737E0D1DBEBEED009B5E9D /* Dictionary+RandomKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52737DF31DBEBEED009B5E9D /* Dictionary+RandomKit.swift */; };
+		52737E0E1DBEBEED009B5E9D /* FloatingPoint+RandomKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52737DF41DBEBEED009B5E9D /* FloatingPoint+RandomKit.swift */; };
+		52737E0F1DBEBEED009B5E9D /* FloatingPoint+RandomKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52737DF41DBEBEED009B5E9D /* FloatingPoint+RandomKit.swift */; };
+		52737E101DBEBEED009B5E9D /* FloatingPoint+RandomKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52737DF41DBEBEED009B5E9D /* FloatingPoint+RandomKit.swift */; };
+		52737E111DBEBEED009B5E9D /* FloatingPoint+RandomKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52737DF41DBEBEED009B5E9D /* FloatingPoint+RandomKit.swift */; };
+		52737E121DBEBEED009B5E9D /* Integer+RandomKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52737DF51DBEBEED009B5E9D /* Integer+RandomKit.swift */; };
+		52737E131DBEBEED009B5E9D /* Integer+RandomKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52737DF51DBEBEED009B5E9D /* Integer+RandomKit.swift */; };
+		52737E141DBEBEED009B5E9D /* Integer+RandomKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52737DF51DBEBEED009B5E9D /* Integer+RandomKit.swift */; };
+		52737E151DBEBEED009B5E9D /* Integer+RandomKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52737DF51DBEBEED009B5E9D /* Integer+RandomKit.swift */; };
+		52737E161DBEBEED009B5E9D /* Sequence+RandomKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52737DF61DBEBEED009B5E9D /* Sequence+RandomKit.swift */; };
+		52737E171DBEBEED009B5E9D /* Sequence+RandomKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52737DF61DBEBEED009B5E9D /* Sequence+RandomKit.swift */; };
+		52737E181DBEBEED009B5E9D /* Sequence+RandomKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52737DF61DBEBEED009B5E9D /* Sequence+RandomKit.swift */; };
+		52737E191DBEBEED009B5E9D /* Sequence+RandomKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52737DF61DBEBEED009B5E9D /* Sequence+RandomKit.swift */; };
+		52737E1A1DBEBEED009B5E9D /* Set+RandomKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52737DF71DBEBEED009B5E9D /* Set+RandomKit.swift */; };
+		52737E1B1DBEBEED009B5E9D /* Set+RandomKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52737DF71DBEBEED009B5E9D /* Set+RandomKit.swift */; };
+		52737E1C1DBEBEED009B5E9D /* Set+RandomKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52737DF71DBEBEED009B5E9D /* Set+RandomKit.swift */; };
+		52737E1D1DBEBEED009B5E9D /* Set+RandomKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52737DF71DBEBEED009B5E9D /* Set+RandomKit.swift */; };
+		52737E1E1DBEBEED009B5E9D /* String+RandomKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52737DF81DBEBEED009B5E9D /* String+RandomKit.swift */; };
+		52737E1F1DBEBEED009B5E9D /* String+RandomKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52737DF81DBEBEED009B5E9D /* String+RandomKit.swift */; };
+		52737E201DBEBEED009B5E9D /* String+RandomKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52737DF81DBEBEED009B5E9D /* String+RandomKit.swift */; };
+		52737E211DBEBEED009B5E9D /* String+RandomKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52737DF81DBEBEED009B5E9D /* String+RandomKit.swift */; };
+		52737E221DBEBEED009B5E9D /* UnicodeScalar+RandomKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52737DF91DBEBEED009B5E9D /* UnicodeScalar+RandomKit.swift */; };
+		52737E231DBEBEED009B5E9D /* UnicodeScalar+RandomKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52737DF91DBEBEED009B5E9D /* UnicodeScalar+RandomKit.swift */; };
+		52737E241DBEBEED009B5E9D /* UnicodeScalar+RandomKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52737DF91DBEBEED009B5E9D /* UnicodeScalar+RandomKit.swift */; };
+		52737E251DBEBEED009B5E9D /* UnicodeScalar+RandomKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52737DF91DBEBEED009B5E9D /* UnicodeScalar+RandomKit.swift */; };
+		52737E2C1DBEBEF8009B5E9D /* CharacterSet+RandomKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52737E271DBEBEF8009B5E9D /* CharacterSet+RandomKit.swift */; };
+		52737E2D1DBEBEF8009B5E9D /* CharacterSet+RandomKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52737E271DBEBEF8009B5E9D /* CharacterSet+RandomKit.swift */; };
+		52737E2E1DBEBEF8009B5E9D /* CharacterSet+RandomKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52737E271DBEBEF8009B5E9D /* CharacterSet+RandomKit.swift */; };
+		52737E2F1DBEBEF8009B5E9D /* CharacterSet+RandomKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52737E271DBEBEF8009B5E9D /* CharacterSet+RandomKit.swift */; };
+		52737E301DBEBEF8009B5E9D /* Color+RandomKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52737E281DBEBEF8009B5E9D /* Color+RandomKit.swift */; };
+		52737E311DBEBEF8009B5E9D /* Color+RandomKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52737E281DBEBEF8009B5E9D /* Color+RandomKit.swift */; };
+		52737E321DBEBEF8009B5E9D /* Color+RandomKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52737E281DBEBEF8009B5E9D /* Color+RandomKit.swift */; };
+		52737E331DBEBEF8009B5E9D /* Color+RandomKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52737E281DBEBEF8009B5E9D /* Color+RandomKit.swift */; };
+		52737E341DBEBEF8009B5E9D /* Date+RandomKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52737E291DBEBEF8009B5E9D /* Date+RandomKit.swift */; };
+		52737E351DBEBEF8009B5E9D /* Date+RandomKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52737E291DBEBEF8009B5E9D /* Date+RandomKit.swift */; };
+		52737E361DBEBEF8009B5E9D /* Date+RandomKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52737E291DBEBEF8009B5E9D /* Date+RandomKit.swift */; };
+		52737E371DBEBEF8009B5E9D /* Date+RandomKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52737E291DBEBEF8009B5E9D /* Date+RandomKit.swift */; };
+		52737E381DBEBEF8009B5E9D /* NSNumber+RandomKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52737E2A1DBEBEF8009B5E9D /* NSNumber+RandomKit.swift */; };
+		52737E391DBEBEF8009B5E9D /* NSNumber+RandomKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52737E2A1DBEBEF8009B5E9D /* NSNumber+RandomKit.swift */; };
+		52737E3A1DBEBEF8009B5E9D /* NSNumber+RandomKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52737E2A1DBEBEF8009B5E9D /* NSNumber+RandomKit.swift */; };
+		52737E3B1DBEBEF8009B5E9D /* NSNumber+RandomKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52737E2A1DBEBEF8009B5E9D /* NSNumber+RandomKit.swift */; };
+		52737E3C1DBEBEF8009B5E9D /* URL+RandomKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52737E2B1DBEBEF8009B5E9D /* URL+RandomKit.swift */; };
+		52737E3D1DBEBEF8009B5E9D /* URL+RandomKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52737E2B1DBEBEF8009B5E9D /* URL+RandomKit.swift */; };
+		52737E3E1DBEBEF8009B5E9D /* URL+RandomKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52737E2B1DBEBEF8009B5E9D /* URL+RandomKit.swift */; };
+		52737E3F1DBEBEF8009B5E9D /* URL+RandomKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52737E2B1DBEBEF8009B5E9D /* URL+RandomKit.swift */; };
 		528200F41BC9FA42001FDD58 /* RandomKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528200F31BC9FA42001FDD58 /* RandomKitTests.swift */; };
 		528200F61BC9FA42001FDD58 /* RandomKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 528200911BC9C4A2001FDD58 /* RandomKit.framework */; };
 /* End PBXBuildFile section */
@@ -138,38 +138,38 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		523D8AFF1DBEAB0F006FF58C /* FloatingPoint+RandomKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FloatingPoint+RandomKit.swift"; sourceTree = "<group>"; };
 		523D8B0C1DBEADD1006FF58C /* CGFloat+RandomKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGFloat+RandomKit.swift"; sourceTree = "<group>"; };
 		523D8B0D1DBEADD1006FF58C /* CGPoint+RandomKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGPoint+RandomKit.swift"; sourceTree = "<group>"; };
 		523D8B0E1DBEADD1006FF58C /* CGRect+RandomKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGRect+RandomKit.swift"; sourceTree = "<group>"; };
 		523D8B0F1DBEADD1006FF58C /* CGSize+RandomKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGSize+RandomKit.swift"; sourceTree = "<group>"; };
 		523D8B101DBEADD1006FF58C /* CGVector+RandomKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGVector+RandomKit.swift"; sourceTree = "<group>"; };
-		523D8B251DBEAF94006FF58C /* UnicodeScalar+RandomKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UnicodeScalar+RandomKit.swift"; sourceTree = "<group>"; };
 		524083961CA5B31E00AB8851 /* RandomKit.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = RandomKit.playground; sourceTree = "<group>"; };
 		524083971CA5B35800AB8851 /* LICENSE.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = LICENSE.md; sourceTree = "<group>"; };
 		525EB2BD1DBD607F00E8B246 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = RandomKit.xcodeproj/Info.plist; sourceTree = "<group>"; };
 		525EB2BF1DBD696B00E8B246 /* Random.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Random.swift; sourceTree = "<group>"; };
 		525EB2C01DBD696B00E8B246 /* Shuffleable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Shuffleable.swift; sourceTree = "<group>"; };
-		525EB2CA1DBD697200E8B246 /* Array+RandomKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+RandomKit.swift"; sourceTree = "<group>"; };
-		525EB2CB1DBD697200E8B246 /* Bool+RandomKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Bool+RandomKit.swift"; sourceTree = "<group>"; };
-		525EB2D11DBD697200E8B246 /* Character+RandomKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Character+RandomKit.swift"; sourceTree = "<group>"; };
-		525EB2D21DBD697200E8B246 /* CharacterSet+RandomKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CharacterSet+RandomKit.swift"; sourceTree = "<group>"; };
-		525EB2D31DBD697200E8B246 /* Collection+RandomKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Collection+RandomKit.swift"; sourceTree = "<group>"; };
-		525EB2D41DBD697200E8B246 /* Color+RandomKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Color+RandomKit.swift"; sourceTree = "<group>"; };
-		525EB2D51DBD697200E8B246 /* Date+RandomKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+RandomKit.swift"; sourceTree = "<group>"; };
-		525EB2D61DBD697200E8B246 /* Dictionary+RandomKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Dictionary+RandomKit.swift"; sourceTree = "<group>"; };
-		525EB2DB1DBD697200E8B246 /* NSNumber+RandomKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSNumber+RandomKit.swift"; sourceTree = "<group>"; };
-		525EB2DC1DBD697200E8B246 /* Sequence+RandomKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Sequence+RandomKit.swift"; sourceTree = "<group>"; };
-		525EB2DD1DBD697200E8B246 /* Set+RandomKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Set+RandomKit.swift"; sourceTree = "<group>"; };
-		525EB2DE1DBD697200E8B246 /* String+RandomKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+RandomKit.swift"; sourceTree = "<group>"; };
-		525EB2DF1DBD697200E8B246 /* URL+RandomKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "URL+RandomKit.swift"; sourceTree = "<group>"; };
 		525EB3381DBD7A2100E8B246 /* RandomWithinRange.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RandomWithinRange.swift; sourceTree = "<group>"; };
 		525EB33A1DBD829000E8B246 /* RandomWithinClosedRange.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RandomWithinClosedRange.swift; sourceTree = "<group>"; };
 		525EB34F1DBDDF5700E8B246 /* RandomWithMax.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RandomWithMax.swift; sourceTree = "<group>"; };
-		525EB3541DBDE1C100E8B246 /* Integer+RandomKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Integer+RandomKit.swift"; sourceTree = "<group>"; };
 		525EB35E1DBDE70A00E8B246 /* RandomToMax.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RandomToMax.swift; sourceTree = "<group>"; };
 		525EB3631DBDE78300E8B246 /* RandomThroughMax.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RandomThroughMax.swift; sourceTree = "<group>"; };
 		525EB3681DBE70CE00E8B246 /* RandomWithMin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RandomWithMin.swift; sourceTree = "<group>"; };
+		52737DEF1DBEBEED009B5E9D /* Array+RandomKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+RandomKit.swift"; sourceTree = "<group>"; };
+		52737DF01DBEBEED009B5E9D /* Bool+RandomKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Bool+RandomKit.swift"; sourceTree = "<group>"; };
+		52737DF11DBEBEED009B5E9D /* Character+RandomKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Character+RandomKit.swift"; sourceTree = "<group>"; };
+		52737DF21DBEBEED009B5E9D /* Collection+RandomKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Collection+RandomKit.swift"; sourceTree = "<group>"; };
+		52737DF31DBEBEED009B5E9D /* Dictionary+RandomKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Dictionary+RandomKit.swift"; sourceTree = "<group>"; };
+		52737DF41DBEBEED009B5E9D /* FloatingPoint+RandomKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FloatingPoint+RandomKit.swift"; sourceTree = "<group>"; };
+		52737DF51DBEBEED009B5E9D /* Integer+RandomKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Integer+RandomKit.swift"; sourceTree = "<group>"; };
+		52737DF61DBEBEED009B5E9D /* Sequence+RandomKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Sequence+RandomKit.swift"; sourceTree = "<group>"; };
+		52737DF71DBEBEED009B5E9D /* Set+RandomKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Set+RandomKit.swift"; sourceTree = "<group>"; };
+		52737DF81DBEBEED009B5E9D /* String+RandomKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+RandomKit.swift"; sourceTree = "<group>"; };
+		52737DF91DBEBEED009B5E9D /* UnicodeScalar+RandomKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UnicodeScalar+RandomKit.swift"; sourceTree = "<group>"; };
+		52737E271DBEBEF8009B5E9D /* CharacterSet+RandomKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CharacterSet+RandomKit.swift"; sourceTree = "<group>"; };
+		52737E281DBEBEF8009B5E9D /* Color+RandomKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Color+RandomKit.swift"; sourceTree = "<group>"; };
+		52737E291DBEBEF8009B5E9D /* Date+RandomKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+RandomKit.swift"; sourceTree = "<group>"; };
+		52737E2A1DBEBEF8009B5E9D /* NSNumber+RandomKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSNumber+RandomKit.swift"; sourceTree = "<group>"; };
+		52737E2B1DBEBEF8009B5E9D /* URL+RandomKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "URL+RandomKit.swift"; sourceTree = "<group>"; };
 		528200911BC9C4A2001FDD58 /* RandomKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RandomKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5282009F1BC9C4B6001FDD58 /* RandomKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RandomKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		528200AC1BC9C4C0001FDD58 /* RandomKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RandomKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -259,26 +259,42 @@
 		525EB2C91DBD697200E8B246 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				52737DEE1DBEBEED009B5E9D /* Swift */,
+				52737E261DBEBEF8009B5E9D /* Foundation */,
 				523D8B0B1DBEADD1006FF58C /* CoreGraphics */,
-				525EB3541DBDE1C100E8B246 /* Integer+RandomKit.swift */,
-				523D8AFF1DBEAB0F006FF58C /* FloatingPoint+RandomKit.swift */,
-				525EB2DE1DBD697200E8B246 /* String+RandomKit.swift */,
-				525EB2D11DBD697200E8B246 /* Character+RandomKit.swift */,
-				523D8B251DBEAF94006FF58C /* UnicodeScalar+RandomKit.swift */,
-				525EB2CB1DBD697200E8B246 /* Bool+RandomKit.swift */,
-				525EB2DC1DBD697200E8B246 /* Sequence+RandomKit.swift */,
-				525EB2D31DBD697200E8B246 /* Collection+RandomKit.swift */,
-				525EB2CA1DBD697200E8B246 /* Array+RandomKit.swift */,
-				525EB2DD1DBD697200E8B246 /* Set+RandomKit.swift */,
-				525EB2D61DBD697200E8B246 /* Dictionary+RandomKit.swift */,
-				525EB2D21DBD697200E8B246 /* CharacterSet+RandomKit.swift */,
-				525EB2D41DBD697200E8B246 /* Color+RandomKit.swift */,
-				525EB2D51DBD697200E8B246 /* Date+RandomKit.swift */,
-				525EB2DB1DBD697200E8B246 /* NSNumber+RandomKit.swift */,
-				525EB2DF1DBD697200E8B246 /* URL+RandomKit.swift */,
 			);
 			name = Extensions;
 			path = RandomKit/Extensions;
+			sourceTree = "<group>";
+		};
+		52737DEE1DBEBEED009B5E9D /* Swift */ = {
+			isa = PBXGroup;
+			children = (
+				52737DEF1DBEBEED009B5E9D /* Array+RandomKit.swift */,
+				52737DF01DBEBEED009B5E9D /* Bool+RandomKit.swift */,
+				52737DF11DBEBEED009B5E9D /* Character+RandomKit.swift */,
+				52737DF21DBEBEED009B5E9D /* Collection+RandomKit.swift */,
+				52737DF31DBEBEED009B5E9D /* Dictionary+RandomKit.swift */,
+				52737DF41DBEBEED009B5E9D /* FloatingPoint+RandomKit.swift */,
+				52737DF51DBEBEED009B5E9D /* Integer+RandomKit.swift */,
+				52737DF61DBEBEED009B5E9D /* Sequence+RandomKit.swift */,
+				52737DF71DBEBEED009B5E9D /* Set+RandomKit.swift */,
+				52737DF81DBEBEED009B5E9D /* String+RandomKit.swift */,
+				52737DF91DBEBEED009B5E9D /* UnicodeScalar+RandomKit.swift */,
+			);
+			path = Swift;
+			sourceTree = "<group>";
+		};
+		52737E261DBEBEF8009B5E9D /* Foundation */ = {
+			isa = PBXGroup;
+			children = (
+				52737E271DBEBEF8009B5E9D /* CharacterSet+RandomKit.swift */,
+				52737E281DBEBEF8009B5E9D /* Color+RandomKit.swift */,
+				52737E291DBEBEF8009B5E9D /* Date+RandomKit.swift */,
+				52737E2A1DBEBEF8009B5E9D /* NSNumber+RandomKit.swift */,
+				52737E2B1DBEBEF8009B5E9D /* URL+RandomKit.swift */,
+			);
+			path = Foundation;
 			sourceTree = "<group>";
 		};
 		528200851BC9C460001FDD58 = {
@@ -541,35 +557,35 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				525EB3301DBD697200E8B246 /* String+RandomKit.swift in Sources */,
-				525EB3101DBD697200E8B246 /* Dictionary+RandomKit.swift in Sources */,
+				52737E0E1DBEBEED009B5E9D /* FloatingPoint+RandomKit.swift in Sources */,
+				52737E301DBEBEF8009B5E9D /* Color+RandomKit.swift in Sources */,
 				525EB3391DBD7A2100E8B246 /* RandomWithinRange.swift in Sources */,
-				523D8B001DBEAB0F006FF58C /* FloatingPoint+RandomKit.swift in Sources */,
-				523D8B261DBEAF94006FF58C /* UnicodeScalar+RandomKit.swift in Sources */,
-				525EB3081DBD697200E8B246 /* Color+RandomKit.swift in Sources */,
+				52737E3C1DBEBEF8009B5E9D /* URL+RandomKit.swift in Sources */,
+				52737E121DBEBEED009B5E9D /* Integer+RandomKit.swift in Sources */,
+				52737DFA1DBEBEED009B5E9D /* Array+RandomKit.swift in Sources */,
+				52737E1A1DBEBEED009B5E9D /* Set+RandomKit.swift in Sources */,
+				52737E161DBEBEED009B5E9D /* Sequence+RandomKit.swift in Sources */,
+				52737E1E1DBEBEED009B5E9D /* String+RandomKit.swift in Sources */,
 				523D8B191DBEADD1006FF58C /* CGRect+RandomKit.swift in Sources */,
 				525EB3691DBE70CE00E8B246 /* RandomWithMin.swift in Sources */,
 				525EB3641DBDE78300E8B246 /* RandomThroughMax.swift in Sources */,
-				525EB3341DBD697200E8B246 /* URL+RandomKit.swift in Sources */,
 				525EB33B1DBD829000E8B246 /* RandomWithinClosedRange.swift in Sources */,
-				525EB32C1DBD697200E8B246 /* Set+RandomKit.swift in Sources */,
-				525EB2FC1DBD697200E8B246 /* Character+RandomKit.swift in Sources */,
+				52737E221DBEBEED009B5E9D /* UnicodeScalar+RandomKit.swift in Sources */,
+				52737E381DBEBEF8009B5E9D /* NSNumber+RandomKit.swift in Sources */,
 				523D8B211DBEADD1006FF58C /* CGVector+RandomKit.swift in Sources */,
-				525EB3551DBDE1C100E8B246 /* Integer+RandomKit.swift in Sources */,
+				52737DFE1DBEBEED009B5E9D /* Bool+RandomKit.swift in Sources */,
 				525EB2C11DBD696B00E8B246 /* Random.swift in Sources */,
-				525EB3041DBD697200E8B246 /* Collection+RandomKit.swift in Sources */,
+				52737E2C1DBEBEF8009B5E9D /* CharacterSet+RandomKit.swift in Sources */,
 				523D8B111DBEADD1006FF58C /* CGFloat+RandomKit.swift in Sources */,
+				52737E061DBEBEED009B5E9D /* Collection+RandomKit.swift in Sources */,
 				525EB2C51DBD696B00E8B246 /* Shuffleable.swift in Sources */,
-				525EB2E01DBD697200E8B246 /* Array+RandomKit.swift in Sources */,
-				525EB3241DBD697200E8B246 /* NSNumber+RandomKit.swift in Sources */,
-				525EB3281DBD697200E8B246 /* Sequence+RandomKit.swift in Sources */,
+				52737E341DBEBEF8009B5E9D /* Date+RandomKit.swift in Sources */,
+				52737E021DBEBEED009B5E9D /* Character+RandomKit.swift in Sources */,
 				525EB35F1DBDE70A00E8B246 /* RandomToMax.swift in Sources */,
-				525EB30C1DBD697200E8B246 /* Date+RandomKit.swift in Sources */,
-				525EB3001DBD697200E8B246 /* CharacterSet+RandomKit.swift in Sources */,
+				52737E0A1DBEBEED009B5E9D /* Dictionary+RandomKit.swift in Sources */,
 				523D8B1D1DBEADD1006FF58C /* CGSize+RandomKit.swift in Sources */,
 				525EB3501DBDDF5700E8B246 /* RandomWithMax.swift in Sources */,
 				523D8B151DBEADD1006FF58C /* CGPoint+RandomKit.swift in Sources */,
-				525EB2E41DBD697200E8B246 /* Bool+RandomKit.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -577,35 +593,35 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				525EB3311DBD697200E8B246 /* String+RandomKit.swift in Sources */,
-				525EB3111DBD697200E8B246 /* Dictionary+RandomKit.swift in Sources */,
-				525EB3091DBD697200E8B246 /* Color+RandomKit.swift in Sources */,
-				525EB3351DBD697200E8B246 /* URL+RandomKit.swift in Sources */,
-				523D8B271DBEAF94006FF58C /* UnicodeScalar+RandomKit.swift in Sources */,
-				525EB32D1DBD697200E8B246 /* Set+RandomKit.swift in Sources */,
+				52737E0F1DBEBEED009B5E9D /* FloatingPoint+RandomKit.swift in Sources */,
+				52737E311DBEBEF8009B5E9D /* Color+RandomKit.swift in Sources */,
+				52737E3D1DBEBEF8009B5E9D /* URL+RandomKit.swift in Sources */,
+				52737E131DBEBEED009B5E9D /* Integer+RandomKit.swift in Sources */,
+				52737DFB1DBEBEED009B5E9D /* Array+RandomKit.swift in Sources */,
+				52737E1B1DBEBEED009B5E9D /* Set+RandomKit.swift in Sources */,
+				52737E171DBEBEED009B5E9D /* Sequence+RandomKit.swift in Sources */,
+				52737E1F1DBEBEED009B5E9D /* String+RandomKit.swift in Sources */,
 				523D8B1A1DBEADD1006FF58C /* CGRect+RandomKit.swift in Sources */,
-				525EB2FD1DBD697200E8B246 /* Character+RandomKit.swift in Sources */,
 				525EB3601DBDE70A00E8B246 /* RandomToMax.swift in Sources */,
-				525EB3561DBDE1C100E8B246 /* Integer+RandomKit.swift in Sources */,
 				525EB2C21DBD696B00E8B246 /* Random.swift in Sources */,
+				52737E231DBEBEED009B5E9D /* UnicodeScalar+RandomKit.swift in Sources */,
 				525EB3651DBDE78300E8B246 /* RandomThroughMax.swift in Sources */,
-				525EB3051DBD697200E8B246 /* Collection+RandomKit.swift in Sources */,
+				52737E391DBEBEF8009B5E9D /* NSNumber+RandomKit.swift in Sources */,
 				523D8B221DBEADD1006FF58C /* CGVector+RandomKit.swift in Sources */,
 				525EB2C61DBD696B00E8B246 /* Shuffleable.swift in Sources */,
-				523D8B011DBEAB0F006FF58C /* FloatingPoint+RandomKit.swift in Sources */,
-				525EB2E11DBD697200E8B246 /* Array+RandomKit.swift in Sources */,
+				52737DFF1DBEBEED009B5E9D /* Bool+RandomKit.swift in Sources */,
+				52737E2D1DBEBEF8009B5E9D /* CharacterSet+RandomKit.swift in Sources */,
 				523D8B121DBEADD1006FF58C /* CGFloat+RandomKit.swift in Sources */,
-				525EB3251DBD697200E8B246 /* NSNumber+RandomKit.swift in Sources */,
+				52737E071DBEBEED009B5E9D /* Collection+RandomKit.swift in Sources */,
+				52737E351DBEBEF8009B5E9D /* Date+RandomKit.swift in Sources */,
+				52737E031DBEBEED009B5E9D /* Character+RandomKit.swift in Sources */,
 				523D8B041DBEAC19006FF58C /* RandomWithinRange.swift in Sources */,
 				523D8B081DBEAC1D006FF58C /* RandomWithinClosedRange.swift in Sources */,
-				525EB3291DBD697200E8B246 /* Sequence+RandomKit.swift in Sources */,
-				525EB30D1DBD697200E8B246 /* Date+RandomKit.swift in Sources */,
+				52737E0B1DBEBEED009B5E9D /* Dictionary+RandomKit.swift in Sources */,
 				525EB36A1DBE70CE00E8B246 /* RandomWithMin.swift in Sources */,
 				525EB3511DBDDF5700E8B246 /* RandomWithMax.swift in Sources */,
 				523D8B1E1DBEADD1006FF58C /* CGSize+RandomKit.swift in Sources */,
-				525EB3011DBD697200E8B246 /* CharacterSet+RandomKit.swift in Sources */,
 				523D8B161DBEADD1006FF58C /* CGPoint+RandomKit.swift in Sources */,
-				525EB2E51DBD697200E8B246 /* Bool+RandomKit.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -613,35 +629,35 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				525EB3321DBD697200E8B246 /* String+RandomKit.swift in Sources */,
-				525EB3121DBD697200E8B246 /* Dictionary+RandomKit.swift in Sources */,
-				525EB30A1DBD697200E8B246 /* Color+RandomKit.swift in Sources */,
-				525EB3361DBD697200E8B246 /* URL+RandomKit.swift in Sources */,
-				523D8B281DBEAF94006FF58C /* UnicodeScalar+RandomKit.swift in Sources */,
-				525EB32E1DBD697200E8B246 /* Set+RandomKit.swift in Sources */,
+				52737E101DBEBEED009B5E9D /* FloatingPoint+RandomKit.swift in Sources */,
+				52737E321DBEBEF8009B5E9D /* Color+RandomKit.swift in Sources */,
+				52737E3E1DBEBEF8009B5E9D /* URL+RandomKit.swift in Sources */,
+				52737E141DBEBEED009B5E9D /* Integer+RandomKit.swift in Sources */,
+				52737DFC1DBEBEED009B5E9D /* Array+RandomKit.swift in Sources */,
+				52737E1C1DBEBEED009B5E9D /* Set+RandomKit.swift in Sources */,
+				52737E181DBEBEED009B5E9D /* Sequence+RandomKit.swift in Sources */,
+				52737E201DBEBEED009B5E9D /* String+RandomKit.swift in Sources */,
 				523D8B1B1DBEADD1006FF58C /* CGRect+RandomKit.swift in Sources */,
-				525EB2FE1DBD697200E8B246 /* Character+RandomKit.swift in Sources */,
 				525EB3611DBDE70A00E8B246 /* RandomToMax.swift in Sources */,
-				525EB3571DBDE1C100E8B246 /* Integer+RandomKit.swift in Sources */,
 				525EB2C31DBD696B00E8B246 /* Random.swift in Sources */,
+				52737E241DBEBEED009B5E9D /* UnicodeScalar+RandomKit.swift in Sources */,
 				525EB3661DBDE78300E8B246 /* RandomThroughMax.swift in Sources */,
-				525EB3061DBD697200E8B246 /* Collection+RandomKit.swift in Sources */,
+				52737E3A1DBEBEF8009B5E9D /* NSNumber+RandomKit.swift in Sources */,
 				523D8B231DBEADD1006FF58C /* CGVector+RandomKit.swift in Sources */,
 				525EB2C71DBD696B00E8B246 /* Shuffleable.swift in Sources */,
-				523D8B021DBEAB0F006FF58C /* FloatingPoint+RandomKit.swift in Sources */,
-				525EB2E21DBD697200E8B246 /* Array+RandomKit.swift in Sources */,
+				52737E001DBEBEED009B5E9D /* Bool+RandomKit.swift in Sources */,
+				52737E2E1DBEBEF8009B5E9D /* CharacterSet+RandomKit.swift in Sources */,
 				523D8B131DBEADD1006FF58C /* CGFloat+RandomKit.swift in Sources */,
-				525EB3261DBD697200E8B246 /* NSNumber+RandomKit.swift in Sources */,
+				52737E081DBEBEED009B5E9D /* Collection+RandomKit.swift in Sources */,
+				52737E361DBEBEF8009B5E9D /* Date+RandomKit.swift in Sources */,
+				52737E041DBEBEED009B5E9D /* Character+RandomKit.swift in Sources */,
 				523D8B051DBEAC19006FF58C /* RandomWithinRange.swift in Sources */,
 				523D8B091DBEAC1E006FF58C /* RandomWithinClosedRange.swift in Sources */,
-				525EB32A1DBD697200E8B246 /* Sequence+RandomKit.swift in Sources */,
-				525EB30E1DBD697200E8B246 /* Date+RandomKit.swift in Sources */,
+				52737E0C1DBEBEED009B5E9D /* Dictionary+RandomKit.swift in Sources */,
 				525EB36B1DBE70CE00E8B246 /* RandomWithMin.swift in Sources */,
 				525EB3521DBDDF5700E8B246 /* RandomWithMax.swift in Sources */,
 				523D8B1F1DBEADD1006FF58C /* CGSize+RandomKit.swift in Sources */,
-				525EB3021DBD697200E8B246 /* CharacterSet+RandomKit.swift in Sources */,
 				523D8B171DBEADD1006FF58C /* CGPoint+RandomKit.swift in Sources */,
-				525EB2E61DBD697200E8B246 /* Bool+RandomKit.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -657,35 +673,35 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				525EB3331DBD697200E8B246 /* String+RandomKit.swift in Sources */,
-				525EB3131DBD697200E8B246 /* Dictionary+RandomKit.swift in Sources */,
-				525EB30B1DBD697200E8B246 /* Color+RandomKit.swift in Sources */,
-				525EB3371DBD697200E8B246 /* URL+RandomKit.swift in Sources */,
-				523D8B291DBEAF94006FF58C /* UnicodeScalar+RandomKit.swift in Sources */,
-				525EB32F1DBD697200E8B246 /* Set+RandomKit.swift in Sources */,
+				52737E111DBEBEED009B5E9D /* FloatingPoint+RandomKit.swift in Sources */,
+				52737E331DBEBEF8009B5E9D /* Color+RandomKit.swift in Sources */,
+				52737E3F1DBEBEF8009B5E9D /* URL+RandomKit.swift in Sources */,
+				52737E151DBEBEED009B5E9D /* Integer+RandomKit.swift in Sources */,
+				52737DFD1DBEBEED009B5E9D /* Array+RandomKit.swift in Sources */,
+				52737E1D1DBEBEED009B5E9D /* Set+RandomKit.swift in Sources */,
+				52737E191DBEBEED009B5E9D /* Sequence+RandomKit.swift in Sources */,
+				52737E211DBEBEED009B5E9D /* String+RandomKit.swift in Sources */,
 				523D8B1C1DBEADD1006FF58C /* CGRect+RandomKit.swift in Sources */,
-				525EB2FF1DBD697200E8B246 /* Character+RandomKit.swift in Sources */,
 				525EB3621DBDE70A00E8B246 /* RandomToMax.swift in Sources */,
-				525EB3581DBDE1C100E8B246 /* Integer+RandomKit.swift in Sources */,
 				525EB2C41DBD696B00E8B246 /* Random.swift in Sources */,
+				52737E251DBEBEED009B5E9D /* UnicodeScalar+RandomKit.swift in Sources */,
 				525EB3671DBDE78300E8B246 /* RandomThroughMax.swift in Sources */,
-				525EB3071DBD697200E8B246 /* Collection+RandomKit.swift in Sources */,
+				52737E3B1DBEBEF8009B5E9D /* NSNumber+RandomKit.swift in Sources */,
 				523D8B241DBEADD1006FF58C /* CGVector+RandomKit.swift in Sources */,
 				525EB2C81DBD696B00E8B246 /* Shuffleable.swift in Sources */,
-				523D8B031DBEAB0F006FF58C /* FloatingPoint+RandomKit.swift in Sources */,
-				525EB2E31DBD697200E8B246 /* Array+RandomKit.swift in Sources */,
+				52737E011DBEBEED009B5E9D /* Bool+RandomKit.swift in Sources */,
+				52737E2F1DBEBEF8009B5E9D /* CharacterSet+RandomKit.swift in Sources */,
 				523D8B141DBEADD1006FF58C /* CGFloat+RandomKit.swift in Sources */,
-				525EB3271DBD697200E8B246 /* NSNumber+RandomKit.swift in Sources */,
+				52737E091DBEBEED009B5E9D /* Collection+RandomKit.swift in Sources */,
+				52737E371DBEBEF8009B5E9D /* Date+RandomKit.swift in Sources */,
+				52737E051DBEBEED009B5E9D /* Character+RandomKit.swift in Sources */,
 				523D8B061DBEAC1A006FF58C /* RandomWithinRange.swift in Sources */,
 				523D8B0A1DBEAC1E006FF58C /* RandomWithinClosedRange.swift in Sources */,
-				525EB32B1DBD697200E8B246 /* Sequence+RandomKit.swift in Sources */,
-				525EB30F1DBD697200E8B246 /* Date+RandomKit.swift in Sources */,
+				52737E0D1DBEBEED009B5E9D /* Dictionary+RandomKit.swift in Sources */,
 				525EB36C1DBE70CE00E8B246 /* RandomWithMin.swift in Sources */,
 				525EB3531DBDDF5700E8B246 /* RandomWithMax.swift in Sources */,
 				523D8B201DBEADD1006FF58C /* CGSize+RandomKit.swift in Sources */,
-				525EB3031DBD697200E8B246 /* CharacterSet+RandomKit.swift in Sources */,
 				523D8B181DBEADD1006FF58C /* CGPoint+RandomKit.swift in Sources */,
-				525EB2E71DBD697200E8B246 /* Bool+RandomKit.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
