@@ -35,13 +35,13 @@ public protocol Random {
 
 extension Random {
 
-    /// Returns a generator for infinite random values of `Self`.
-    public static func randomGenerator() -> AnyIterator<Self> {
+    /// Returns an iterator for infinite random values of `Self`.
+    public static func randomIterator() -> AnyIterator<Self> {
         return AnyIterator { random() }
     }
 
-    /// Returns a generator for random values of `Self` within `maxCount`.
-    public static func randomGenerator(maxCount count: Int) -> AnyIterator<Self> {
+    /// Returns an iterator for random values of `Self` within `maxCount`.
+    public static func randomIterator(maxCount count: Int) -> AnyIterator<Self> {
         var n = 0
         return AnyIterator {
             defer { n += 1 }
@@ -51,12 +51,12 @@ extension Random {
 
     /// Returns a sequence of infinite random values of `Self`.
     public static func randomSequence() -> AnySequence<Self> {
-        return AnySequence(randomGenerator())
+        return AnySequence(randomIterator())
     }
 
     /// Returns a sequence of random values of `Self` within `maxCount`.
     public static func randomSequence(maxCount count: Int) -> AnySequence<Self> {
-        return AnySequence(randomGenerator(maxCount: count))
+        return AnySequence(randomIterator(maxCount: count))
     }
 
 }
