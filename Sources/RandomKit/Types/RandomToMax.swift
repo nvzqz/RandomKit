@@ -25,10 +25,10 @@
 //  THE SOFTWARE.
 //
 
-/// A type that can generate a random value limited to less than a max value.
+/// A type that can generate a random value less than a max value.
 public protocol RandomToMax: Random {
 
-    /// Generates a random value of `Self` limited to less than `max`.
+    /// Generates a random value of `Self` less than `max`.
     static func random(to max: Self) -> Self
 
 }
