@@ -1,5 +1,5 @@
 //
-//  UInt32+RandomKit.swift
+//  Integer+RandomKit.swift
 //  RandomKit
 //
 //  The MIT License (MIT)
@@ -27,12 +27,36 @@
 
 import Foundation
 
-extension UInt32: Random, RandomWithinRange, RandomWithinClosedRange {
+extension Integer where Self: Random {
 
     /// Generates a random value of `Self`.
-    public static func random() -> UInt32 {
-        return random(within: 0 ... .max)
+    public static func random() -> Self {
+        var value: Self = 0
+        arc4random_buf(&value, MemoryLayout<Self>.size)
+        return value
     }
+
+}
+
+extension Int : Random, RandomWithinRange, RandomWithinClosedRange {
+
+    /// Returns an optional random value of `Self` inside of the range.
+    public static func random(within range: Range<Int>) -> Int? {
+        guard range.lowerBound != range.upperBound else {
+            return nil
+        }
+        return range.lowerBound + Int(arc4random_uniform(UInt32(range.upperBound - range.lowerBound)))
+    }
+
+    /// Returns a random value of `Self` inside of the closed range.
+    public static func random(within closedRange: ClosedRange<Int>) -> Int {
+        let value = Int(arc4random_uniform(UInt32(closedRange.upperBound - closedRange.lowerBound + 1)))
+        return closedRange.lowerBound + value
+    }
+
+}
+
+extension UInt32: Random, RandomWithinRange, RandomWithinClosedRange {
 
     /// Returns an optional random value of `Self` inside of the range.
     public static func random(within range: Range<UInt32>) -> UInt32? {
