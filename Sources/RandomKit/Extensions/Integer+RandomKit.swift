@@ -49,11 +49,6 @@ extension Integer where Self: RandomToMax & RandomThroughMax {
 
 extension SignedInteger where Self: RandomToMax {
 
-    /// The random base from which to generate.
-    public static var randomBase: Self {
-        return 0
-    }
-
     /// Generates a random value of `Self` from `randomBase` to `max`.
     public static func random(to max: Self) -> Self {
         if max == randomBase {
