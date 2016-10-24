@@ -29,14 +29,15 @@ extension Dictionary: Shuffleable {
 
     /// Shuffles the elements in `self` and returns the result.
     public func shuffled() -> Dictionary {
-        let values = Array(self.values).shuffled()
-        return zip(keys, values).reduce(Dictionary(minimumCapacity: values.count)) { (dict, pair) in
-            var mutableDict = dict
+        var copy = self
+        copy.shuffle()
+        return copy
+    }
 
-            let (key, value) = pair
-            mutableDict[key] = value
-
-            return mutableDict
+    /// Shuffles the elements in `self`.
+    public mutating func shuffle() {
+        for (key, value) in zip(keys, Array(values).shuffled()) {
+            self[key] = value
         }
     }
 
