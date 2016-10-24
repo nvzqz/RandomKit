@@ -25,11 +25,13 @@
 //  THE SOFTWARE.
 //
 
+import Foundation
+
 extension Bool: RandomProtocol {
 
     /// Generates a random `Bool`.
     public static func random() -> Bool {
-        return Int.random(within: 0...1) == 0
+        return arc4random_uniform(2) == 0
     }
 
 }
