@@ -45,27 +45,23 @@ extension Dictionary: Shuffleable {
 
 extension Dictionary where Key: RandomProtocol, Value: RandomProtocol {
 
-    fileprivate init(_ randomCount: Int, _ keys: AnySequence<Key>, _ values: AnySequence<Value>, _ keyGenerator: @autoclosure() -> Key) {
-        self = zip(keys, values).reduce(Dictionary(minimumCapacity: randomCount)) { (dict, pair) in
-            var mutableDict = dict
-            var (key, value) = pair
-
-            while dict[key] != nil { // in case of duplicate key
+    fileprivate init(_ randomCount: Int, _ keys: AnySequence<Key>, _ values: AnySequence<Value>, _ keyGenerator: @autoclosure () -> Key) {
+        self.init(minimumCapacity: randomCount)
+        for (key, value) in zip(keys, values) {
+            var key = key
+            while case .some = self[key] {
                 key = keyGenerator()
             }
-            mutableDict[key] = value
-
-            return mutableDict
+            self[key] = value
         }
     }
 
     /// Construct a Dictionary of random elements.
     public init(randomCount: Int) {
-        self.init(
-            randomCount,
-            Key.randomSequence(maxCount: randomCount),
-            Value.randomSequence(maxCount: randomCount),
-            Key.random())
+        self.init(randomCount,
+                  Key.randomSequence(maxCount: randomCount),
+                  Value.randomSequence(maxCount: randomCount),
+                  Key.random())
     }
 
 }
@@ -77,11 +73,10 @@ extension Dictionary where Key: RandomWithinClosedRange, Value: RandomWithinClos
     /// - Precondition: Number of elements within `keyRange` >= `randomCount`.
     ///
     public init(randomCount: Int, _ keyRange: ClosedRange<Key>, _ valueRange: ClosedRange<Value>) {
-        self.init(
-            randomCount,
-            Key.randomSequence(within: keyRange, maxCount: randomCount),
-            Value.randomSequence(within: valueRange, maxCount: randomCount),
-            Key.random(within: keyRange))
+        self.init(randomCount,
+                  Key.randomSequence(within: keyRange, maxCount: randomCount),
+                  Value.randomSequence(within: valueRange, maxCount: randomCount),
+                  Key.random(within: keyRange))
     }
 
 }
