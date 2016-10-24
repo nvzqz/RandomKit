@@ -25,36 +25,24 @@
 //  THE SOFTWARE.
 //
 
-import Foundation
-
-extension Character : Random, RandomWithinClosedRange {
+extension Character: Random, RandomWithinClosedRange {
 
     /// Generates a random `Character`.
     ///
-    /// - Returns: Random value within `" "..."~"`.
+    /// - Returns: Random value within `" "..."~"` from `UnicodeScalar.random()`.
     public static func random() -> Character {
-        return random(within: " "..."~")
+        return Character(UnicodeScalar.random())
     }
 
     /// Returns a random value of `Self` inside of the closed range.
     public static func random(within closedRange: ClosedRange<Character>) -> Character {
-        var randomValue: UInt32 {
-            let start   = closedRange.lowerBound.scalar.value
-            let end     = closedRange.upperBound.scalar.value
-            let greater = max(start, end)
-            let lesser  = min(start, end)
-            return lesser + arc4random_uniform(greater - lesser + 1)
-        }
-        return Character(UnicodeScalar(randomValue)!)
+        let lower = closedRange.lowerBound._scalar
+        let upper = closedRange.upperBound._scalar
+        return Character(UnicodeScalar.random(within: lower...upper))
     }
 
-    private var scalar: UnicodeScalar {
-        get {
-            return String(self).unicodeScalars.first!
-        }
-        mutating set {
-            self = Character(newValue)
-        }
+    private var _scalar: UnicodeScalar {
+        return String(self).unicodeScalars.first!
     }
 
 }
