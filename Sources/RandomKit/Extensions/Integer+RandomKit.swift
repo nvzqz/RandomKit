@@ -38,13 +38,22 @@ extension Integer where Self: Random {
 
 }
 
+extension Integer where Self: RandomToMax & RandomThroughMax {
+
+    /// The random base from which to generate.
+    public static var randomBase: Self {
+        return 0
+    }
+
+}
+
 extension UnsignedInteger where Self: RandomToMax {
 
-    /// Generates a random value of `Self` less than `max`.
+    /// Generates a random value of `Self` from `randomBase` to `max`.
     public static func random(to max: Self) -> Self {
         switch max {
-        case 0:
-            return 0
+        case randomBase:
+            return max
         default:
             return random() % max
         }
@@ -66,11 +75,11 @@ extension UnsignedInteger where Self: RandomToMax & RandomWithinRange {
 
 extension UnsignedInteger where Self: RandomWithMax & RandomThroughMax {
 
-    /// Generates a random value of `Self` less than or equal to `max`.
+    /// Generates a random value of `Self` from `randomBase` through `max`.
     public static func random(through max: Self) -> Self {
         switch max {
-        case 0:
-            return 0
+        case randomBase:
+            return max
         case Self.max:
             return random()
         default:

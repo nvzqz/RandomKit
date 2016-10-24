@@ -28,7 +28,10 @@
 /// A type that can generate a random value less than a max value.
 public protocol RandomToMax: Random {
 
-    /// Generates a random value of `Self` less than `max`.
+    /// The random base from which to generate.
+    static var randomBase: Self { get }
+
+    /// Generates a random value of `Self` from `randomBase` to `max`.
     static func random(to max: Self) -> Self
 
 }

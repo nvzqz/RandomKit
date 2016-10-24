@@ -28,7 +28,10 @@
 /// A type that can generate a random value less than or equal to a max value.
 public protocol RandomThroughMax: Random {
 
-    /// Generates a random value of `Self` less than or equal to `max`.
+    /// The random base from which to generate.
+    static var randomBase: Self { get }
+
+    /// Generates a random value of `Self` from `randomBase` through `max`.
     static func random(through max: Self) -> Self
 
 }
