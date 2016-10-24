@@ -29,14 +29,18 @@ extension Array: ShuffleProtocol {
 
     /// Shuffles the elements in `self` and returns the result.
     public func shuffled() -> Array {
-        return indices.reduce(self) { (array, i) in
-			var mutableArray = array
+        var copy = self
+        copy.shuffle()
+        return copy
+    }
 
+    /// Shuffles the elements in `self`.
+    public mutating func shuffle() {
+        for i in indices {
             let j = Int.random(within: startIndex ... endIndex - 1)
             if j != i {
-				swap(&mutableArray[i], &mutableArray[j])
-			}
-            return mutableArray
+                swap(&self[i], &self[j])
+            }
         }
     }
 
