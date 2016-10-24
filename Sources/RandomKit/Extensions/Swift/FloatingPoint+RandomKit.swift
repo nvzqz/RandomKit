@@ -35,7 +35,7 @@ extension FloatingPoint where Self: RandomWithinClosedRange {
     /// Returns a random value of `Self` inside of the closed range.
     public static func random(within closedRange: ClosedRange<Self>) -> Self {
         let multiplier = closedRange.upperBound - closedRange.lowerBound
-        return closedRange.lowerBound + multiplier * (Self(Int.random()) / Self(Int.max))
+        return closedRange.lowerBound + multiplier * (Self(Int.random(through: .max)) / Self(Int.max))
     }
 
 }
