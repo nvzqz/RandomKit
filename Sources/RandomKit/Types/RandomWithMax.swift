@@ -29,6 +29,6 @@
 public protocol RandomWithMax: Random {
 
     /// Generates a random value of `Self` limited to `max`.
-    func random(withMax max: Self) -> Self
+    static func random(withMax max: Self) -> Self
 
 }
