@@ -38,6 +38,36 @@ extension Integer where Self: Random {
 
 }
 
+extension UnsignedInteger where Self: RandomToMax {
+
+    /// Generates a random value of `Self` less than `max`.
+    public static func random(to max: Self) -> Self {
+        switch max {
+        case 0:
+            return 0
+        default:
+            return random() % max
+        }
+    }
+
+}
+
+extension UnsignedInteger where Self: RandomWithMax & RandomThroughMax {
+
+    /// Generates a random value of `Self` less than or equal to `max`.
+    public static func random(through max: Self) -> Self {
+        switch max {
+        case 0:
+            return 0
+        case Self.max:
+            return random()
+        default:
+            return random() % (max + 1)
+        }
+    }
+
+}
+
 extension Int : Random, RandomWithinRange, RandomWithinClosedRange {
 
     /// Returns an optional random value of `Self` inside of the range.
@@ -56,7 +86,13 @@ extension Int : Random, RandomWithinRange, RandomWithinClosedRange {
 
 }
 
-extension UInt32: Random, RandomWithinRange, RandomWithinClosedRange {
+extension UInt: Random, RandomWithMax, RandomToMax, RandomThroughMax {
+}
+
+extension UInt64: Random, RandomWithMax,RandomToMax, RandomThroughMax {
+}
+
+extension UInt32: Random, RandomWithMax, RandomToMax, RandomThroughMax, RandomWithinRange, RandomWithinClosedRange {
 
     /// Returns an optional random value of `Self` inside of the range.
     public static func random(within range: Range<UInt32>) -> UInt32? {
@@ -75,4 +111,10 @@ extension UInt32: Random, RandomWithinRange, RandomWithinClosedRange {
         return Bool.random() ? value : value + 1
     }
 
+}
+
+extension UInt16: Random, RandomWithMax, RandomToMax, RandomThroughMax {
+}
+
+extension UInt8: Random, RandomWithMax, RandomToMax, RandomThroughMax {
 }
