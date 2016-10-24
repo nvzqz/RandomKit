@@ -144,7 +144,7 @@ extension UnsignedInteger where Self: RandomThroughMax & RandomWithinClosedRange
 
 }
 
-extension Int : Random, RandomWithinRange, RandomWithinClosedRange {
+extension Int : Random, RandomWithinRange {
 
     /// Returns an optional random value of `Self` inside of the range.
     public static func random(within range: Range<Int>) -> Int? {
@@ -154,40 +154,99 @@ extension Int : Random, RandomWithinRange, RandomWithinClosedRange {
         return range.lowerBound + Int(arc4random_uniform(UInt32(range.upperBound - range.lowerBound)))
     }
 
+}
+
+extension Int: RandomWithMax, RandomWithMin, RandomToMax, RandomThroughMax, RandomWithinClosedRange {
+
     /// Returns a random value of `Self` inside of the closed range.
     public static func random(within closedRange: ClosedRange<Int>) -> Int {
-        let value = Int(arc4random_uniform(UInt32(closedRange.upperBound - closedRange.lowerBound + 1)))
-        return closedRange.lowerBound + value
+        let lo = UInt(bitPattern: closedRange.lowerBound)._resigned
+        let hi = UInt(bitPattern: closedRange.upperBound)._resigned
+        return Int(bitPattern: UInt.random(within: lo...hi)._resigned)
     }
 
 }
 
-extension Int: RandomWithMax, RandomWithMin, RandomToMax, RandomThroughMax {
+extension Int64: RandomWithMax, RandomWithMin, RandomToMax, RandomThroughMax, RandomWithinClosedRange {
+
+    /// Returns a random value of `Self` inside of the closed range.
+    public static func random(within closedRange: ClosedRange<Int64>) -> Int64 {
+        let lo = UInt64(bitPattern: closedRange.lowerBound)._resigned
+        let hi = UInt64(bitPattern: closedRange.upperBound)._resigned
+        return Int64(bitPattern: UInt64.random(within: lo...hi)._resigned)
+    }
+
 }
 
-extension Int64: RandomWithMax, RandomWithMin, RandomToMax, RandomThroughMax {
+extension Int32: RandomWithMax, RandomWithMin, RandomToMax, RandomThroughMax, RandomWithinClosedRange {
+
+    /// Returns a random value of `Self` inside of the closed range.
+    public static func random(within closedRange: ClosedRange<Int32>) -> Int32 {
+        let lo = UInt32(bitPattern: closedRange.lowerBound)._resigned
+        let hi = UInt32(bitPattern: closedRange.upperBound)._resigned
+        return Int32(bitPattern: UInt32.random(within: lo...hi)._resigned)
+    }
+
 }
 
-extension Int32: RandomWithMax, RandomWithMin, RandomToMax, RandomThroughMax {
+extension Int16: RandomWithMax, RandomWithMin, RandomToMax, RandomThroughMax, RandomWithinClosedRange {
+
+    /// Returns a random value of `Self` inside of the closed range.
+    public static func random(within closedRange: ClosedRange<Int16>) -> Int16 {
+        let lo = UInt16(bitPattern: closedRange.lowerBound)._resigned
+        let hi = UInt16(bitPattern: closedRange.upperBound)._resigned
+        return Int16(bitPattern: UInt16.random(within: lo...hi)._resigned)
+    }
+
 }
 
-extension Int16: RandomWithMax, RandomWithMin, RandomToMax, RandomThroughMax {
-}
+extension Int8: RandomWithMax, RandomWithMin, RandomToMax, RandomThroughMax, RandomWithinClosedRange {
 
-extension Int8: RandomWithMax, RandomWithMin, RandomToMax, RandomThroughMax {
+    /// Returns a random value of `Self` inside of the closed range.
+    public static func random(within closedRange: ClosedRange<Int8>) -> Int8 {
+        let lo = UInt8(bitPattern: closedRange.lowerBound)._resigned
+        let hi = UInt8(bitPattern: closedRange.upperBound)._resigned
+        return Int8(bitPattern: UInt8.random(within: lo...hi)._resigned)
+    }
+
 }
 
 extension UInt: RandomWithMax, RandomWithMin, RandomToMax, RandomThroughMax, RandomWithinRange, RandomWithinClosedRange {
+
+    fileprivate var _resigned: UInt {
+        return UInt(UIntMax(self)._resigned)
+    }
+
 }
 
 extension UInt64: RandomWithMax, RandomWithMin, RandomToMax, RandomThroughMax, RandomWithinRange, RandomWithinClosedRange {
+
+    fileprivate var _resigned: UInt64 {
+        return self ^ (1 << 63)
+    }
+
 }
 
 extension UInt32: RandomWithMax, RandomWithMin, RandomToMax, RandomThroughMax, RandomWithinRange, RandomWithinClosedRange {
+
+    fileprivate var _resigned: UInt32 {
+        return self ^ (1 << 31)
+    }
+
 }
 
 extension UInt16: RandomWithMax, RandomWithMin, RandomToMax, RandomThroughMax, RandomWithinRange, RandomWithinClosedRange {
+
+    fileprivate var _resigned: UInt16 {
+        return self ^ (1 << 15)
+    }
+
 }
 
 extension UInt8: RandomWithMax, RandomWithMin, RandomToMax, RandomThroughMax, RandomWithinRange, RandomWithinClosedRange {
+
+    fileprivate var _resigned: UInt8 {
+        return self ^ (1 << 7)
+    }
+
 }
