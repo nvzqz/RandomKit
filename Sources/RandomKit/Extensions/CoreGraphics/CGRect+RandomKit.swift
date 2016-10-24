@@ -1,5 +1,5 @@
 //
-//  CGSize+RandomKit.swift
+//  CGRect+RandomKit.swift
 //  RandomKit
 //
 //  The MIT License (MIT)
@@ -25,24 +25,35 @@
 //  THE SOFTWARE.
 //
 
+#if os(OSX) || os(iOS) || os(watchOS) || os(tvOS)
+
 import CoreGraphics
 
-extension CGSize: Random {
+extension CGRect: Random {
 
-    /// Generates a random `CGSize`.
+    /// Generates a random `CGRect`.
     ///
-    /// - Returns: Random value within `0...100` for both `width` and `height`.
-    public static func random() -> CGSize {
-        return random(within: 0...100, 0...100)
+    /// - Returns: Random value from random `CGPoint` and `CGSize`.
+    public static func random() -> CGRect {
+        return CGRect(origin: .random(), size: .random())
     }
 
-    /// Generates a random `CGSize` within the closed ranges.
+    /// Generates a random `CGRect` within the closed ranges.
     ///
-    /// - parameter widthRange: The range within which `width` will be generated.
-    /// - parameter heightRange: The range within which `height` will be generated.
-    public static func random(within widthRange: ClosedRange<CGFloat.NativeType>,
-                              _ heightRange: ClosedRange<CGFloat.NativeType>) -> CGSize {
-        return CGSize(width: CGFloat.random(within: widthRange), height: CGFloat.random(within: heightRange))
+    /// - Parameters:
+    ///     - xRange: The range within which `x` will be generated.
+    ///     - yRange: The range within which `y` will be generated.
+    ///     - widthRange: The range within which `width` will be generated.
+    ///     - heightRange: The range within which `height` will be generated.
+    public static func random(
+        within xRange: ClosedRange<CGFloat.NativeType>,
+        _ yRange:      ClosedRange<CGFloat.NativeType>,
+        _ widthRange:  ClosedRange<CGFloat.NativeType>,
+        _ heightRange: ClosedRange<CGFloat.NativeType>)
+    -> CGRect {
+        return CGRect(origin: .random(within: xRange, yRange), size: .random(within: widthRange, heightRange))
     }
 
 }
+
+#endif

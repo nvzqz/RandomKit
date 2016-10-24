@@ -1,5 +1,5 @@
 //
-//  CGPoint+RandomKit.swift
+//  CGSize+RandomKit.swift
 //  RandomKit
 //
 //  The MIT License (MIT)
@@ -25,25 +25,28 @@
 //  THE SOFTWARE.
 //
 
+#if os(OSX) || os(iOS) || os(watchOS) || os(tvOS)
+
 import CoreGraphics
 
-extension CGPoint: Random {
+extension CGSize: Random {
 
-    /// Generates a random `CGPoint`.
+    /// Generates a random `CGSize`.
     ///
-    /// - Returns: Random value within `0...100` for both `x` and `y`.
-    public static func random() -> CGPoint {
+    /// - Returns: Random value within `0...100` for both `width` and `height`.
+    public static func random() -> CGSize {
         return random(within: 0...100, 0...100)
     }
 
-    /// Generates a random `CGPoint` within the closed ranged.
+    /// Generates a random `CGSize` within the closed ranges.
     ///
-    /// - Parameters:
-    ///     - xRange: The range within which `x` will be generated.
-    ///     - yRange: The range within which `y` will be generated.
-    public static func random(within xRange: ClosedRange<CGFloat.NativeType>,
-                              _ yRange: ClosedRange<CGFloat.NativeType>) -> CGPoint {
-        return CGPoint(x: CGFloat.random(within: xRange), y: CGFloat.random(within: yRange))
+    /// - parameter widthRange: The range within which `width` will be generated.
+    /// - parameter heightRange: The range within which `height` will be generated.
+    public static func random(within widthRange: ClosedRange<CGFloat.NativeType>,
+                              _ heightRange: ClosedRange<CGFloat.NativeType>) -> CGSize {
+        return CGSize(width: CGFloat.random(within: widthRange), height: CGFloat.random(within: heightRange))
     }
 
 }
+
+#endif

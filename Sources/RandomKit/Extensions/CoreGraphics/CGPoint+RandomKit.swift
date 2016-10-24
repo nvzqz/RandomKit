@@ -1,5 +1,5 @@
 //
-//  CGRect+RandomKit.swift
+//  CGPoint+RandomKit.swift
 //  RandomKit
 //
 //  The MIT License (MIT)
@@ -25,31 +25,29 @@
 //  THE SOFTWARE.
 //
 
+#if os(OSX) || os(iOS) || os(watchOS) || os(tvOS)
+
 import CoreGraphics
 
-extension CGRect: Random {
+extension CGPoint: Random {
 
-    /// Generates a random `CGRect`.
+    /// Generates a random `CGPoint`.
     ///
-    /// - Returns: Random value from random `CGPoint` and `CGSize`.
-    public static func random() -> CGRect {
-        return CGRect(origin: .random(), size: .random())
+    /// - Returns: Random value within `0...100` for both `x` and `y`.
+    public static func random() -> CGPoint {
+        return random(within: 0...100, 0...100)
     }
 
-    /// Generates a random `CGRect` within the closed ranges.
+    /// Generates a random `CGPoint` within the closed ranged.
     ///
     /// - Parameters:
     ///     - xRange: The range within which `x` will be generated.
     ///     - yRange: The range within which `y` will be generated.
-    ///     - widthRange: The range within which `width` will be generated.
-    ///     - heightRange: The range within which `height` will be generated.
-    public static func random(
-        within xRange: ClosedRange<CGFloat.NativeType>,
-        _ yRange:      ClosedRange<CGFloat.NativeType>,
-        _ widthRange:  ClosedRange<CGFloat.NativeType>,
-        _ heightRange: ClosedRange<CGFloat.NativeType>)
-    -> CGRect {
-        return CGRect(origin: .random(within: xRange, yRange), size: .random(within: widthRange, heightRange))
+    public static func random(within xRange: ClosedRange<CGFloat.NativeType>,
+                              _ yRange: ClosedRange<CGFloat.NativeType>) -> CGPoint {
+        return CGPoint(x: CGFloat.random(within: xRange), y: CGFloat.random(within: yRange))
     }
 
 }
+
+#endif

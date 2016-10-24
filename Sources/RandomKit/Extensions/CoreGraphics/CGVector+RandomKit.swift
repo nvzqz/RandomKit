@@ -1,5 +1,5 @@
 //
-//  CGFloat+RandomKit.swift
+//  CGVector+RandomKit.swift
 //  RandomKit
 //
 //  The MIT License (MIT)
@@ -25,15 +25,30 @@
 //  THE SOFTWARE.
 //
 
+#if os(OSX) || os(iOS) || os(watchOS) || os(tvOS)
+
 import CoreGraphics
 
-extension CGFloat: Random, RandomWithinClosedRange {
+extension CGVector: Random {
 
-    /// Generates a random `CGFloat` within the closed range.
+    /// Generates a random `CGVector`.
     ///
-    /// - parameter closedRange: The range within which the number will be generated.
-    public static func random(within closedRange: ClosedRange<NativeType>) -> CGFloat {
-        return CGFloat(NativeType.random(within: closedRange))
+    /// - Returns: Random value within `0...100` for both `dx` and `dy`.
+    public static func random() -> CGVector {
+        return random(within: 0...100, 0...100)
+    }
+
+    /// Generates a random `CGVector` within the closed ranges.
+    ///
+    /// - parameter dxRange: The range within which `dx` will be generated.
+    /// - parameter dyRange: The range within which `dy` will be generated.
+    public static func random(within dxRange: ClosedRange<CGFloat.NativeType>,
+                              _ dyRange: ClosedRange<CGFloat.NativeType>) -> CGVector {
+        let rx = CGFloat.NativeType.random(within: dxRange)
+        let ry = CGFloat.NativeType.random(within: dyRange)
+        return CGVector(dx: CGFloat(rx), dy: CGFloat(ry))
     }
 
 }
+
+#endif
