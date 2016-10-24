@@ -28,24 +28,19 @@
 extension Set where Element: RandomProtocol {
 
     fileprivate init(_ randomCount: Int, _ sequence: AnySequence<Element>, _ elementGenerator: @autoclosure () -> Element) {
-        self = sequence.reduce(Set(minimumCapacity: randomCount)) { (set, element) in
-			var mutableSet = set
-			var mutableElement = element
-
-            while set.contains(mutableElement) { mutableElement = elementGenerator() }
-            mutableSet.insert(mutableElement)
-
-			return mutableSet
+        self.init(minimumCapacity: randomCount)
+        for element in sequence {
+            var element = element
+            while self.contains(element) {
+                element = elementGenerator()
+            }
+            insert(element)
         }
     }
 
     /// Construct a Set of random elements.
     public init(randomCount: Int) {
-        self.init(
-            randomCount,
-            Element.randomSequence(maxCount: randomCount),
-            Element.random()
-        )
+        self.init(randomCount, Element.randomSequence(maxCount: randomCount), Element.random())
     }
 
 }
@@ -57,11 +52,9 @@ extension Set where Element: RandomWithinClosedRange {
     /// - Precondition: Number of elements within `closedRange` >= `randomCount`.
     ///
     public init(randomCount: Int, within closedRange: ClosedRange<Element>) {
-        self.init(
-            randomCount,
-            Element.randomSequence(within: closedRange, maxCount: randomCount),
-            Element.random(within: closedRange)
-        )
+        self.init(randomCount,
+                  Element.randomSequence(within: closedRange, maxCount: randomCount),
+                  Element.random(within: closedRange))
     }
 
 }
