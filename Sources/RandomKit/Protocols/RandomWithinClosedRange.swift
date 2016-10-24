@@ -64,3 +64,12 @@ extension RandomWithinClosedRange {
     }
 
 }
+
+extension RandomWithinClosedRange where Self: _Strideable & Comparable, Self.Stride : SignedInteger {
+
+    /// Returns a random value of `Self` inside of the closed range.
+    public static func random(within closedRange: CountableClosedRange<Self>) -> Self {
+        return random(within: ClosedRange(closedRange))
+    }
+
+}

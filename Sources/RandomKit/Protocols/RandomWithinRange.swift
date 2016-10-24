@@ -32,3 +32,12 @@ public protocol RandomWithinRange: RandomProtocol, Comparable {
     static func random(within range: Range<Self>) -> Self?
 
 }
+
+extension RandomWithinRange where Self: _Strideable & Comparable, Self.Stride : SignedInteger {
+
+    /// Returns an optional random value of `Self` inside of the range.
+    static func random(within range: CountableRange<Self>) -> Self? {
+        return random(within: Range(range))
+    }
+
+}
