@@ -31,17 +31,23 @@ extension String: Random {
     ///
     /// - Returns: Random value within `" "..."~"` with length of `10`.
     public static func random() -> String {
-        return random(ofLength: 10, within: " "..."~")
+        var result = ""
+        for _ in 0 ..< 10 {
+            result.append(Character.random())
+        }
+        return result
     }
 
     /// Generates a random `String` of a given length inside of the closed range.
     ///
-    /// - Parameter length: The length for the generated string. Default value is `10`.
+    /// - parameter length: The length for the generated string. Default value is `10`.
     /// - parameter closedRange: The range within which the string will be generated.
     public static func random(ofLength length: UInt = 10, within closedRange: ClosedRange<Character>) -> String {
-        return (0 ..< length).reduce("") { value, _ in
-            value + String(Character.random(within: closedRange))
+        var result = ""
+        for _ in 0 ..< length {
+            result.append(Character.random(within: closedRange))
         }
+        return result
     }
 
 }
