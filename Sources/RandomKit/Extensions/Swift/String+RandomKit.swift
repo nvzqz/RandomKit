@@ -50,6 +50,18 @@ extension String: Random {
         return result
     }
 
+    /// Generates a random `String` of a given length inside of the closed range.
+    ///
+    /// - parameter length: The length for the generated string. Default value is `10`.
+    /// - parameter closedRange: The range within which the string will be generated.
+    public static func random(ofLength length: UInt = 10, within closedRange: ClosedRange<UnicodeScalar>) -> String {
+        var result = ""
+        for _ in 0 ..< length {
+            result.unicodeScalars.append(.random(within: closedRange))
+        }
+        return result
+    }
+
 }
 
 extension String: Shuffleable {
