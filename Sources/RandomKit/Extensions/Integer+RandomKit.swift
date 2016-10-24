@@ -144,32 +144,32 @@ extension Int : Random, RandomWithinRange, RandomWithinClosedRange {
 
 }
 
-extension Int: RandomToMax {
+extension Int: RandomWithMax, RandomWithMin, RandomToMax {
 }
 
-extension Int64: RandomToMax {
+extension Int64: RandomWithMax, RandomWithMin, RandomToMax {
 }
 
-extension Int32: RandomToMax {
+extension Int32: RandomWithMax, RandomWithMin, RandomToMax {
 }
 
-extension Int16: RandomToMax {
+extension Int16: RandomWithMax, RandomWithMin, RandomToMax {
 }
 
-extension Int8: RandomToMax {
+extension Int8: RandomWithMax, RandomWithMin, RandomToMax {
 }
 
-extension UInt: RandomWithMax, RandomToMax, RandomThroughMax, RandomWithinRange, RandomWithinClosedRange {
+extension UInt: RandomWithMax, RandomWithMin, RandomToMax, RandomThroughMax, RandomWithinRange, RandomWithinClosedRange {
 }
 
-extension UInt64: RandomWithMax,RandomToMax, RandomThroughMax, RandomWithinRange, RandomWithinClosedRange {
+extension UInt64: RandomWithMax, RandomWithMin, RandomToMax, RandomThroughMax, RandomWithinRange, RandomWithinClosedRange {
 }
 
-extension UInt32: RandomWithMax, RandomToMax, RandomThroughMax, RandomWithinRange, RandomWithinClosedRange {
+extension UInt32: RandomWithMax, RandomWithMin, RandomToMax, RandomThroughMax, RandomWithinRange, RandomWithinClosedRange {
 }
 
-extension UInt16: RandomWithMax, RandomToMax, RandomThroughMax, RandomWithinRange, RandomWithinClosedRange {
+extension UInt16: RandomWithMax, RandomWithMin, RandomToMax, RandomThroughMax, RandomWithinRange, RandomWithinClosedRange {
 }
 
-extension UInt8: RandomWithMax, RandomToMax, RandomThroughMax, RandomWithinRange, RandomWithinClosedRange {
+extension UInt8: RandomWithMax, RandomWithMin, RandomToMax, RandomThroughMax, RandomWithinRange, RandomWithinClosedRange {
 }

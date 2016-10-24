@@ -117,6 +117,10 @@
 		525EB3651DBDE78300E8B246 /* RandomThroughMax.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525EB3631DBDE78300E8B246 /* RandomThroughMax.swift */; };
 		525EB3661DBDE78300E8B246 /* RandomThroughMax.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525EB3631DBDE78300E8B246 /* RandomThroughMax.swift */; };
 		525EB3671DBDE78300E8B246 /* RandomThroughMax.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525EB3631DBDE78300E8B246 /* RandomThroughMax.swift */; };
+		525EB3691DBE70CE00E8B246 /* RandomWithMin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525EB3681DBE70CE00E8B246 /* RandomWithMin.swift */; };
+		525EB36A1DBE70CE00E8B246 /* RandomWithMin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525EB3681DBE70CE00E8B246 /* RandomWithMin.swift */; };
+		525EB36B1DBE70CE00E8B246 /* RandomWithMin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525EB3681DBE70CE00E8B246 /* RandomWithMin.swift */; };
+		525EB36C1DBE70CE00E8B246 /* RandomWithMin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525EB3681DBE70CE00E8B246 /* RandomWithMin.swift */; };
 		528200F41BC9FA42001FDD58 /* RandomKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528200F31BC9FA42001FDD58 /* RandomKitTests.swift */; };
 		528200F61BC9FA42001FDD58 /* RandomKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 528200911BC9C4A2001FDD58 /* RandomKit.framework */; };
 /* End PBXBuildFile section */
@@ -164,6 +168,7 @@
 		525EB3541DBDE1C100E8B246 /* Integer+RandomKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Integer+RandomKit.swift"; sourceTree = "<group>"; };
 		525EB35E1DBDE70A00E8B246 /* RandomToMax.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RandomToMax.swift; sourceTree = "<group>"; };
 		525EB3631DBDE78300E8B246 /* RandomThroughMax.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RandomThroughMax.swift; sourceTree = "<group>"; };
+		525EB3681DBE70CE00E8B246 /* RandomWithMin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RandomWithMin.swift; sourceTree = "<group>"; };
 		528200911BC9C4A2001FDD58 /* RandomKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RandomKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5282009F1BC9C4B6001FDD58 /* RandomKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RandomKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		528200AC1BC9C4C0001FDD58 /* RandomKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RandomKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -227,6 +232,7 @@
 			children = (
 				525EB2BF1DBD696B00E8B246 /* Random.swift */,
 				525EB34F1DBDDF5700E8B246 /* RandomWithMax.swift */,
+				525EB3681DBE70CE00E8B246 /* RandomWithMin.swift */,
 				525EB35E1DBDE70A00E8B246 /* RandomToMax.swift */,
 				525EB3631DBDE78300E8B246 /* RandomThroughMax.swift */,
 				525EB3381DBD7A2100E8B246 /* RandomWithinRange.swift */,
@@ -532,6 +538,7 @@
 				525EB3101DBD697200E8B246 /* Dictionary+RandomKit.swift in Sources */,
 				525EB3391DBD7A2100E8B246 /* RandomWithinRange.swift in Sources */,
 				525EB3081DBD697200E8B246 /* Color+RandomKit.swift in Sources */,
+				525EB3691DBE70CE00E8B246 /* RandomWithMin.swift in Sources */,
 				525EB3641DBDE78300E8B246 /* RandomThroughMax.swift in Sources */,
 				525EB2F01DBD697200E8B246 /* CGRect+RandomKit.swift in Sources */,
 				525EB3341DBD697200E8B246 /* URL+RandomKit.swift in Sources */,
@@ -586,6 +593,7 @@
 				525EB3291DBD697200E8B246 /* Sequence+RandomKit.swift in Sources */,
 				525EB30D1DBD697200E8B246 /* Date+RandomKit.swift in Sources */,
 				525EB2F91DBD697200E8B246 /* CGVector+RandomKit.swift in Sources */,
+				525EB36A1DBE70CE00E8B246 /* RandomWithMin.swift in Sources */,
 				525EB2ED1DBD697200E8B246 /* CGPoint+RandomKit.swift in Sources */,
 				525EB3511DBDDF5700E8B246 /* RandomWithMax.swift in Sources */,
 				525EB3011DBD697200E8B246 /* CharacterSet+RandomKit.swift in Sources */,
@@ -620,6 +628,7 @@
 				525EB32A1DBD697200E8B246 /* Sequence+RandomKit.swift in Sources */,
 				525EB30E1DBD697200E8B246 /* Date+RandomKit.swift in Sources */,
 				525EB2FA1DBD697200E8B246 /* CGVector+RandomKit.swift in Sources */,
+				525EB36B1DBE70CE00E8B246 /* RandomWithMin.swift in Sources */,
 				525EB2EE1DBD697200E8B246 /* CGPoint+RandomKit.swift in Sources */,
 				525EB3521DBDDF5700E8B246 /* RandomWithMax.swift in Sources */,
 				525EB3021DBD697200E8B246 /* CharacterSet+RandomKit.swift in Sources */,
@@ -662,6 +671,7 @@
 				525EB32B1DBD697200E8B246 /* Sequence+RandomKit.swift in Sources */,
 				525EB30F1DBD697200E8B246 /* Date+RandomKit.swift in Sources */,
 				525EB2FB1DBD697200E8B246 /* CGVector+RandomKit.swift in Sources */,
+				525EB36C1DBE70CE00E8B246 /* RandomWithMin.swift in Sources */,
 				525EB2EF1DBD697200E8B246 /* CGPoint+RandomKit.swift in Sources */,
 				525EB3531DBDDF5700E8B246 /* RandomWithMax.swift in Sources */,
 				525EB3031DBD697200E8B246 /* CharacterSet+RandomKit.swift in Sources */,
