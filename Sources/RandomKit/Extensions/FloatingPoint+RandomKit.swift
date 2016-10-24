@@ -1,5 +1,5 @@
 //
-//  Double+RandomKit.swift
+//  FloatingPoint+RandomKit.swift
 //  RandomKit
 //
 //  The MIT License (MIT)
@@ -25,20 +25,28 @@
 //  THE SOFTWARE.
 //
 
-import Foundation
+extension FloatingPoint where Self: RandomWithinClosedRange {
 
-extension Double : Random, RandomWithinClosedRange {
-
-    /// Generates a random `Double`.
-    ///
-    /// - Returns: Random value within `0.0...1.0`.
-    public static func random() -> Double {
-        return random(within: 0.0...1.0)
+    /// Generates a random value of `Self`.
+    public static func random() -> Self {
+        return random(within: 0...1)
     }
 
     /// Returns a random value of `Self` inside of the closed range.
-    public static func random(within closedRange: ClosedRange<Double>) -> Double {
-        return closedRange.lowerBound + (closedRange.upperBound - closedRange.lowerBound) * (Double(arc4random()) / Double(UInt32.max))
+    public static func random(within closedRange: ClosedRange<Self>) -> Self {
+        let multiplier = closedRange.upperBound - closedRange.lowerBound
+        return closedRange.lowerBound + multiplier * (Self(Int.random()) / Self(Int.max))
     }
 
 }
+
+extension Double: RandomWithinClosedRange {
+}
+
+extension Float: RandomWithinClosedRange {
+}
+
+#if os(OSX)
+extension Float80: RandomWithinClosedRange {
+}
+#endif
