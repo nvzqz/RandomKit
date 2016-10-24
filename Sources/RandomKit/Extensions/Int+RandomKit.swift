@@ -25,11 +25,7 @@
 //  THE SOFTWARE.
 //
 
-#if os(OSX) || os(iOS) || os(watchOS) || os(tvOS)
-    import Darwin
-#elseif os(Linux)
-    import Glibc
-#endif
+import Foundation
 
 extension Int : RandomProtocol, RandomWithinRange, RandomWithinClosedRange {
 
