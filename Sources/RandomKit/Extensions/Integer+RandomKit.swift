@@ -144,19 +144,17 @@ extension UnsignedInteger where Self: RandomThroughMax & RandomWithinClosedRange
 
 }
 
-extension Int : Random, RandomWithinRange {
+extension Int: RandomWithMax, RandomWithMin, RandomToMax, RandomThroughMax, RandomWithinRange, RandomWithinClosedRange {
 
     /// Returns an optional random value of `Self` inside of the range.
     public static func random(within range: Range<Int>) -> Int? {
-        guard range.lowerBound != range.upperBound else {
+        let lo = UInt(bitPattern: range.lowerBound)._resigned
+        let hi = UInt(bitPattern: range.upperBound)._resigned
+        guard let random = UInt.random(within: lo..<hi) else {
             return nil
         }
-        return range.lowerBound + Int(arc4random_uniform(UInt32(range.upperBound - range.lowerBound)))
+        return Int(bitPattern: random._resigned)
     }
-
-}
-
-extension Int: RandomWithMax, RandomWithMin, RandomToMax, RandomThroughMax, RandomWithinClosedRange {
 
     /// Returns a random value of `Self` inside of the closed range.
     public static func random(within closedRange: ClosedRange<Int>) -> Int {
@@ -167,7 +165,17 @@ extension Int: RandomWithMax, RandomWithMin, RandomToMax, RandomThroughMax, Rand
 
 }
 
-extension Int64: RandomWithMax, RandomWithMin, RandomToMax, RandomThroughMax, RandomWithinClosedRange {
+extension Int64: RandomWithMax, RandomWithMin, RandomToMax, RandomThroughMax, RandomWithinRange, RandomWithinClosedRange {
+
+    /// Returns an optional random value of `Self` inside of the range.
+    public static func random(within range: Range<Int64>) -> Int64? {
+        let lo = UInt64(bitPattern: range.lowerBound)._resigned
+        let hi = UInt64(bitPattern: range.upperBound)._resigned
+        guard let random = UInt64.random(within: lo..<hi) else {
+            return nil
+        }
+        return Int64(bitPattern: random._resigned)
+    }
 
     /// Returns a random value of `Self` inside of the closed range.
     public static func random(within closedRange: ClosedRange<Int64>) -> Int64 {
@@ -178,7 +186,17 @@ extension Int64: RandomWithMax, RandomWithMin, RandomToMax, RandomThroughMax, Ra
 
 }
 
-extension Int32: RandomWithMax, RandomWithMin, RandomToMax, RandomThroughMax, RandomWithinClosedRange {
+extension Int32: RandomWithMax, RandomWithMin, RandomToMax, RandomThroughMax, RandomWithinRange, RandomWithinClosedRange {
+
+    /// Returns an optional random value of `Self` inside of the range.
+    public static func random(within range: Range<Int32>) -> Int32? {
+        let lo = UInt32(bitPattern: range.lowerBound)._resigned
+        let hi = UInt32(bitPattern: range.upperBound)._resigned
+        guard let random = UInt32.random(within: lo..<hi) else {
+            return nil
+        }
+        return Int32(bitPattern: random._resigned)
+    }
 
     /// Returns a random value of `Self` inside of the closed range.
     public static func random(within closedRange: ClosedRange<Int32>) -> Int32 {
@@ -189,7 +207,17 @@ extension Int32: RandomWithMax, RandomWithMin, RandomToMax, RandomThroughMax, Ra
 
 }
 
-extension Int16: RandomWithMax, RandomWithMin, RandomToMax, RandomThroughMax, RandomWithinClosedRange {
+extension Int16: RandomWithMax, RandomWithMin, RandomToMax, RandomThroughMax, RandomWithinRange, RandomWithinClosedRange {
+
+    /// Returns an optional random value of `Self` inside of the range.
+    public static func random(within range: Range<Int16>) -> Int16? {
+        let lo = UInt16(bitPattern: range.lowerBound)._resigned
+        let hi = UInt16(bitPattern: range.upperBound)._resigned
+        guard let random = UInt16.random(within: lo..<hi) else {
+            return nil
+        }
+        return Int16(bitPattern: random._resigned)
+    }
 
     /// Returns a random value of `Self` inside of the closed range.
     public static func random(within closedRange: ClosedRange<Int16>) -> Int16 {
@@ -200,7 +228,17 @@ extension Int16: RandomWithMax, RandomWithMin, RandomToMax, RandomThroughMax, Ra
 
 }
 
-extension Int8: RandomWithMax, RandomWithMin, RandomToMax, RandomThroughMax, RandomWithinClosedRange {
+extension Int8: RandomWithMax, RandomWithMin, RandomToMax, RandomThroughMax, RandomWithinRange, RandomWithinClosedRange {
+
+    /// Returns an optional random value of `Self` inside of the range.
+    public static func random(within range: Range<Int8>) -> Int8? {
+        let lo = UInt8(bitPattern: range.lowerBound)._resigned
+        let hi = UInt8(bitPattern: range.upperBound)._resigned
+        guard let random = UInt8.random(within: lo..<hi) else {
+            return nil
+        }
+        return Int8(bitPattern: random._resigned)
+    }
 
     /// Returns a random value of `Self` inside of the closed range.
     public static func random(within closedRange: ClosedRange<Int8>) -> Int8 {
