@@ -43,7 +43,7 @@ extension Dictionary: Shuffleable {
 
 }
 
-extension Dictionary where Key: RandomProtocol, Value: RandomProtocol {
+extension Dictionary where Key: Random, Value: Random {
 
     fileprivate init(_ randomCount: Int, _ keys: AnySequence<Key>, _ values: AnySequence<Value>, _ keyGenerator: @autoclosure () -> Key) {
         self.init(minimumCapacity: randomCount)

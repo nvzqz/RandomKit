@@ -25,7 +25,7 @@
 //  THE SOFTWARE.
 //
 
-extension Set where Element: RandomProtocol {
+extension Set where Element: Random {
 
     fileprivate init(_ randomCount: Int, _ sequence: AnySequence<Element>, _ elementGenerator: @autoclosure () -> Element) {
         self.init(minimumCapacity: randomCount)

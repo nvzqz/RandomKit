@@ -25,7 +25,7 @@
 //  THE SOFTWARE.
 //
 
-extension String: RandomProtocol {
+extension String: Random {
 
     /// Generates a random `String`.
     ///

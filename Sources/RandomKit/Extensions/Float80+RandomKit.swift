@@ -29,7 +29,7 @@
 
 import Darwin
 
-extension Float80 : RandomProtocol, RandomWithinClosedRange {
+extension Float80 : Random, RandomWithinClosedRange {
 
     /// Generates a random `Float80`.
     ///

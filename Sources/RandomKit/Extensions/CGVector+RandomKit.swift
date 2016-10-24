@@ -27,7 +27,7 @@
 
 import CoreGraphics
 
-extension CGVector: RandomProtocol {
+extension CGVector: Random {
 
     /// Generates a random `CGVector`.
     ///

@@ -27,7 +27,7 @@
 
 import Foundation
 
-extension Int : RandomProtocol, RandomWithinRange, RandomWithinClosedRange {
+extension Int : Random, RandomWithinRange, RandomWithinClosedRange {
 
     /// Generates a random `Int`.
     ///

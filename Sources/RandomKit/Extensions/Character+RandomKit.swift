@@ -27,7 +27,7 @@
 
 import Foundation
 
-extension Character : RandomProtocol, RandomWithinClosedRange {
+extension Character : Random, RandomWithinClosedRange {
 
     /// Generates a random `Character`.
     ///

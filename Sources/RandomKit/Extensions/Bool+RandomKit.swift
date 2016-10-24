@@ -27,7 +27,7 @@
 
 import Foundation
 
-extension Bool: RandomProtocol {
+extension Bool: Random {
 
     /// Generates a random `Bool`.
     public static func random() -> Bool {

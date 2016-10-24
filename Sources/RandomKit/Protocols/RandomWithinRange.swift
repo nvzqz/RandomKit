@@ -26,7 +26,7 @@
 //
 
 /// A type that can generate an optional random value from within a range.
-public protocol RandomWithinRange: RandomProtocol, Comparable {
+public protocol RandomWithinRange: Random, Comparable {
 
     /// Returns an optional random value of `Self` inside of the range.
     static func random(within range: Range<Self>) -> Self?

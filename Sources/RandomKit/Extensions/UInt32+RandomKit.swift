@@ -27,7 +27,7 @@
 
 import Foundation
 
-extension UInt32: RandomProtocol, RandomWithinRange, RandomWithinClosedRange {
+extension UInt32: Random, RandomWithinRange, RandomWithinClosedRange {
 
     /// Generates a random value of `Self`.
     public static func random() -> UInt32 {

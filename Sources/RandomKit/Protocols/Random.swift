@@ -1,5 +1,5 @@
 //
-//  RandomProtocol.swift
+//  Random.swift
 //  RandomKit
 //
 //  The MIT License (MIT)
@@ -26,14 +26,14 @@
 //
 
 /// A type that can generate a random value.
-public protocol RandomProtocol {
+public protocol Random {
 
     /// Generates a random value of `Self`.
     static func random() -> Self
 
 }
 
-extension RandomProtocol {
+extension Random {
 
     /// Returns a generator for infinite random values of `Self`.
     public static func randomGenerator() -> AnyIterator<Self> {

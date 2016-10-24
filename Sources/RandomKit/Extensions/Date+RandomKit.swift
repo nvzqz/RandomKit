@@ -27,7 +27,7 @@
 
 import Foundation
 
-extension Date: RandomProtocol {
+extension Date: Random {
 
     /// Generates a random date.
     ///

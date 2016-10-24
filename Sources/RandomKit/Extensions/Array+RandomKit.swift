@@ -56,7 +56,7 @@ extension Array: Shuffleable {
 
 }
 
-extension Array where Element: RandomProtocol {
+extension Array where Element: Random {
 
     /// Construct an Array of random elements.
     public init(randomCount: Int) {
