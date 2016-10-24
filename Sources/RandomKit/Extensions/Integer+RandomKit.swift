@@ -101,6 +101,29 @@ extension UnsignedInteger where Self: RandomToMax & RandomWithinRange {
 
 }
 
+extension SignedInteger where Self: RandomWithMax & RandomWithMin & RandomThroughMax {
+
+    /// Generates a random value of `Self` from `randomBase` through `max`.
+    public static func random(through max: Self) -> Self {
+        if max == randomBase {
+            return max
+        } else if max < randomBase {
+            var random: Self
+            repeat {
+                random = self.random()
+            } while random > 0
+            return max == Self.min ? random : (random % (max - 1))
+        } else {
+            var random: Self
+            repeat {
+                random = self.random()
+            } while random < 0
+            return max == Self.max ? random : (random % (max + 1))
+        }
+    }
+
+}
+
 extension UnsignedInteger where Self: RandomWithMax & RandomThroughMax {
 
     /// Generates a random value of `Self` from `randomBase` through `max`.
@@ -144,19 +167,19 @@ extension Int : Random, RandomWithinRange, RandomWithinClosedRange {
 
 }
 
-extension Int: RandomWithMax, RandomWithMin, RandomToMax {
+extension Int: RandomWithMax, RandomWithMin, RandomToMax, RandomThroughMax {
 }
 
-extension Int64: RandomWithMax, RandomWithMin, RandomToMax {
+extension Int64: RandomWithMax, RandomWithMin, RandomToMax, RandomThroughMax {
 }
 
-extension Int32: RandomWithMax, RandomWithMin, RandomToMax {
+extension Int32: RandomWithMax, RandomWithMin, RandomToMax, RandomThroughMax {
 }
 
-extension Int16: RandomWithMax, RandomWithMin, RandomToMax {
+extension Int16: RandomWithMax, RandomWithMin, RandomToMax, RandomThroughMax {
 }
 
-extension Int8: RandomWithMax, RandomWithMin, RandomToMax {
+extension Int8: RandomWithMax, RandomWithMin, RandomToMax, RandomThroughMax {
 }
 
 extension UInt: RandomWithMax, RandomWithMin, RandomToMax, RandomThroughMax, RandomWithinRange, RandomWithinClosedRange {
