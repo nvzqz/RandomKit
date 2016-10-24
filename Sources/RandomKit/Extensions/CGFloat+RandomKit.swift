@@ -27,13 +27,19 @@
 
 import CoreGraphics
 
-extension CGFloat: Random {
+extension CGFloat: Random, RandomWithinClosedRange {
 
     /// Generates a random `CGFloat`.
     ///
     /// - Returns: Random value within `0.0...1.0`.
     public static func random() -> CGFloat {
         return random(within: 0.0...1.0)
+    }
+
+    /// Returns a random value of `Self` inside of the closed range.
+    public static func random(within closedRange: ClosedRange<CGFloat>) -> CGFloat {
+        return random(within: .init(uncheckedBounds: (closedRange.lowerBound.native,
+                                                      closedRange.upperBound.native)))
     }
 
     /// Generates a random `CGFloat` within the closed range.
