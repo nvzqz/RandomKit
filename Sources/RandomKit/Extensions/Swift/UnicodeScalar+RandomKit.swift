@@ -25,13 +25,31 @@
 //  THE SOFTWARE.
 //
 
-extension UnicodeScalar: Random, RandomWithinClosedRange {
+extension UnicodeScalar: Random, RandomWithinRange, RandomWithinClosedRange {
 
     /// Generates a random value of `Self`.
     ///
     /// The random value is within `32...126`, or `" "..."~"`.
     public static func random() -> UnicodeScalar {
         return random(within: 32...126)
+    }
+
+    /// Returns a random value of `Self` inside of the closed range.
+    public static func random(within range: Range<UnicodeScalar>) -> UnicodeScalar? {
+        guard range.lowerBound != range.upperBound else {
+            return nil
+        }
+        let lower = range.lowerBound.value
+        let upper = range.upperBound.value
+        if lower._isLowerRange && !upper._isLowerRange {
+            if Bool.random(), let value = UInt32.random(within: 0xE000 ..< upper) {
+                return UnicodeScalar(value)
+            } else {
+                return UnicodeScalar(UInt32.random(within: lower ... 0xD7FF))
+            }
+        } else {
+            return UInt32.random(within: lower ..< upper).flatMap(UnicodeScalar.init)
+        }
     }
 
     /// Returns a random value of `Self` inside of the closed range.
@@ -45,6 +63,11 @@ extension UnicodeScalar: Random, RandomWithinClosedRange {
             range = lower...upper
         }
         return UnicodeScalar(.random(within: range))!
+    }
+
+    /// Returns an optional random value of `Self` inside of the range.
+    public static func random(within range: Range<UInt8>) -> UnicodeScalar? {
+        return UInt8.random(within: range).map(UnicodeScalar.init)
     }
 
     /// Returns a random value of `Self` inside of the closed range.
