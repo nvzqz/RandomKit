@@ -65,6 +65,15 @@ extension Array where Element: Random {
 
 }
 
+extension Array where Element: RandomWithinRange {
+
+    /// Construct an Array of random elements from within the range.
+    public init(randomCount: Int, within range: Range<Element>) {
+        self.init(Element.randomSequence(within: range, maxCount: randomCount))
+    }
+
+}
+
 extension Array where Element: RandomWithinClosedRange {
 
     /// Construct an Array of random elements from within the closed range.
