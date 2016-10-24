@@ -52,6 +52,18 @@ extension UnsignedInteger where Self: RandomToMax {
 
 }
 
+extension UnsignedInteger where Self: RandomToMax & RandomWithinRange {
+
+    /// Returns an optional random value of `Self` inside of the range.
+    public static func random(within range: Range<Self>) -> Self? {
+        guard range.lowerBound != range.upperBound else {
+            return nil
+        }
+        return range.lowerBound + random(to: range.upperBound - range.lowerBound)
+    }
+
+}
+
 extension UnsignedInteger where Self: RandomWithMax & RandomThroughMax {
 
     /// Generates a random value of `Self` less than or equal to `max`.
@@ -86,21 +98,13 @@ extension Int : Random, RandomWithinRange, RandomWithinClosedRange {
 
 }
 
-extension UInt: Random, RandomWithMax, RandomToMax, RandomThroughMax {
+extension UInt: RandomWithMax, RandomToMax, RandomThroughMax, RandomWithinRange {
 }
 
-extension UInt64: Random, RandomWithMax,RandomToMax, RandomThroughMax {
+extension UInt64: RandomWithMax,RandomToMax, RandomThroughMax, RandomWithinRange {
 }
 
-extension UInt32: Random, RandomWithMax, RandomToMax, RandomThroughMax, RandomWithinRange, RandomWithinClosedRange {
-
-    /// Returns an optional random value of `Self` inside of the range.
-    public static func random(within range: Range<UInt32>) -> UInt32? {
-        guard range.lowerBound != range.upperBound else {
-            return nil
-        }
-        return range.lowerBound + arc4random_uniform(range.upperBound - range.lowerBound)
-    }
+extension UInt32: RandomWithMax, RandomToMax, RandomThroughMax, RandomWithinRange, RandomWithinClosedRange {
 
     /// Returns a random value of `Self` inside of the closed range.
     public static func random(within closedRange: ClosedRange<UInt32>) -> UInt32 {
@@ -113,8 +117,8 @@ extension UInt32: Random, RandomWithMax, RandomToMax, RandomThroughMax, RandomWi
 
 }
 
-extension UInt16: Random, RandomWithMax, RandomToMax, RandomThroughMax {
+extension UInt16: RandomWithMax, RandomToMax, RandomThroughMax, RandomWithinRange {
 }
 
-extension UInt8: Random, RandomWithMax, RandomToMax, RandomThroughMax {
+extension UInt8: RandomWithMax, RandomToMax, RandomThroughMax, RandomWithinRange {
 }
