@@ -80,6 +80,15 @@ extension UnsignedInteger where Self: RandomWithMax & RandomThroughMax {
 
 }
 
+extension UnsignedInteger where Self: RandomThroughMax & RandomWithinClosedRange {
+
+    /// Returns a random value of `Self` inside of the closed range.
+    public static func random(within closedRange: ClosedRange<Self>) -> Self {
+        return closedRange.lowerBound + random(through: closedRange.upperBound - closedRange.lowerBound)
+    }
+
+}
+
 extension Int : Random, RandomWithinRange, RandomWithinClosedRange {
 
     /// Returns an optional random value of `Self` inside of the range.
@@ -98,27 +107,17 @@ extension Int : Random, RandomWithinRange, RandomWithinClosedRange {
 
 }
 
-extension UInt: RandomWithMax, RandomToMax, RandomThroughMax, RandomWithinRange {
+extension UInt: RandomWithMax, RandomToMax, RandomThroughMax, RandomWithinRange, RandomWithinClosedRange {
 }
 
-extension UInt64: RandomWithMax,RandomToMax, RandomThroughMax, RandomWithinRange {
+extension UInt64: RandomWithMax,RandomToMax, RandomThroughMax, RandomWithinRange, RandomWithinClosedRange {
 }
 
 extension UInt32: RandomWithMax, RandomToMax, RandomThroughMax, RandomWithinRange, RandomWithinClosedRange {
-
-    /// Returns a random value of `Self` inside of the closed range.
-    public static func random(within closedRange: ClosedRange<UInt32>) -> UInt32 {
-        let range = Range(uncheckedBounds: (closedRange.lowerBound, closedRange.upperBound))
-        guard let value = random(within: range) else {
-            return closedRange.lowerBound
-        }
-        return Bool.random() ? value : value + 1
-    }
-
 }
 
-extension UInt16: RandomWithMax, RandomToMax, RandomThroughMax, RandomWithinRange {
+extension UInt16: RandomWithMax, RandomToMax, RandomThroughMax, RandomWithinRange, RandomWithinClosedRange {
 }
 
-extension UInt8: RandomWithMax, RandomToMax, RandomThroughMax, RandomWithinRange {
+extension UInt8: RandomWithMax, RandomToMax, RandomThroughMax, RandomWithinRange, RandomWithinClosedRange {
 }
