@@ -212,7 +212,7 @@
 			name = Support;
 			sourceTree = "<group>";
 		};
-		525EB2BE1DBD696B00E8B246 /* Protocols */ = {
+		525EB2BE1DBD696B00E8B246 /* Types */ = {
 			isa = PBXGroup;
 			children = (
 				525EB2BF1DBD696B00E8B246 /* Random.swift */,
@@ -220,8 +220,8 @@
 				525EB33A1DBD829000E8B246 /* RandomWithinClosedRange.swift */,
 				525EB2C01DBD696B00E8B246 /* Shuffleable.swift */,
 			);
-			name = Protocols;
-			path = RandomKit/Protocols;
+			name = Types;
+			path = RandomKit/Types;
 			sourceTree = "<group>";
 		};
 		525EB2C91DBD697200E8B246 /* Extensions */ = {
@@ -292,7 +292,7 @@
 		52F9E6DA1CA5B4DF00039162 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				525EB2BE1DBD696B00E8B246 /* Protocols */,
+				525EB2BE1DBD696B00E8B246 /* Types */,
 				525EB2C91DBD697200E8B246 /* Extensions */,
 			);
 			path = Sources;
