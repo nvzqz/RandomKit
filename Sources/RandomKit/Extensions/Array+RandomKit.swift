@@ -25,7 +25,7 @@
 //  THE SOFTWARE.
 //
 
-extension Array: ShuffleProtocol {
+extension Array: Shuffleable {
 
     /// Shuffles the elements in `self` and returns the result.
     public func shuffled() -> Array {

@@ -25,7 +25,7 @@
 //  THE SOFTWARE.
 //
 
-extension Dictionary: ShuffleProtocol {
+extension Dictionary: Shuffleable {
 
     /// Shuffles the elements in `self` and returns the result.
     public func shuffled() -> Dictionary {

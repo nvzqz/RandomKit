@@ -46,7 +46,7 @@ extension String: RandomProtocol {
 
 }
 
-extension String: ShuffleProtocol {
+extension String: Shuffleable {
 
     /// Shuffles the elements in `self` and returns the result.
     public func shuffled() -> String {
@@ -57,7 +57,7 @@ extension String: ShuffleProtocol {
 
 }
 
-extension String.CharacterView: ShuffleProtocol {
+extension String.CharacterView: Shuffleable {
 
     /// Shuffles the elements in `self` and returns the result.
     public func shuffled() -> String.CharacterView {
