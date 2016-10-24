@@ -25,13 +25,20 @@
 //  THE SOFTWARE.
 //
 
-extension Character: Random, RandomWithinClosedRange {
+extension Character: Random, RandomWithinRange, RandomWithinClosedRange {
 
     /// Generates a random `Character`.
     ///
     /// - Returns: Random value within `" "..."~"` from `UnicodeScalar.random()`.
     public static func random() -> Character {
         return Character(UnicodeScalar.random())
+    }
+
+    /// Returns an optional random value of `Self` inside of the range.
+    public static func random(within range: Range<Character>) -> Character? {
+        let lower = range.lowerBound._scalar
+        let upper = range.upperBound._scalar
+        return UnicodeScalar.random(within: lower ..< upper).map(Character.init)
     }
 
     /// Returns a random value of `Self` inside of the closed range.
