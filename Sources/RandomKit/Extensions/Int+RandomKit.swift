@@ -31,13 +31,21 @@
     import Glibc
 #endif
 
-extension Int : RandomProtocol, RandomWithinClosedRange {
+extension Int : RandomProtocol, RandomWithinRange, RandomWithinClosedRange {
 
     /// Generates a random `Int`.
     ///
     /// - Returns: Random value within `0...100`.
     public static func random() -> Int {
         return random(within: 0...100)
+    }
+
+    /// Returns an optional random value of `Self` inside of the range.
+    public static func random(within range: Range<Int>) -> Int? {
+        guard range.lowerBound != range.upperBound else {
+            return nil
+        }
+        return range.lowerBound + Int(arc4random_uniform(UInt32(range.upperBound - range.lowerBound)))
     }
 
     /// Returns a random value of `Self` inside of the closed range.
