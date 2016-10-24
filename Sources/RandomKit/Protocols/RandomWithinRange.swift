@@ -33,6 +33,38 @@ public protocol RandomWithinRange: Random, Comparable {
 
 }
 
+extension RandomWithinRange {
+
+    /// Returns an iterator for infinite random values of `Self` within the range.
+    public static func randomIterator(within range: Range<Self>) -> AnyIterator<Self> {
+        return AnyIterator { random(within: range) }
+    }
+
+    /// Returns an iterator for random values of `Self` within the range within `maxCount`.
+    public static func randomIterator(within range: Range<Self>, maxCount: Int) -> AnyIterator<Self> {
+        var n = 0
+        return AnyIterator {
+            guard n != maxCount else {
+                return nil
+            }
+            let value = random(within: range)
+            n += 1
+            return value
+        }
+    }
+
+    /// Returns a sequence of infinite random values of `Self` within the range.
+    public static func randomSequence(within range: Range<Self>) -> AnySequence<Self> {
+        return AnySequence(randomIterator(within: range))
+    }
+
+    /// Returns a sequence of random values of `Self` within the range within `maxCount`.
+    public static func randomSequence(within range: Range<Self>, maxCount: Int) -> AnySequence<Self> {
+        return AnySequence(randomIterator(within: range, maxCount: maxCount))
+    }
+
+}
+
 extension RandomWithinRange where Self: _Strideable & Comparable, Self.Stride : SignedInteger {
 
     /// Returns an optional random value of `Self` inside of the range.
