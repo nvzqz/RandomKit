@@ -56,9 +56,7 @@ extension String: Shuffleable {
 
     /// Shuffles the elements in `self` and returns the result.
     public func shuffled() -> String {
-        return Array(characters).shuffled().reduce("") {
-            $0 + String($1)
-        }
+        return String(Array(characters).shuffled())
     }
 
 }
@@ -67,7 +65,7 @@ extension String.CharacterView: Shuffleable {
 
     /// Shuffles the elements in `self` and returns the result.
     public func shuffled() -> String.CharacterView {
-        return String(self).shuffled().characters
+        return String.CharacterView(Array(self).shuffled())
     }
 
 }
