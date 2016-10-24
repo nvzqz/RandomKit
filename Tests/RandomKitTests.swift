@@ -136,9 +136,9 @@ class RandomKitTests: XCTestCase {
 
     func testRandomGeneratorAndSequence() {
         do {
-            let g = Int.randomGenerator()
+            let iter = Int.randomIterator()
             for _ in 0...10 {
-                XCTAssertNotNil(g.next())
+                XCTAssertNotNil(iter.next())
             }
         }
         do {
@@ -156,8 +156,8 @@ class RandomKitTests: XCTestCase {
         do {
             var i = 0
             let c = 10
-            let g = Int.randomGenerator(maxCount: c)
-            while let _ = g.next() {
+            let iter = Int.randomIterator(maxCount: c)
+            while let _ = iter.next() {
                 i += 1
             }
             XCTAssertEqual(i, c)
