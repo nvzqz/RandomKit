@@ -39,3 +39,43 @@ extension Collection where IndexDistance == Int {
     }
 
 }
+
+extension MutableCollection where Self: Shuffleable, Index == Int {
+
+    /// Shuffles the elements in `self` and returns the result.
+    public func shuffled() -> Self {
+        return shuffled(from: startIndex, to: endIndex)
+    }
+
+    /// Shuffles the elements in `self`.
+    public mutating func shuffle() {
+        shuffle(from: startIndex, to: endIndex)
+    }
+
+    /// Shuffles the elements in `self` from `startIndex` to `endIndex` and returns the result.
+    public func shuffled(from startIndex: Index, to endIndex: Index) -> Self {
+        var copy = self
+        copy.shuffle(from: startIndex, to: endIndex)
+        return copy
+    }
+
+    /// Shuffles the elements in `self` from `startIndex` to `endIndex`.
+    public mutating func shuffle(from startIndex: Index, to endIndex: Index) {
+        let range = startIndex ..< endIndex
+        for i in range {
+            if let j = Int.random(within: range), j != i {
+                swap(&self[i], &self[j])
+            }
+        }
+    }
+
+}
+
+extension Array: Shuffleable {
+}
+
+extension ArraySlice: Shuffleable {
+}
+
+extension ContiguousArray: Shuffleable {
+}

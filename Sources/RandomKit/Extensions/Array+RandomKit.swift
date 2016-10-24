@@ -25,37 +25,6 @@
 //  THE SOFTWARE.
 //
 
-extension Array: Shuffleable {
-
-    /// Shuffles the elements in `self` and returns the result.
-    public func shuffled() -> Array {
-        return shuffled(from: startIndex, to: endIndex)
-    }
-
-    /// Shuffles the elements in `self`.
-    public mutating func shuffle() {
-        shuffle(from: startIndex, to: endIndex)
-    }
-
-    /// Shuffles the elements in `self` from `startIndex` to `endIndex` and returns the result.
-    public func shuffled(from startIndex: Index, to endIndex: Index) -> Array {
-        var copy = self
-        copy.shuffle(from: startIndex, to: endIndex)
-        return copy
-    }
-
-    /// Shuffles the elements in `self` from `startIndex` to `endIndex`.
-    public mutating func shuffle(from startIndex: Index, to endIndex: Index) {
-        let range = startIndex ..< endIndex
-        for i in range {
-            if let j = Int.random(within: range), j != i {
-                swap(&self[i], &self[j])
-            }
-        }
-    }
-
-}
-
 extension Array where Element: Random {
 
     /// Construct an Array of random elements.
