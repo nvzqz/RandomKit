@@ -246,7 +246,7 @@ extension Array where Element: RandomDistribuable {
     
 }
 
-// MARK:- Discret distribution
+// MARK:- Discrete distribution
 
 // Protocol to generate a random probability
 public protocol BernoulliProbability: RandomWithinClosedRange, ExpressibleByIntegerLiteral, Comparable {
@@ -272,9 +272,9 @@ extension BernoulliProbability {
 
 }
 
-// Type of random discret random distribution.
+// Type of random discrete random distribution.
 // https://en.wikipedia.org/wiki/Probability_distribution#Discrete_probability_distribution
-public enum DiscretRandomDistribution<T: DiscretRandomDistribuable, P: BernoulliProbability> {
+public enum DiscreteRandomDistribution<T: DiscreteRandomDistribuable, P: BernoulliProbability> {
     
     // https://en.wikipedia.org/wiki/Bernoulli_distribution
     case bernoulli(probability: P)
@@ -288,8 +288,8 @@ public enum DiscretRandomDistribution<T: DiscretRandomDistribuable, P: Bernoulli
     case uniform(min: T, max: T)
 }
 
-/// A type that can generate a random value using specified `DiscretRandomDistribution`
-public protocol DiscretRandomDistribuable: Random, RandomWithinClosedRange, ExpressibleByIntegerLiteral, Equatable {
+/// A type that can generate a random value using specified `DiscreteRandomDistribution`
+public protocol DiscreteRandomDistribuable: Random, RandomWithinClosedRange, ExpressibleByIntegerLiteral, Equatable {
     // The two possible values.
     static var bernoulliValues: (Self, Self) {get}
     
@@ -299,10 +299,10 @@ public protocol DiscretRandomDistribuable: Random, RandomWithinClosedRange, Expr
 
 }
 
-extension DiscretRandomDistribuable {
+extension DiscreteRandomDistribuable {
 
     // Generate a random value from specified distribution.
-    public static func random<P: BernoulliProbability>(distribution: DiscretRandomDistribution<Self, P>, using randomGenerator: RandomGenerator = .default) -> Self {
+    public static func random<P: BernoulliProbability>(distribution: DiscreteRandomDistribution<Self, P>, using randomGenerator: RandomGenerator = .default) -> Self {
         switch(distribution) {
           case .bernoulli(let p):
             return randomBernoulli(probability: p, using: randomGenerator)
@@ -371,15 +371,15 @@ extension DiscretRandomDistribuable {
 }
 
 // MARK: - Iterator & Sequence
-extension DiscretRandomDistribuable {
+extension DiscreteRandomDistribuable {
     
     /// Returns a generator for random values using `distribution`.
-    public static func randomIterator<P: BernoulliProbability>(distribution: DiscretRandomDistribution<Self, P>, using randomGenerator: RandomGenerator = .default) -> AnyIterator<Self> {
+    public static func randomIterator<P: BernoulliProbability>(distribution: DiscreteRandomDistribution<Self, P>, using randomGenerator: RandomGenerator = .default) -> AnyIterator<Self> {
         return AnyIterator { random(distribution: distribution, using: randomGenerator) }
     }
     
     /// Returns a generator for random values using `distribution` within `maxCount`.
-    public static func randomIterator<P: BernoulliProbability>(maxCount count: Int, distribution: DiscretRandomDistribution<Self, P>, using randomGenerator: RandomGenerator = .default) -> AnyIterator<Self> {
+    public static func randomIterator<P: BernoulliProbability>(maxCount count: Int, distribution: DiscreteRandomDistribution<Self, P>, using randomGenerator: RandomGenerator = .default) -> AnyIterator<Self> {
         var n = 0
         return AnyIterator {
             defer { n += 1 }
@@ -388,22 +388,22 @@ extension DiscretRandomDistribuable {
     }
     
     /// Returns a sequence of infinite random values using specified distribution.
-    public static func randomSequence<P: BernoulliProbability>(distribution: DiscretRandomDistribution<Self, P>, using randomGenerator: RandomGenerator = .default) -> AnySequence<Self> {
+    public static func randomSequence<P: BernoulliProbability>(distribution: DiscreteRandomDistribution<Self, P>, using randomGenerator: RandomGenerator = .default) -> AnySequence<Self> {
         return AnySequence(randomIterator(distribution: distribution, using: randomGenerator))
     }
 
     /// Returns a sequence of random values using specified distribution within `maxCount`.
-    public static func randomSequence<P: BernoulliProbability>(maxCount count: Int, distribution: DiscretRandomDistribution<Self, P>, using randomGenerator: RandomGenerator = .default) -> AnySequence<Self> {
+    public static func randomSequence<P: BernoulliProbability>(maxCount count: Int, distribution: DiscreteRandomDistribution<Self, P>, using randomGenerator: RandomGenerator = .default) -> AnySequence<Self> {
         return AnySequence(randomIterator(maxCount: count, distribution: distribution, using: randomGenerator))
     }
 
 }
 
 // MARK: Array
-extension Array where Element: DiscretRandomDistribuable {
+extension Array where Element: DiscreteRandomDistribuable {
     
     /// Construct an Array of random elements using `distribution`.
-    public init<P: BernoulliProbability>(randomCount: Int, distribution: DiscretRandomDistribution<Element, P>, using randomGenerator: RandomGenerator = .default) {
+    public init<P: BernoulliProbability>(randomCount: Int, distribution: DiscreteRandomDistribution<Element, P>, using randomGenerator: RandomGenerator = .default) {
         self = Array(Element.randomSequence(maxCount: randomCount, distribution: distribution, using: randomGenerator))
     }
     

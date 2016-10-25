@@ -291,12 +291,11 @@ class RandomKitTests: XCTestCase {
         
         // let m = DistributionMoment(data: array)
     }
-    
-    
+
     func testRandomBernoulli() {
         let p = Double.random()
         let count = 10000
-        let distribution: DiscretRandomDistribution<Int, Double> = .bernoulli(probability: p)
+        let distribution: DiscreteRandomDistribution<Int, Double> = .bernoulli(probability: p)
         let array: [Int] = Array(randomCount: count, distribution: distribution)
         
         for e in array {
@@ -313,7 +312,7 @@ class RandomKitTests: XCTestCase {
         let count = 10000
         let trials = Int.random(within:1...1000)
         let p = Double.random(within:0...1)
-        let distribution: DiscretRandomDistribution<Int, Double> = .binomial(trials: trials, probability: p)
+        let distribution: DiscreteRandomDistribution<Int, Double> = .binomial(trials: trials, probability: p)
         let array: [Int] = Array(randomCount: count, distribution: distribution)
         
         XCTAssertEqual(array.count, count)
@@ -327,7 +326,7 @@ class RandomKitTests: XCTestCase {
         let count = 10000
         let p = Double.random(within: 0...1)
         
-        let distribution: DiscretRandomDistribution<Int, Double> = .geometric(probability: p)
+        let distribution: DiscreteRandomDistribution<Int, Double> = .geometric(probability: p)
         let array: [Int] = Array(randomCount: count, distribution: distribution)
         
         XCTAssertEqual(array.count, count)
@@ -341,7 +340,7 @@ class RandomKitTests: XCTestCase {
         let count = 10000
         let λ = Double.random(within: DBL_MIN...500)
         
-        let distribution: DiscretRandomDistribution<Int, Double> = .poisson(frequency: λ)
+        let distribution: DiscreteRandomDistribution<Int, Double> = .poisson(frequency: λ)
         let array: [Int] = Array(randomCount: count, distribution: distribution)
         XCTAssertEqual(array.count, count)
         
