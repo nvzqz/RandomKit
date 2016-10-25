@@ -31,9 +31,9 @@ extension Date: Random, RandomWithinClosedRange {
 
     /// Generates a random date.
     ///
-    /// - returns: Random date within `0.0...TimeInterval(UInt32.max)`.
+    /// - returns: Random date within `Date.distantPast...Date.distantFuture`.
     public static func random(using randomGenerator: RandomGenerator) -> Date {
-        return random(within: 0.0...TimeInterval(UInt32.max), using: randomGenerator)
+        return random(within: .distantPast ... .distantFuture, using: randomGenerator)
     }
 
     /// Returns a random value of `Self` inside of the closed range using `randomGenerator`.
