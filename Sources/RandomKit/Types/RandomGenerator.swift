@@ -42,13 +42,15 @@ public enum RandomGenerator {
     /// Use Xoroshiro algorithm.
     ///
     /// More info can be found [here](http://xoroshiro.di.unimi.it/).
-    case xoroshiro
+    ///
+    /// If `threadSafe` is `true`, a mutex will be used to access the internal state.
+    case xoroshiro(threadSafe: Bool)
 
     /// Use custom generator.
     case custom(randomize: (UnsafeMutableRawPointer, Int) -> ())
 
-    /// The default random generator. Initially `xoroshiro`.
-    static var `default` = xoroshiro
+    /// The default random generator. Initially `xoroshiro(threadSafe: true)`.
+    static var `default` = xoroshiro(threadSafe: true)
 
     /// Randomize the contents of `buffer` of `size`.
     public func randomize(buffer: UnsafeMutableRawPointer, size: Int) {
@@ -65,8 +67,12 @@ public enum RandomGenerator {
             let fd = open("/dev/urandom", O_RDONLY)
             read(fd, buffer, size)
             close(fd)
-        case .xoroshiro:
-            _Xoroshiro.randomize(buffer: buffer, size: size)
+        case let .xoroshiro(threadSafe):
+            if threadSafe {
+                _Xoroshiro.randomizeThreadSafe(buffer: buffer, size: size)
+            } else {
+                _Xoroshiro.randomize(buffer: buffer, size: size)
+            }
         case let .custom(randomize):
             randomize(buffer, size)
         }
@@ -85,8 +91,12 @@ private struct _Xoroshiro {
     }()
 
     static func randomize(buffer: UnsafeMutableRawPointer, size: Int) {
-        pthread_mutex_lock(&_mutex)
         _instance.randomize(buffer: buffer, size: size)
+    }
+
+    static func randomizeThreadSafe(buffer: UnsafeMutableRawPointer, size: Int) {
+        pthread_mutex_lock(&_mutex)
+        randomize(buffer: buffer, size: size)
         pthread_mutex_unlock(&_mutex)
     }
 
