@@ -29,10 +29,10 @@ import Foundation
 
 extension Integer where Self: Random {
 
-    /// Generates a random value of `Self`.
-    public static func random() -> Self {
+    /// Generates a random value of `Self` using `randomGenerator`.
+    public static func random(using randomGenerator: RandomGenerator) -> Self {
         var value: Self = 0
-        arc4random_buf(&value, MemoryLayout<Self>.size)
+        randomGenerator.randomize(buffer: &value, size: MemoryLayout<Self>.size)
         return value
     }
 
@@ -50,19 +50,19 @@ extension Integer where Self: RandomToMax & RandomThroughMax {
 extension SignedInteger where Self: RandomToMax {
 
     /// Generates a random value of `Self` from `randomBase` to `max`.
-    public static func random(to max: Self) -> Self {
+    public static func random(to max: Self, using randomGenerator: RandomGenerator) -> Self {
         if max == randomBase {
             return max
         } else if max < randomBase {
             var random: Self
             repeat {
-                random = self.random()
+                random = self.random(using: randomGenerator)
             } while random > 0
             return random % max
         } else {
             var random: Self
             repeat {
-                random = self.random()
+                random = self.random(using: randomGenerator)
             } while random < 0
             return random % max
         }
@@ -73,12 +73,12 @@ extension SignedInteger where Self: RandomToMax {
 extension UnsignedInteger where Self: RandomToMax {
 
     /// Generates a random value of `Self` from `randomBase` to `max`.
-    public static func random(to max: Self) -> Self {
+    public static func random(to max: Self, using randomGenerator: RandomGenerator) -> Self {
         switch max {
         case randomBase:
             return max
         default:
-            return random() % max
+            return random(using: randomGenerator) % max
         }
     }
 
@@ -87,11 +87,11 @@ extension UnsignedInteger where Self: RandomToMax {
 extension UnsignedInteger where Self: RandomToMax & RandomWithinRange {
 
     /// Returns an optional random value of `Self` inside of the range.
-    public static func random(within range: Range<Self>) -> Self? {
+    public static func random(within range: Range<Self>, using randomGenerator: RandomGenerator) -> Self? {
         guard range.lowerBound != range.upperBound else {
             return nil
         }
-        return range.lowerBound + random(to: range.upperBound - range.lowerBound)
+        return range.lowerBound + random(to: range.upperBound - range.lowerBound, using: randomGenerator)
     }
 
 }
@@ -99,19 +99,19 @@ extension UnsignedInteger where Self: RandomToMax & RandomWithinRange {
 extension SignedInteger where Self: RandomWithMax & RandomWithMin & RandomThroughMax {
 
     /// Generates a random value of `Self` from `randomBase` through `max`.
-    public static func random(through max: Self) -> Self {
+    public static func random(through max: Self, using randomGenerator: RandomGenerator) -> Self {
         if max == randomBase {
             return max
         } else if max < randomBase {
             var random: Self
             repeat {
-                random = self.random()
+                random = self.random(using: randomGenerator)
             } while random > 0
             return max == Self.min ? random : (random % (max - 1))
         } else {
             var random: Self
             repeat {
-                random = self.random()
+                random = self.random(using: randomGenerator)
             } while random < 0
             return max == Self.max ? random : (random % (max + 1))
         }
@@ -122,14 +122,14 @@ extension SignedInteger where Self: RandomWithMax & RandomWithMin & RandomThroug
 extension UnsignedInteger where Self: RandomWithMax & RandomThroughMax {
 
     /// Generates a random value of `Self` from `randomBase` through `max`.
-    public static func random(through max: Self) -> Self {
+    public static func random(through max: Self, using randomGenerator: RandomGenerator) -> Self {
         switch max {
         case randomBase:
             return max
         case Self.max:
-            return random()
+            return random(using: randomGenerator)
         default:
-            return random() % (max + 1)
+            return random(using: randomGenerator) % (max + 1)
         }
     }
 
@@ -138,8 +138,9 @@ extension UnsignedInteger where Self: RandomWithMax & RandomThroughMax {
 extension UnsignedInteger where Self: RandomThroughMax & RandomWithinClosedRange {
 
     /// Returns a random value of `Self` inside of the closed range.
-    public static func random(within closedRange: ClosedRange<Self>) -> Self {
-        return closedRange.lowerBound + random(through: closedRange.upperBound - closedRange.lowerBound)
+    public static func random(within closedRange: ClosedRange<Self>, using randomGenerator: RandomGenerator) -> Self {
+        return closedRange.lowerBound + random(through: closedRange.upperBound - closedRange.lowerBound,
+                                               using: randomGenerator)
     }
 
 }
@@ -147,20 +148,20 @@ extension UnsignedInteger where Self: RandomThroughMax & RandomWithinClosedRange
 extension Int: RandomWithMax, RandomWithMin, RandomToMax, RandomThroughMax, RandomWithinRange, RandomWithinClosedRange {
 
     /// Returns an optional random value of `Self` inside of the range.
-    public static func random(within range: Range<Int>) -> Int? {
+    public static func random(within range: Range<Int>, using randomGenerator: RandomGenerator) -> Int? {
         let lo = UInt(bitPattern: range.lowerBound)._resigned
         let hi = UInt(bitPattern: range.upperBound)._resigned
-        guard let random = UInt.random(within: lo..<hi) else {
+        guard let random = UInt.random(within: lo..<hi, using: randomGenerator) else {
             return nil
         }
         return Int(bitPattern: random._resigned)
     }
 
     /// Returns a random value of `Self` inside of the closed range.
-    public static func random(within closedRange: ClosedRange<Int>) -> Int {
+    public static func random(within closedRange: ClosedRange<Int>, using randomGenerator: RandomGenerator) -> Int {
         let lo = UInt(bitPattern: closedRange.lowerBound)._resigned
         let hi = UInt(bitPattern: closedRange.upperBound)._resigned
-        return Int(bitPattern: UInt.random(within: lo...hi)._resigned)
+        return Int(bitPattern: UInt.random(within: lo...hi, using: randomGenerator)._resigned)
     }
 
 }
@@ -168,20 +169,20 @@ extension Int: RandomWithMax, RandomWithMin, RandomToMax, RandomThroughMax, Rand
 extension Int64: RandomWithMax, RandomWithMin, RandomToMax, RandomThroughMax, RandomWithinRange, RandomWithinClosedRange {
 
     /// Returns an optional random value of `Self` inside of the range.
-    public static func random(within range: Range<Int64>) -> Int64? {
+    public static func random(within range: Range<Int64>, using randomGenerator: RandomGenerator) -> Int64? {
         let lo = UInt64(bitPattern: range.lowerBound)._resigned
         let hi = UInt64(bitPattern: range.upperBound)._resigned
-        guard let random = UInt64.random(within: lo..<hi) else {
+        guard let random = UInt64.random(within: lo..<hi, using: randomGenerator) else {
             return nil
         }
         return Int64(bitPattern: random._resigned)
     }
 
     /// Returns a random value of `Self` inside of the closed range.
-    public static func random(within closedRange: ClosedRange<Int64>) -> Int64 {
+    public static func random(within closedRange: ClosedRange<Int64>, using randomGenerator: RandomGenerator) -> Int64 {
         let lo = UInt64(bitPattern: closedRange.lowerBound)._resigned
         let hi = UInt64(bitPattern: closedRange.upperBound)._resigned
-        return Int64(bitPattern: UInt64.random(within: lo...hi)._resigned)
+        return Int64(bitPattern: UInt64.random(within: lo...hi, using: randomGenerator)._resigned)
     }
 
 }
@@ -189,20 +190,20 @@ extension Int64: RandomWithMax, RandomWithMin, RandomToMax, RandomThroughMax, Ra
 extension Int32: RandomWithMax, RandomWithMin, RandomToMax, RandomThroughMax, RandomWithinRange, RandomWithinClosedRange {
 
     /// Returns an optional random value of `Self` inside of the range.
-    public static func random(within range: Range<Int32>) -> Int32? {
+    public static func random(within range: Range<Int32>, using randomGenerator: RandomGenerator) -> Int32? {
         let lo = UInt32(bitPattern: range.lowerBound)._resigned
         let hi = UInt32(bitPattern: range.upperBound)._resigned
-        guard let random = UInt32.random(within: lo..<hi) else {
+        guard let random = UInt32.random(within: lo..<hi, using: randomGenerator) else {
             return nil
         }
         return Int32(bitPattern: random._resigned)
     }
 
     /// Returns a random value of `Self` inside of the closed range.
-    public static func random(within closedRange: ClosedRange<Int32>) -> Int32 {
+    public static func random(within closedRange: ClosedRange<Int32>, using randomGenerator: RandomGenerator) -> Int32 {
         let lo = UInt32(bitPattern: closedRange.lowerBound)._resigned
         let hi = UInt32(bitPattern: closedRange.upperBound)._resigned
-        return Int32(bitPattern: UInt32.random(within: lo...hi)._resigned)
+        return Int32(bitPattern: UInt32.random(within: lo...hi, using: randomGenerator)._resigned)
     }
 
 }
@@ -210,20 +211,20 @@ extension Int32: RandomWithMax, RandomWithMin, RandomToMax, RandomThroughMax, Ra
 extension Int16: RandomWithMax, RandomWithMin, RandomToMax, RandomThroughMax, RandomWithinRange, RandomWithinClosedRange {
 
     /// Returns an optional random value of `Self` inside of the range.
-    public static func random(within range: Range<Int16>) -> Int16? {
+    public static func random(within range: Range<Int16>, using randomGenerator: RandomGenerator) -> Int16? {
         let lo = UInt16(bitPattern: range.lowerBound)._resigned
         let hi = UInt16(bitPattern: range.upperBound)._resigned
-        guard let random = UInt16.random(within: lo..<hi) else {
+        guard let random = UInt16.random(within: lo..<hi, using: randomGenerator) else {
             return nil
         }
         return Int16(bitPattern: random._resigned)
     }
 
     /// Returns a random value of `Self` inside of the closed range.
-    public static func random(within closedRange: ClosedRange<Int16>) -> Int16 {
+    public static func random(within closedRange: ClosedRange<Int16>, using randomGenerator: RandomGenerator) -> Int16 {
         let lo = UInt16(bitPattern: closedRange.lowerBound)._resigned
         let hi = UInt16(bitPattern: closedRange.upperBound)._resigned
-        return Int16(bitPattern: UInt16.random(within: lo...hi)._resigned)
+        return Int16(bitPattern: UInt16.random(within: lo...hi, using: randomGenerator)._resigned)
     }
 
 }
@@ -231,20 +232,20 @@ extension Int16: RandomWithMax, RandomWithMin, RandomToMax, RandomThroughMax, Ra
 extension Int8: RandomWithMax, RandomWithMin, RandomToMax, RandomThroughMax, RandomWithinRange, RandomWithinClosedRange {
 
     /// Returns an optional random value of `Self` inside of the range.
-    public static func random(within range: Range<Int8>) -> Int8? {
+    public static func random(within range: Range<Int8>, using randomGenerator: RandomGenerator) -> Int8? {
         let lo = UInt8(bitPattern: range.lowerBound)._resigned
         let hi = UInt8(bitPattern: range.upperBound)._resigned
-        guard let random = UInt8.random(within: lo..<hi) else {
+        guard let random = UInt8.random(within: lo..<hi, using: randomGenerator) else {
             return nil
         }
         return Int8(bitPattern: random._resigned)
     }
 
     /// Returns a random value of `Self` inside of the closed range.
-    public static func random(within closedRange: ClosedRange<Int8>) -> Int8 {
+    public static func random(within closedRange: ClosedRange<Int8>, using randomGenerator: RandomGenerator) -> Int8 {
         let lo = UInt8(bitPattern: closedRange.lowerBound)._resigned
         let hi = UInt8(bitPattern: closedRange.upperBound)._resigned
-        return Int8(bitPattern: UInt8.random(within: lo...hi)._resigned)
+        return Int8(bitPattern: UInt8.random(within: lo...hi, using: randomGenerator)._resigned)
     }
 
 }

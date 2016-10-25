@@ -28,39 +28,50 @@
 /// A type that can generate an random value from within a closed range.
 public protocol RandomWithinClosedRange: Random, Comparable {
 
-    /// Returns a random value of `Self` inside of the closed range.
-    static func random(within closedRange: ClosedRange<Self>) -> Self
+    /// Returns a random value of `Self` inside of the closed range using `randomGenerator`.
+    static func random(within closedRange: ClosedRange<Self>, using randomGenerator: RandomGenerator) -> Self
 
 }
 
 extension RandomWithinClosedRange {
 
+    /// Returns a random value of `Self` inside of the closed range using the default generator.
+    public static func random(within closedRange: ClosedRange<Self>) -> Self {
+        return random(within: closedRange, using: .default)
+    }
+
     /// Returns an iterator for infinite random values of `Self` within the closed range.
-    public static func randomIterator(within closedRange: ClosedRange<Self>) -> AnyIterator<Self> {
-        return AnyIterator { random(within: closedRange) }
+    public static func randomIterator(within closedRange: ClosedRange<Self>,
+                                      using randomGenerator: RandomGenerator = .default) -> AnyIterator<Self> {
+        return AnyIterator { random(within: closedRange, using: randomGenerator) }
     }
 
     /// Returns an iterator for random values of `Self` within the closed range within `maxCount`.
-    public static func randomIterator(within closedRange: ClosedRange<Self>, maxCount: Int) -> AnyIterator<Self> {
+    public static func randomIterator(within closedRange: ClosedRange<Self>,
+                                      maxCount: Int,
+                                      using randomGenerator: RandomGenerator = .default) -> AnyIterator<Self> {
         var n = 0
         return AnyIterator {
             guard n != maxCount else {
                 return nil
             }
-            let value = random(within: closedRange)
+            let value = random(within: closedRange, using: randomGenerator)
             n += 1
             return value
         }
     }
 
     /// Returns a sequence of infinite random values of `Self` within the closed range.
-    public static func randomSequence(within closedRange: ClosedRange<Self>) -> AnySequence<Self> {
-        return AnySequence(randomIterator(within: closedRange))
+    public static func randomSequence(within closedRange: ClosedRange<Self>,
+                                      using randomGenerator: RandomGenerator = .default) -> AnySequence<Self> {
+        return AnySequence(randomIterator(within: closedRange, using: randomGenerator))
     }
 
     /// Returns a sequence of random values of `Self` within the closed range within `maxCount`.
-    public static func randomSequence(within closedRange: ClosedRange<Self>, maxCount: Int) -> AnySequence<Self> {
-        return AnySequence(randomIterator(within: closedRange, maxCount: maxCount))
+    public static func randomSequence(within closedRange: ClosedRange<Self>,
+                                      maxCount: Int,
+                                      using randomGenerator: RandomGenerator = .default) -> AnySequence<Self> {
+        return AnySequence(randomIterator(within: closedRange, maxCount: maxCount, using: randomGenerator))
     }
 
 }
@@ -68,8 +79,9 @@ extension RandomWithinClosedRange {
 extension RandomWithinClosedRange where Self: _Strideable & Comparable, Self.Stride : SignedInteger {
 
     /// Returns a random value of `Self` inside of the closed range.
-    public static func random(within closedRange: CountableClosedRange<Self>) -> Self {
-        return random(within: ClosedRange(closedRange))
+    public static func random(within closedRange: CountableClosedRange<Self>,
+                              using randomGenerator: RandomGenerator = .default) -> Self {
+        return random(within: ClosedRange(closedRange), using: randomGenerator)
     }
 
 }

@@ -28,14 +28,14 @@
 extension FloatingPoint where Self: RandomWithinClosedRange {
 
     /// Generates a random value of `Self`.
-    public static func random() -> Self {
-        return random(within: 0...1)
+    public static func random(using randomGenerator: RandomGenerator) -> Self {
+        return random(within: 0...1, using: randomGenerator)
     }
 
     /// Returns a random value of `Self` inside of the closed range.
-    public static func random(within closedRange: ClosedRange<Self>) -> Self {
+    public static func random(within closedRange: ClosedRange<Self>, using randomGenerator: RandomGenerator) -> Self {
         let multiplier = closedRange.upperBound - closedRange.lowerBound
-        return closedRange.lowerBound + multiplier * (Self(UInt.random()) / Self(UInt.max))
+        return closedRange.lowerBound + multiplier * (Self(UInt.random(using: randomGenerator)) / Self(UInt.max))
     }
 
 }

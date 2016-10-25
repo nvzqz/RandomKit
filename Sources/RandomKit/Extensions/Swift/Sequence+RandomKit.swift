@@ -28,8 +28,13 @@
 extension Sequence {
 
     /// Returns a random element of `self`, or `nil` if `self` is empty.
-    public var random: Self.Iterator.Element? {
-        return Array(self).random
+    public var random: Iterator.Element? {
+        return random(using: .default)
+    }
+
+    /// Returns a random element of `self`, or `nil` if `self` is empty.
+    public func random(using randomGenerator: RandomGenerator) -> Iterator.Element? {
+        return Array(self).random(using: randomGenerator)
     }
 
 }

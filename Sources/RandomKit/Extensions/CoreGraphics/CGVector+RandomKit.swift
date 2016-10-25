@@ -34,18 +34,20 @@ extension CGVector: Random {
     /// Generates a random `CGVector`.
     ///
     /// - returns: Random value within `0...100` for both `dx` and `dy`.
-    public static func random() -> CGVector {
-        return random(within: 0...100, 0...100)
+    public static func random(using randomGenerator: RandomGenerator) -> CGVector {
+        return random(within: 0...100, 0...100, using: randomGenerator)
     }
 
     /// Generates a random `CGVector` within the closed ranges.
     ///
     /// - parameter dxRange: The range within which `dx` will be generated.
     /// - parameter dyRange: The range within which `dy` will be generated.
+    /// - parameter randomGenerator: The random generator to use.
     public static func random(within dxRange: ClosedRange<CGFloat.NativeType>,
-                              _ dyRange: ClosedRange<CGFloat.NativeType>) -> CGVector {
-        let rx = CGFloat.NativeType.random(within: dxRange)
-        let ry = CGFloat.NativeType.random(within: dyRange)
+                              _ dyRange: ClosedRange<CGFloat.NativeType>,
+                              using randomGenerator: RandomGenerator = .default) -> CGVector {
+        let rx = CGFloat.NativeType.random(within: dxRange, using: randomGenerator)
+        let ry = CGFloat.NativeType.random(within: dyRange, using: randomGenerator)
         return CGVector(dx: CGFloat(rx), dy: CGFloat(ry))
     }
 

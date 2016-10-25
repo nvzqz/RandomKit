@@ -30,48 +30,52 @@ extension UnicodeScalar: Random, RandomWithinRange, RandomWithinClosedRange {
     /// Generates a random value of `Self`.
     ///
     /// The random value is within `32...126`, or `" "..."~"`.
-    public static func random() -> UnicodeScalar {
-        return random(within: 32...126)
+    public static func random(using randomGenerator: RandomGenerator) -> UnicodeScalar {
+        return random(within: 32...126, using: randomGenerator)
     }
 
     /// Returns a random value of `Self` inside of the closed range.
-    public static func random(within range: Range<UnicodeScalar>) -> UnicodeScalar? {
+    public static func random(within range: Range<UnicodeScalar>,
+                              using randomGenerator: RandomGenerator) -> UnicodeScalar? {
         guard range.lowerBound != range.upperBound else {
             return nil
         }
         let lower = range.lowerBound.value
         let upper = range.upperBound.value
         if lower._isLowerRange && !upper._isLowerRange {
-            if Bool.random(), let value = UInt32.random(within: 0xE000 ..< upper) {
+            if Bool.random(), let value = UInt32.random(within: 0xE000 ..< upper, using: randomGenerator) {
                 return UnicodeScalar(value)
             } else {
-                return UnicodeScalar(UInt32.random(within: lower ... 0xD7FF))
+                return UnicodeScalar(UInt32.random(within: lower ... 0xD7FF, using: randomGenerator))
             }
         } else {
-            return UInt32.random(within: lower ..< upper).flatMap(UnicodeScalar.init)
+            return UInt32.random(within: lower ..< upper, using: randomGenerator).flatMap(UnicodeScalar.init)
         }
     }
 
     /// Returns a random value of `Self` inside of the closed range.
-    public static func random(within closedRange: ClosedRange<UnicodeScalar>) -> UnicodeScalar {
+    public static func random(within closedRange: ClosedRange<UnicodeScalar>,
+                              using randomGenerator: RandomGenerator) -> UnicodeScalar {
         let lower = closedRange.lowerBound.value
         let upper = closedRange.upperBound.value
         let range: ClosedRange<UInt32>
         if lower._isLowerRange && !upper._isLowerRange {
-            range = Bool.random() ? lower...0xD7FF : 0xE000...upper
+            range = Bool.random(using: randomGenerator) ? lower...0xD7FF : 0xE000...upper
         } else {
             range = lower...upper
         }
-        return UnicodeScalar(.random(within: range))!
+        return UnicodeScalar(.random(within: range, using: randomGenerator))!
     }
 
     /// Returns an optional random value of `Self` inside of the range.
-    public static func random(within range: Range<UInt8>) -> UnicodeScalar? {
-        return UInt8.random(within: range).map(UnicodeScalar.init)
+    public static func random(within range: Range<UInt8>,
+                              using randomGenerator: RandomGenerator = .default) -> UnicodeScalar? {
+        return UInt8.random(within: range, using: randomGenerator).map(UnicodeScalar.init)
     }
 
     /// Returns a random value of `Self` inside of the closed range.
-    public static func random(within closedRange: ClosedRange<UInt8>) -> UnicodeScalar {
+    public static func random(within closedRange: ClosedRange<UInt8>,
+                              using randomGenerator: RandomGenerator = .default) -> UnicodeScalar {
         return UnicodeScalar(UInt8.random(within: closedRange))
     }
 

@@ -39,16 +39,15 @@ extension URL: Random {
     ///     - https://medium.com/
     ///     - https://www.google.com/
     ///     - https://www.youtube.com/
-    public static func random() -> URL {
-        return random(fromValues: [
-            "https://github.com/",
-            "https://bitbucket.org/",
-            "https://stackoverflow.com/",
-            "https://www.reddit.com/",
-            "https://medium.com/",
-            "https://www.google.com/",
-            "https://www.youtube.com/"
-        ])
+    public static func random(using randomGenerator: RandomGenerator) -> URL {
+        return random(fromValues: ["https://github.com/",
+                                   "https://bitbucket.org/",
+                                   "https://stackoverflow.com/",
+                                   "https://www.reddit.com/",
+                                   "https://medium.com/",
+                                   "https://www.google.com/",
+                                   "https://www.youtube.com/"],
+                      using: randomGenerator)
     }
 
     /// Generates a random URL from within the given values.
@@ -56,8 +55,10 @@ extension URL: Random {
     /// If `values` is empty, a URL pointing to www.google.com is returned.
     ///
     /// - parameter values: The values from which the URL is generated.
-    public static func random(fromValues values: [String]) -> URL {
-        guard let value = values.random, let url = self.init(string: value) else {
+    /// - parameter randomGenerator: The random generator to use.
+    public static func random(fromValues values: [String],
+                              using randomGenerator: RandomGenerator = .default) -> URL {
+        guard let value = values.random(using: randomGenerator), let url = self.init(string: value) else {
             return self.init(string: "https://www.google.com/")!
         }
         return url

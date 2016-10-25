@@ -28,35 +28,42 @@
 /// A type that can generate a random value.
 public protocol Random {
 
-    /// Generates a random value of `Self`.
-    static func random() -> Self
+    /// Generates a random value of `Self` using `randomGenerator`.
+    static func random(using randomGenerator: RandomGenerator) -> Self
 
 }
 
 extension Random {
 
+    /// Generates a random value of `Self` using the default generator.
+    public static func random() -> Self {
+        return random(using: .default)
+    }
+
     /// Returns an iterator for infinite random values of `Self`.
-    public static func randomIterator() -> AnyIterator<Self> {
-        return AnyIterator { random() }
+    public static func randomIterator(using randomGenerator: RandomGenerator = .default) -> AnyIterator<Self> {
+        return AnyIterator { random(using: randomGenerator) }
     }
 
     /// Returns an iterator for random values of `Self` within `maxCount`.
-    public static func randomIterator(maxCount count: Int) -> AnyIterator<Self> {
+    public static func randomIterator(maxCount count: Int,
+                                      using randomGenerator: RandomGenerator = .default) -> AnyIterator<Self> {
         var n = 0
         return AnyIterator {
             defer { n += 1 }
-            return n < count ? random() : nil
+            return n < count ? random(using: randomGenerator) : nil
         }
     }
 
     /// Returns a sequence of infinite random values of `Self`.
-    public static func randomSequence() -> AnySequence<Self> {
-        return AnySequence(randomIterator())
+    public static func randomSequence(using randomGenerator: RandomGenerator = .default) -> AnySequence<Self> {
+        return AnySequence(randomIterator(using: randomGenerator))
     }
 
     /// Returns a sequence of random values of `Self` within `maxCount`.
-    public static func randomSequence(maxCount count: Int) -> AnySequence<Self> {
-        return AnySequence(randomIterator(maxCount: count))
+    public static func randomSequence(maxCount count: Int,
+                                      using randomGenerator: RandomGenerator = .default) -> AnySequence<Self> {
+        return AnySequence(randomIterator(maxCount: count, using: randomGenerator))
     }
 
 }

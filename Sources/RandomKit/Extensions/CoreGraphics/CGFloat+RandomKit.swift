@@ -31,11 +31,13 @@ import CoreGraphics
 
 extension CGFloat: Random, RandomWithinClosedRange {
 
-    /// Generates a random `CGFloat` within the closed range.
+    /// Generates a random `CGFloat` within the closed range using `randomGenerator`.
     ///
     /// - parameter closedRange: The range within which the number will be generated.
-    public static func random(within closedRange: ClosedRange<NativeType>) -> CGFloat {
-        return CGFloat(NativeType.random(within: closedRange))
+    /// - parameter randomGenerator: The random generator to use.
+    public static func random(within closedRange: ClosedRange<NativeType>,
+                              using randomGenerator: RandomGenerator = .default) -> CGFloat {
+        return CGFloat(NativeType.random(within: closedRange, using: randomGenerator))
     }
 
 }

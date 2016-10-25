@@ -45,12 +45,15 @@ extension String {
     ///
     /// - parameter length: The length for the generated string. Default value is `10`.
     /// - parameter haracterSet: The character set within which the string will be generated.
-    public static func random(ofLength length: UInt = 10, from characterSet: CharacterSet) -> String {
+    /// - parameter randomGenerator: The random generator to use.
+    public static func random(ofLength length: UInt = 10,
+                              from characterSet: CharacterSet,
+                              using randomGenerator: RandomGenerator = .default) -> String {
         guard length != 0 else { return "" }
         let characters = characterSet.asCharacterArray
         var i: UInt = 0
         var result = ""
-        while i != length, let character = characters.random {
+        while i != length, let character = characters.random(using: randomGenerator) {
             result.append(character)
             i += 1
         }
@@ -63,7 +66,12 @@ extension CharacterSet {
 
     /// Returns a random character from `self`, or `nil` if `self` is empty.
     public var randomCharacter: Character? {
-        return self.asCharacterArray.random
+        return randomCharacter(using: .default)
+    }
+
+    /// Returns a random character from `self`, or `nil` if `self` is empty.
+    public func randomCharacter(using randomGenerator: RandomGenerator) -> Character? {
+        return self.asCharacterArray.random(using: randomGenerator)
     }
 
     fileprivate var asCharacterArray: [Character] {

@@ -29,18 +29,27 @@
 public protocol Shuffleable {
 
     /// Shuffles the elements in `self` and returns the result.
-    func shuffled() -> Self
+    func shuffled(using randomGenerator: RandomGenerator) -> Self
 
     /// Shuffles the elements in `self`.
-    mutating func shuffle()
+    mutating func shuffle(using randomGenerator: RandomGenerator)
 
 }
 
 public extension Shuffleable {
 
+    /// Shuffles the elements in `self` and returns the result.
+    public func shuffled() -> Self {
+        return shuffled(using: .default)
+    }
+
     /// Shuffles the elements in `self`.
+    public mutating func shuffle(using randomGenerator: RandomGenerator) {
+        self = shuffled(using: randomGenerator)
+    }
+
     public mutating func shuffle() {
-        self = shuffled()
+        shuffle(using: .default)
     }
 
 }

@@ -31,7 +31,16 @@ public protocol RandomThroughMax: Random {
     /// The random base from which to generate.
     static var randomBase: Self { get }
 
-    /// Generates a random value of `Self` from `randomBase` through `max`.
-    static func random(through max: Self) -> Self
+    /// Generates a random value of `Self` from `randomBase` through `max` using `randomGenerator`.
+    static func random(through max: Self, using randomGenerator: RandomGenerator) -> Self
+
+}
+
+extension RandomThroughMax {
+
+    /// Generates a random value of `Self` from `randomBase` through `max` using the default generator.
+    public static func random(through max: Self) -> Self {
+        return random(through: max, using: .default)
+    }
 
 }

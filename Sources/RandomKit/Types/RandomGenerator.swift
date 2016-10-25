@@ -1,5 +1,5 @@
 //
-//  CGSize+RandomKit.swift
+//  RandomGenerator.swift
 //  RandomKit
 //
 //  The MIT License (MIT)
@@ -25,31 +25,53 @@
 //  THE SOFTWARE.
 //
 
-#if os(macOS) || os(iOS) || os(watchOS) || os(tvOS)
+import Foundation
 
-import CoreGraphics
+/// A random generator.
+public enum RandomGenerator {
 
-extension CGSize: Random {
+    /// Use arc4random. Does nothing on Linux.
+    case arc4random
 
-    /// Generates a random `CGSize`.
-    ///
-    /// - returns: Random value within `0...100` for both `width` and `height`.
-    public static func random(using randomGenerator: RandomGenerator) -> CGSize {
-        return random(within: 0...100, 0...100, using: randomGenerator)
-    }
+    /// Use "/dev/random".
+    case devRandom
 
-    /// Generates a random `CGSize` within the closed ranges.
-    ///
-    /// - parameter widthRange: The range within which `width` will be generated.
-    /// - parameter heightRange: The range within which `height` will be generated.
-    /// - parameter randomGenerator: The random generator to use.
-    public static func random(within widthRange: ClosedRange<CGFloat.NativeType>,
-                              _ heightRange: ClosedRange<CGFloat.NativeType>,
-                              using randomGenerator: RandomGenerator = .default) -> CGSize {
-        return CGSize(width: CGFloat.random(within: widthRange, using: randomGenerator),
-                      height: CGFloat.random(within: heightRange, using: randomGenerator))
+    /// Use "/dev/urandom".
+    case devURandom
+
+    /// Use custom generator.
+    case custom(randomize: (UnsafeMutableRawPointer, Int) -> ())
+
+    #if !os(Linux)
+
+    /// The default random generator.
+    static var `default` = arc4random
+
+    #else
+
+    /// The default random generator.
+    static var `default` = devURandom
+
+    #endif
+
+    /// Randomize the contents of `buffer` of `size`.
+    public func randomize(buffer: UnsafeMutableRawPointer, size: Int) {
+        switch self {
+        case .arc4random:
+            #if !os(Linux)
+                arc4random_buf(buffer, size)
+            #endif
+        case .devRandom:
+            let fd = open("/dev/random", O_RDONLY)
+            read(fd, buffer, size)
+            close(fd)
+        case .devURandom:
+            let fd = open("/dev/urandom", O_RDONLY)
+            read(fd, buffer, size)
+            close(fd)
+        case let .custom(randomize):
+            randomize(buffer, size)
+        }
     }
 
 }
-
-#endif

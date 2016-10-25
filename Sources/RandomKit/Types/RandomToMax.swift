@@ -31,7 +31,16 @@ public protocol RandomToMax: Random {
     /// The random base from which to generate.
     static var randomBase: Self { get }
 
-    /// Generates a random value of `Self` from `randomBase` to `max`.
-    static func random(to max: Self) -> Self
+    /// Generates a random value of `Self` from `randomBase` to `max` using `randomGenerator`.
+    static func random(to max: Self, using randomGenerator: RandomGenerator) -> Self
+
+}
+
+extension RandomToMax {
+
+    /// Generates a random value of `Self` from `randomBase` to `max` using the default generator.
+    public static func random(to max: Self) -> Self {
+        return random(to: max, using: .default)
+    }
 
 }

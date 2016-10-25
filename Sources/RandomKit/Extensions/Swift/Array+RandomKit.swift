@@ -28,8 +28,8 @@
 extension Array where Element: Random {
 
     /// Construct an Array of random elements.
-    public init(randomCount: Int) {
-        self.init(Element.randomSequence(maxCount: randomCount))
+    public init(randomCount: Int, using randomGenerator: RandomGenerator = .default) {
+        self.init(Element.randomSequence(maxCount: randomCount, using: randomGenerator))
     }
 
 }
@@ -37,8 +37,10 @@ extension Array where Element: Random {
 extension Array where Element: RandomWithinRange {
 
     /// Construct an Array of random elements from within the range.
-    public init(randomCount: Int, within range: Range<Element>) {
-        self.init(Element.randomSequence(within: range, maxCount: randomCount))
+    public init(randomCount: Int,
+                within range: Range<Element>,
+                using randomGenerator: RandomGenerator = .default) {
+        self.init(Element.randomSequence(within: range, maxCount: randomCount, using: randomGenerator))
     }
 
 }
@@ -46,8 +48,10 @@ extension Array where Element: RandomWithinRange {
 extension Array where Element: RandomWithinClosedRange {
 
     /// Construct an Array of random elements from within the closed range.
-    public init(randomCount: Int, within closedRange: ClosedRange<Element>) {
-        self.init(Element.randomSequence(within: closedRange, maxCount: randomCount))
+    public init(randomCount: Int,
+                within closedRange: ClosedRange<Element>,
+                using randomGenerator: RandomGenerator = .default) {
+        self.init(Element.randomSequence(within: closedRange, maxCount: randomCount, using: randomGenerator))
     }
 
 }

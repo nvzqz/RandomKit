@@ -28,15 +28,15 @@
 extension Dictionary: Shuffleable {
 
     /// Shuffles the elements in `self` and returns the result.
-    public func shuffled() -> Dictionary {
+    public func shuffled(using randomGenerator: RandomGenerator) -> Dictionary {
         var copy = self
-        copy.shuffle()
+        copy.shuffle(using: randomGenerator)
         return copy
     }
 
     /// Shuffles the elements in `self`.
-    public mutating func shuffle() {
-        for (key, value) in zip(keys, Array(values).shuffled()) {
+    public mutating func shuffle(using randomGenerator: RandomGenerator) {
+        for (key, value) in zip(keys, Array(values).shuffled(using: randomGenerator)) {
             self[key] = value
         }
     }
@@ -57,11 +57,11 @@ extension Dictionary where Key: Random, Value: Random {
     }
 
     /// Construct a Dictionary of random elements.
-    public init(randomCount: Int) {
+    public init(randomCount: Int, using randomGenerator: RandomGenerator = .default) {
         self.init(randomCount,
-                  Key.randomSequence(maxCount: randomCount),
-                  Value.randomSequence(maxCount: randomCount),
-                  Key.random())
+                  Key.randomSequence(maxCount: randomCount, using: randomGenerator),
+                  Value.randomSequence(maxCount: randomCount, using: randomGenerator),
+                  Key.random(using: randomGenerator))
     }
 
 }
@@ -71,11 +71,14 @@ extension Dictionary where Key: RandomWithinClosedRange, Value: RandomWithinClos
     /// Construct a Dictionary of random elements from within the closed ranges.
     ///
     /// - precondition: Number of elements within `keyRange` >= `randomCount`.
-    public init(randomCount: Int, _ keyRange: ClosedRange<Key>, _ valueRange: ClosedRange<Value>) {
+    public init(randomCount: Int,
+                _ keyRange: ClosedRange<Key>,
+                _ valueRange: ClosedRange<Value>,
+                using randomGenerator: RandomGenerator = .default) {
         self.init(randomCount,
-                  Key.randomSequence(within: keyRange, maxCount: randomCount),
-                  Value.randomSequence(within: valueRange, maxCount: randomCount),
-                  Key.random(within: keyRange))
+                  Key.randomSequence(within: keyRange, maxCount: randomCount, using: randomGenerator),
+                  Value.randomSequence(within: valueRange, maxCount: randomCount, using: randomGenerator),
+                  Key.random(within: keyRange, using: randomGenerator))
     }
 
 }
