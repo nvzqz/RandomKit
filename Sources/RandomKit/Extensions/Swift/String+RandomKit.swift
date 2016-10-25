@@ -31,11 +31,7 @@ extension String: Random {
     ///
     /// - returns: Random value within `" "..."~"` with length of `10`.
     public static func random(using randomGenerator: RandomGenerator) -> String {
-        var result = ""
-        for _ in 0 ..< 10 {
-            result.append(Character.random(using: randomGenerator))
-        }
-        return result
+        return random(ofLength: 10, within: " "..."~", using: randomGenerator)
     }
 
     /// Generates a random `String` of a given length inside of the range.
