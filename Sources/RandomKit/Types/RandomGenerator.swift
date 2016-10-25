@@ -78,6 +78,11 @@ public enum RandomGenerator {
         }
     }
 
+    /// Randomize the contents of `value`.
+    public func randomize<T>(value: inout T) {
+        randomize(buffer: &value, size: MemoryLayout<T>.size)
+    }
+
 }
 
 private struct _Xoroshiro {

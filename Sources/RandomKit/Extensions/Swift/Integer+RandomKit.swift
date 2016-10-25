@@ -32,7 +32,7 @@ extension Integer where Self: Random {
     /// Generates a random value of `Self` using `randomGenerator`.
     public static func random(using randomGenerator: RandomGenerator) -> Self {
         var value: Self = 0
-        randomGenerator.randomize(buffer: &value, size: MemoryLayout<Self>.size)
+        randomGenerator.randomize(value: &value)
         return value
     }
 
