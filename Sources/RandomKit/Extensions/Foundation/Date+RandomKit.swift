@@ -27,13 +27,23 @@
 
 import Foundation
 
-extension Date: Random {
+extension Date: Random, RandomWithinClosedRange {
 
     /// Generates a random date.
     ///
-    /// - returns: Random date within `0.0...NSTimeInterval(UInt32.max)`.
+    /// - returns: Random date within `0.0...TimeInterval(UInt32.max)`.
     public static func random(using randomGenerator: RandomGenerator) -> Date {
         return random(within: 0.0...TimeInterval(UInt32.max), using: randomGenerator)
+    }
+
+    /// Returns a random value of `Self` inside of the closed range using `randomGenerator`.
+    ///
+    /// - parameter closedRange: The range within which the date will be generated.
+    /// - parameter randomGenerator: The random generator to use.
+    public static func random(within closedRange: ClosedRange<Date>, using randomGenerator: RandomGenerator) -> Date {
+        let lower = closedRange.lowerBound.timeIntervalSince1970
+        let upper = closedRange.upperBound.timeIntervalSince1970
+        return random(within: lower...upper, using: randomGenerator)
     }
 
     /// Generates a random date within the closed range.
@@ -42,7 +52,7 @@ extension Date: Random {
     /// - parameter randomGenerator: The random generator to use.
     public static func random(within closedRange: ClosedRange<TimeInterval>,
                               using randomGenerator: RandomGenerator = .default) -> Date {
-        return .init(timeIntervalSince1970: .random(within: closedRange, using: randomGenerator))
+        return Date(timeIntervalSince1970: .random(within: closedRange, using: randomGenerator))
     }
 
 }
