@@ -48,6 +48,7 @@ public extension Shuffleable {
         self = shuffled(using: randomGenerator)
     }
 
+    /// Shuffles the elements in `self`.
     public mutating func shuffle() {
         shuffle(using: .default)
     }
