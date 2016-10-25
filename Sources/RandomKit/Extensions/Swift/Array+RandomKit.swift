@@ -60,56 +60,55 @@ extension Array {
 
     /// Returns an array of randomly choosen elements.
     ///
-    /// If `elementCount` >= `count` a copy of this array is returned
+    /// If `count` >= `self.count` a copy of this array is returned.
     ///
-    /// - parameter elementCount: The number of element to return
+    /// - parameter count: The number of elements to return.
     /// - parameter randomGenerator: The random generator to use.
-    public func randomSlice(_ elementCount: Int, using randomGenerator: RandomGenerator = .default) -> Array {
-        if elementCount <= 0  {
+    public func randomSlice(count: Int, using randomGenerator: RandomGenerator = .default) -> Array {
+        if count <= 0  {
             return []
         }
-        if elementCount >= self.count {
+        if count >= self.count {
             return Array(self)
         }
         // Algorithm R
         // fill the reservoir array
-        var result = Array(self[0..<elementCount])
+        var result = Array(self[0..<count])
         // replace elements with gradually decreasing probability
-        for i in elementCount..<self.count {
+        for i in count..<self.count {
             let j = Int.random(within: 0 ... i-1, using: randomGenerator)
-            if j < elementCount {
+            if j < count {
                 result[j] = self[i]
             }
         }
         return result
     }
 
-    /// Returns an array of `elementCount` randomly choosen elements.
+    /// Returns an array of `count` randomly choosen elements.
     ///
-    /// If `elementCount` >= `count` or `weights.count` < `count`
-    /// a copy of this array is returned
+    /// If `count` >= `self.count` or `weights.count` < `self.count` a copy of this array is returned.
     ///
-    /// - parameter elementCount: The number of element to return
+    /// - parameter count: The number of elements to return.
     /// - parameter weights: Apply weights on element.
     /// - parameter randomGenerator: The random generator to use.
-    public func randomSlice(_ elementCount: Int, weights: [Double], using randomGenerator: RandomGenerator = .default) -> Array {
-        if elementCount <= 0  {
+    public func randomSlice(count: Int, weights: [Double], using randomGenerator: RandomGenerator = .default) -> Array {
+        if count <= 0  {
             return []
         }
-        if elementCount >= self.count || weights.count < self.count {
+        if count >= self.count || weights.count < self.count {
             return Array(self)
         }
 
         // Algorithm A-Chao
-        var result = Array(self[0..<elementCount])
-        var weightSum: Double = weights[0..<elementCount].reduce(0.0) { (total, value) in
+        var result = Array(self[0..<count])
+        var weightSum: Double = weights[0..<count].reduce(0.0) { (total, value) in
             total + value
         }
-        for i in elementCount..<self.count {
+        for i in count..<self.count {
             let p = weights[i] / weightSum
             let j = Double.random(within: 0.0...1.0, using: randomGenerator)
             if j <= p {
-                let index = Int.random(within: 0 ... elementCount-1, using: randomGenerator)
+                let index = Int.random(within: 0 ... count-1, using: randomGenerator)
                 result[index] = self[i]
             }
             weightSum += weights[i]
