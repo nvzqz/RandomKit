@@ -39,20 +39,16 @@ public enum RandomGenerator {
     /// Use "/dev/urandom".
     case devURandom
 
+    /// Use Xoroshiro algorithm.
+    ///
+    /// More info can be found [here](http://xoroshiro.di.unimi.it/).
+    case xoroshiro
+
     /// Use custom generator.
     case custom(randomize: (UnsafeMutableRawPointer, Int) -> ())
 
-    #if !os(Linux)
-
-    /// The default random generator.
-    static var `default` = arc4random
-
-    #else
-
-    /// The default random generator.
-    static var `default` = devURandom
-
-    #endif
+    /// The default random generator. Initially `xoroshiro`.
+    static var `default` = xoroshiro
 
     /// Randomize the contents of `buffer` of `size`.
     public func randomize(buffer: UnsafeMutableRawPointer, size: Int) {
@@ -69,9 +65,68 @@ public enum RandomGenerator {
             let fd = open("/dev/urandom", O_RDONLY)
             read(fd, buffer, size)
             close(fd)
+        case .xoroshiro:
+            _Xoroshiro.randomize(buffer: buffer, size: size)
         case let .custom(randomize):
             randomize(buffer, size)
         }
+    }
+
+}
+
+private struct _Xoroshiro {
+
+    private static var _instance = _Xoroshiro()
+
+    private static var _mutex: pthread_mutex_t = {
+        var mutex = pthread_mutex_t()
+        pthread_mutex_init(&mutex, nil)
+        return mutex
+    }()
+
+    static func randomize(buffer: UnsafeMutableRawPointer, size: Int) {
+        pthread_mutex_lock(&_mutex)
+        _instance.randomize(buffer: buffer, size: size)
+        pthread_mutex_unlock(&_mutex)
+    }
+
+    var state: (UInt64, UInt64)
+
+    init(state: (UInt64, UInt64)) {
+        self.state = state
+    }
+
+    init() {
+        self.init(state: (0, 0))
+        RandomGenerator.devURandom.randomize(buffer: &state, size: MemoryLayout.size(ofValue: state))
+    }
+
+    mutating func randomize(buffer: UnsafeMutableRawPointer, size: Int) {
+        let uInt64Buffer = buffer.assumingMemoryBound(to: UInt64.self)
+        for i in 0 ..< (size / 8) {
+            uInt64Buffer[i] = _random()
+        }
+        let remainder = size % 8
+        if remainder > 0 {
+            var remaining = _random()
+            let uInt8Buffer = buffer.assumingMemoryBound(to: UInt8.self)
+            withUnsafePointer(to: &remaining) { remainingPtr in
+                remainingPtr.withMemoryRebound(to: UInt8.self, capacity: remainder) { r in
+                    for i in 0 ..< remainder {
+                        uInt8Buffer[size - i - 1] = r[i]
+                    }
+                }
+            }
+        }
+    }
+
+    private mutating func _random() -> UInt64 {
+        let (l, k0, k1, k2): (UInt64, UInt64, UInt64, UInt64) = (64, 55, 14, 36)
+        let result = state.0 &+ state.1
+        let x = state.0 ^ state.1
+        state.0 = ((state.0 << k0) | (state.0 >> (l - k0))) ^ x ^ (x << k1)
+        state.1 = (x << k2) | (x >> (l - k2))
+        return result
     }
 
 }
