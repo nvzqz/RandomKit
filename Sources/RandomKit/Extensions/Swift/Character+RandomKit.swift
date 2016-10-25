@@ -25,7 +25,7 @@
 //  THE SOFTWARE.
 //
 
-extension Character: Random, RandomWithinRange, RandomWithinClosedRange {
+extension Character: Random {
 
     /// Generates a random `Character`.
     ///
@@ -35,21 +35,15 @@ extension Character: Random, RandomWithinRange, RandomWithinClosedRange {
     }
 
     /// Returns an optional random value of `Self` inside of the range.
-    public static func random(within range: Range<Character>, using randomGenerator: RandomGenerator) -> Character? {
-        let lower = range.lowerBound._scalar
-        let upper = range.upperBound._scalar
-        return UnicodeScalar.random(within: lower ..< upper, using: randomGenerator).map(Character.init)
+    public static func random(within range: Range<UnicodeScalar>,
+                              using randomGenerator: RandomGenerator = .default) -> Character? {
+        return UnicodeScalar.random(within: range, using: randomGenerator).map(Character.init)
     }
 
     /// Returns a random value of `Self` inside of the closed range.
-    public static func random(within closedRange: ClosedRange<Character>, using randomGenerator: RandomGenerator) -> Character {
-        let lower = closedRange.lowerBound._scalar
-        let upper = closedRange.upperBound._scalar
-        return Character(UnicodeScalar.random(within: lower...upper, using: randomGenerator))
-    }
-
-    private var _scalar: UnicodeScalar {
-        return String(self).unicodeScalars.first!
+    public static func random(within closedRange: ClosedRange<UnicodeScalar>,
+                              using randomGenerator: RandomGenerator = .default) -> Character {
+        return Character(UnicodeScalar.random(within: closedRange, using: randomGenerator))
     }
 
 }

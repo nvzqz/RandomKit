@@ -44,21 +44,6 @@ extension String: Random {
     /// - parameter closedRange: The range within which the string will be generated.
     /// - parameter randomGenerator: The random generator to use.
     public static func random(ofLength length: UInt = 10,
-                              within closedRange: ClosedRange<Character>,
-                              using randomGenerator: RandomGenerator = .default) -> String {
-        var result = ""
-        for _ in 0 ..< length {
-            result.append(Character.random(within: closedRange, using: randomGenerator))
-        }
-        return result
-    }
-
-    /// Generates a random `String` of a given length inside of the closed range.
-    ///
-    /// - parameter length: The length for the generated string. Default value is `10`.
-    /// - parameter closedRange: The range within which the string will be generated.
-    /// - parameter randomGenerator: The random generator to use.
-    public static func random(ofLength length: UInt = 10,
                               within closedRange: ClosedRange<UnicodeScalar>,
                               using randomGenerator: RandomGenerator = .default) -> String {
         var result = ""

@@ -50,10 +50,10 @@ class RandomKitTests: XCTestCase {
         XCTAssertTrue(percentRange ~= percentFalse, "One happens more often than the other.")
     }
 
-    let min = Character(UnicodeScalar(0))
-    let max = Character(UnicodeScalar(UInt8.max))
+    let min: UnicodeScalar = .init(0)
+    let max: UnicodeScalar = .init(.max)
 
-    var range: ClosedRange<Character> { return min...max }
+    var range: ClosedRange<UnicodeScalar> { return min...max }
 
     func testRandomCharacter() {
         let sameCount = (0...testCount).reduce(0) { count, _ in
