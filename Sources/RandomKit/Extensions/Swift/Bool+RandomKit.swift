@@ -35,3 +35,15 @@ extension Bool: Random {
     }
 
 }
+
+extension Bool {
+    
+    // Generate a Bool random value from bernouilli distribution.
+    // https://en.wikipedia.org/wiki/Bernoulli_distribution
+    // - parameter probability: probability p parameter of bernouilli distribution. Must be > 0 and <1.
+    public static func randomBernoulli<P: BernoulliProbability>(probability p: P, using randomGenerator: RandomGenerator = .default) -> Bool {
+        let x = P.randomProbability(using: randomGenerator)
+        return x < p
+    }
+    
+}
