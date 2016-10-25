@@ -189,18 +189,18 @@ class RandomKitTests: XCTestCase {
         let array: [Int] = Array(randomCount: count)
         let sliceCount = count / 2
 
-        var result = array.randomSlice(sliceCount)
+        var result = array.randomSlice(count: sliceCount)
         XCTAssertEqual(result.count, sliceCount)
         let simpleSlice = Array(array[0..<sliceCount])
         XCTAssertNotEqual(result, simpleSlice)
 
-        result = array.randomSlice(count) // all
+        result = array.randomSlice(count: count) // all
         XCTAssertEqual(result.count, count)
 
-        result = array.randomSlice(count * 2) // too much
+        result = array.randomSlice(count: count * 2) // too much
         XCTAssertEqual(result.count, count)
 
-        result = array.randomSlice(0) // nothing
+        result = array.randomSlice(count: 0) // nothing
         XCTAssertEqual(result.count, 0)
 
         let weightsArray: [[Double]] = [
@@ -209,21 +209,21 @@ class RandomKitTests: XCTestCase {
         ]
 
         for weights in weightsArray {
-            result = array.randomSlice(count, weights: weights) // all
+            result = array.randomSlice(count: count, weights: weights) // all
             XCTAssertEqual(result.count, count)
 
-            result = array.randomSlice(sliceCount, weights: weights)
+            result = array.randomSlice(count: sliceCount, weights: weights)
             XCTAssertEqual(result.count, sliceCount)
             //let simpleSlice = Array(array[0..<sliceCount])
             // XCTAssertNotEqual(result, simpleSlice) // cannot be sure, depends and weights
 
-            result = array.randomSlice(count * 2, weights: weights) // too much
+            result = array.randomSlice(count: count * 2, weights: weights) // too much
             XCTAssertEqual(result.count, count)
 
-            result = array.randomSlice(count * 2, weights: Array(randomCount: count / 2)) // partial weights
+            result = array.randomSlice(count: count * 2, weights: Array(randomCount: count / 2)) // partial weights
             XCTAssertEqual(result.count, count)
 
-            result = array.randomSlice(0, weights: weights) // nothing
+            result = array.randomSlice(count: 0, weights: weights) // nothing
             XCTAssertEqual(result.count, 0)
         }
     }
