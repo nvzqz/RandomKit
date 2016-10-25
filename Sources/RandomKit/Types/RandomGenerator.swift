@@ -50,7 +50,7 @@ public enum RandomGenerator {
     case custom(randomize: (UnsafeMutableRawPointer, Int) -> ())
 
     /// The default random generator. Initially `xoroshiro(threadSafe: true)`.
-    static var `default` = xoroshiro(threadSafe: true)
+    public static var `default` = xoroshiro(threadSafe: true)
 
     /// Randomize the contents of `buffer` of `size`.
     public func randomize(buffer: UnsafeMutableRawPointer, size: Int) {
