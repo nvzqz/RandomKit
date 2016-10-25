@@ -63,7 +63,8 @@ extension Array {
     /// If `elementCount` >= `count` a copy of this array is returned
     ///
     /// - parameter elementCount: The number of element to return
-    public func randomSlice(_ elementCount: Int) -> Array {
+    /// - parameter randomGenerator: The random generator to use.
+    public func randomSlice(_ elementCount: Int, using randomGenerator: RandomGenerator = .default) -> Array {
         if elementCount <= 0  {
             return []
         }
@@ -75,7 +76,7 @@ extension Array {
         var result = Array(self[0..<elementCount])
         // replace elements with gradually decreasing probability
         for i in elementCount..<self.count {
-            let j = Int.random(within: 0 ... i-1)
+            let j = Int.random(within: 0 ... i-1, using: randomGenerator)
             if j < elementCount {
                 result[j] = self[i]
             }
@@ -90,7 +91,8 @@ extension Array {
     ///
     /// - parameter elementCount: The number of element to return
     /// - parameter weights: Apply weights on element.
-    public func randomSlice(_ elementCount: Int, weights: [Double]) -> Array {
+    /// - parameter randomGenerator: The random generator to use.
+    public func randomSlice(_ elementCount: Int, weights: [Double], using randomGenerator: RandomGenerator = .default) -> Array {
         if elementCount <= 0  {
             return []
         }
@@ -105,9 +107,9 @@ extension Array {
         }
         for i in elementCount..<self.count {
             let p = weights[i] / weightSum
-            let j = Double.random(within: 0.0...1.0)
+            let j = Double.random(within: 0.0...1.0, using: randomGenerator)
             if j <= p {
-                let index = Int.random(within: 0 ... elementCount-1)
+                let index = Int.random(within: 0 ... elementCount-1, using: randomGenerator)
                 result[index] = self[i]
             }
             weightSum += weights[i]
