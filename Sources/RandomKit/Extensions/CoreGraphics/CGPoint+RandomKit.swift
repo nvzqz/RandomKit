@@ -43,11 +43,11 @@ extension CGPoint: Random {
     /// - parameter xRange: The range within which `x` will be generated.
     /// - parameter yRange: The range within which `y` will be generated.
     /// - parameter randomGenerator: The random generator to use.
-    public static func random(within xRange: ClosedRange<CGFloat.NativeType>,
-                              _ yRange: ClosedRange<CGFloat.NativeType>,
+    public static func random(within xRange: ClosedRange<CGFloat>,
+                              _ yRange: ClosedRange<CGFloat>,
                               using randomGenerator: RandomGenerator = .default) -> CGPoint {
-        return CGPoint(x: CGFloat.random(within: xRange, using: randomGenerator),
-                       y: CGFloat.random(within: yRange, using: randomGenerator))
+        return CGPoint(x: .random(within: xRange, using: randomGenerator),
+                       y: .random(within: yRange, using: randomGenerator))
     }
 
 }

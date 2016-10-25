@@ -43,11 +43,11 @@ extension CGSize: Random {
     /// - parameter widthRange: The range within which `width` will be generated.
     /// - parameter heightRange: The range within which `height` will be generated.
     /// - parameter randomGenerator: The random generator to use.
-    public static func random(within widthRange: ClosedRange<CGFloat.NativeType>,
-                              _ heightRange: ClosedRange<CGFloat.NativeType>,
+    public static func random(within widthRange: ClosedRange<CGFloat>,
+                              _ heightRange: ClosedRange<CGFloat>,
                               using randomGenerator: RandomGenerator = .default) -> CGSize {
-        return CGSize(width: CGFloat.random(within: widthRange, using: randomGenerator),
-                      height: CGFloat.random(within: heightRange, using: randomGenerator))
+        return CGSize(width:  .random(within: widthRange,  using: randomGenerator),
+                      height: .random(within: heightRange, using: randomGenerator))
     }
 
 }

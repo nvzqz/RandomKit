@@ -43,12 +43,11 @@ extension CGVector: Random {
     /// - parameter dxRange: The range within which `dx` will be generated.
     /// - parameter dyRange: The range within which `dy` will be generated.
     /// - parameter randomGenerator: The random generator to use.
-    public static func random(within dxRange: ClosedRange<CGFloat.NativeType>,
-                              _ dyRange: ClosedRange<CGFloat.NativeType>,
+    public static func random(within dxRange: ClosedRange<CGFloat>,
+                              _ dyRange: ClosedRange<CGFloat>,
                               using randomGenerator: RandomGenerator = .default) -> CGVector {
-        let rx = CGFloat.NativeType.random(within: dxRange, using: randomGenerator)
-        let ry = CGFloat.NativeType.random(within: dyRange, using: randomGenerator)
-        return CGVector(dx: CGFloat(rx), dy: CGFloat(ry))
+        return CGVector(dx: .random(within: dxRange, using: randomGenerator),
+                        dy: .random(within: dyRange, using: randomGenerator))
     }
 
 }
