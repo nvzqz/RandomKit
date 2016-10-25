@@ -30,12 +30,10 @@ import Foundation
 extension Collection where IndexDistance == Int {
 
     /// Returns a random element of `self`, or `nil` if `self` is empty.
-    public var random: Self.Iterator.Element? {
+    public var random: Iterator.Element? {
         guard !self.isEmpty else { return nil }
-        let distance = self.distance(from: startIndex, to: endIndex)
-        let elementIndex = Int(arc4random_uniform(UInt32(distance)))
-
-        return self[self.index(self.startIndex, offsetBy: elementIndex)]
+        let elementIndex = Int.random(to: distance(from: startIndex, to: endIndex))
+        return self[index(startIndex, offsetBy: elementIndex)]
     }
 
 }
