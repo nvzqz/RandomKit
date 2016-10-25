@@ -67,6 +67,35 @@ extension String: Random {
         return result
     }
 
+    /// Generates a random `String` of a given length from `characters`.
+    ///
+    /// - parameter length: The length for the generated string. Default value is `10`.
+    /// - parameter characters: The characters from which the string will be generated.
+    /// - parameter randomGenerator: The random generator to use.
+    public static func random(ofLength length: UInt = 10,
+                              from characters: CharacterView,
+                              using randomGenerator: RandomGenerator = .default) -> String? {
+        var result = ""
+        for _ in 0 ..< length {
+            guard let random = characters.random else {
+                return nil
+            }
+            result.append(random)
+        }
+        return result
+    }
+
+    /// Generates a random `String` of a given length from characters in `string`.
+    ///
+    /// - parameter length: The length for the generated string. Default value is `10`.
+    /// - parameter string: The string whose characters from which the string will be generated.
+    /// - parameter randomGenerator: The random generator to use.
+    public static func random(ofLength length: UInt = 10,
+                              from string: String,
+                              using randomGenerator: RandomGenerator = .default) -> String? {
+        return random(ofLength: length, from: string.characters, using: randomGenerator)
+    }
+
 }
 
 extension String: Shuffleable {
