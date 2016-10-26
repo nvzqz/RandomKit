@@ -49,16 +49,11 @@ public enum RandomDistribution<T: RandomDistribuable> {
     // Beta disctribution: https://en.wikipedia.org/wiki/Beta_distribution
     case beta(shape1: T, shape2: T)
     // Uniform distribution: https://en.wikipedia.org/wiki/Uniform_distribution
-    case uniform(min: T, max: T)
+    case uniform(closedRange: ClosedRange<T>)
     
     // Gaussian distribution with 0 as mean and 1 as standard deviation
     public static var gaussianDefault: RandomDistribution<T> {
         return RandomDistribution.gaussian(mean: 0, standardDeviation: 1)
-    }
-
-    // Return an uniform distribution using range
-    public static func uniformWithin(_ range: ClosedRange<T>) -> RandomDistribution<T> {
-        return .uniform(min: range.lowerBound, max: range.upperBound)
     }
 
 }
@@ -103,8 +98,8 @@ extension RandomDistribuable {
             return randomGamma(rate: rate, shape: shape, using: randomGenerator)
         case .beta(let shape1, let shape2):
             return randomBeta(shape1: shape1, shape2: shape2, using: randomGenerator)
-        case .uniform(let min,let max):
-            return random(within: min...max, using: randomGenerator)
+        case .uniform(let closedRange):
+            return random(within: closedRange, using: randomGenerator)
         }
     }
 
