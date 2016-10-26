@@ -95,197 +95,147 @@ manager for Objective-C and Swift.
 
 Try it out for yourself! Download the repo and open 'RandomKit.playground'.
 
-### Fake Random Data
+### RandomGenerator
 
-Fake data can be generated from static methods found in `Random`.
+The `RandomGenerator` enum is used by all `random-` methods and functions for
+specifying the random generator to use.
 
-#### Gender
+**Available Generators:**
 
-Generate a random gender with a 50/50 chance of being "Male" or "Female".
+- `arc4random`
 
-```swift
-Random.fakeGender()
-```
+- `devRandom` (reads from "/dev/random")
 
-#### Phone Number
+- `devURandom` (reads from "/dev/urandom")
 
-Generate a random phone number for a given US state.
+- `xoroshiro`
 
-```swift
-Random.fakePhoneNumber()          // 5808680873
-Random.fakePhoneNumber(.Florida)  // 7865276359
-```
+The default random generator is specified with `RandomGenerator.default` and can
+be changed. It is initially `xoroshiro(threadSafe: true)`.
 
-The default value for state is `._Any`.
+Because the `arc4random` family of functions isn't available on most Linux
+distros, using this case will do nothing on Linux.
 
-#### English Honorific
-
-Generate a random English honorific for a given type and gender.
-
-```swift
-Random.fakeEnglishHonorific()                              // "Prof."
-Random.fakeEnglishHonorific(type: .Professional)           // "Dr."
-Random.fakeEnglishHonorific(type: .Common, gender: .Male)  // "Mr."
-Random.fakeEnglishHonorific(gender: .Female)               // "Lady"
-```
-
-The default values for type and gender are `._Any` and `.Either` respectively.
+Although there are `randomize` methods publicly available, they're used
+internally throughout the library.
 
 ### Protocols
 
-#### RandomType
+RandomKit is very protocol-oriented, which gives it the ability to perform many
+neat tasks.
+
+#### Random
 
 A protocol for types that can generate random values.
 
-##### `randomGenerator()`
+#### RandomWithinRange
 
-Returns a generator for infinite random values of `Self`.
+A protocol for types that can generate optional random values within a range.
 
-```swift
-let generator = Int.randomGenerator()
-while let val = generator.next() {
-    print(val)  // 62
-}               // 66
-                // 45...
-```
+#### RandomWithinClosedRange
 
-##### `randomGenerator(maxCount:)`
-
-Returns a generator for random values of `Self` within `maxCount`.
+A protocol for types that can generate random values within a closed ranges.
 
 ```swift
-let generator = Int.randomGenerator(maxCount: 2)
-while let val = generator.next() {
-    print(val)  // 45
-}               // 79
+Int.random(within: -100...100)       // -79
+Character.random(within: "a"..."z")  // "f"
 ```
 
-##### `randomSequence()`
+#### RandomToMax
 
-Returns a sequence of infinite random values of `Self`.
+A protocol for types that can generate random values from a base value to a max
+value, noninclusive.
+
+The base value for integers is 0. This means that calling `random(to:)` on a
+negative value will yield a negative one and vice-versa for a positive value.
+
+If `max` == `baseValue`, `max` will be returned for `random(to:)`.
 
 ```swift
-for val in Int.randomSequence() {
-    print(val)  // 10
-}               // 83
-                // 47...
+Int.random(to:  2)  // Either 0 or 1
+Int.random(to:  0)  // Always 0
+Int.random(to: 32)  // 15
+Int.random(to: -5)  // -3
 ```
 
-##### `randomSequence(maxCount:)`
+#### RandomThroughMax
 
-Returns a sequence of random values of `Self` within `maxCount`.
+A protocol for types that can generate random values from a base value through a
+max value, inclusive.
 
-```swift
-for val in Int.randomSequence(maxCount: 2) {
-    print(val)  // 8
-}               // 56
-```
+The same rules for the base value of `RandomToMax` apply to `RandomThroughMax`.
 
-##### `Array(randomCount:)`
-
-Creates an Array of random elements within `randomCount`.
-
-```swift
-[Int](randomCount: 7)     // [3, 55, 100, 50, 77, 23, 49]
-[String](randomCount: 2)  // [";qYFOH10no", "V,Q[+koi>n"]
-```
-
-##### `Dictionary(randomCount:)`
-
-Creates a Dictionary of random key-value pairs within `randomCount`.
-
-```swift
-[Int : Int](randomCount: 3)  // [43: 45, 56: 16, 44: 89]
-```
-
-##### `Set(randomCount:)`
-
-Creates a Set of random elements within `randomCount`.
-
-```swift
-Set<Int>(randomCount: 5)  // {15, 78, 68, 77, 40}
-```
-
-###### Warning:
-
-The `randomCount` parameter must be less than or equal to the total number of possible
-values that the given `RandomType` can produce. Otherwise, the initializer will
-never finish.
-
-An example of this is using `Bool` with a `randomCount` greater than 2.
-
-#### RandomIntervalType
-
-A protocol for types that can generate random values within a closed interval.
-
-```swift
-Int.random(-100...100)       // -79
-Character.random("a"..."z")  // "f"
-```
-
-There are also random generators and random sequences available to
-`RandomIntervalType` that can be made for values within an interval.
-
-#### ShuffleType
+#### Shuffleable
 
 A protocol for types whose elements can be shuffled.
 
 ```swift
 // Array
-[1, 2, 3, 4, 5].shuffle()  // [3, 4, 1, 5, 2]
+[1, 2, 3, 4, 5].shuffled()  // [3, 4, 1, 5, 2]
 
 // Dictionary
-["a": 1, "b": 2, "c": 3].shuffle()  // ["a": 3, "b": 1, "c": 2]
+["a": 1, "b": 2, "c": 3].shuffled()  // ["a": 3, "b": 1, "c": 2]
 ```
 
-There is also the `shuffleInPlace()` method that shuffles the values in `self`
-rather than return the shuffled result.
+The mutable counterpart of `shuffled()` is `shuffle()`.
 
 ### Swift Types
 
-#### Int
+#### Integers
 
-Generate a random `Int` from within an interval or `0...100` by default.
+All of Swift's native integer types conform to the `Random-` protocols.
+
+The `random()` and `random(using:)` functions create an integer of any value. As
+a result, negative values can result for signed integers.
 
 ```swift
-Int.random()        // An Int within 0 and 100
-Int.random(10...20) // An Int within 10 and 20
+Int.random()                 // An Int within Int.min and Int.max
+Int.random(within: 10...20)  // An Int within 10 and 20
 ```
 
-#### Double, Float, and Float80
+To create a positive signed integer, use `random(to:)` or `random(through:)`.
 
-Generate a random floating point value from within an interval or `0.0...1.0` by
+```swift
+Int.random(to: 1000)     // 731
+Int.random(through: 10)  // 4
+```
+
+Signed integers can be created from any range, without danger of overflow.
+
+```swift
+Int.random(within: (.min + 1000)...(.max - 200))  // 5698527899712144154
+```
+
+#### Floating Point Numbers
+
+Generate a random floating point value from within a range or `0.0...1.0` by
 default.
 
 ```swift
-Double.random(-10...10)  // -4.03042337718197
-Float.random(-10...10)   //  5.167088
-Float80.random(-10...10) // -3.63204542399198874
+Double.random()                   //  0.9813615573117475
+Double.random(within:  -10...10)  // -4.03042337718197
+Float.random(within:   -10...10)  //  5.167088
+Float80.random(within: -10...10)  // -3.63204542399198874
 ```
+
+All `FloatingPoint` types can also conform to `RandomWithinClosedRange`
+out-of-the-box.
 
 #### Bool
 
-`Bool.random()` has a 50/50 chance of being `true`.
+`Bool.random()` has a 50/50 chance of being `true` for the default generator.
 
-#### String and Character
+#### String, Character, and UnicodeScalar
 
-Generate a random `String` or `Character` from within a `Character` interval or
-`" "..."~"` by default.
-
-```swift
-String.random(10)            // "}+[=Ng>$w1"
-String.random(10, "A"..."z") // "poUtXJIbv["
-
-Character.random()           // "#"
-Character.random("A"..."z")  // "s"
-```
-
-A random `String` or `Character` can also be generated from an `NSCharacterSet`.
+`String`, `Character`, and `UnicodeScalar` generate values within `" "..."~"` by
+default.
 
 ```swift
-String.random(10, .uppercaseLetterCharacterSet()) // "ṤՈ𝕮𝝘ꝻṄԱＭĐŦ"
+String.random(ofLength: 10)                     // "}+[=Ng>$w1"
+String.random(ofLength: 10, within: "A"..."z")  // "poUtXJIbv["
 
-Character.random(.uppercaseLetterCharacterSet())  // "𝝙"
+Character.random()                   // "#"
+Character.random(within: "A"..."z")  // "s"
 ```
 
 #### Sequence and Collection
@@ -299,7 +249,7 @@ property that returns a random element, or `nil` if the collection is empty.
 "Hello".characters.random  // "e"
 ```
 
-Even Objective-C types that conform to either protocol get this property.
+Even Foundation types that conform to either protocol get this property.
 
 ```swift
 NSDictionary(dictionary: ["k1":"v1", "k2":"v2"]).random      // (k1, v1)
@@ -307,7 +257,7 @@ NSDictionary(dictionary: ["k1":"v1", "k2":"v2"]).random      // (k1, v1)
 NSSet(array: ["First", "Second", "Third", "Fourth"]).random  // "Third"
 ```
 
-### Objective-C Types
+### Foundation Types
 
 #### URL
 
@@ -322,16 +272,43 @@ URL.random()  // https://medium.com/
 
 #### Date
 
-Generate a random date between two `TimeInterval` values, or between `0.0` and
-`TimeInterval(UInt32.max)`.
+A random `Date` can be generated between two `Date` or `TimeInterval` values.
+
+The default `random()` function returns a `Date` within `Date.distantPast` and
+`Date.distantFuture`.
 
 ```swift
 Date.random()  // "Aug 28, 2006, 3:38 AM"
+Date.random(within: Date.distantPast...Date())  // "Feb 7, 472, 5:40 AM"
 ```
 
-#### NSColor and UIColor
+#### Decimal
 
-Generate a random color with or without the alpha being random as well.
+The `Decimal` type conforms to `RandomWithinClosedRange`.
+
+The `random()` function returns a `Decimal` between 0 and 1 by default.
+
+```swift
+Decimal.random()                    // 0.87490000409886706715888973957833129437
+Decimal.random(within: 0.0...10.0)  // 6.5464639772070720738747790627821299859
+```
+
+#### NSNumber
+
+A random number can be generated from within an integer or double range, or
+`0...100` by default.
+
+```swift
+NSNumber.random()                   // 79
+NSNumber.random(within: -50...100)  // -27
+NSNumber.random(within: 0...200.0)  // 149.6156950363926
+```
+
+#### Cocoa and UIKit Types
+
+##### NSColor and UIColor
+
+A random color can be generated, with or without random alpha.
 
 ```swift
 NSColor.random()            // r 0.694 g 0.506 b 0.309 a 1.0
@@ -341,69 +318,53 @@ UIColor.random()            // r 0.488 g 0.805 b 0.679 a 1.0
 UIColor.random(alpha: true) // r 0.444 g 0.121 b 0.602 a 0.085
 ```
 
-#### NSNumber
+### CoreGraphics Types
 
-Generate a random number from within an integer or double interval, or `0...100` by default.
+#### CGFloat
 
-```swift
-NSNumber.random()           // 79
-NSNumber.random(-50...100)  // -27
-NSNumber.random(0...200.0)  // 149.6156950363926
-```
-
-#### CharacterSet
-
-Get a random character from a character set.
-
-```swift
-CharacterSet.uppercaseLetterCharacterSet().randomCharacter // "Ǩ"
-```
-
-#### CoreGraphics Types
-
-##### CGFloat
-
-Generate a random float like how you would with Double.random() or Float.random(). The default interval is `0.0...1.0`.
+Because `CGFloat` conforms to `FloatingPoint`, it conforms to
+`RandomWithinClosedRange` just like how `Double` and `Float` do.
 
 ```swift
 CGFloat.random()         // 0.699803650379181
 CGFloat.random(0...100)  // 43.27969591675319
 ```
 
-##### CGPoint
+#### CGPoint
 
-Generate a random point from within intervals for x and y.
+A random point can be generated from within ranges for x and y.
 
 ```swift
-CGPoint.random()                 // {x 70.093 y 95.721}
-CGPoint.random(0...200, 0...10)  // {x 73.795 y 0.991}
+CGPoint.random()                         // {x 70.093 y 95.721}
+CGPoint.random(within: 0...200, 0...10)  // {x 73.795 y 0.991}
 ```
 
-##### CGSize
+#### CGSize
 
-Generate a random size from within intervals for width and height.
+A random size can be generated from within ranges for width and height.
 
 ```swift
-CGSize.random()                 // {w 3.744  h 35.932}
-CGSize.random(0...50, 0...400)  // {w 38.271 h 239.636}
+CGSize.random()                         // {w 3.744  h 35.932}
+CGSize.random(within: 0...50, 0...400)  // {w 38.271 h 239.636}
 ```
 
-##### CGRect
+#### CGRect
 
-Generate a random rectangle from within intervals for x, y, width, and height.
+A random rectangle can be generated from within ranges for x, y, width, and
+height.
 
 ```swift
-CGRect.random()                                 // {x 3.872  y 46.15  w 8.852  h 20.201}
-CGRect.random(0...50, 0...100, 0...25, 0...10)  // {x 13.212 y 79.147 w 20.656 h 5.663}
+CGRect.random()                                         // {x 3.872  y 46.15  w 8.852  h 20.201}
+CGRect.random(within: 0...50, 0...100, 0...25, 0...10)  // {x 13.212 y 79.147 w 20.656 h 5.663}
 ```
 
-##### CGVector
+#### CGVector
 
-Generate a random vector from within intervals for dx and dy.
+A random vector can be generated from  within ranges for dx and dy.
 
 ```swift
-CGVector.random()                // {dx 13.992 dy 89.376}
-CGVector.random(0...50, 0...10)  // {dx 35.224 dy 13.463}
+CGVector.random()                        // {dx 13.992 dy 89.376}
+CGVector.random(within: 0...50, 0...10)  // {dx 35.224 dy 13.463}
 ```
 
 ## License
