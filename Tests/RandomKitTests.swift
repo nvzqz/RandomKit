@@ -11,6 +11,12 @@ import RandomKit
 
 class RandomKitTests: XCTestCase {
 
+    static let generatorToTest = RandomGenerator.default
+
+    override func setUp() {
+        RandomGenerator.default = RandomKitTests.generatorToTest
+    }
+
     let testCount = 1_000_000
 
     func testRandomInt() {
