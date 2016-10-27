@@ -60,7 +60,7 @@ extension FloatingPoint where Self: RandomWithinClosedRange {
 
 }
 
-extension FloatingPoint where Self: RandomThroughValue {
+extension FloatingPoint where Self: RandomToValue & RandomThroughValue {
 
     /// The random base from which to generate.
     public static var randomBase: Self {
@@ -84,14 +84,28 @@ extension FloatingPoint where Self: RandomWithinClosedRange & RandomThroughValue
 
 }
 
-extension Double: RandomThroughValue, RandomWithinRange, RandomWithinClosedRange {
+extension FloatingPoint where Self: RandomWithinRange & RandomToValue {
+
+    /// Generates a random value of `Self` from `Self.randomBase` to `value` using `randomGenerator`.
+    public static func random(to value: Self, using randomGenerator: RandomGenerator) -> Self {
+        let negate = value < randomBase
+        let newValue = negate ? -value : value
+        guard let random = self.random(within: randomBase..<newValue, using: randomGenerator) else {
+            return randomBase
+        }
+        return negate ? -random : random
+    }
+
 }
 
-extension Float: RandomThroughValue, RandomWithinRange, RandomWithinClosedRange {
+extension Double: RandomToValue, RandomThroughValue, RandomWithinRange, RandomWithinClosedRange {
+}
+
+extension Float: RandomToValue, RandomThroughValue, RandomWithinRange, RandomWithinClosedRange {
 }
 
 #if os(macOS)
-extension Float80: RandomThroughValue, RandomWithinRange, RandomWithinClosedRange {
+extension Float80: RandomToValue, RandomThroughValue, RandomWithinRange, RandomWithinClosedRange {
 }
 #endif
 
