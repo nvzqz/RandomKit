@@ -15,7 +15,7 @@ struct DistributionMoment {
     var M2: Double = 0
     var M3: Double = 0
     var M4: Double = 0
-    
+
     init(data: [Double]) {
         M0 = Double(data.count)
         var n: Double = 0
@@ -33,27 +33,27 @@ struct DistributionMoment {
             M2 += term1
         }
     }
-    
+
     var excessKurtosis: Double {
         return kurtosis - 3
     }
-    
+
     var kurtosis: Double {
         return (M0*M4) / (M2*M2)
     }
-    
+
     var skewness: Double {
         return sqrt(M0) * M3 / pow(M2, 1.5)
     }
-    
+
     var mean: Double {
         return M1
     }
-    
+
     var variance: Double {
         return M2/(M0 - 1.0)
     }
-    
+
     var standardDeviation: Double {
         return sqrt(variance)
     }

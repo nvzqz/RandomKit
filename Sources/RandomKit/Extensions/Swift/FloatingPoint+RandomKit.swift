@@ -25,11 +25,7 @@
 //  THE SOFTWARE.
 //
 
-#if os(OSX) || os(iOS) || os(watchOS) || os(tvOS)
-    import Darwin
-#elseif os(Linux)
-    import Glibc
-#endif
+import Foundation
 
 extension FloatingPoint where Self: RandomWithinClosedRange {
 
@@ -57,50 +53,48 @@ extension Float80: RandomWithinClosedRange {
 }
 #endif
 
-
-// MARK: - implement RandomDistribuable
 extension Double: RandomDistribuable {
-    
-    #if os(Linux)
-    public func sqrt() -> Double { return Glibc.sqrt(self) }
-    public func pow(_ value: Double) -> Double { return Glibc.pow(self, value) }
-    public func exp() -> Double { return Glibc.exp(self) }
-    public func log() -> Double { return Glibc.log(self) }
-    // public func sin() -> Double { return Glibc.sin(self) }
-    // public func cos() -> Double { return Glibc.cos(self) }
-    #else
-    public func sqrt() -> Double { return Darwin.sqrt(self) }
-    public func pow(_ value: Double) -> Double { return Darwin.pow(self, value) }
-    public func exp() -> Double { return Darwin.exp(self) }
-    public func log() -> Double { return Darwin.log(self) }
-    // public func cos() -> Double { return Darwin.cos(self) }
-    // public func sin() -> Double { return Darwin.sin(self) }
-    #endif
-    
+
+    public func raised(to power: Double) -> Double {
+        return Foundation.pow(self, power)
+    }
+
+    /// Returns e raised to the exponent `self`.
+    public func exponentOfE() -> Double {
+        return Foundation.exp(self)
+    }
+
+    public func log() -> Double {
+        return Foundation.log(self)
+    }
+
     public static var nextGaussianValue: Double? = nil
+
 }
 
 extension Float: RandomDistribuable {
-    #if os(Linux)
-    public func sqrt() -> Float { return Glibc.sqrt(self) }
-    public func pow(_ value: Float) -> Float { return Glibc.pow(self, value) }
-    public func exp() -> Float { return Glibc.exp(self) }
-    public func log() -> Float { return Glibc.log(self) }
-    // public func sin() -> Float { return Glibc.sin(self) }
-    // public func cos() -> Float { return Glibc.cos(self) }
-    #else
-    public func sqrt() -> Float { return Darwin.sqrt(self) }
-    public func pow(_ value: Float) -> Float { return Darwin.pow(self, value) }
-    public func exp() -> Float { return Darwin.exp(self) }
-    public func log() -> Float { return Darwin.log(self) }
-    // public func cos() -> Float { return Darwin.cos(self) }
-    // public func sin() -> Float { return Darwin.sin(self) }
-    #endif
-    
+
+    public func raised(to power: Float) -> Float {
+        return Foundation.pow(self, power)
+    }
+
+    /// Returns e raised to the exponent `self`.
+    public func exponentOfE() -> Float {
+        return Foundation.exp(self)
+    }
+
+    public func log() -> Float {
+        return Foundation.log(self)
+    }
+
     public static var nextGaussianValue: Float? = nil
+
 }
 
 extension Double: BernoulliProbability {
-    public static var bernouilliRange: ClosedRange<Double> { return 0...1 }
-}
 
+    public static var bernouilliRange: ClosedRange<Double> {
+        return 0...1
+    }
+
+}
