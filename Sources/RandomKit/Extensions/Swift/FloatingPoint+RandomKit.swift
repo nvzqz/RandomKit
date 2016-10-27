@@ -27,6 +27,24 @@
 
 import Foundation
 
+extension FloatingPoint where Self: RandomWithinRange {
+
+    /// Returns an optional random value of `Self` inside of the range using `randomGenerator`.
+    public static func random(within range: Range<Self>, using randomGenerator: RandomGenerator) -> Self? {
+        guard range.lowerBound != range.upperBound else {
+            return nil
+        }
+        let random = UInt.random()
+        if random == 0 {
+            return range.lowerBound
+        } else {
+            let multiplier = range.upperBound - range.lowerBound
+            return range.lowerBound + multiplier * (Self(random - 1) / Self(UInt.max))
+        }
+    }
+
+}
+
 extension FloatingPoint where Self: RandomWithinClosedRange {
 
     /// Generates a random value of `Self`.
@@ -66,14 +84,14 @@ extension FloatingPoint where Self: RandomWithinClosedRange & RandomThroughValue
 
 }
 
-extension Double: RandomThroughValue, RandomWithinClosedRange {
+extension Double: RandomThroughValue, RandomWithinRange, RandomWithinClosedRange {
 }
 
-extension Float: RandomThroughValue, RandomWithinClosedRange {
+extension Float: RandomThroughValue, RandomWithinRange, RandomWithinClosedRange {
 }
 
 #if os(macOS)
-extension Float80: RandomThroughValue, RandomWithinClosedRange {
+extension Float80: RandomThroughValue, RandomWithinRange, RandomWithinClosedRange {
 }
 #endif
 

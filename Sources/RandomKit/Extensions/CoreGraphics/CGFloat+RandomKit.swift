@@ -29,7 +29,7 @@
 
 import CoreGraphics
 
-extension CGFloat: Random, RandomThroughValue, RandomWithinClosedRange {
+extension CGFloat: Random, RandomThroughValue, RandomWithinRange, RandomWithinClosedRange {
 
     /// Generates a random `CGFloat` within the closed range using `randomGenerator`.
     ///
