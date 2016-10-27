@@ -44,3 +44,21 @@ extension RandomThroughMax {
     }
 
 }
+
+extension RandomThroughMax where Self: RandomWithMax {
+
+    /// Generates a random value of `Self` from `Self.randomBase` through `Self.max` using `randomGenerator`.
+    public static func randomThroughMax(using randomGenerator: RandomGenerator = .default) -> Self {
+        return random(through: max, using: randomGenerator)
+    }
+
+}
+
+extension RandomThroughMax where Self: RandomWithMin {
+
+    /// Generates a random value of `Self` from `Self.randomBase` through `Self.min` using `randomGenerator`.
+    public static func randomThroughMin(using randomGenerator: RandomGenerator = .default) -> Self {
+        return random(through: min, using: randomGenerator)
+    }
+
+}
