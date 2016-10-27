@@ -7,11 +7,15 @@
 //
 
 import XCTest
-import RandomKit
+@testable import RandomKit
 
 class RandomKitTests: XCTestCase {
 
     let testCount = 1_000_000
+    
+    override func setUp() {
+        RandomGenerator.default = .default
+    }
 
     func testRandomInt() {
         let min = -10

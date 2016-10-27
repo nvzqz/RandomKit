@@ -6,7 +6,7 @@
 //  Copyright © 2016 Nikolai Vazquez. All rights reserved.
 //
 
-import Foundation
+import RandomKit
 
 // From https://github.com/phimage/Arithmosophi
 struct DistributionMoment {
@@ -29,7 +29,8 @@ struct DistributionMoment {
             M1 += delta_n
             let t4 = 6 * delta_n2 * M2 - 4 * delta_n * M3
             M4 += term1 * delta_n2 * (n*n - 3*n + 3) + t4
-            M3 += term1 * delta_n * (n - 2) - 3 * delta_n * M2
+            let t3 = 3 * delta_n * M2
+            M3 += term1 * delta_n * (n - 2) - t3
             M2 += term1
         }
     }
@@ -43,7 +44,7 @@ struct DistributionMoment {
     }
 
     var skewness: Double {
-        return sqrt(M0) * M3 / pow(M2, 1.5)
+        return M0.sqrt() * M3 / M2.pow(1.5)
     }
 
     var mean: Double {
@@ -55,6 +56,6 @@ struct DistributionMoment {
     }
 
     var standardDeviation: Double {
-        return sqrt(variance)
+        return variance.sqrt()
     }
 }
