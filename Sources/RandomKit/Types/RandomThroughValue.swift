@@ -1,5 +1,5 @@
 //
-//  RandomToMax.swift
+//  RandomThroughValue.swift
 //  RandomKit
 //
 //  The MIT License (MIT)
@@ -25,40 +25,40 @@
 //  THE SOFTWARE.
 //
 
-/// A type that can generate a random value less than a max value.
-public protocol RandomToMax: Random {
+/// A type that can generate a random value from a base through a value.
+public protocol RandomThroughValue: Random {
 
     /// The random base from which to generate.
     static var randomBase: Self { get }
 
-    /// Generates a random value of `Self` from `randomBase` to `max` using `randomGenerator`.
-    static func random(to max: Self, using randomGenerator: RandomGenerator) -> Self
+    /// Generates a random value of `Self` from `Self.randomBase` through `value` using `randomGenerator`.
+    static func random(through value: Self, using randomGenerator: RandomGenerator) -> Self
 
 }
 
-extension RandomToMax {
+extension RandomThroughValue {
 
-    /// Generates a random value of `Self` from `randomBase` to `max` using the default generator.
-    public static func random(to max: Self) -> Self {
-        return random(to: max, using: .default)
+    /// Generates a random value of `Self` from `Self.randomBase` through `value` using the default generator.
+    public static func random(through value: Self) -> Self {
+        return random(through: value, using: .default)
     }
 
 }
 
-extension RandomToMax where Self: RandomWithMax {
+extension RandomThroughValue where Self: RandomWithMax {
 
-    /// Generates a random value of `Self` from `Self.randomBase` to `Self.max` using `randomGenerator`.
-    public static func randomToMax(using randomGenerator: RandomGenerator = .default) -> Self {
-        return random(to: max, using: randomGenerator)
+    /// Generates a random value of `Self` from `Self.randomBase` through `Self.max` using `randomGenerator`.
+    public static func randomThroughMax(using randomGenerator: RandomGenerator = .default) -> Self {
+        return random(through: max, using: randomGenerator)
     }
 
 }
 
-extension RandomToMax where Self: RandomWithMin {
+extension RandomThroughValue where Self: RandomWithMin {
 
-    /// Generates a random value of `Self` from `Self.randomBase` to `Self.min` using `randomGenerator`.
-    public static func randomToMin(using randomGenerator: RandomGenerator = .default) -> Self {
-        return random(to: min, using: randomGenerator)
+    /// Generates a random value of `Self` from `Self.randomBase` through `Self.min` using `randomGenerator`.
+    public static func randomThroughMin(using randomGenerator: RandomGenerator = .default) -> Self {
+        return random(through: min, using: randomGenerator)
     }
 
 }

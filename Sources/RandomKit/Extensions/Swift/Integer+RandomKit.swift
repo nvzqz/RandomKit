@@ -38,7 +38,7 @@ extension Integer where Self: Random {
 
 }
 
-extension Integer where Self: RandomToMax & RandomThroughMax {
+extension Integer where Self: RandomToValue & RandomThroughValue {
 
     /// The random base from which to generate.
     public static var randomBase: Self {
@@ -47,44 +47,44 @@ extension Integer where Self: RandomToMax & RandomThroughMax {
 
 }
 
-extension SignedInteger where Self: RandomToMax {
+extension SignedInteger where Self: RandomToValue {
 
-    /// Generates a random value of `Self` from `randomBase` to `max`.
-    public static func random(to max: Self, using randomGenerator: RandomGenerator) -> Self {
-        if max == randomBase {
-            return max
-        } else if max < randomBase {
+    /// Generates a random value of `Self` from `randomBase` to `value`.
+    public static func random(to value: Self, using randomGenerator: RandomGenerator) -> Self {
+        if value == randomBase {
+            return value
+        } else if value < randomBase {
             var random: Self
             repeat {
                 random = self.random(using: randomGenerator)
             } while random > 0
-            return random % max
+            return random % value
         } else {
             var random: Self
             repeat {
                 random = self.random(using: randomGenerator)
             } while random < 0
-            return random % max
+            return random % value
         }
     }
 
 }
 
-extension UnsignedInteger where Self: RandomToMax {
+extension UnsignedInteger where Self: RandomToValue {
 
-    /// Generates a random value of `Self` from `randomBase` to `max`.
-    public static func random(to max: Self, using randomGenerator: RandomGenerator) -> Self {
-        switch max {
+    /// Generates a random value of `Self` from `randomBase` to `value`.
+    public static func random(to value: Self, using randomGenerator: RandomGenerator) -> Self {
+        switch value {
         case randomBase:
-            return max
+            return value
         default:
-            return random(using: randomGenerator) % max
+            return random(using: randomGenerator) % value
         }
     }
 
 }
 
-extension UnsignedInteger where Self: RandomToMax & RandomWithinRange {
+extension UnsignedInteger where Self: RandomToValue & RandomWithinRange {
 
     /// Returns an optional random value of `Self` inside of the range.
     public static func random(within range: Range<Self>, using randomGenerator: RandomGenerator) -> Self? {
@@ -96,36 +96,36 @@ extension UnsignedInteger where Self: RandomToMax & RandomWithinRange {
 
 }
 
-extension SignedInteger where Self: RandomWithMax & RandomWithMin & RandomThroughMax {
+extension SignedInteger where Self: RandomWithMax & RandomWithMin & RandomThroughValue {
 
-    /// Generates a random value of `Self` from `randomBase` through `max`.
-    public static func random(through max: Self, using randomGenerator: RandomGenerator) -> Self {
-        if max == randomBase {
-            return max
-        } else if max < randomBase {
+    /// Generates a random value of `Self` from `randomBase` through `value`.
+    public static func random(through value: Self, using randomGenerator: RandomGenerator) -> Self {
+        if value == randomBase {
+            return value
+        } else if value < randomBase {
             var random: Self
             repeat {
                 random = self.random(using: randomGenerator)
             } while random > 0
-            return max == Self.min ? random : (random % (max - 1))
+            return value == Self.min ? random : (random % (value - 1))
         } else {
             var random: Self
             repeat {
                 random = self.random(using: randomGenerator)
             } while random < 0
-            return max == Self.max ? random : (random % (max + 1))
+            return value == Self.max ? random : (random % (value + 1))
         }
     }
 
 }
 
-extension UnsignedInteger where Self: RandomWithMax & RandomThroughMax {
+extension UnsignedInteger where Self: RandomWithMax & RandomThroughValue {
 
-    /// Generates a random value of `Self` from `randomBase` through `max`.
-    public static func random(through max: Self, using randomGenerator: RandomGenerator) -> Self {
-        switch max {
+    /// Generates a random value of `Self` from `randomBase` through `value`.
+    public static func random(through value: Self, using randomGenerator: RandomGenerator) -> Self {
+        switch value {
         case randomBase:
-            return max
+            return value
         case Self.max:
             return random(using: randomGenerator)
         default:
@@ -135,7 +135,7 @@ extension UnsignedInteger where Self: RandomWithMax & RandomThroughMax {
 
 }
 
-extension UnsignedInteger where Self: RandomThroughMax & RandomWithinClosedRange {
+extension UnsignedInteger where Self: RandomThroughValue & RandomWithinClosedRange {
 
     /// Returns a random value of `Self` inside of the closed range.
     public static func random(within closedRange: ClosedRange<Self>, using randomGenerator: RandomGenerator) -> Self {
@@ -145,7 +145,7 @@ extension UnsignedInteger where Self: RandomThroughMax & RandomWithinClosedRange
 
 }
 
-extension Int: RandomWithMax, RandomWithMin, RandomToMax, RandomThroughMax, RandomWithinRange, RandomWithinClosedRange {
+extension Int: RandomWithMax, RandomWithMin, RandomToValue, RandomThroughValue, RandomWithinRange, RandomWithinClosedRange {
 
     /// Returns an optional random value of `Self` inside of the range.
     public static func random(within range: Range<Int>, using randomGenerator: RandomGenerator) -> Int? {
@@ -166,7 +166,7 @@ extension Int: RandomWithMax, RandomWithMin, RandomToMax, RandomThroughMax, Rand
 
 }
 
-extension Int64: RandomWithMax, RandomWithMin, RandomToMax, RandomThroughMax, RandomWithinRange, RandomWithinClosedRange {
+extension Int64: RandomWithMax, RandomWithMin, RandomToValue, RandomThroughValue, RandomWithinRange, RandomWithinClosedRange {
 
     /// Returns an optional random value of `Self` inside of the range.
     public static func random(within range: Range<Int64>, using randomGenerator: RandomGenerator) -> Int64? {
@@ -187,7 +187,7 @@ extension Int64: RandomWithMax, RandomWithMin, RandomToMax, RandomThroughMax, Ra
 
 }
 
-extension Int32: RandomWithMax, RandomWithMin, RandomToMax, RandomThroughMax, RandomWithinRange, RandomWithinClosedRange {
+extension Int32: RandomWithMax, RandomWithMin, RandomToValue, RandomThroughValue, RandomWithinRange, RandomWithinClosedRange {
 
     /// Returns an optional random value of `Self` inside of the range.
     public static func random(within range: Range<Int32>, using randomGenerator: RandomGenerator) -> Int32? {
@@ -208,7 +208,7 @@ extension Int32: RandomWithMax, RandomWithMin, RandomToMax, RandomThroughMax, Ra
 
 }
 
-extension Int16: RandomWithMax, RandomWithMin, RandomToMax, RandomThroughMax, RandomWithinRange, RandomWithinClosedRange {
+extension Int16: RandomWithMax, RandomWithMin, RandomToValue, RandomThroughValue, RandomWithinRange, RandomWithinClosedRange {
 
     /// Returns an optional random value of `Self` inside of the range.
     public static func random(within range: Range<Int16>, using randomGenerator: RandomGenerator) -> Int16? {
@@ -229,7 +229,7 @@ extension Int16: RandomWithMax, RandomWithMin, RandomToMax, RandomThroughMax, Ra
 
 }
 
-extension Int8: RandomWithMax, RandomWithMin, RandomToMax, RandomThroughMax, RandomWithinRange, RandomWithinClosedRange {
+extension Int8: RandomWithMax, RandomWithMin, RandomToValue, RandomThroughValue, RandomWithinRange, RandomWithinClosedRange {
 
     /// Returns an optional random value of `Self` inside of the range.
     public static func random(within range: Range<Int8>, using randomGenerator: RandomGenerator) -> Int8? {
@@ -250,7 +250,7 @@ extension Int8: RandomWithMax, RandomWithMin, RandomToMax, RandomThroughMax, Ran
 
 }
 
-extension UInt: RandomWithMax, RandomWithMin, RandomToMax, RandomThroughMax, RandomWithinRange, RandomWithinClosedRange {
+extension UInt: RandomWithMax, RandomWithMin, RandomToValue, RandomThroughValue, RandomWithinRange, RandomWithinClosedRange {
 
     fileprivate var _resigned: UInt {
         return UInt(UIntMax(self)._resigned)
@@ -258,7 +258,7 @@ extension UInt: RandomWithMax, RandomWithMin, RandomToMax, RandomThroughMax, Ran
 
 }
 
-extension UInt64: RandomWithMax, RandomWithMin, RandomToMax, RandomThroughMax, RandomWithinRange, RandomWithinClosedRange {
+extension UInt64: RandomWithMax, RandomWithMin, RandomToValue, RandomThroughValue, RandomWithinRange, RandomWithinClosedRange {
 
     fileprivate var _resigned: UInt64 {
         return self ^ (1 << 63)
@@ -266,7 +266,7 @@ extension UInt64: RandomWithMax, RandomWithMin, RandomToMax, RandomThroughMax, R
 
 }
 
-extension UInt32: RandomWithMax, RandomWithMin, RandomToMax, RandomThroughMax, RandomWithinRange, RandomWithinClosedRange {
+extension UInt32: RandomWithMax, RandomWithMin, RandomToValue, RandomThroughValue, RandomWithinRange, RandomWithinClosedRange {
 
     fileprivate var _resigned: UInt32 {
         return self ^ (1 << 31)
@@ -274,7 +274,7 @@ extension UInt32: RandomWithMax, RandomWithMin, RandomToMax, RandomThroughMax, R
 
 }
 
-extension UInt16: RandomWithMax, RandomWithMin, RandomToMax, RandomThroughMax, RandomWithinRange, RandomWithinClosedRange {
+extension UInt16: RandomWithMax, RandomWithMin, RandomToValue, RandomThroughValue, RandomWithinRange, RandomWithinClosedRange {
 
     fileprivate var _resigned: UInt16 {
         return self ^ (1 << 15)
@@ -282,7 +282,7 @@ extension UInt16: RandomWithMax, RandomWithMin, RandomToMax, RandomThroughMax, R
 
 }
 
-extension UInt8: RandomWithMax, RandomWithMin, RandomToMax, RandomThroughMax, RandomWithinRange, RandomWithinClosedRange {
+extension UInt8: RandomWithMax, RandomWithMin, RandomToValue, RandomThroughValue, RandomWithinRange, RandomWithinClosedRange {
 
     fileprivate var _resigned: UInt8 {
         return self ^ (1 << 7)
