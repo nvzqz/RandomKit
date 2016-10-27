@@ -44,3 +44,21 @@ extension RandomToMax {
     }
 
 }
+
+extension RandomToMax where Self: RandomWithMax {
+
+    /// Generates a random value of `Self` from `Self.randomBase` to `Self.max` using `randomGenerator`.
+    public static func randomToMax(using randomGenerator: RandomGenerator = .default) -> Self {
+        return random(to: max, using: randomGenerator)
+    }
+
+}
+
+extension RandomToMax where Self: RandomWithMin {
+
+    /// Generates a random value of `Self` from `Self.randomBase` to `Self.min` using `randomGenerator`.
+    public static func randomToMin(using randomGenerator: RandomGenerator = .default) -> Self {
+        return random(to: min, using: randomGenerator)
+    }
+
+}
