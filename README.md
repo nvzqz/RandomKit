@@ -141,15 +141,15 @@ Int.random(within: -100...100)       // -79
 Character.random(within: "a"..."z")  // "f"
 ```
 
-#### RandomToMax
+#### RandomToValue
 
-A protocol for types that can generate random values from a base value to a max
-value, noninclusive.
+A protocol for types that can generate random values from a base value to
+another value, noninclusive.
 
 The base value for integers is 0. This means that calling `random(to:)` on a
 negative value will yield a negative one and vice-versa for a positive value.
 
-If `max` == `baseValue`, `max` will be returned for `random(to:)`.
+If `value` == `randomBase`, `value` will be returned for `random(to:)`.
 
 ```swift
 Int.random(to:  2)  // Either 0 or 1
@@ -158,10 +158,10 @@ Int.random(to: 32)  // 15
 Int.random(to: -5)  // -3
 ```
 
-#### RandomThroughMax
+#### RandomThroughValue
 
-A protocol for types that can generate random values from a base value through a
-max value, inclusive.
+A protocol for types that can generate random values from a base value through
+another value, inclusive.
 
 The same rules for the base value of `RandomToMax` apply to `RandomThroughMax`.
 
