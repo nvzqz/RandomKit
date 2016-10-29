@@ -44,6 +44,41 @@ extension Collection where Index: RandomWithinRange {
 
 }
 
+extension Collection where Index: RandomWithinRange, IndexDistance: RandomToValue {
+
+    /// Returns a random element of `self`, or `nil` if `self` is empty.
+    public var random: Iterator.Element? {
+        return random(using: .default)
+    }
+
+    /// Returns a random element of `self`, or `nil` if `self` is empty.
+    public func random(using randomGenerator: RandomGenerator) -> Iterator.Element? {
+        guard let index = Index.random(within: Range(uncheckedBounds: (startIndex, endIndex))) else {
+            return nil
+        }
+        return self[index]
+    }
+
+}
+
+extension Collection where IndexDistance: RandomToValue {
+
+    /// Returns a random element of `self`, or `nil` if `self` is empty.
+    public var random: Iterator.Element? {
+        return random(using: .default)
+    }
+
+    /// Returns a random element of `self`, or `nil` if `self` is empty.
+    public func random(using randomGenerator: RandomGenerator) -> Iterator.Element? {
+        guard !self.isEmpty else {
+            return nil
+        }
+        let elementIndex = IndexDistance.random(to: distance(from: startIndex, to: endIndex), using: randomGenerator)
+        return self[index(startIndex, offsetBy: elementIndex)]
+    }
+
+}
+
 extension MutableCollection where Self: Shuffleable, Index == Int {
 
     /// Shuffles the elements in `self` and returns the result.
