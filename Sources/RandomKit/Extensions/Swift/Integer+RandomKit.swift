@@ -88,7 +88,7 @@ extension UnsignedInteger where Self: RandomToValue & RandomWithinRange {
 
     /// Returns an optional random value of `Self` inside of the range.
     public static func random(within range: Range<Self>, using randomGenerator: RandomGenerator) -> Self? {
-        guard range.lowerBound != range.upperBound else {
+        guard !range.isEmpty else {
             return nil
         }
         return range.lowerBound + random(to: range.upperBound - range.lowerBound, using: randomGenerator)

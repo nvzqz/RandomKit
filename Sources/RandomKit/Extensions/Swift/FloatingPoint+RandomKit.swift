@@ -31,7 +31,7 @@ extension FloatingPoint where Self: RandomWithinRange {
 
     /// Returns an optional random value of `Self` inside of the range using `randomGenerator`.
     public static func random(within range: Range<Self>, using randomGenerator: RandomGenerator) -> Self? {
-        guard range.lowerBound != range.upperBound else {
+        guard !range.isEmpty else {
             return nil
         }
         let random = UInt.random()

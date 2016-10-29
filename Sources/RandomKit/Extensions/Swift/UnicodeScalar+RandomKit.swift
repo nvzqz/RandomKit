@@ -37,7 +37,7 @@ extension UnicodeScalar: Random, RandomWithinRange, RandomWithinClosedRange {
     /// Returns a random value of `Self` inside of the closed range.
     public static func random(within range: Range<UnicodeScalar>,
                               using randomGenerator: RandomGenerator) -> UnicodeScalar? {
-        guard range.lowerBound != range.upperBound else {
+        guard !range.isEmpty else {
             return nil
         }
         let lower = range.lowerBound.value
