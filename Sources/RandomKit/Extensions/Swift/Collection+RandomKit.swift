@@ -27,7 +27,7 @@
 
 import Foundation
 
-extension Collection where IndexDistance == Int {
+extension Collection where Index: RandomWithinRange {
 
     /// Returns a random element of `self`, or `nil` if `self` is empty.
     public var random: Iterator.Element? {
@@ -36,9 +36,10 @@ extension Collection where IndexDistance == Int {
 
     /// Returns a random element of `self`, or `nil` if `self` is empty.
     public func random(using randomGenerator: RandomGenerator) -> Iterator.Element? {
-        guard !self.isEmpty else { return nil }
-        let elementIndex = Int.random(to: distance(from: startIndex, to: endIndex), using: randomGenerator)
-        return self[index(startIndex, offsetBy: elementIndex)]
+        guard let index = Index.random(within: Range(uncheckedBounds: (startIndex, endIndex))) else {
+            return nil
+        }
+        return self[index]
     }
 
 }
