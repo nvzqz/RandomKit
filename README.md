@@ -147,7 +147,8 @@ A protocol for types that can generate random values from a base value to
 another value, noninclusive.
 
 The base value for integers is 0. This means that calling `random(to:)` on a
-negative value will yield a negative one and vice-versa for a positive value.
+negative value will yield a random negative value or zero whereas a positive
+value will yield a random positive value or zero.
 
 If `value` == `randomBase`, `value` will be returned for `random(to:)`.
 
