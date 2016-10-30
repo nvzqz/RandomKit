@@ -30,13 +30,13 @@ import Foundation
 /// A random generator.
 public enum RandomGenerator {
 
-    /// Use arc4random. Does nothing on Linux.
+    /// Use arc4random. Does nothing on Linux, Android, or Windows.
     case arc4random
 
-    /// Use "/dev/random".
+    /// Use "/dev/random". Does nothing on Windows unless using Cygwin.
     case devRandom
 
-    /// Use "/dev/urandom".
+    /// Use "/dev/urandom". Does nothing on Windows unless using Cygwin.
     case devURandom
 
     /// Use Xoroshiro algorithm.
@@ -56,17 +56,21 @@ public enum RandomGenerator {
     public func randomize(buffer: UnsafeMutableRawPointer, size: Int) {
         switch self {
         case .arc4random:
-            #if !os(Linux)
+            #if !os(Linux) && !os(Android) && !os(Windows)
                 arc4random_buf(buffer, size)
             #endif
         case .devRandom:
+            #if !os(Windows) || CYGWIN
             let fd = open("/dev/random", O_RDONLY)
             read(fd, buffer, size)
             close(fd)
+            #endif
         case .devURandom:
+            #if !os(Windows) || CYGWIN
             let fd = open("/dev/urandom", O_RDONLY)
             read(fd, buffer, size)
             close(fd)
+            #endif
         case let .xoroshiro(threadSafe):
             if threadSafe {
                 _Xoroshiro.randomizeThreadSafe(buffer: buffer, size: size)
