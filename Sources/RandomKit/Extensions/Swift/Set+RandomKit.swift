@@ -29,8 +29,7 @@ private extension Set {
 
     init(_ randomCount: Int, _ sequence: AnySequence<Element>, _ elementGenerator: () -> Element) {
         self.init(minimumCapacity: randomCount)
-        for element in sequence {
-            var element = element
+        for var element in sequence {
             while self.contains(element) {
                 element = elementGenerator()
             }
