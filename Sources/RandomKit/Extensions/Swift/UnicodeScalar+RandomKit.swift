@@ -64,7 +64,7 @@ extension UnicodeScalar: Random, RandomWithinRange, RandomWithinClosedRange {
         } else {
             range = lower...upper
         }
-        return UnicodeScalar(.random(within: range, using: randomGenerator))!
+        return UnicodeScalar(.random(within: range, using: randomGenerator)).unsafelyUnwrapped
     }
 
     /// Returns an optional random value of `Self` inside of the range.

@@ -58,8 +58,8 @@ extension URL: Random {
     /// - parameter randomGenerator: The random generator to use.
     public static func random(fromValues values: [String],
                               using randomGenerator: RandomGenerator = .default) -> URL {
-        guard let value = values.random(using: randomGenerator), let url = self.init(string: value) else {
-            return self.init(string: "https://www.google.com/")!
+        guard let value = values.random(using: randomGenerator), let url = URL(string: value) else {
+            return URL(string: "https://www.google.com/").unsafelyUnwrapped
         }
         return url
     }
