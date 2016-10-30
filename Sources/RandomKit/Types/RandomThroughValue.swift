@@ -26,7 +26,7 @@
 //
 
 /// A type that can generate a random value from a base through a value.
-public protocol RandomThroughValue: Random {
+public protocol RandomThroughValue {
 
     /// The random base from which to generate.
     static var randomBase: Self { get }

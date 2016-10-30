@@ -43,9 +43,9 @@ extension Dictionary: Shuffleable {
 
 }
 
-extension Dictionary where Key: Random, Value: Random {
+private extension Dictionary {
 
-    fileprivate init(_ randomCount: Int, _ keys: AnySequence<Key>, _ values: AnySequence<Value>, _ keyGenerator: @autoclosure () -> Key) {
+    init(_ randomCount: Int, _ keys: AnySequence<Key>, _ values: AnySequence<Value>, _ keyGenerator: @autoclosure () -> Key) {
         self.init(minimumCapacity: randomCount)
         for (key, value) in zip(keys, values) {
             var key = key
@@ -55,6 +55,10 @@ extension Dictionary where Key: Random, Value: Random {
             self[key] = value
         }
     }
+
+}
+
+extension Dictionary where Key: Random, Value: Random {
 
     /// Construct a Dictionary of random elements.
     public init(randomCount: Int, using randomGenerator: RandomGenerator = .default) {

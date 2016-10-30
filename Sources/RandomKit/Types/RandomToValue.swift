@@ -26,7 +26,7 @@
 //
 
 /// A type that can generate a random value from a base to a value.
-public protocol RandomToValue: Random {
+public protocol RandomToValue {
 
     /// The random base from which to generate.
     static var randomBase: Self { get }

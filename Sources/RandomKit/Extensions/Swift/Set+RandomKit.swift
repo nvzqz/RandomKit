@@ -25,9 +25,9 @@
 //  THE SOFTWARE.
 //
 
-extension Set where Element: Random {
+private extension Set {
 
-    fileprivate init(_ randomCount: Int, _ sequence: AnySequence<Element>, _ elementGenerator: @autoclosure () -> Element) {
+    init(_ randomCount: Int, _ sequence: AnySequence<Element>, _ elementGenerator: @autoclosure () -> Element) {
         self.init(minimumCapacity: randomCount)
         for element in sequence {
             var element = element
@@ -37,6 +37,10 @@ extension Set where Element: Random {
             insert(element)
         }
     }
+
+}
+
+extension Set where Element: Random {
 
     /// Construct a Set of random elements.
     public init(randomCount: Int, using randomGenerator: RandomGenerator = .default) {

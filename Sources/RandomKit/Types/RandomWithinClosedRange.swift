@@ -26,7 +26,7 @@
 //
 
 /// A type that can generate an random value from within a closed range.
-public protocol RandomWithinClosedRange: Random, Comparable {
+public protocol RandomWithinClosedRange: Comparable {
 
     /// Returns a random value of `Self` inside of the closed range using `randomGenerator`.
     static func random(within closedRange: ClosedRange<Self>, using randomGenerator: RandomGenerator) -> Self

@@ -47,7 +47,7 @@ extension Integer where Self: RandomToValue & RandomThroughValue {
 
 }
 
-extension SignedInteger where Self: RandomToValue {
+extension SignedInteger where Self: Random & RandomToValue {
 
     /// Generates a random value of `Self` from `randomBase` to `value`.
     public static func random(to value: Self, using randomGenerator: RandomGenerator) -> Self {
@@ -70,7 +70,7 @@ extension SignedInteger where Self: RandomToValue {
 
 }
 
-extension UnsignedInteger where Self: RandomToValue {
+extension UnsignedInteger where Self: Random & RandomToValue {
 
     /// Generates a random value of `Self` from `randomBase` to `value`.
     public static func random(to value: Self, using randomGenerator: RandomGenerator) -> Self {
@@ -145,7 +145,7 @@ extension UnsignedInteger where Self: RandomThroughValue & RandomWithinClosedRan
 
 }
 
-extension Int: RandomWithMax, RandomWithMin, RandomToValue, RandomThroughValue, RandomWithinRange, RandomWithinClosedRange {
+extension Int: Random, RandomWithMax, RandomWithMin, RandomToValue, RandomThroughValue, RandomWithinRange, RandomWithinClosedRange {
 
     /// Returns an optional random value of `Self` inside of the range.
     public static func random(within range: Range<Int>, using randomGenerator: RandomGenerator) -> Int? {
@@ -166,7 +166,7 @@ extension Int: RandomWithMax, RandomWithMin, RandomToValue, RandomThroughValue, 
 
 }
 
-extension Int64: RandomWithMax, RandomWithMin, RandomToValue, RandomThroughValue, RandomWithinRange, RandomWithinClosedRange {
+extension Int64: Random, RandomWithMax, RandomWithMin, RandomToValue, RandomThroughValue, RandomWithinRange, RandomWithinClosedRange {
 
     /// Returns an optional random value of `Self` inside of the range.
     public static func random(within range: Range<Int64>, using randomGenerator: RandomGenerator) -> Int64? {
@@ -187,7 +187,7 @@ extension Int64: RandomWithMax, RandomWithMin, RandomToValue, RandomThroughValue
 
 }
 
-extension Int32: RandomWithMax, RandomWithMin, RandomToValue, RandomThroughValue, RandomWithinRange, RandomWithinClosedRange {
+extension Int32: Random, RandomWithMax, RandomWithMin, RandomToValue, RandomThroughValue, RandomWithinRange, RandomWithinClosedRange {
 
     /// Returns an optional random value of `Self` inside of the range.
     public static func random(within range: Range<Int32>, using randomGenerator: RandomGenerator) -> Int32? {
@@ -208,7 +208,7 @@ extension Int32: RandomWithMax, RandomWithMin, RandomToValue, RandomThroughValue
 
 }
 
-extension Int16: RandomWithMax, RandomWithMin, RandomToValue, RandomThroughValue, RandomWithinRange, RandomWithinClosedRange {
+extension Int16: Random, RandomWithMax, RandomWithMin, RandomToValue, RandomThroughValue, RandomWithinRange, RandomWithinClosedRange {
 
     /// Returns an optional random value of `Self` inside of the range.
     public static func random(within range: Range<Int16>, using randomGenerator: RandomGenerator) -> Int16? {
@@ -229,7 +229,7 @@ extension Int16: RandomWithMax, RandomWithMin, RandomToValue, RandomThroughValue
 
 }
 
-extension Int8: RandomWithMax, RandomWithMin, RandomToValue, RandomThroughValue, RandomWithinRange, RandomWithinClosedRange {
+extension Int8: Random, RandomWithMax, RandomWithMin, RandomToValue, RandomThroughValue, RandomWithinRange, RandomWithinClosedRange {
 
     /// Returns an optional random value of `Self` inside of the range.
     public static func random(within range: Range<Int8>, using randomGenerator: RandomGenerator) -> Int8? {
@@ -250,7 +250,7 @@ extension Int8: RandomWithMax, RandomWithMin, RandomToValue, RandomThroughValue,
 
 }
 
-extension UInt: RandomWithMax, RandomWithMin, RandomToValue, RandomThroughValue, RandomWithinRange, RandomWithinClosedRange {
+extension UInt: Random, RandomWithMax, RandomWithMin, RandomToValue, RandomThroughValue, RandomWithinRange, RandomWithinClosedRange {
 
     fileprivate var _resigned: UInt {
         return UInt(UIntMax(self)._resigned)
@@ -258,7 +258,7 @@ extension UInt: RandomWithMax, RandomWithMin, RandomToValue, RandomThroughValue,
 
 }
 
-extension UInt64: RandomWithMax, RandomWithMin, RandomToValue, RandomThroughValue, RandomWithinRange, RandomWithinClosedRange {
+extension UInt64: Random, RandomWithMax, RandomWithMin, RandomToValue, RandomThroughValue, RandomWithinRange, RandomWithinClosedRange {
 
     fileprivate var _resigned: UInt64 {
         return self ^ (1 << 63)
@@ -266,7 +266,7 @@ extension UInt64: RandomWithMax, RandomWithMin, RandomToValue, RandomThroughValu
 
 }
 
-extension UInt32: RandomWithMax, RandomWithMin, RandomToValue, RandomThroughValue, RandomWithinRange, RandomWithinClosedRange {
+extension UInt32: Random, RandomWithMax, RandomWithMin, RandomToValue, RandomThroughValue, RandomWithinRange, RandomWithinClosedRange {
 
     fileprivate var _resigned: UInt32 {
         return self ^ (1 << 31)
@@ -274,7 +274,7 @@ extension UInt32: RandomWithMax, RandomWithMin, RandomToValue, RandomThroughValu
 
 }
 
-extension UInt16: RandomWithMax, RandomWithMin, RandomToValue, RandomThroughValue, RandomWithinRange, RandomWithinClosedRange {
+extension UInt16: Random, RandomWithMax, RandomWithMin, RandomToValue, RandomThroughValue, RandomWithinRange, RandomWithinClosedRange {
 
     fileprivate var _resigned: UInt16 {
         return self ^ (1 << 15)
@@ -282,7 +282,7 @@ extension UInt16: RandomWithMax, RandomWithMin, RandomToValue, RandomThroughValu
 
 }
 
-extension UInt8: RandomWithMax, RandomWithMin, RandomToValue, RandomThroughValue, RandomWithinRange, RandomWithinClosedRange {
+extension UInt8: Random, RandomWithMax, RandomWithMin, RandomToValue, RandomThroughValue, RandomWithinRange, RandomWithinClosedRange {
 
     fileprivate var _resigned: UInt8 {
         return self ^ (1 << 7)
