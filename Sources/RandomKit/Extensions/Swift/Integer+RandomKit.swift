@@ -129,7 +129,7 @@ extension UnsignedInteger where Self: RandomWithMax & RandomThroughValue {
         case Self.max:
             return random(using: randomGenerator)
         default:
-            return random(using: randomGenerator) % (max + 1)
+            return random(using: randomGenerator) % (value + 1)
         }
     }
 
