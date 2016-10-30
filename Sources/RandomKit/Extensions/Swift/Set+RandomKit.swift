@@ -27,7 +27,7 @@
 
 private extension Set {
 
-    init(_ randomCount: Int, _ sequence: AnySequence<Element>, _ elementGenerator: @autoclosure () -> Element) {
+    init(_ randomCount: Int, _ sequence: AnySequence<Element>, _ elementGenerator: () -> Element) {
         self.init(minimumCapacity: randomCount)
         for element in sequence {
             var element = element
@@ -46,7 +46,7 @@ extension Set where Element: Random {
     public init(randomCount: Int, using randomGenerator: RandomGenerator = .default) {
         self.init(randomCount,
                   Element.randomSequence(maxCount: randomCount, using: randomGenerator),
-                  Element.random(using: randomGenerator))
+                  { Element.random(using: randomGenerator) })
     }
 
 }
@@ -61,7 +61,7 @@ extension Set where Element: RandomWithinClosedRange {
                 using randomGenerator: RandomGenerator = .default) {
         self.init(randomCount,
                   Element.randomSequence(within: closedRange, maxCount: randomCount, using: randomGenerator),
-                  Element.random(within: closedRange, using: randomGenerator))
+                  { Element.random(within: closedRange, using: randomGenerator) })
     }
 
 }

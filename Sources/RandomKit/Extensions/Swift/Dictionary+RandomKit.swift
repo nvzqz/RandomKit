@@ -45,7 +45,7 @@ extension Dictionary: Shuffleable {
 
 private extension Dictionary {
 
-    init(_ randomCount: Int, _ keys: AnySequence<Key>, _ values: AnySequence<Value>, _ keyGenerator: @autoclosure () -> Key) {
+    init(_ randomCount: Int, _ keys: AnySequence<Key>, _ values: AnySequence<Value>, _ keyGenerator: () -> Key) {
         self.init(minimumCapacity: randomCount)
         for (key, value) in zip(keys, values) {
             var key = key
@@ -65,7 +65,7 @@ extension Dictionary where Key: Random, Value: Random {
         self.init(randomCount,
                   Key.randomSequence(maxCount: randomCount, using: randomGenerator),
                   Value.randomSequence(maxCount: randomCount, using: randomGenerator),
-                  Key.random(using: randomGenerator))
+                  { Key.random(using: randomGenerator) })
     }
 
 }
@@ -82,7 +82,7 @@ extension Dictionary where Key: RandomWithinClosedRange, Value: RandomWithinClos
         self.init(randomCount,
                   Key.randomSequence(within: keyRange, maxCount: randomCount, using: randomGenerator),
                   Value.randomSequence(within: valueRange, maxCount: randomCount, using: randomGenerator),
-                  Key.random(within: keyRange, using: randomGenerator))
+                  { Key.random(within: keyRange, using: randomGenerator) })
     }
 
 }
