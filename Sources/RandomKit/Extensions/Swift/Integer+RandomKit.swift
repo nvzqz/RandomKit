@@ -91,7 +91,7 @@ extension UnsignedInteger where Self: RandomToValue & RandomWithinRange {
         guard !range.isEmpty else {
             return nil
         }
-        return range.lowerBound + random(to: range.upperBound - range.lowerBound, using: randomGenerator)
+        return range.lowerBound &+ random(to: range.upperBound &- range.lowerBound, using: randomGenerator)
     }
 
 }
@@ -107,13 +107,13 @@ extension SignedInteger where Self: RandomWithMax & RandomWithMin & RandomThroug
             repeat {
                 random = self.random(using: randomGenerator)
             } while random > 0
-            return value == Self.min ? random : (random % (value - 1))
+            return value == Self.min ? random : (random % (value &- 1))
         } else {
             var random: Self
             repeat {
                 random = self.random(using: randomGenerator)
             } while random < 0
-            return value == Self.max ? random : (random % (value + 1))
+            return value == Self.max ? random : (random % (value &+ 1))
         }
     }
 
@@ -129,7 +129,7 @@ extension UnsignedInteger where Self: RandomWithMax & RandomThroughValue {
         case Self.max:
             return random(using: randomGenerator)
         default:
-            return random(using: randomGenerator) % (value + 1)
+            return random(using: randomGenerator) % (value &+ 1)
         }
     }
 
@@ -139,8 +139,8 @@ extension UnsignedInteger where Self: RandomThroughValue & RandomWithinClosedRan
 
     /// Returns a random value of `Self` inside of the closed range.
     public static func random(within closedRange: ClosedRange<Self>, using randomGenerator: RandomGenerator) -> Self {
-        return closedRange.lowerBound + random(through: closedRange.upperBound - closedRange.lowerBound,
-                                               using: randomGenerator)
+        return closedRange.lowerBound &+ random(through: closedRange.upperBound &- closedRange.lowerBound,
+                                                using: randomGenerator)
     }
 
 }
