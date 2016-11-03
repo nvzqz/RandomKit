@@ -47,6 +47,30 @@ RandomKit is a Swift framework that makes random data generation simple and easy
 RandomKit is possibly also compatible with FreeBSD, Android, and Windows
 (under Cygwin) but has not been tested for those platforms.
 
+### Install Using Swift Package Manager
+The [Swift Package Manager](https://swift.org/package-manager/) is a
+decentralized dependency manager for Swift.
+
+1. Add the project to your `Package.swift`.
+
+    ```swift
+    import PackageDescription
+
+    let package = Package(
+        name: "MyAwesomeProject",
+        dependencies: [
+            .Package(url: "https://github.com/nvzqz/RandomKit.git",
+                     majorVersion: 2)
+        ]
+    )
+    ```
+
+2. Import the RandomKit module.
+
+    ```swift
+    import RandomKit
+    ```
+
 ### Install Using CocoaPods
 [CocoaPods](https://cocoapods.org/) is a centralized dependency manager for
 Objective-C and Swift. Go [here](https://guides.cocoapods.org/using/index.html)
@@ -58,6 +82,12 @@ to learn more.
     use_frameworks!
 
     pod 'RandomKit', '~> 2.1.0'
+    ```
+
+    If you want to be on the bleeding edge, replace the last line with:
+
+    ```ruby
+    pod 'RandomKit', :git => 'https://github.com/nvzqz/RandomKit.git'
     ```
 
 2. Run `pod install` and open the `.xcworkspace` file to launch Xcode.
