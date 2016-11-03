@@ -30,7 +30,9 @@ import Foundation
 /// A random generator.
 public enum RandomGenerator {
 
-    /// Use arc4random. Does nothing on Linux, Android, or Windows.
+    /// Use arc4random.
+    ///
+    /// If the OS is Linux, Android, or Windows, `arc4random_buf` will be attempted to be dynamically loaded.
     case arc4random
 
     /// Use "/dev/random". Does nothing on Windows unless using Cygwin.
@@ -52,13 +54,24 @@ public enum RandomGenerator {
     /// The default random generator. Initially `xoroshiro(threadSafe: true)`.
     public static var `default` = xoroshiro(threadSafe: true)
 
+    /// Whether `arc4random` is available on the current system.
+    public static var arc4randomIsAvailable: Bool {
+        #if !os(Linux) && !os(Android) && !os(Windows)
+            return true
+        #else
+            if case .some = _a4r_buf {
+                return true
+            } else {
+                return false
+            }
+        #endif
+    }
+
     /// Randomize the contents of `buffer` of `size`.
     public func randomize(buffer: UnsafeMutableRawPointer, size: Int) {
         switch self {
         case .arc4random:
-            #if !os(Linux) && !os(Android) && !os(Windows)
-                arc4random_buf(buffer, size)
-            #endif
+            _arc4random_buf(buffer, size)
         case .devRandom:
             #if !os(Windows) || CYGWIN
             let fd = open("/dev/random", O_RDONLY)
@@ -148,4 +161,33 @@ private struct _Xoroshiro {
         return result
     }
 
+}
+
+#if os(Linux) || os(Android) || os(Windows)
+
+private typealias _Arc4random_buf = @convention(c) (ImplicitlyUnwrappedOptional<UnsafeMutableRawPointer>, Int) -> ()
+
+private let _a4r_buf: _Arc4random_buf? = {
+    guard let handle = dlopen(nil, RTLD_NOW) else {
+        return nil
+    }
+    defer {
+        dlclose(handle)
+    }
+    guard let a4r = dlsym(handle, "arc4random_buf") else {
+        return nil
+    }
+    return unsafeBitCast(a4r, to: _Arc4random_buf.self)
+}()
+
+#endif
+
+/// Performs `arc4random_buf` if OS is not Linux, Android, or Windows. Otherwise it'll try
+/// getting the handle for `arc4random_buf` and use the result if successful.
+private func _arc4random_buf(_ buffer: UnsafeMutableRawPointer!, _ size: Int) {
+    #if !os(Linux) && !os(Android) && !os(Windows)
+        arc4random_buf(buffer, size)
+    #else
+        _a4r_buf?(buffer, size)
+    #endif
 }
