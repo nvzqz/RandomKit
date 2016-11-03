@@ -35,21 +35,17 @@ RandomKit is a Swift framework that makes random data generation simple and easy
 
 ### Compatibility
 
-- Xcode
-    - Version:  **8.0**
-    - Language: **Swift 3.0**
-- OS X
-    - Compatible With:   **OS X 10.11**
-    - Deployment Target: **OS X 10.9**
-- iOS
-    - Compatible With:   **iOS 9.1**
-    - Deployment Target: **iOS 8.0**
-- watchOS
-    - Compatible With:   **watchOS 2.0**
-    - Deployment Target: **watchOS 2.0**
-- tvOS
-    - Compatible With:   **tvOS 9.0**
-    - Deployment Target: **tvOS 9.0**
+- Platforms:
+    - macOS 10.9+
+    - iOS 8.0+
+    - watchOS 2.0+
+    - tvOS 9.0+
+    - Linux
+- Xcode 8.0
+- Swift 3.0
+
+RandomKit is possibly also compatible with FreeBSD, Android, and Windows
+(under Cygwin) but has not been tested for those platforms.
 
 ### Install Using CocoaPods
 [CocoaPods](https://cocoapods.org/) is a centralized dependency manager for
