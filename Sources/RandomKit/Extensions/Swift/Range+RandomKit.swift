@@ -33,7 +33,7 @@ extension Range where Bound: RandomWithinRange {
     }
 
     /// Returns a random bound of `self`, or `nil` if `self` is empty.
-    public func random(using randomGenerator: RandomGenerator = .default) -> Bound? {
+    public func random(using randomGenerator: RandomGenerator) -> Bound? {
         return Bound.random(within: self, using: randomGenerator)
     }
 
@@ -47,7 +47,7 @@ extension CountableRange where Bound: RandomWithinRange {
     }
 
     /// Returns a random bound of `self`, or `nil` if `self` is empty.
-    public func random(using randomGenerator: RandomGenerator = .default) -> Bound? {
+    public func random(using randomGenerator: RandomGenerator) -> Bound? {
         return Bound.random(within: self, using: randomGenerator)
     }
 
@@ -61,7 +61,7 @@ extension ClosedRange where Bound: RandomWithinClosedRange {
     }
 
     /// Returns a random bound of `self`, or `nil` if `self` is empty.
-    public func random(using randomGenerator: RandomGenerator = .default) -> Bound? {
+    public func random(using randomGenerator: RandomGenerator) -> Bound? {
         return Bound.random(within: self, using: randomGenerator)
     }
 
@@ -75,7 +75,7 @@ extension CountableClosedRange where Bound: RandomWithinClosedRange {
     }
 
     /// Returns a random bound of `self`, or `nil` if `self` is empty.
-    public func random(using randomGenerator: RandomGenerator = .default) -> Bound? {
+    public func random(using randomGenerator: RandomGenerator) -> Bound? {
         return Bound.random(within: self, using: randomGenerator)
     }
 
