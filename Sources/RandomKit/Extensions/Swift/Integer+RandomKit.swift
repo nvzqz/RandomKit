@@ -252,8 +252,16 @@ extension Int8: Random, RandomWithMax, RandomWithMin, RandomToValue, RandomThrou
 
 extension UInt: Random, RandomWithMax, RandomWithMin, RandomToValue, RandomThroughValue, RandomWithinRange, RandomWithinClosedRange {
 
+    private static let _xorPattern: UInt = {
+        if MemoryLayout<UInt>.size == 8 {
+            return 1 << 63
+        } else {
+            return 1 << 31
+        }
+    }()
+
     fileprivate var _resigned: UInt {
-        return UInt(UIntMax(self)._resigned)
+        return self ^ ._xorPattern
     }
 
 }
