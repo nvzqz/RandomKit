@@ -27,13 +27,23 @@
 
 import Foundation
 
-extension Date: Random, RandomWithinClosedRange {
+extension Date: Random, RandomWithinRange, RandomWithinClosedRange {
 
     /// Generates a random date.
     ///
     /// - returns: Random date within `Date.distantPast...Date.distantFuture`.
     public static func random(using randomGenerator: RandomGenerator) -> Date {
         return random(within: .distantPast ... .distantFuture, using: randomGenerator)
+    }
+
+    /// Returns an optional random value of `Self` inside of the range using `randomGenerator`.
+    ///
+    /// - parameter range: The range within which the date will be generated.
+    /// - parameter randomGenerator: The random generator to use.
+    public static func random(within range: Range<Date>, using randomGenerator: RandomGenerator) -> Date? {
+        let lower = range.lowerBound.timeIntervalSince1970
+        let upper = range.upperBound.timeIntervalSince1970
+        return random(within: Range(uncheckedBounds: (lower, upper)), using: randomGenerator)
     }
 
     /// Returns a random value of `Self` inside of the closed range using `randomGenerator`.
@@ -43,7 +53,19 @@ extension Date: Random, RandomWithinClosedRange {
     public static func random(within closedRange: ClosedRange<Date>, using randomGenerator: RandomGenerator) -> Date {
         let lower = closedRange.lowerBound.timeIntervalSince1970
         let upper = closedRange.upperBound.timeIntervalSince1970
-        return random(within: lower...upper, using: randomGenerator)
+        return random(within: ClosedRange(uncheckedBounds: (lower, upper)), using: randomGenerator)
+    }
+
+    /// Generates a random date within the range.
+    ///
+    /// - parameter range: The range within which the date will be generated.
+    /// - parameter randomGenerator: The random generator to use.
+    public static func random(within range: Range<TimeInterval>,
+                              using randomGenerator: RandomGenerator = .default) -> Date? {
+        guard let random = TimeInterval.random(within: range, using: randomGenerator) else {
+            return nil
+        }
+        return Date(timeIntervalSince1970: random)
     }
 
     /// Generates a random date within the closed range.
