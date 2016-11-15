@@ -19,6 +19,10 @@
         <img src="https://badges.gitter.im/Join%20Chat.svg"
              alt="GITTER: join chat">
     </a>
+    <a href="https://codebeat.co/projects/github-com-nvzqz-randomkit">
+        <img src="https://codebeat.co/badges/256f6b2d-fd36-4b71-8bf0-b3cb31cb95ae"
+             alt="codebeat badge">
+    </a>
     <img src="https://img.shields.io/badge/license-MIT-000000.svg"
          alt="License">
 </p>
