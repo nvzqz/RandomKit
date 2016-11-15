@@ -16,7 +16,7 @@
              alt="Carthage">
     </a>
     <a href="https://gitter.im/nvzqz/RandomKit?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge">
-        <img src="https://img.shields.io/badge/GITTER-join%20chat-00D06F.svg"
+        <img src="https://badges.gitter.im/Join%20Chat.svg"
              alt="GITTER: join chat">
     </a>
     <img src="https://img.shields.io/badge/license-MIT-000000.svg"
