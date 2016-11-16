@@ -1,0 +1,47 @@
+//
+//  AllValuable.swift
+//  RandomKit
+//
+//  The MIT License (MIT)
+//
+//  Copyright (c) 2015-2016 Nikolai Vazquez
+//
+//  Permission is hereby granted, free of charge, to any person obtaining a copy
+//  of this software and associated documentation files (the "Software"), to deal
+//  in the Software without restriction, including without limitation the rights
+//  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+//  copies of the Software, and to permit persons to whom the Software is
+//  furnished to do so, subject to the following conditions:
+//
+//  The above copyright notice and this permission notice shall be included in
+//  all copies or substantial portions of the Software.
+//
+//  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+//  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+//  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+//  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+//  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+//  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+//  THE SOFTWARE.
+//
+
+/// A type that has a static array of all possible values of `Self`.
+///
+/// This makes it very easy for enum types to conform to `Random`.
+public protocol AllValuable {
+
+    /// An array of all possible values of `Self`.
+    static var all: [Self] { get }
+
+}
+
+extension AllValuable where Self: Random {
+
+    /// Generates a random value of `Self` using `randomGenerator`.
+    ///
+    /// - warning: `Self.all` should be non-empty or else this will cause a crash.
+    public static func random(using randomGenerator: RandomGenerator) -> Self {
+        return all.random(using: randomGenerator).unsafelyUnwrapped
+    }
+
+}
