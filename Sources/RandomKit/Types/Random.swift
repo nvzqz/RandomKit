@@ -46,12 +46,12 @@ extension Random {
     }
 
     /// Returns an iterator for random values of `Self` within `maxCount`.
-    public static func randomIterator(maxCount count: Int,
+    public static func randomIterator<I: Strideable & ExpressibleByIntegerLiteral>(maxCount: I,
                                       using randomGenerator: RandomGenerator = .default) -> AnyIterator<Self> {
-        var n = 0
+        var n: I = 0
         return AnyIterator {
-            defer { n += 1 }
-            return n < count ? random(using: randomGenerator) : nil
+            defer { n  = n.advanced(by: 1) }
+            return n < maxCount ? random(using: randomGenerator) : nil
         }
     }
 
@@ -61,9 +61,9 @@ extension Random {
     }
 
     /// Returns a sequence of random values of `Self` within `maxCount`.
-    public static func randomSequence(maxCount count: Int,
+    public static func randomSequence<I: Strideable & ExpressibleByIntegerLiteral>(maxCount: I,
                                       using randomGenerator: RandomGenerator = .default) -> AnySequence<Self> {
-        return AnySequence(randomIterator(maxCount: count, using: randomGenerator))
+        return AnySequence(randomIterator(maxCount: maxCount, using: randomGenerator))
     }
 
 }

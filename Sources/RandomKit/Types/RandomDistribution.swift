@@ -232,13 +232,13 @@ extension RandomDistribuable {
     }
 
     /// Returns a generator for random values using `distribution` within `maxCount`.
-    public static func randomIterator(maxCount count: Int,
+    public static func randomIterator<I: Strideable & ExpressibleByIntegerLiteral>(maxCount: I,
                                       distribution: RandomDistribution<Self>,
                                       using randomGenerator: RandomGenerator = .default) -> AnyIterator<Self> {
-        var n = 0
+        var n: I = 0
         return AnyIterator {
-            defer { n += 1 }
-            return n < count ? random(distribution: distribution, using: randomGenerator) : nil
+            defer { n = n.advanced(by: 1) }
+            return n < maxCount ? random(distribution: distribution, using: randomGenerator) : nil
         }
     }
 
@@ -249,10 +249,10 @@ extension RandomDistribuable {
     }
 
     /// Returns a sequence of random values using specified distribution within `maxCount`.
-    public static func randomSequence(maxCount count: Int,
+    public static func randomSequence<I: Strideable & ExpressibleByIntegerLiteral>(maxCount: I,
                                       distribution: RandomDistribution<Self>,
                                       using randomGenerator: RandomGenerator = .default) -> AnySequence<Self> {
-        return AnySequence(randomIterator(maxCount: count, distribution: distribution, using: randomGenerator))
+        return AnySequence(randomIterator(maxCount: maxCount, distribution: distribution, using: randomGenerator))
     }
 
 }
@@ -415,11 +415,11 @@ extension DiscreteRandomDistribuable {
     }
 
     /// Returns a generator for random values using `distribution` within `maxCount`.
-    public static func randomIterator<P: BernoulliProbability>(maxCount count: Int, distribution: DiscreteRandomDistribution<Self, P>, using randomGenerator: RandomGenerator = .default) -> AnyIterator<Self> {
-        var n = 0
+    public static func randomIterator<I: Strideable & ExpressibleByIntegerLiteral, P: BernoulliProbability>(maxCount: I, distribution: DiscreteRandomDistribution<Self, P>, using randomGenerator: RandomGenerator = .default) -> AnyIterator<Self> {
+        var n: I = 0
         return AnyIterator {
-            defer { n += 1 }
-            return n < count ? random(distribution: distribution, using: randomGenerator) : nil
+            defer { n = n.advanced(by: 1) }
+            return n < maxCount ? random(distribution: distribution, using: randomGenerator) : nil
         }
     }
 
@@ -429,8 +429,8 @@ extension DiscreteRandomDistribuable {
     }
 
     /// Returns a sequence of random values using specified distribution within `maxCount`.
-    public static func randomSequence<P: BernoulliProbability>(maxCount count: Int, distribution: DiscreteRandomDistribution<Self, P>, using randomGenerator: RandomGenerator = .default) -> AnySequence<Self> {
-        return AnySequence(randomIterator(maxCount: count, distribution: distribution, using: randomGenerator))
+    public static func randomSequence<I: Strideable & ExpressibleByIntegerLiteral, P: BernoulliProbability>(maxCount: I, distribution: DiscreteRandomDistribution<Self, P>, using randomGenerator: RandomGenerator = .default) -> AnySequence<Self> {
+        return AnySequence(randomIterator(maxCount: maxCount, distribution: distribution, using: randomGenerator))
     }
 
 }

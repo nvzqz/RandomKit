@@ -47,16 +47,16 @@ extension RandomWithinRange {
     }
 
     /// Returns an iterator for random values of `Self` within the range within `maxCount`.
-    public static func randomIterator(within range: Range<Self>,
-                                      maxCount: Int,
+    public static func randomIterator<I: Strideable & ExpressibleByIntegerLiteral>(within range: Range<Self>,
+                                      maxCount: I,
                                       using randomGenerator: RandomGenerator = .default) -> AnyIterator<Self> {
-        var n = 0
+        var n: I = 0
         return AnyIterator {
             guard n != maxCount else {
                 return nil
             }
             let value = random(within: range, using: randomGenerator)
-            n += 1
+            n = n.advanced(by: 1)
             return value
         }
     }
@@ -68,8 +68,8 @@ extension RandomWithinRange {
     }
 
     /// Returns a sequence of random values of `Self` within the range within `maxCount`.
-    public static func randomSequence(within range: Range<Self>,
-                                      maxCount: Int,
+    public static func randomSequence<I: Strideable & ExpressibleByIntegerLiteral>(within range: Range<Self>,
+                                      maxCount: I,
                                       using randomGenerator: RandomGenerator = .default) -> AnySequence<Self> {
         return AnySequence(randomIterator(within: range, maxCount: maxCount, using: randomGenerator))
     }
