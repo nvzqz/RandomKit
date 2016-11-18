@@ -53,7 +53,7 @@ extension String: Random {
                               using randomGenerator: RandomGenerator = .default) -> String? where I.Stride: SignedInteger {
         var result = UnicodeScalarView()
         for _ in 0 ..< length {
-            guard let scalar = UnicodeScalar.random(within: range) else {
+            guard let scalar = UnicodeScalar.random(within: range, using: randomGenerator) else {
                 return nil
             }
             result.append(scalar)
@@ -104,7 +104,7 @@ extension String: Random {
                               using randomGenerator: RandomGenerator = .default) -> String? where I.Stride: SignedInteger {
         var result = ""
         for _ in 0 ..< length {
-            guard let random = characters.random else {
+            guard let random = characters.random(using: randomGenerator) else {
                 return nil
             }
             result.append(random)
