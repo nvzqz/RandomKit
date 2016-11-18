@@ -29,7 +29,7 @@ extension Character: Random {
 
     /// Generates a random `Character`.
     ///
-    /// - returns: Random value within `" "..."~"` from `UnicodeScalar.random()`.
+    /// - returns: Random value within `UnicodeScalar.randomRange` from `UnicodeScalar.random()`.
     public static func random(using randomGenerator: RandomGenerator) -> Character {
         return Character(UnicodeScalar.random(using: randomGenerator))
     }

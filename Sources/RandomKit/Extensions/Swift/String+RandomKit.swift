@@ -29,9 +29,9 @@ extension String: Random {
 
     /// Generates a random `String`.
     ///
-    /// - returns: Random value within `" "..."~"` with length of `10`.
+    /// - returns: Random value within `UnicodeScalar.randomRange` with length of `10`.
     public static func random(using randomGenerator: RandomGenerator) -> String {
-        return random(ofLength: 10, within: " "..."~", using: randomGenerator)
+        return random(ofLength: 10, within: UnicodeScalar.randomRange, using: randomGenerator)
     }
 
     /// Generates a random `String` with a length of `10` inside of the range.
@@ -73,10 +73,10 @@ extension String: Random {
     /// Generates a random `String` of a given length inside of the closed range.
     ///
     /// - parameter length: The length for the generated string.
-    /// - parameter closedRange: The range within which the string will be generated. The default is `" "..."~"`.
+    /// - parameter closedRange: The range within which the string will be generated. The default is `UnicodeScalar.randomRange`.
     /// - parameter randomGenerator: The random generator to use.
     public static func random<I: ExpressibleByIntegerLiteral & Strideable>(ofLength length: I,
-                              within closedRange: ClosedRange<UnicodeScalar> = " "..."~",
+                              within closedRange: ClosedRange<UnicodeScalar> = UnicodeScalar.randomRange,
                               using randomGenerator: RandomGenerator = .default) -> String where I.Stride: SignedInteger {
         var result = UnicodeScalarView()
         for _ in 0 ..< length {

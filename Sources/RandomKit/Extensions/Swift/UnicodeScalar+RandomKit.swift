@@ -27,11 +27,14 @@
 
 extension UnicodeScalar: Random, RandomWithinRange, RandomWithinClosedRange {
 
+    /// A unicode scalar range from `" "` through `"~"`.
+    public static let randomRange: ClosedRange<UnicodeScalar> = " "..."~"
+
     /// Generates a random value of `Self`.
     ///
-    /// The random value is within `32...126`, or `" "..."~"`.
+    /// The random value is within `UnicodeScalar.randomRange`.
     public static func random(using randomGenerator: RandomGenerator) -> UnicodeScalar {
-        return random(within: 32...126, using: randomGenerator)
+        return random(within: UnicodeScalar.randomRange, using: randomGenerator)
     }
 
     /// Returns a random value of `Self` inside of the closed range.
