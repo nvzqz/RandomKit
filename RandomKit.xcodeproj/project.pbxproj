@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		520DA1351DDF16FD00F265CE /* UnsafeRandom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 520DA1341DDF16FD00F265CE /* UnsafeRandom.swift */; };
+		520DA1361DDF16FD00F265CE /* UnsafeRandom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 520DA1341DDF16FD00F265CE /* UnsafeRandom.swift */; };
+		520DA1371DDF16FD00F265CE /* UnsafeRandom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 520DA1341DDF16FD00F265CE /* UnsafeRandom.swift */; };
+		520DA1381DDF16FD00F265CE /* UnsafeRandom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 520DA1341DDF16FD00F265CE /* UnsafeRandom.swift */; };
 		5220D0491DDAFEB300B22F7F /* AllValuable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5220D0481DDAFEB300B22F7F /* AllValuable.swift */; };
 		5220D04A1DDAFEB300B22F7F /* AllValuable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5220D0481DDAFEB300B22F7F /* AllValuable.swift */; };
 		5220D04B1DDAFEB300B22F7F /* AllValuable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5220D0481DDAFEB300B22F7F /* AllValuable.swift */; };
@@ -159,6 +163,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		520DA1341DDF16FD00F265CE /* UnsafeRandom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnsafeRandom.swift; sourceTree = "<group>"; };
 		5220D0481DDAFEB300B22F7F /* AllValuable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllValuable.swift; sourceTree = "<group>"; };
 		5230293B1DC54137007530CD /* Range+RandomKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Range+RandomKit.swift"; sourceTree = "<group>"; };
 		523D8B0C1DBEADD1006FF58C /* CGFloat+RandomKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGFloat+RandomKit.swift"; sourceTree = "<group>"; };
@@ -279,6 +284,7 @@
 				525EB33A1DBD829000E8B246 /* RandomWithinClosedRange.swift */,
 				525EB2C01DBD696B00E8B246 /* Shuffleable.swift */,
 				5220D0481DDAFEB300B22F7F /* AllValuable.swift */,
+				520DA1341DDF16FD00F265CE /* UnsafeRandom.swift */,
 				52737E4A1DBEFE83009B5E9D /* RandomGenerator.swift */,
 				C498B4FF1DBFEBF600349047 /* RandomDistribution.swift */,
 			);
@@ -590,6 +596,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				520DA1351DDF16FD00F265CE /* UnsafeRandom.swift in Sources */,
 				52737E0E1DBEBEED009B5E9D /* FloatingPoint+RandomKit.swift in Sources */,
 				52737E301DBEBEF8009B5E9D /* Color+RandomKit.swift in Sources */,
 				525EB3391DBD7A2100E8B246 /* RandomWithinRange.swift in Sources */,
@@ -631,6 +638,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				520DA1361DDF16FD00F265CE /* UnsafeRandom.swift in Sources */,
 				52737E0F1DBEBEED009B5E9D /* FloatingPoint+RandomKit.swift in Sources */,
 				52737E311DBEBEF8009B5E9D /* Color+RandomKit.swift in Sources */,
 				52737E3D1DBEBEF8009B5E9D /* URL+RandomKit.swift in Sources */,
@@ -672,6 +680,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				520DA1371DDF16FD00F265CE /* UnsafeRandom.swift in Sources */,
 				52737E101DBEBEED009B5E9D /* FloatingPoint+RandomKit.swift in Sources */,
 				52737E321DBEBEF8009B5E9D /* Color+RandomKit.swift in Sources */,
 				52737E3E1DBEBEF8009B5E9D /* URL+RandomKit.swift in Sources */,
@@ -722,6 +731,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				520DA1381DDF16FD00F265CE /* UnsafeRandom.swift in Sources */,
 				52737E111DBEBEED009B5E9D /* FloatingPoint+RandomKit.swift in Sources */,
 				52737E331DBEBEF8009B5E9D /* Color+RandomKit.swift in Sources */,
 				52737E3F1DBEBEF8009B5E9D /* URL+RandomKit.swift in Sources */,
