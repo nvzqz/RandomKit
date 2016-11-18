@@ -51,14 +51,14 @@ extension String: Random {
     public static func random<I: ExpressibleByIntegerLiteral & Strideable>(ofLength length: I,
                               within range: Range<UnicodeScalar>,
                               using randomGenerator: RandomGenerator = .default) -> String? where I.Stride: SignedInteger {
-        var result = ""
+        var result = UnicodeScalarView()
         for _ in 0 ..< length {
             guard let scalar = UnicodeScalar.random(within: range) else {
                 return nil
             }
-            result.unicodeScalars.append(scalar)
+            result.append(scalar)
         }
-        return result
+        return String(result)
     }
 
     /// Generates a random `String` with a length of `10` inside of the closed range.
@@ -78,11 +78,11 @@ extension String: Random {
     public static func random<I: ExpressibleByIntegerLiteral & Strideable>(ofLength length: I,
                               within closedRange: ClosedRange<UnicodeScalar> = " "..."~",
                               using randomGenerator: RandomGenerator = .default) -> String where I.Stride: SignedInteger {
-        var result = ""
+        var result = UnicodeScalarView()
         for _ in 0 ..< length {
-            result.unicodeScalars.append(.random(within: closedRange, using: randomGenerator))
+            result.append(.random(within: closedRange, using: randomGenerator))
         }
-        return result
+        return String(result)
     }
 
     /// Generates a random `String` with a length of `10` from `characters`.
