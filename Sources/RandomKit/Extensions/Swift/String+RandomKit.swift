@@ -73,10 +73,10 @@ extension String: Random {
     /// Generates a random `String` of a given length inside of the closed range.
     ///
     /// - parameter length: The length for the generated string.
-    /// - parameter closedRange: The range within which the string will be generated.
+    /// - parameter closedRange: The range within which the string will be generated. The default is `" "..."~"`.
     /// - parameter randomGenerator: The random generator to use.
     public static func random<I: ExpressibleByIntegerLiteral & Strideable>(ofLength length: I,
-                              within closedRange: ClosedRange<UnicodeScalar>,
+                              within closedRange: ClosedRange<UnicodeScalar> = " "..."~",
                               using randomGenerator: RandomGenerator = .default) -> String where I.Stride: SignedInteger {
         var result = ""
         for _ in 0 ..< length {
