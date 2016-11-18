@@ -1,5 +1,5 @@
 //
-//  AllValuable.swift
+//  RandomWithAll.swift
 //  RandomKit
 //
 //  The MIT License (MIT)
@@ -25,17 +25,17 @@
 //  THE SOFTWARE.
 //
 
-/// A type that has a static array of all possible values of `Self`.
+/// A type that can generate a random value from a static array of all possible values of `Self`.
 ///
-/// This makes it very easy for enum types to conform to `Random`.
-public protocol AllValuable {
+/// This makes it very easy for enum types to conform to `Random`. As an alternative, see also `RandomEnum`.
+public protocol RandomWithAll: Random {
 
     /// An array of all possible values of `Self`.
     static var all: [Self] { get }
 
 }
 
-extension AllValuable where Self: Random {
+extension RandomWithAll {
 
     /// Generates a random value of `Self` using `randomGenerator`.
     ///
