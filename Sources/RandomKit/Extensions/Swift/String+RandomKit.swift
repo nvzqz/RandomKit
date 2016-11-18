@@ -34,14 +34,23 @@ extension String: Random {
         return random(ofLength: 10, within: " "..."~", using: randomGenerator)
     }
 
-    /// Generates a random `String` of a given length inside of the range.
+    /// Generates a random `String` with a length of `10` inside of the range.
     ///
-    /// - parameter length: The length for the generated string. Default value is `10`.
     /// - parameter range: The range within which the string will be generated.
     /// - parameter randomGenerator: The random generator to use.
-    public static func random(ofLength length: UInt = 10,
-                              within range: Range<UnicodeScalar>,
+    public static func random(within range: Range<UnicodeScalar>,
                               using randomGenerator: RandomGenerator = .default) -> String? {
+        return random(ofLength: 10, within: range, using: randomGenerator)
+    }
+
+    /// Generates a random `String` of a given length inside of the range.
+    ///
+    /// - parameter length: The length for the generated string.
+    /// - parameter range: The range within which the string will be generated.
+    /// - parameter randomGenerator: The random generator to use.
+    public static func random<I: ExpressibleByIntegerLiteral & Strideable>(ofLength length: I,
+                              within range: Range<UnicodeScalar>,
+                              using randomGenerator: RandomGenerator = .default) -> String? where I.Stride: SignedInteger {
         var result = ""
         for _ in 0 ..< length {
             guard let scalar = UnicodeScalar.random(within: range) else {
@@ -52,14 +61,23 @@ extension String: Random {
         return result
     }
 
-    /// Generates a random `String` of a given length inside of the closed range.
+    /// Generates a random `String` with a length of `10` inside of the closed range.
     ///
-    /// - parameter length: The length for the generated string. Default value is `10`.
     /// - parameter closedRange: The range within which the string will be generated.
     /// - parameter randomGenerator: The random generator to use.
-    public static func random(ofLength length: UInt = 10,
-                              within closedRange: ClosedRange<UnicodeScalar>,
+    public static func random(within closedRange: ClosedRange<UnicodeScalar>,
                               using randomGenerator: RandomGenerator = .default) -> String {
+        return random(ofLength: 10, within: closedRange, using: randomGenerator)
+    }
+
+    /// Generates a random `String` of a given length inside of the closed range.
+    ///
+    /// - parameter length: The length for the generated string.
+    /// - parameter closedRange: The range within which the string will be generated.
+    /// - parameter randomGenerator: The random generator to use.
+    public static func random<I: ExpressibleByIntegerLiteral & Strideable>(ofLength length: I,
+                              within closedRange: ClosedRange<UnicodeScalar>,
+                              using randomGenerator: RandomGenerator = .default) -> String where I.Stride: SignedInteger {
         var result = ""
         for _ in 0 ..< length {
             result.unicodeScalars.append(.random(within: closedRange, using: randomGenerator))
@@ -67,14 +85,23 @@ extension String: Random {
         return result
     }
 
-    /// Generates a random `String` of a given length from `characters`.
+    /// Generates a random `String` with a length of `10` from `characters`.
     ///
-    /// - parameter length: The length for the generated string. Default value is `10`.
     /// - parameter characters: The characters from which the string will be generated.
     /// - parameter randomGenerator: The random generator to use.
-    public static func random(ofLength length: UInt = 10,
-                              from characters: CharacterView,
+    public static func random(from characters: CharacterView,
                               using randomGenerator: RandomGenerator = .default) -> String? {
+        return random(ofLength: 10, from: characters, using: randomGenerator)
+    }
+
+    /// Generates a random `String` of a given length from `characters`.
+    ///
+    /// - parameter length: The length for the generated string.
+    /// - parameter characters: The characters from which the string will be generated.
+    /// - parameter randomGenerator: The random generator to use.
+    public static func random<I: ExpressibleByIntegerLiteral & Strideable>(ofLength length: I,
+                              from characters: CharacterView,
+                              using randomGenerator: RandomGenerator = .default) -> String? where I.Stride: SignedInteger {
         var result = ""
         for _ in 0 ..< length {
             guard let random = characters.random else {
@@ -85,14 +112,23 @@ extension String: Random {
         return result
     }
 
-    /// Generates a random `String` of a given length from characters in `string`.
+    /// Generates a random `String` with a length of `10` from characters in `string`.
     ///
-    /// - parameter length: The length for the generated string. Default value is `10`.
     /// - parameter string: The string whose characters from which the string will be generated.
     /// - parameter randomGenerator: The random generator to use.
-    public static func random(ofLength length: UInt = 10,
-                              from string: String,
+    public static func random(from string: String,
                               using randomGenerator: RandomGenerator = .default) -> String? {
+        return random(ofLength: 10, from: string, using: randomGenerator)
+    }
+
+    /// Generates a random `String` of a given length from characters in `string`.
+    ///
+    /// - parameter length: The length for the generated string.
+    /// - parameter string: The string whose characters from which the string will be generated.
+    /// - parameter randomGenerator: The random generator to use.
+    public static func random<I: ExpressibleByIntegerLiteral & Strideable>(ofLength length: I,
+                              from string: String,
+                              using randomGenerator: RandomGenerator = .default) -> String? where I.Stride: SignedInteger {
         return random(ofLength: length, from: string.characters, using: randomGenerator)
     }
 
