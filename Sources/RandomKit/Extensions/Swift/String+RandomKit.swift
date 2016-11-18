@@ -112,6 +112,33 @@ extension String: Random {
         return result
     }
 
+    /// Generates a random `String` with a length of `10` from `scalars`.
+    ///
+    /// - parameter scalars: The unicode scalars from which the string will be generated.
+    /// - parameter randomGenerator: The random generator to use.
+    public static func random(from scalars: UnicodeScalarView,
+                              using randomGenerator: RandomGenerator = .default) -> String? {
+        return random(ofLength: 10, from: scalars, using: randomGenerator)
+    }
+
+    /// Generates a random `String` of a given length from `scalars`.
+    ///
+    /// - parameter length: The length for the generated string.
+    /// - parameter scalars: The unicode scalars from which the string will be generated.
+    /// - parameter randomGenerator: The random generator to use.
+    public static func random<I: ExpressibleByIntegerLiteral & Strideable>(ofLength length: I,
+                              from scalars: UnicodeScalarView,
+                              using randomGenerator: RandomGenerator = .default) -> String? where I.Stride: SignedInteger {
+        var result = UnicodeScalarView()
+        for _ in 0 ..< length {
+            guard let random = scalars.random(using: randomGenerator) else {
+                return nil
+            }
+            result.append(random)
+        }
+        return String(result)
+    }
+
     /// Generates a random `String` with a length of `10` from characters in `string`.
     ///
     /// - parameter string: The string whose characters from which the string will be generated.
