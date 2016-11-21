@@ -153,7 +153,6 @@
 		52FD11391DE2811C002EF43E /* RandomRawRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FD11371DE2811C002EF43E /* RandomRawRepresentable.swift */; };
 		52FD113A1DE2811C002EF43E /* RandomRawRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FD11371DE2811C002EF43E /* RandomRawRepresentable.swift */; };
 		52FD113B1DE2811C002EF43E /* RandomRawRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FD11371DE2811C002EF43E /* RandomRawRepresentable.swift */; };
-		C498B5051DBFEC0000349047 /* DistributionMoment.swift in Sources */ = {isa = PBXBuildFile; fileRef = C498B5041DBFEC0000349047 /* DistributionMoment.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -214,7 +213,6 @@
 		52C96A1F1BD9828F00C3CBE0 /* RandomKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RandomKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		52F9E7601CA5BBBA00039162 /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
 		52FD11371DE2811C002EF43E /* RandomRawRepresentable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RandomRawRepresentable.swift; sourceTree = "<group>"; };
-		C498B5041DBFEC0000349047 /* DistributionMoment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DistributionMoment.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -370,7 +368,6 @@
 			isa = PBXGroup;
 			children = (
 				528200F31BC9FA42001FDD58 /* RandomKitTests.swift */,
-				C498B5041DBFEC0000349047 /* DistributionMoment.swift */,
 				528200F51BC9FA42001FDD58 /* Info.plist */,
 			);
 			path = Tests;
@@ -732,7 +729,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				528200F41BC9FA42001FDD58 /* RandomKitTests.swift in Sources */,
-				C498B5051DBFEC0000349047 /* DistributionMoment.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

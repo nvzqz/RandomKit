@@ -180,16 +180,6 @@ class RandomKitTests: XCTestCase {
         XCTAssertEqual(array.count, 10)
     }
 
-    func testRandomArrayDouble() {
-        let array: [Double] = Array(randomCount: 10000)
-
-        XCTAssertEqual(array.count, 10000)
-
-        let m = DistributionMoment(data: array)
-        let exptectedMean = 0.5 // random double between 0 and 1 currently
-        XCTAssertEqualWithAccuracy(m.mean, exptectedMean, accuracy: discretAccuracy)
-    }
-
     func testRandomSet() {
         let set = Set<Int>(randomCount: 10)
         XCTAssertEqual(set.count, 10)
@@ -242,117 +232,6 @@ class RandomKitTests: XCTestCase {
             result = array.randomSlice(count: 0, weights: weights) // nothing
             XCTAssertEqual(result.count, 0)
         }
-    }
-
-
-    func testRandomGaussian() {
-        let count = 10000
-        let mean: Double = 0
-        let standardDeviation: Double = 1
-        let distribution: RandomDistribution = .gaussian(mean: mean, standardDeviation: standardDeviation)
-        let array: [Double] = Array(randomCount: count, distribution: distribution)
-
-        XCTAssertEqual(array.count, count)
-
-        var sum: Double = 0
-        for e in array {
-            sum += e
-        }
-        let theMean = sum / Double(count)
-        XCTAssertEqualWithAccuracy(mean, theMean, accuracy: 0.1)
-
-        let m = DistributionMoment(data: array)
-        let k = m.excessKurtosis
-        let s = m.skewness
-
-        XCTAssertEqualWithAccuracy(m.mean, theMean, accuracy: 0.00001)
-
-        // Check if could be a gauss/ normal distribution
-        XCTAssertEqual(round(k), 0, "\(k)")
-        XCTAssertEqual(round(s), 0, "\(s)")
-
-    }
-
-    func testRandomExponential() {
-        let count = 10000
-        let λ = Double.random(within: DBL_MIN...DBL_MAX)
-
-        let distribution: RandomDistribution = .exponential(rate: λ)
-        let array: [Double] = Array(randomCount: count, distribution: distribution)
-        XCTAssertEqual(array.count, count)
-
-        let m = DistributionMoment(data: array)
-        XCTAssertEqualWithAccuracy(m.mean, 1.0 / λ, accuracy: 0.01)
-        XCTAssertEqualWithAccuracy(m.variance, 1.0 / (λ * λ), accuracy: 0.01)
-    }
-
-    func testRandomWeibull() {
-        let count = 1000000
-        let scale = Double.random(within: DBL_MIN...10000000)
-        let shape = Double.random(within: DBL_MIN...10000000)
-
-        let distribution: RandomDistribution = .weibull(scale: scale, shape: shape)
-        let array: [Double] = Array(randomCount: count, distribution: distribution)
-        XCTAssertEqual(array.count, count)
-
-        // let m = DistributionMoment(data: array)
-    }
-
-    func testRandomBernoulli() {
-        let p = Double.random()
-        let count = 10000
-        let distribution: DiscreteRandomDistribution<Int, Double> = .bernoulli(probability: p)
-        let array: [Int] = Array(randomCount: count, distribution: distribution)
-
-        for e in array {
-            XCTAssert(0 == e || e == 1)
-        }
-        XCTAssertEqual(array.count, count)
-
-        let (mean, variance) = discretMoment(array)
-        XCTAssertEqualWithAccuracy(mean, p, accuracy: discretAccuracy)
-        XCTAssertEqualWithAccuracy(variance, p * (1 - p), accuracy: discretAccuracy)
-    }
-
-    func testRandomBinomial() {
-        let count = 10000
-        let trials = Int.random(within:1...1000)
-        let p = Double.random(within:0...1)
-        let distribution: DiscreteRandomDistribution<Int, Double> = .binomial(trials: trials, probability: p)
-        let array: [Int] = Array(randomCount: count, distribution: distribution)
-
-        XCTAssertEqual(array.count, count)
-
-        let (mean, variance) = discretMoment(array)
-        XCTAssertEqualWithAccuracy(mean, Double(trials) * p, accuracy: Double(trials) * discretAccuracy)
-        XCTAssertEqualWithAccuracy(variance, Double(trials) * p * (1 - p), accuracy: Double(trials) * discretAccuracy)
-    }
-
-    func testRandomGeometric() {
-        let count = 10000
-        let p = Double.random(within: 0...1)
-
-        let distribution: DiscreteRandomDistribution<Int, Double> = .geometric(probability: p)
-        let array: [Int] = Array(randomCount: count, distribution: distribution)
-
-        XCTAssertEqual(array.count, count)
-
-        let (mean, variance) = discretMoment(array)
-        XCTAssertEqualWithAccuracy(mean, (1 - p) / p, accuracy: 1)
-        XCTAssertEqualWithAccuracy(variance, (1 - p) / (p * p), accuracy: 1)
-    }
-
-    func testRandomPoisson() {
-        let count = 10000
-        let λ = Double.random(within: DBL_MIN...500)
-
-        let distribution: DiscreteRandomDistribution<Int, Double> = .poisson(frequency: λ)
-        let array: [Int] = Array(randomCount: count, distribution: distribution)
-        XCTAssertEqual(array.count, count)
-
-        let (mean, variance) = discretMoment(array)
-        XCTAssertEqualWithAccuracy(mean, λ, accuracy: discretAccuracy * Double(count))
-        XCTAssertEqualWithAccuracy(variance, λ, accuracy: discretAccuracy * Double(count))
     }
 
     // MARK: utils
