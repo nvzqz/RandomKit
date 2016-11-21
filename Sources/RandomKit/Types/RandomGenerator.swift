@@ -30,16 +30,34 @@ import Foundation
 /// A random generator.
 public enum RandomGenerator {
 
+    /// The device source for `RandomGenerator.dev`
+    public enum DevSource: String, CustomStringConvertible {
+
+        /// random device.
+        case random
+
+        /// urandom device.
+        case urandom
+
+        /// A textual representation of this instance.
+        public var description: String {
+            return rawValue
+        }
+
+        /// The path for the device.
+        public var path: String {
+            return "/dev/" + rawValue
+        }
+
+    }
+
     /// Use arc4random.
     ///
     /// If the OS is Linux, Android, or Windows, `arc4random_buf` will be attempted to be dynamically loaded.
     case arc4random
 
-    /// Use "/dev/random". Does nothing on Windows unless using Cygwin.
-    case devRandom
-
-    /// Use "/dev/urandom". Does nothing on Windows unless using Cygwin.
-    case devURandom
+    /// Use "/dev/random" or "/dev/urandom". Does nothing on Windows unless using Cygwin.
+    case dev(DevSource)
 
     /// Use Xoroshiro algorithm.
     ///
@@ -72,15 +90,9 @@ public enum RandomGenerator {
         switch self {
         case .arc4random:
             _arc4random_buf(buffer, size)
-        case .devRandom:
+        case let .dev(source):
             #if !os(Windows) || CYGWIN
-            let fd = open("/dev/random", O_RDONLY)
-            read(fd, buffer, size)
-            close(fd)
-            #endif
-        case .devURandom:
-            #if !os(Windows) || CYGWIN
-            let fd = open("/dev/urandom", O_RDONLY)
+            let fd = open(source.path, O_RDONLY)
             read(fd, buffer, size)
             close(fd)
             #endif
@@ -130,7 +142,7 @@ private struct _Xoroshiro {
 
     init() {
         self.init(state: (0, 0))
-        RandomGenerator.devURandom.randomize(buffer: &state, size: MemoryLayout.size(ofValue: state))
+        RandomGenerator.dev(.urandom).randomize(buffer: &state, size: MemoryLayout.size(ofValue: state))
     }
 
     mutating func randomize(buffer: UnsafeMutableRawPointer, size: Int) {
