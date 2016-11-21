@@ -28,5 +28,6 @@
 import PackageDescription
 
 let package = Package(
-    name: "RandomKit"
+    name: "RandomKit",
+    exclude: ["Tests"]
 )
