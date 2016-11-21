@@ -27,6 +27,8 @@
 
 /// An enum type that can generate a random value using the last case.
 ///
+/// As an alternative, see also `RandomWithAll`.
+///
 /// ```swift
 /// enum Month: RandomEnum {
 ///
