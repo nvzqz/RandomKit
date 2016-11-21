@@ -28,6 +28,24 @@
 /// A type that can generate a random value from a static array of all possible values of `Self`.
 ///
 /// This makes it very easy for enum types to conform to `Random`. As an alternative, see also `RandomEnum`.
+///
+/// ```swift
+/// enum Direction: RandomWithAll {
+///
+///     case north
+///
+///     case south
+///
+///     case east
+///
+///     case west
+///
+///     static let all = [north, south, east, west]
+///
+/// }
+///
+/// let random = Direction.random()  // east
+/// ```
 public protocol RandomWithAll: Random {
 
     /// An array of all possible values of `Self`.
