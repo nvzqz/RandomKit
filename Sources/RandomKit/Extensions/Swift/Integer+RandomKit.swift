@@ -291,8 +291,3 @@ extension UInt8: Random, RandomWithMax, RandomWithMin, RandomToValue, RandomThro
     }
 
 }
-
-// MARK: Implement DiscreteRandomDistribuable
-extension Int: DiscreteRandomDistribuable {
-    public static var bernoulliValues: (Int, Int) { return (0, 1) }
-}
