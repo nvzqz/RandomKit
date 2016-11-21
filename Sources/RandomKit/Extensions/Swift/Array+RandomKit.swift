@@ -29,7 +29,7 @@ extension Array where Element: Random {
 
     /// Construct an Array of random elements.
     public init(randomCount: Int, using randomGenerator: RandomGenerator = .default) {
-        self.init(Element.randomSequence(maxCount: randomCount, using: randomGenerator))
+        self = (0 ..< randomCount).map { _ in Element.random(using: randomGenerator) }
     }
 
 }
@@ -40,7 +40,13 @@ extension Array where Element: RandomWithinRange {
     public init(randomCount: Int,
                 within range: Range<Element>,
                 using randomGenerator: RandomGenerator = .default) {
-        self.init(Element.randomSequence(within: range, maxCount: randomCount, using: randomGenerator))
+        if range.isEmpty {
+            self = []
+        } else {
+            self = (0 ..< randomCount).map { _ in
+                Element.random(within: range, using: randomGenerator).unsafelyUnwrapped
+            }
+        }
     }
 
 }
@@ -51,7 +57,7 @@ extension Array where Element: RandomWithinClosedRange {
     public init(randomCount: Int,
                 within closedRange: ClosedRange<Element>,
                 using randomGenerator: RandomGenerator = .default) {
-        self.init(Element.randomSequence(within: closedRange, maxCount: randomCount, using: randomGenerator))
+        self = (0 ..< randomCount).map { _ in Element.random(within: closedRange, using: randomGenerator) }
     }
 
 }
