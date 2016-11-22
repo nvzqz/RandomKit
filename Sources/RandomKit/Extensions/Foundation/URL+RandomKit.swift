@@ -47,19 +47,17 @@ extension URL: Random {
                                    "https://medium.com/",
                                    "https://www.google.com/",
                                    "https://www.youtube.com/"],
-                      using: randomGenerator)
+                      using: randomGenerator).unsafelyUnwrapped
     }
 
-    /// Generates a random URL from within the given values.
-    ///
-    /// If `values` is empty, a URL pointing to www.google.com is returned.
+    /// Generates a random URL from within the given values, or `nil` if empty or invalid.
     ///
     /// - parameter values: The values from which the URL is generated.
     /// - parameter randomGenerator: The random generator to use.
     public static func random(fromValues values: [String],
-                              using randomGenerator: RandomGenerator = .default) -> URL {
+                              using randomGenerator: RandomGenerator = .default) -> URL? {
         guard let value = values.random(using: randomGenerator), let url = URL(string: value) else {
-            return URL(string: "https://www.google.com/").unsafelyUnwrapped
+            return nil
         }
         return url
     }
