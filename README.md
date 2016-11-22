@@ -398,6 +398,12 @@ CGVector.random()                        // {dx 13.992 dy 89.376}
 CGVector.random(within: 0...50, 0...10)  // {dx 35.224 dy 13.463}
 ```
 
+## Extra
+
+### [BigInt](https://github.com/lorentey/BigInt)
+
+RandomKit extensions for Károly's [BigInt](https://github.com/lorentey/BigInt) library are available in [RandomKitBigInt](https://github.com/nvzqz/RandomKitBigInt).
+
 ## License
 
 RandomKit and its assets are released under the [MIT License](LICENSE.md). Assets
