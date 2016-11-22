@@ -108,7 +108,7 @@ extension Double: Random, RandomToValue, RandomThroughValue, RandomWithinRange, 
 extension Float: Random, RandomToValue, RandomThroughValue, RandomWithinRange, RandomWithinClosedRange {
 }
 
-#if os(macOS)
+#if arch(i386) || arch(x86_64)
 extension Float80: Random, RandomToValue, RandomThroughValue, RandomWithinRange, RandomWithinClosedRange {
 }
 #endif
