@@ -47,30 +47,74 @@ extension Integer where Self: RandomToValue & RandomThroughValue {
 
 }
 
-extension SignedInteger where Self: Random & RandomToValue {
+private extension Integer where Self: RandomWithMax {
+
+    @inline(__always)
+    static func _randomGreater(to value: Self, using randomGenerator: RandomGenerator) -> Self {
+        var result: Self
+        repeat {
+            result = random(using: randomGenerator)
+        } while result < max % value
+        return result % value
+    }
+
+}
+
+private extension Integer where Self: RandomWithMin {
+
+    @inline(__always)
+    static func _randomLess(to value: Self, using randomGenerator: RandomGenerator) -> Self {
+        var result: Self
+        repeat {
+            result = random(using: randomGenerator)
+        } while result > min % value
+        return result % value
+    }
+
+}
+
+extension SignedInteger where Self: RandomWithMax & RandomWithMin & RandomToValue & RandomThroughValue {
 
     /// Generates a random value of `Self` from `randomBase` to `value`.
     public static func random(to value: Self, using randomGenerator: RandomGenerator) -> Self {
         if value == randomBase {
             return value
         } else if value < randomBase {
-            var random: Self
-            repeat {
-                random = self.random(using: randomGenerator)
-            } while random > 0
-            return random % value
+            return _randomLess(to: value, using: randomGenerator)
         } else {
-            var random: Self
+            return _randomGreater(to: value, using: randomGenerator)
+        }
+    }
+
+    /// Generates a random value of `Self` from `randomBase` through `value`.
+    public static func random(through value: Self, using randomGenerator: RandomGenerator) -> Self {
+        switch value {
+        case randomBase:
+            return value
+        case min:
+            var result: Self
             repeat {
-                random = self.random(using: randomGenerator)
-            } while random < 0
-            return random % value
+                result = random(using: randomGenerator)
+            } while result > 0
+            return result
+        case max:
+            var result: Self
+            repeat {
+                result = random(using: randomGenerator)
+            } while result < 0
+            return result
+        default:
+            if value < randomBase {
+                return _randomLess(to: value &- 1, using: randomGenerator)
+            } else {
+                return _randomGreater(to: value &+ 1, using: randomGenerator)
+            }
         }
     }
 
 }
 
-extension UnsignedInteger where Self: Random & RandomToValue {
+extension UnsignedInteger where Self: Random & RandomToValue & RandomWithMax {
 
     /// Generates a random value of `Self` from `randomBase` to `value`.
     public static func random(to value: Self, using randomGenerator: RandomGenerator) -> Self {
@@ -78,7 +122,7 @@ extension UnsignedInteger where Self: Random & RandomToValue {
         case randomBase:
             return value
         default:
-            return random(using: randomGenerator) % value
+            return _randomGreater(to: value, using: randomGenerator)
         }
     }
 
@@ -96,29 +140,6 @@ extension UnsignedInteger where Self: RandomToValue & RandomWithinRange {
 
 }
 
-extension SignedInteger where Self: RandomWithMax & RandomWithMin & RandomThroughValue {
-
-    /// Generates a random value of `Self` from `randomBase` through `value`.
-    public static func random(through value: Self, using randomGenerator: RandomGenerator) -> Self {
-        if value == randomBase {
-            return value
-        } else if value < randomBase {
-            var random: Self
-            repeat {
-                random = self.random(using: randomGenerator)
-            } while random > 0
-            return value == Self.min ? random : (random % (value &- 1))
-        } else {
-            var random: Self
-            repeat {
-                random = self.random(using: randomGenerator)
-            } while random < 0
-            return value == Self.max ? random : (random % (value &+ 1))
-        }
-    }
-
-}
-
 extension UnsignedInteger where Self: RandomWithMax & RandomThroughValue {
 
     /// Generates a random value of `Self` from `randomBase` through `value`.
@@ -126,10 +147,10 @@ extension UnsignedInteger where Self: RandomWithMax & RandomThroughValue {
         switch value {
         case randomBase:
             return value
-        case Self.max:
+        case max:
             return random(using: randomGenerator)
         default:
-            return random(using: randomGenerator) % (value &+ 1)
+            return _randomGreater(to: value &+ 1, using: randomGenerator)
         }
     }
 
