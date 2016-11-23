@@ -10,6 +10,8 @@
 <img src="https://img.shields.io/badge/license-MIT-000000.svg" alt="License">
 </p>
 
+RandomKit is a Swift framework that makes random data generation simple and easy.
+
 - [Installation](#installation)
     - [Compatibility](#compatibility)
     - [Swift Package Manager](#install-using-swift-package-manager)
@@ -46,8 +48,6 @@
 - [Extra](#extra)
     - [BigInt](#bigint)
 - [License](#license)
-
-RandomKit is a Swift framework that makes random data generation simple and easy.
 
 ## Installation
 
