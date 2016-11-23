@@ -85,7 +85,7 @@ public enum RandomGenerator {
         #endif
     }
 
-    /// Randomize the contents of `buffer` of `size`.
+    /// Randomize the contents of `buffer` of `size` bytes.
     public func randomize(buffer: UnsafeMutableRawPointer, size: Int) {
         switch self {
         case .arc4random:
@@ -105,6 +105,31 @@ public enum RandomGenerator {
         case let .custom(randomize):
             randomize(buffer, size)
         }
+    }
+
+    /// Randomize the contents of `buffer` with max `width` bits.
+    public func randomize(buffer: UnsafeMutableRawPointer, maxWidth width: Int) {
+        guard width > 0 else {
+            return
+        }
+        let byteCount = (width + 7) / 8
+        randomize(buffer: buffer, size: byteCount)
+        let count = width % 8
+        if count != 0 {
+            let rebounded = buffer.assumingMemoryBound(to: UInt8.self)
+            rebounded[byteCount - 1] &= .max >> UInt8(8 - count)
+        }
+    }
+
+    /// Randomize the contents of `buffer` with exactly `width` bits.
+    public func randomize(buffer: UnsafeMutableRawPointer, exactWidth width: Int) {
+        guard width > 0 else {
+            return
+        }
+        randomize(buffer: buffer, maxWidth: width)
+        let byteCount = (width + 7) / 8
+        let rebounded = buffer.assumingMemoryBound(to: UInt8.self)
+        rebounded[byteCount - 1] |= 1 << UInt8((width - 1) % 8)
     }
 
     /// Randomize the contents of `value`.
