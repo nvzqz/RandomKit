@@ -26,6 +26,7 @@
 //
 
 import Foundation
+import ShiftOperations
 
 extension Integer where Self: Random {
 
@@ -166,6 +167,42 @@ extension UnsignedInteger where Self: RandomThroughValue & RandomWithinClosedRan
 
 }
 
+extension UnsignedInteger where Self: ShiftOperations & RandomWithMax & RandomWithMaxWidth {
+
+    /// Generates a random value of `Self` with a maximum width using `randomGenerator`.
+    public static func random(withMaxWidth width: Int, using randomGenerator: RandomGenerator) -> Self {
+        guard width > 0 else {
+            return 0
+        }
+
+        let result = random(using: randomGenerator)
+        let typeWidth = MemoryLayout<Self>.size * 8
+
+        if width > typeWidth {
+            return result
+        } else {
+            if (width % typeWidth) != 0 {
+                return result & (max >> Self(UIntMax(typeWidth - width)))
+            } else {
+                return result
+            }
+        }
+    }
+
+}
+
+extension UnsignedInteger where Self: ShiftOperations & RandomWithMaxWidth & RandomWithExactWidth {
+
+    /// Generates a random value of `Self` with an exact width using `randomGenerator`.
+    public static func random(withExactWidth width: Int, using randomGenerator: RandomGenerator) -> Self {
+        guard width > 0 else {
+            return 0
+        }
+        return random(withMaxWidth: width, using: randomGenerator) | (1 << Self(UIntMax(width - 1)))
+    }
+
+}
+
 extension Int: Random, RandomWithMax, RandomWithMin, RandomToValue, RandomThroughValue, RandomWithinRange, RandomWithinClosedRange {
 
     /// Returns an optional random value of `Self` inside of the range.
@@ -271,17 +308,17 @@ extension Int8: Random, RandomWithMax, RandomWithMin, RandomToValue, RandomThrou
 
 }
 
-extension UInt: Random, RandomWithMax, RandomWithMin, RandomToValue, RandomThroughValue, RandomWithinRange, RandomWithinClosedRange {
+extension UInt: Random, RandomWithMax, RandomWithMin, RandomToValue, RandomThroughValue, RandomWithinRange, RandomWithinClosedRange, RandomWithMaxWidth, RandomWithExactWidth {
 
-    private static let _xorPattern: UInt = 1 << UInt((MemoryLayout<UInt>.size * 8) - 1)
+    private static let _mostSignificantBit: UInt = 1 << UInt((MemoryLayout<UInt>.size * 8) - 1)
 
     fileprivate var _resigned: UInt {
-        return self ^ ._xorPattern
+        return self ^ ._mostSignificantBit
     }
 
 }
 
-extension UInt64: Random, RandomWithMax, RandomWithMin, RandomToValue, RandomThroughValue, RandomWithinRange, RandomWithinClosedRange {
+extension UInt64: Random, RandomWithMax, RandomWithMin, RandomToValue, RandomThroughValue, RandomWithinRange, RandomWithinClosedRange, RandomWithMaxWidth, RandomWithExactWidth {
 
     fileprivate var _resigned: UInt64 {
         return self ^ (1 << 63)
@@ -289,7 +326,7 @@ extension UInt64: Random, RandomWithMax, RandomWithMin, RandomToValue, RandomThr
 
 }
 
-extension UInt32: Random, RandomWithMax, RandomWithMin, RandomToValue, RandomThroughValue, RandomWithinRange, RandomWithinClosedRange {
+extension UInt32: Random, RandomWithMax, RandomWithMin, RandomToValue, RandomThroughValue, RandomWithinRange, RandomWithinClosedRange, RandomWithMaxWidth, RandomWithExactWidth {
 
     fileprivate var _resigned: UInt32 {
         return self ^ (1 << 31)
@@ -297,7 +334,7 @@ extension UInt32: Random, RandomWithMax, RandomWithMin, RandomToValue, RandomThr
 
 }
 
-extension UInt16: Random, RandomWithMax, RandomWithMin, RandomToValue, RandomThroughValue, RandomWithinRange, RandomWithinClosedRange {
+extension UInt16: Random, RandomWithMax, RandomWithMin, RandomToValue, RandomThroughValue, RandomWithinRange, RandomWithinClosedRange, RandomWithMaxWidth, RandomWithExactWidth {
 
     fileprivate var _resigned: UInt16 {
         return self ^ (1 << 15)
@@ -305,7 +342,7 @@ extension UInt16: Random, RandomWithMax, RandomWithMin, RandomToValue, RandomThr
 
 }
 
-extension UInt8: Random, RandomWithMax, RandomWithMin, RandomToValue, RandomThroughValue, RandomWithinRange, RandomWithinClosedRange {
+extension UInt8: Random, RandomWithMax, RandomWithMin, RandomToValue, RandomThroughValue, RandomWithinRange, RandomWithinClosedRange, RandomWithMaxWidth, RandomWithExactWidth {
 
     fileprivate var _resigned: UInt8 {
         return self ^ (1 << 7)
