@@ -73,7 +73,7 @@ extension RandomEnum {
 
     /// Generates a random value of `Self` using `randomGenerator`.
     public static func random(using randomGenerator: RandomGenerator) -> Self {
-        var random = Int.random(through: lastCase.hashValue, using: randomGenerator)
+        var random = UInt.random(through: UInt(lastCase.hashValue), using: randomGenerator)
         return withUnsafePointer(to: &random) { UnsafeRawPointer($0).assumingMemoryBound(to: self).pointee }
     }
 
