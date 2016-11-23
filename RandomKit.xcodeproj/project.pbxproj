@@ -157,6 +157,10 @@
 		52ADBE7D1DE54BBF004CB28A /* RandomWithExactWidth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52ADBE7B1DE54BBF004CB28A /* RandomWithExactWidth.swift */; };
 		52ADBE7E1DE54BBF004CB28A /* RandomWithExactWidth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52ADBE7B1DE54BBF004CB28A /* RandomWithExactWidth.swift */; };
 		52ADBE7F1DE54BBF004CB28A /* RandomWithExactWidth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52ADBE7B1DE54BBF004CB28A /* RandomWithExactWidth.swift */; };
+		52ADBEE91DE55D13004CB28A /* ShiftOperations.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52ADBEE21DE55CEA004CB28A /* ShiftOperations.framework */; };
+		52ADBEEA1DE55D18004CB28A /* ShiftOperations.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52ADBEE41DE55CEA004CB28A /* ShiftOperations.framework */; };
+		52ADBEEB1DE55D1E004CB28A /* ShiftOperations.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52ADBEE61DE55CEA004CB28A /* ShiftOperations.framework */; };
+		52ADBEEC1DE55D24004CB28A /* ShiftOperations.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52ADBEE81DE55CEA004CB28A /* ShiftOperations.framework */; };
 		52FD11381DE2811C002EF43E /* RandomRawRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FD11371DE2811C002EF43E /* RandomRawRepresentable.swift */; };
 		52FD11391DE2811C002EF43E /* RandomRawRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FD11371DE2811C002EF43E /* RandomRawRepresentable.swift */; };
 		52FD113A1DE2811C002EF43E /* RandomRawRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FD11371DE2811C002EF43E /* RandomRawRepresentable.swift */; };
@@ -170,6 +174,34 @@
 			proxyType = 1;
 			remoteGlobalIDString = 528200901BC9C4A2001FDD58;
 			remoteInfo = "RandomKit-OSX";
+		};
+		52ADBEE11DE55CEA004CB28A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 52ADBEDA1DE55CE9004CB28A /* ShiftOperations.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 52ADBE8C1DE55262004CB28A;
+			remoteInfo = "ShiftOperations macOS";
+		};
+		52ADBEE31DE55CEA004CB28A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 52ADBEDA1DE55CE9004CB28A /* ShiftOperations.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 52ADBE9A1DE5526A004CB28A;
+			remoteInfo = "ShiftOperations iOS";
+		};
+		52ADBEE51DE55CEA004CB28A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 52ADBEDA1DE55CE9004CB28A /* ShiftOperations.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 52ADBEA71DE55272004CB28A;
+			remoteInfo = "ShiftOperations watchOS";
+		};
+		52ADBEE71DE55CEA004CB28A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 52ADBEDA1DE55CE9004CB28A /* ShiftOperations.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 52ADBEB41DE55279004CB28A;
+			remoteInfo = "ShiftOperations tvOS";
 		};
 /* End PBXContainerItemProxy section */
 
@@ -220,6 +252,7 @@
 		52A248B41DC68200004C9991 /* Strideable+RandomKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Strideable+RandomKit.swift"; sourceTree = "<group>"; };
 		52ADBE761DE54A98004CB28A /* RandomWithMaxWidth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RandomWithMaxWidth.swift; sourceTree = "<group>"; };
 		52ADBE7B1DE54BBF004CB28A /* RandomWithExactWidth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RandomWithExactWidth.swift; sourceTree = "<group>"; };
+		52ADBEDA1DE55CE9004CB28A /* ShiftOperations.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ShiftOperations.xcodeproj; path = Carthage/Checkouts/ShiftOperations/ShiftOperations.xcodeproj; sourceTree = "<group>"; };
 		52C96A1F1BD9828F00C3CBE0 /* RandomKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RandomKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		52F9E7601CA5BBBA00039162 /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
 		52FD11371DE2811C002EF43E /* RandomRawRepresentable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RandomRawRepresentable.swift; sourceTree = "<group>"; };
@@ -230,6 +263,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				52ADBEE91DE55D13004CB28A /* ShiftOperations.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -237,6 +271,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				52ADBEEA1DE55D18004CB28A /* ShiftOperations.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -244,6 +279,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				52ADBEEB1DE55D1E004CB28A /* ShiftOperations.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -259,6 +295,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				52ADBEEC1DE55D24004CB28A /* ShiftOperations.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -355,6 +392,7 @@
 			isa = PBXGroup;
 			children = (
 				52F9E6DA1CA5B4DF00039162 /* Sources */,
+				52ADBED91DE55CD8004CB28A /* Dependencies */,
 				525EB2BC1DBD606F00E8B246 /* Support */,
 				528200F21BC9FA42001FDD58 /* Tests */,
 				528200921BC9C4A2001FDD58 /* Products */,
@@ -383,6 +421,25 @@
 				528200F51BC9FA42001FDD58 /* Info.plist */,
 			);
 			path = Tests;
+			sourceTree = "<group>";
+		};
+		52ADBED91DE55CD8004CB28A /* Dependencies */ = {
+			isa = PBXGroup;
+			children = (
+				52ADBEDA1DE55CE9004CB28A /* ShiftOperations.xcodeproj */,
+			);
+			name = Dependencies;
+			sourceTree = "<group>";
+		};
+		52ADBEDB1DE55CE9004CB28A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				52ADBEE21DE55CEA004CB28A /* ShiftOperations.framework */,
+				52ADBEE41DE55CEA004CB28A /* ShiftOperations.framework */,
+				52ADBEE61DE55CEA004CB28A /* ShiftOperations.framework */,
+				52ADBEE81DE55CEA004CB28A /* ShiftOperations.framework */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		52F9E6DA1CA5B4DF00039162 /* Sources */ = {
@@ -557,6 +614,12 @@
 			mainGroup = 528200851BC9C460001FDD58;
 			productRefGroup = 528200921BC9C4A2001FDD58 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 52ADBEDB1DE55CE9004CB28A /* Products */;
+					ProjectRef = 52ADBEDA1DE55CE9004CB28A /* ShiftOperations.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				528200901BC9C4A2001FDD58 /* RandomKit macOS */,
@@ -567,6 +630,37 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		52ADBEE21DE55CEA004CB28A /* ShiftOperations.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = ShiftOperations.framework;
+			remoteRef = 52ADBEE11DE55CEA004CB28A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		52ADBEE41DE55CEA004CB28A /* ShiftOperations.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = ShiftOperations.framework;
+			remoteRef = 52ADBEE31DE55CEA004CB28A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		52ADBEE61DE55CEA004CB28A /* ShiftOperations.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = ShiftOperations.framework;
+			remoteRef = 52ADBEE51DE55CEA004CB28A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		52ADBEE81DE55CEA004CB28A /* ShiftOperations.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = ShiftOperations.framework;
+			remoteRef = 52ADBEE71DE55CEA004CB28A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		5282008F1BC9C4A2001FDD58 /* Resources */ = {

@@ -29,5 +29,7 @@ import PackageDescription
 
 let package = Package(
     name: "RandomKit",
+    dependencies: [.Package(url: "https://github.com/nvzqz/ShiftOperations.git",
+                            majorVersion: 1)],
     exclude: ["Tests"]
 )
