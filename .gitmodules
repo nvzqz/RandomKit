@@ -1,0 +1,3 @@
+[submodule "Carthage/Checkouts/ShiftOperations"]
+	path = Carthage/Checkouts/ShiftOperations
+	url = https://github.com/nvzqz/ShiftOperations.git
