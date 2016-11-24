@@ -67,47 +67,66 @@ let benchmarkUnsafeRandomArrayCount = int(after: "--array-unsafe") ?? benchmarkR
 
 let count = int(after: "--count") ?? int(after: "-c") ?? 10_000_000
 
+func arc4RandomIsAvailable() -> Bool {
+    let available = RandomGenerator.arc4RandomIsAvailable
+    if !available {
+        print(style("The arc4random generator is unavailable", with: [.bold, .red]))
+    }
+    return available
+}
+
 var generators: [RandomGenerator] = []
 if benchmarkAllGenerators {
-    generators = [
-        .xoroshiro(threadSafe: false),
-        .xoroshiro(threadSafe: true),
-        .arc4Random,
-        .dev(.random),
-        .dev(.urandom)
-    ]
-} else {
-    if contains("--xoroshiro") {
-        generators.append(.xoroshiro(threadSafe: false))
-        generators.append(.xoroshiro(threadSafe: true))
-    } else {
-        if contains("--xoroshiro-unsafe") {
-            generators.append(.xoroshiro(threadSafe: false))
-        }
-        if contains("--xoroshiro-safe") {
-            generators.append(.xoroshiro(threadSafe: true))
-        }
-    }
-    if contains("--arc4random") {
-        generators.append(.arc4Random)
-    }
-    if contains("--dev") {
-        generators.append(.dev(.random))
-        generators.append(.dev(.urandom))
-    } else {
-        if contains("--dev-random") {
-            generators.append(.dev(.random))
-        }
-        if contains("--dev-urandom") {
-            generators.append(.dev(.urandom))
-        }
-    }
-    if generators.isEmpty {
+    if arc4RandomIsAvailable() {
         generators = [
             .xoroshiro(threadSafe: false),
             .xoroshiro(threadSafe: true),
-            .arc4Random
+            .arc4Random,
+            .dev(.random),
+            .dev(.urandom)
         ]
+    } else {
+        generators = [
+            .xoroshiro(threadSafe: false),
+            .xoroshiro(threadSafe: true),
+            .dev(.random),
+            .dev(.urandom)
+        ]
+        print(style("The arc4random generator is unavailable", with: [.bold, .red]))
+    }
+} else {
+    let benchmarkWithXoroshiro = contains("--xoroshiro")
+    if benchmarkWithXoroshiro || contains("--xoroshiro-unsafe") {
+        generators.append(.xoroshiro(threadSafe: false))
+    }
+    if benchmarkWithXoroshiro || contains("--xoroshiro-safe") {
+        generators.append(.xoroshiro(threadSafe: true))
+    }
+
+    if contains("--arc4random") {
+        if arc4RandomIsAvailable() {
+            generators.append(.arc4Random)
+        } else {
+            print(style("The arc4random generator is unavailable", with: [.bold, .red]))
+        }
+    }
+
+    let benchmarkWithDev = contains("--dev")
+    if benchmarkWithDev || contains("--dev-random") {
+        generators.append(.dev(.random))
+    }
+    if benchmarkWithDev || contains("--dev-urandom") {
+        generators.append(.dev(.urandom))
+    }
+
+    if generators.isEmpty {
+        generators = [
+            .xoroshiro(threadSafe: false),
+            .xoroshiro(threadSafe: true)
+        ]
+        if arc4RandomIsAvailable() {
+            generators.append(.arc4Random)
+        }
     }
 }
 
