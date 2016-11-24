@@ -32,6 +32,7 @@ RandomKit is a Swift framework that makes random data generation simple and easy
         - [Bool](#bool)
         - [String, Character, and UnicodeScalar](#string-character-and-unicodescalar)
         - [Sequence and Collection](#sequence-and-collection)
+        - [Arrays](#arrays)
     - [Foundation Types](#foundation-types)
         - [URL](#url)
         - [Date](#date)
@@ -301,6 +302,33 @@ NSDictionary(dictionary: ["k1":"v1", "k2":"v2"]).random      // (k1, v1)
 
 NSSet(array: ["First", "Second", "Third", "Fourth"]).random  // "Third"
 ```
+
+#### Arrays
+
+An array of random values can be generated for types conforming to `Random` using `init(randomCount:)`.
+
+Similar initializers exist for `RandomWithinRange` and `RandomWithinClosedRange`.
+
+```swift
+let randoms = Array<Int>(randomCount: 100)  // [[8845477344689834233, -957454203475087100, ...]
+```
+
+For types conforming to `UnsafeRandom`, a faster alternative is `init(unsafeRandomCount:using:)`.
+This initializer fills the buffer directly rather than using `random()`.
+
+```swift
+let unsafeRandoms = Array<Int>(unsafeRandomCount: 100)  // [759709806207883991, 4618491969012429761, ...]
+```
+
+A benchmark of generating 1000 random arrays of 10000 count:
+
+| Generator                         | Safe (seconds)        | Unsafe (seconds)  |
+| --------------------------------- | --------------------- | ----------------- |
+| `xoroshiro(threadSafe: false)`    | 3.4709                | 0.1068            |
+| `xoroshiro(threadSafe: true)`     | 3.9388                | 0.1059            |
+| `arc4Random`                      | 6.6060                | 0.3336            |
+| `dev(random)`                     | 67.7667               | 5.7254            |
+| `dev(urandom)`                    | 71.0310               | 5.7347            |
 
 ### Foundation Types
 
