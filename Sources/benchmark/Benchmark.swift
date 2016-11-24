@@ -101,7 +101,7 @@ func benchmarkRandomWithinClosedRange<T: RandomWithinClosedRange>(with closedRan
     }
 }
 
-func benchmarkRandomArray<T: Random>(for type: T.Type, randomCount: Int, count: Int = count, using generators: [RandomGenerator] = generators) {
+func benchmarkSafeRandomArray<T: Random>(for type: T.Type, randomCount: Int, count: Int = count, using generators: [RandomGenerator] = generators) {
     for randomGenerator in generators {
         print("Generating random arrays for " + style(type) + " of " + style(randomCount) + " using " + style(randomGenerator))
         benchmark(count: count) {

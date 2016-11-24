@@ -59,9 +59,11 @@ let benchmarkRandomWithinRange       = benchmarkAllProtocols || contains("Random
 let benchmarkRandomWithinClosedRange = benchmarkAllProtocols || contains("RandomWithinClosedRange")
 
 let benchmarkRandomArray            = contains("--array")
-let benchmarkRandomArrayCount       = int(after: "--array") ?? 100
-let benchmarkUnsafeRandomArray      = contains("--array-unsafe")
-let benchmarkUnsafeRandomArrayCount = int(after: "--array-unsafe") ?? 100
+let benchmarkRandomArrayCount       = int(after: "--array")
+let benchmarkSafeRandomArray        = benchmarkRandomArray         || contains("--array-safe")
+let benchmarkSafeRandomArrayCount   = int(after: "--array-safe")   ?? benchmarkRandomArrayCount ?? 100
+let benchmarkUnsafeRandomArray      = benchmarkRandomArray         || contains("--array-unsafe")
+let benchmarkUnsafeRandomArrayCount = int(after: "--array-unsafe") ?? benchmarkRandomArrayCount ?? 100
 
 let count = int(after: "--count") ?? 10_000_000
 
@@ -194,8 +196,8 @@ if benchmarkRandomWithinClosedRange {
     }
 }
 
-if benchmarkRandomArray {
-    benchmarkRandomArray(for: Int.self, randomCount: benchmarkRandomArrayCount)
+if benchmarkSafeRandomArray {
+    benchmarkSafeRandomArray(for: Int.self, randomCount: benchmarkSafeRandomArrayCount)
 }
 
 if benchmarkUnsafeRandomArray {
