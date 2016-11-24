@@ -27,9 +27,24 @@
 
 import RandomKit
 
-extension RandomWithMax where Self: Integer {
+extension Integer where Self: RandomWithMax {
     static var maxAdjusted: Self {
         return max - (max / 8)
+    }
+}
+
+extension Integer where Self: RandomWithMin {
+    static var minAdjusted: Self {
+        return min - (min / 8)
+    }
+}
+
+extension Integer where Self: RandomWithMax & RandomWithMin {
+    static var minMaxRange: Range<Self> {
+        return minAdjusted ..< maxAdjusted
+    }
+    static var minMaxClosedRange: ClosedRange<Self> {
+        return minAdjusted ... maxAdjusted
     }
 }
 

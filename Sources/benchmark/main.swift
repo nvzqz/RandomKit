@@ -38,9 +38,11 @@ let benchmarkAllGenerators = benchmarkAll || contains("--all-generators")
 let benchmarkAllIntegers   = benchmarkAll || contains("--all-integers")
 let benchmarkAllProtocols  = benchmarkAll || contains("--all-protocols")
 
-let benchmarkRandom             = benchmarkAllProtocols || contains("Random")
-let benchmarkRandomToValue      = benchmarkAllProtocols || contains("RandomToValue")
-let benchmarkRandomThroughValue = benchmarkAllProtocols || contains("RandomThroughValue")
+let benchmarkRandom                  = benchmarkAllProtocols || contains("Random")
+let benchmarkRandomToValue           = benchmarkAllProtocols || contains("RandomToValue")
+let benchmarkRandomThroughValue      = benchmarkAllProtocols || contains("RandomThroughValue")
+let benchmarkRandomWithinRange       = benchmarkAllProtocols || contains("RandomWithinRange")
+let benchmarkRandomWithinClosedRange = benchmarkAllProtocols || contains("RandomWithinClosedRange")
 
 let count: Int = {
     let args = CommandLine.arguments
@@ -140,5 +142,39 @@ if benchmarkRandomThroughValue {
         benchmarkRandomThroughValue(with: UInt32.maxAdjusted)
         benchmarkRandomThroughValue(with: UInt16.maxAdjusted)
         benchmarkRandomThroughValue(with: UInt8.maxAdjusted)
+    }
+}
+
+if benchmarkRandomWithinRange {
+    benchmarkRandomWithinRange(with: Int.minMaxRange)
+    if benchmarkAllIntegers {
+        benchmarkRandomWithinRange(with: Int64.minMaxRange)
+        benchmarkRandomWithinRange(with: Int32.minMaxRange)
+        benchmarkRandomWithinRange(with: Int16.minMaxRange)
+        benchmarkRandomWithinRange(with: Int8.minMaxRange)
+    }
+    benchmarkRandomWithinRange(with: UInt.minMaxRange)
+    if benchmarkAllIntegers {
+        benchmarkRandomWithinRange(with: UInt64.minMaxRange)
+        benchmarkRandomWithinRange(with: UInt32.minMaxRange)
+        benchmarkRandomWithinRange(with: UInt16.minMaxRange)
+        benchmarkRandomWithinRange(with: UInt8.minMaxRange)
+    }
+}
+
+if benchmarkRandomWithinClosedRange {
+    benchmarkRandomWithinClosedRange(with: Int.minMaxClosedRange)
+    if benchmarkAllIntegers {
+        benchmarkRandomWithinClosedRange(with: Int64.minMaxClosedRange)
+        benchmarkRandomWithinClosedRange(with: Int32.minMaxClosedRange)
+        benchmarkRandomWithinClosedRange(with: Int16.minMaxClosedRange)
+        benchmarkRandomWithinClosedRange(with: Int8.minMaxClosedRange)
+    }
+    benchmarkRandomWithinClosedRange(with: UInt.minMaxClosedRange)
+    if benchmarkAllIntegers {
+        benchmarkRandomWithinClosedRange(with: UInt64.minMaxClosedRange)
+        benchmarkRandomWithinClosedRange(with: UInt32.minMaxClosedRange)
+        benchmarkRandomWithinClosedRange(with: UInt16.minMaxClosedRange)
+        benchmarkRandomWithinClosedRange(with: UInt8.minMaxClosedRange)
     }
 }

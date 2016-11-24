@@ -76,3 +76,27 @@ func benchmarkRandomThroughValue<T: RandomThroughValue>(with value: T, count: In
         print("")
     }
 }
+
+func benchmarkRandomWithinRange<T: RandomWithinRange>(with range: Range<T>, count: Int = count, using generators: [RandomGenerator] = generators) {
+    for randomGenerator in generators {
+        let styledRange = style(range)
+        let styledType  = style(T.self)
+        print("Generating randoms within " + styledRange + " for " + styledType + " using " + style(randomGenerator))
+        benchmark(count: count) {
+            let _ = T.random(within: range, using: randomGenerator)
+        }
+        print("")
+    }
+}
+
+func benchmarkRandomWithinClosedRange<T: RandomWithinClosedRange>(with closedRange: ClosedRange<T>, count: Int = count, using generators: [RandomGenerator] = generators) {
+    for randomGenerator in generators {
+        let styledRange = style(closedRange)
+        let styledType  = style(T.self)
+        print("Generating randoms within " + styledRange + " for " + styledType + " using " + style(randomGenerator))
+        benchmark(count: count) {
+            let _ = T.random(within: closedRange, using: randomGenerator)
+        }
+        print("")
+    }
+}
