@@ -168,6 +168,11 @@ extension String: Shuffleable {
         return String(Array(characters).shuffled(using: randomGenerator))
     }
 
+    /// Shuffles the elements in `self` in a unique order and returns the result.
+    public func shuffledUnique(using randomGenerator: RandomGenerator) -> String {
+        return String(Array(characters).shuffledUnique(using: randomGenerator))
+    }
+
 }
 
 extension String.CharacterView: Shuffleable {
@@ -175,6 +180,11 @@ extension String.CharacterView: Shuffleable {
     /// Shuffles the elements in `self` and returns the result.
     public func shuffled(using randomGenerator: RandomGenerator) -> String.CharacterView {
         return String.CharacterView(Array(self).shuffled(using: randomGenerator))
+    }
+
+    /// Shuffles the elements in `self` in a unique order and returns the result.
+    public func shuffledUnique(using randomGenerator: RandomGenerator) -> String.CharacterView {
+        return String.CharacterView(Array(self).shuffledUnique(using: randomGenerator))
     }
 
 }

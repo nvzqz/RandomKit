@@ -112,6 +112,37 @@ extension MutableCollection where Self: Shuffleable, Index == Int {
         }
     }
 
+    /// Shuffles the elements in `self` in a unique order and returns the result.
+    public func shuffledUnique(using randomGenerator: RandomGenerator) -> Self {
+        return shuffledUnique(from: startIndex, to: endIndex, using: randomGenerator)
+    }
+
+    /// Shuffles the elements in `self` in a unique order.
+    public mutating func shuffleUnique(using randomGenerator: RandomGenerator) {
+        shuffleUnique(from: startIndex, to: endIndex, using: randomGenerator)
+    }
+
+    /// Shuffles the elements in `self` in a unique order from `startIndex` to `endIndex` and returns the result.
+    public func shuffledUnique(from startIndex: Index,
+                               to endIndex: Index,
+                               using randomGenerator: RandomGenerator = .default) -> Self {
+        var copy = self
+        copy.shuffleUnique(from: startIndex, to: endIndex, using: randomGenerator)
+        return copy
+
+    }
+
+    /// Shuffles the elements in `self` in a unique order from `startIndex` to `endIndex`.
+    public mutating func shuffleUnique(from startIndex: Index,
+                                       to endIndex: Index,
+                                       using randomGenerator: RandomGenerator = .default) {
+        for i in startIndex ..< endIndex {
+            if let j = Int.random(within: (i + 1) ..< endIndex, using: randomGenerator) {
+                swap(&self[i], &self[j])
+            }
+        }
+    }
+
 }
 
 extension Array: Shuffleable {

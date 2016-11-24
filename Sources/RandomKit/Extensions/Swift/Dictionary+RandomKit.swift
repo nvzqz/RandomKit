@@ -41,6 +41,20 @@ extension Dictionary: Shuffleable {
         }
     }
 
+    /// Shuffles the elements in `self` in a unique order and returns the result.
+    public func shuffledUnique(using randomGenerator: RandomGenerator) -> Dictionary {
+        var copy = self
+        copy.shuffleUnique(using: randomGenerator)
+        return copy
+    }
+
+    /// Shuffles the elements in `self` in a unique order.
+    public mutating func shuffleUnique(using randomGenerator: RandomGenerator) {
+        for (key, value) in zip(keys, Array(values).shuffledUnique(using: randomGenerator)) {
+            self[key] = value
+        }
+    }
+
 }
 
 private extension Dictionary {

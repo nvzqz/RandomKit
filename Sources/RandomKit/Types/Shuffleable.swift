@@ -34,6 +34,12 @@ public protocol Shuffleable {
     /// Shuffles the elements in `self`.
     mutating func shuffle(using randomGenerator: RandomGenerator)
 
+    /// Shuffles the elements in `self` in a unique order and returns the result.
+    func shuffledUnique(using randomGenerator: RandomGenerator) -> Self
+
+    /// Shuffles the elements in `self` in a unique order.
+    mutating func shuffleUnique(using randomGenerator: RandomGenerator)
+
 }
 
 public extension Shuffleable {
@@ -51,6 +57,21 @@ public extension Shuffleable {
     /// Shuffles the elements in `self`.
     public mutating func shuffle() {
         shuffle(using: .default)
+    }
+
+    /// Shuffles the elements in `self` in a unique order and returns the result.
+    public func shuffledUnique() -> Self {
+        return shuffledUnique(using: .default)
+    }
+
+    /// Shuffles the elements in `self` in a unique order.
+    public mutating func shuffleUnique(using randomGenerator: RandomGenerator) {
+        self = shuffledUnique(using: randomGenerator)
+    }
+
+    /// Shuffles the elements in `self` in a unique order.
+    public mutating func shuffleUnique() {
+        shuffleUnique(using: .default)
     }
 
 }
