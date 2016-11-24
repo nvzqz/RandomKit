@@ -54,7 +54,7 @@ public enum RandomGenerator {
     /// Use arc4random.
     ///
     /// If the OS is Linux, Android, or Windows, `arc4random_buf` will be attempted to be dynamically loaded.
-    case arc4random
+    case arc4Random
 
     /// Use "/dev/random" or "/dev/urandom". Does nothing on Windows unless using Cygwin.
     case dev(DevSource)
@@ -73,7 +73,7 @@ public enum RandomGenerator {
     public static var `default` = xoroshiro(threadSafe: true)
 
     /// Whether `arc4random` is available on the current system.
-    public static var arc4randomIsAvailable: Bool {
+    public static var arc4RandomIsAvailable: Bool {
         #if !os(Linux) && !os(Android) && !os(Windows)
             return true
         #else
@@ -88,7 +88,7 @@ public enum RandomGenerator {
     /// Randomize the contents of `buffer` of `size` bytes.
     public func randomize(buffer: UnsafeMutableRawPointer, size: Int) {
         switch self {
-        case .arc4random:
+        case .arc4Random:
             _arc4random_buf(buffer, size)
         case let .dev(source):
             #if !os(Windows) || CYGWIN
