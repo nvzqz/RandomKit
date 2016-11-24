@@ -76,7 +76,7 @@ extension RandomWithinRange {
 
 }
 
-extension RandomWithinRange where Self: _Strideable & Comparable, Self.Stride : SignedInteger {
+extension RandomWithinRange where Self: Strideable & Comparable, Self.Stride : SignedInteger {
 
     /// Returns an optional random value of `Self` inside of the range.
     public static func random(within range: CountableRange<Self>,
