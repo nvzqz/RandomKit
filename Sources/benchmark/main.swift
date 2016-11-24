@@ -27,12 +27,14 @@
 
 import RandomKit
 
-func contains(_ s: String) -> Bool {
-    return CommandLine.arguments.contains(s)
+func contains(_ arg: String) -> Bool {
+    let arg = arg.lowercased()
+    return CommandLine.arguments.contains { $0.lowercased() == arg }
 }
 
 func argument(after arg: String) -> String? {
-    if let index = CommandLine.arguments.index(of: arg) {
+    let arg = arg.lowercased()
+    if let index = CommandLine.arguments.indices.first(where: { CommandLine.arguments[$0].lowercased() == arg }) {
         return CommandLine.arguments[safe: index + 1]
     } else {
         return nil
