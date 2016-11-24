@@ -47,7 +47,7 @@ func int(after arg: String) -> Int? {
 
 let styleOutput = !contains("--no-color")
 
-let benchmarkAll           = contains("--all")
+let benchmarkAll           = contains("--all") || contains("-a")
 let benchmarkAllGenerators = benchmarkAll || contains("--all-generators")
 let benchmarkAllIntegers   = benchmarkAll || contains("--all-integers")
 let benchmarkAllProtocols  = benchmarkAll || contains("--all-protocols")
@@ -65,7 +65,7 @@ let benchmarkSafeRandomArrayCount   = int(after: "--array-safe")   ?? benchmarkR
 let benchmarkUnsafeRandomArray      = benchmarkRandomArray         || contains("--array-unsafe")
 let benchmarkUnsafeRandomArrayCount = int(after: "--array-unsafe") ?? benchmarkRandomArrayCount ?? 100
 
-let count = int(after: "--count") ?? 10_000_000
+let count = int(after: "--count") ?? int(after: "-c") ?? 10_000_000
 
 var generators: [RandomGenerator] = []
 if benchmarkAllGenerators {
