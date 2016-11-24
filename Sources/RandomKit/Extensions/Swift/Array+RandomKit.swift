@@ -34,6 +34,17 @@ extension Array where Element: Random {
 
 }
 
+extension Array where Element: UnsafeRandom {
+
+    /// Construct an Array of random elements by randomizing the buffer directly.
+    public init(unsafeRandomCount: Int, using randomGenerator: RandomGenerator = .default) {
+        self.init(repeating: .randomizableValue, count: unsafeRandomCount)
+        let buffer = UnsafeMutablePointer(mutating: self)
+        randomGenerator.randomize(buffer: buffer, size: MemoryLayout<Element>.size * unsafeRandomCount)
+    }
+
+}
+
 extension Array where Element: RandomWithinRange {
 
     /// Construct an Array of random elements from within the range.
