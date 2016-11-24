@@ -31,6 +31,18 @@ func contains(_ s: String) -> Bool {
     return CommandLine.arguments.contains(s)
 }
 
+func argument(after arg: String) -> String? {
+    if let index = CommandLine.arguments.index(of: arg) {
+        return CommandLine.arguments[safe: index + 1]
+    } else {
+        return nil
+    }
+}
+
+func int(after arg: String) -> Int? {
+    return argument(after: arg).flatMap { Int($0) }
+}
+
 let styleOutput = !contains("--no-color")
 
 let benchmarkAll           = contains("--all")
@@ -44,14 +56,12 @@ let benchmarkRandomThroughValue      = benchmarkAllProtocols || contains("Random
 let benchmarkRandomWithinRange       = benchmarkAllProtocols || contains("RandomWithinRange")
 let benchmarkRandomWithinClosedRange = benchmarkAllProtocols || contains("RandomWithinClosedRange")
 
-let count: Int = {
-    let args = CommandLine.arguments
-    if let index = args.index(of: "--count"), let count = args[safe: index + 1].flatMap({ Int($0) }) {
-        return count
-    } else {
-        return 10_000_000
-    }
-}()
+let benchmarkRandomArray            = contains("--array")
+let benchmarkRandomArrayCount       = int(after: "--array") ?? 100
+let benchmarkUnsafeRandomArray      = contains("--array-unsafe")
+let benchmarkUnsafeRandomArrayCount = int(after: "--array-unsafe") ?? 100
+
+let count = int(after: "--count") ?? 10_000_000
 
 let generators: [RandomGenerator]
 if benchmarkAllGenerators {
@@ -177,4 +187,12 @@ if benchmarkRandomWithinClosedRange {
         benchmarkRandomWithinClosedRange(with: UInt16.minMaxClosedRange)
         benchmarkRandomWithinClosedRange(with: UInt8.minMaxClosedRange)
     }
+}
+
+if benchmarkRandomArray {
+    benchmarkRandomArray(for: Int.self, randomCount: benchmarkRandomArrayCount)
+}
+
+if benchmarkUnsafeRandomArray {
+    benchmarkUnsafeRandomArray(for: Int.self, randomCount: benchmarkUnsafeRandomArrayCount)
 }
