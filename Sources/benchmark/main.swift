@@ -69,6 +69,7 @@ if benchmarkAllGenerators {
         .xoroshiro(threadSafe: false),
         .xoroshiro(threadSafe: true),
         .arc4Random,
+        .dev(.random),
         .dev(.urandom)
     ]
 } else if contains("--xoroshiro") {
