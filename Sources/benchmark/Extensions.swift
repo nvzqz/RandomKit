@@ -1,6 +1,6 @@
 //
-//  Package.swift
-//  RandomKit
+//  Extensions.swift
+//  RandomKit Benchmark
 //
 //  The MIT License (MIT)
 //
@@ -25,18 +25,19 @@
 //  THE SOFTWARE.
 //
 
-import PackageDescription
+import RandomKit
 
-let package = Package(
-    name: "RandomKit",
-    targets: [
-        Target(name: "RandomKit"),
-        Target(name: "benchmark",
-               dependencies: ["RandomKit"])
-    ],
-    dependencies: [
-        .Package(url: "https://github.com/nvzqz/ShiftOperations.git",
-                 majorVersion: 1)
-    ],
-    exclude: ["Tests"]
-)
+extension RandomWithMax where Self: Integer {
+    static var maxAdjusted: Self {
+        return max - (max / 8)
+    }
+}
+
+extension Array {
+    subscript(safe index: Int) -> Element? {
+        guard indices ~= index else {
+            return nil
+        }
+        return self[index]
+    }
+}

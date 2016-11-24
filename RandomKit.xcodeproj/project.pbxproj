@@ -213,6 +213,10 @@
 		520DA1341DDF16FD00F265CE /* UnsafeRandom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnsafeRandom.swift; sourceTree = "<group>"; };
 		520DA1391DDF5FA800F265CE /* RandomEnum.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RandomEnum.swift; sourceTree = "<group>"; };
 		5217714E1DE6D5EF00DD4584 /* UniqueShuffleable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UniqueShuffleable.swift; sourceTree = "<group>"; };
+		521771671DE6DF9C00DD4584 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		521771681DE6E4E900DD4584 /* Style.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Style.swift; sourceTree = "<group>"; };
+		5217716D1DE6F0D600DD4584 /* Benchmark.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Benchmark.swift; sourceTree = "<group>"; };
+		5217716E1DE7024200DD4584 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		5220D0481DDAFEB300B22F7F /* RandomWithAll.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RandomWithAll.swift; sourceTree = "<group>"; };
 		5230293B1DC54137007530CD /* Range+RandomKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Range+RandomKit.swift"; sourceTree = "<group>"; };
 		523D8B0C1DBEADD1006FF58C /* CGFloat+RandomKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGFloat+RandomKit.swift"; sourceTree = "<group>"; };
@@ -307,6 +311,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		521771611DE6DF7600DD4584 /* RandomKit */ = {
+			isa = PBXGroup;
+			children = (
+				525EB2BE1DBD696B00E8B246 /* Types */,
+				525EB2C91DBD697200E8B246 /* Extensions */,
+			);
+			path = RandomKit;
+			sourceTree = "<group>";
+		};
+		521771661DE6DF9C00DD4584 /* benchmark */ = {
+			isa = PBXGroup;
+			children = (
+				521771671DE6DF9C00DD4584 /* main.swift */,
+				5217716D1DE6F0D600DD4584 /* Benchmark.swift */,
+				521771681DE6E4E900DD4584 /* Style.swift */,
+				5217716E1DE7024200DD4584 /* Extensions.swift */,
+			);
+			path = benchmark;
+			sourceTree = "<group>";
+		};
 		523D8B0B1DBEADD1006FF58C /* CoreGraphics */ = {
 			isa = PBXGroup;
 			children = (
@@ -347,8 +371,7 @@
 				520DA1391DDF5FA800F265CE /* RandomEnum.swift */,
 				52737E4A1DBEFE83009B5E9D /* RandomGenerator.swift */,
 			);
-			name = Types;
-			path = RandomKit/Types;
+			path = Types;
 			sourceTree = "<group>";
 		};
 		525EB2C91DBD697200E8B246 /* Extensions */ = {
@@ -358,8 +381,7 @@
 				52737E261DBEBEF8009B5E9D /* Foundation */,
 				523D8B0B1DBEADD1006FF58C /* CoreGraphics */,
 			);
-			name = Extensions;
-			path = RandomKit/Extensions;
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		52737DEE1DBEBEED009B5E9D /* Swift */ = {
@@ -451,8 +473,8 @@
 		52F9E6DA1CA5B4DF00039162 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				525EB2BE1DBD696B00E8B246 /* Types */,
-				525EB2C91DBD697200E8B246 /* Extensions */,
+				521771611DE6DF7600DD4584 /* RandomKit */,
+				521771661DE6DF9C00DD4584 /* benchmark */,
 			);
 			path = Sources;
 			sourceTree = "<group>";

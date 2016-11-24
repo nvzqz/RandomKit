@@ -1,6 +1,6 @@
 //
-//  Package.swift
-//  RandomKit
+//  Style.swift
+//  RandomKit Benchmark
 //
 //  The MIT License (MIT)
 //
@@ -25,18 +25,41 @@
 //  THE SOFTWARE.
 //
 
-import PackageDescription
+import RandomKit
 
-let package = Package(
-    name: "RandomKit",
-    targets: [
-        Target(name: "RandomKit"),
-        Target(name: "benchmark",
-               dependencies: ["RandomKit"])
-    ],
-    dependencies: [
-        .Package(url: "https://github.com/nvzqz/ShiftOperations.git",
-                 majorVersion: 1)
-    ],
-    exclude: ["Tests"]
-)
+enum Style: UInt8 {
+
+    case bold = 1
+
+    case black = 30, red, green, yellow, blue, magenta, cyan, white
+
+}
+
+private func style(_ string: String, with codes: [String]) -> String {
+    if styleOutput {
+        let csi = "\u{1B}["
+        return csi + codes.joined(separator: ";") + "m" + string + csi + "0m"
+    } else {
+        return string
+    }
+}
+
+private func style(_ string: String, with codes: [UInt8]) -> String {
+    return style(string, with: codes.map(String.init(_:)))
+}
+
+func style(_ string: String, with styles: [Style]) -> String {
+    return style(string, with: styles.map { $0.rawValue })
+}
+
+func style<T>(_ value: T, with styles: [Style] = [.bold, .magenta]) -> String {
+    return style(String(describing: value), with: styles)
+}
+
+func style<T>(_ type: T.Type) -> String {
+    return style(type, with: [.bold, .green])
+}
+
+func style(_ generator: RandomGenerator) -> String {
+    return style(generator, with: [.yellow])
+}
