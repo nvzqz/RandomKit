@@ -79,7 +79,7 @@ extension Collection where IndexDistance: RandomToValue {
 
 }
 
-extension MutableCollection where Self: Shuffleable, Index == Int {
+extension MutableCollection where Self: Shuffleable, Index: Strideable & RandomWithinRange, Index.Stride: SignedInteger {
 
     /// Shuffles the elements in `self` and returns the result.
     public func shuffled(using randomGenerator: RandomGenerator) -> Self {
@@ -106,7 +106,7 @@ extension MutableCollection where Self: Shuffleable, Index == Int {
                                  using randomGenerator: RandomGenerator = .default) {
         let range = startIndex ..< endIndex
         for i in range {
-            if let j = Int.random(within: range, using: randomGenerator), j != i {
+            if let j = Index.random(within: range, using: randomGenerator), j != i {
                 swap(&self[i], &self[j])
             }
         }
@@ -137,7 +137,7 @@ extension MutableCollection where Self: Shuffleable, Index == Int {
                                        to endIndex: Index,
                                        using randomGenerator: RandomGenerator = .default) {
         for i in startIndex ..< endIndex {
-            if let j = Int.random(within: (i + 1) ..< endIndex, using: randomGenerator) {
+            if let j = Index.random(within: i.advanced(by: 1) ..< endIndex, using: randomGenerator) {
                 swap(&self[i], &self[j])
             }
         }
