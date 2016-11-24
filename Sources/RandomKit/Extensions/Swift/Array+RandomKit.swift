@@ -28,6 +28,8 @@
 extension Array where Element: Random {
 
     /// Construct an Array of random elements.
+    ///
+    /// Although safety is not guaranteed, `init(unsafeRandomCount:)` is *significantly* faster than this.
     public init(randomCount: Int, using randomGenerator: RandomGenerator = .default) {
         self = (0 ..< randomCount).map { _ in Element.random(using: randomGenerator) }
     }
@@ -37,6 +39,8 @@ extension Array where Element: Random {
 extension Array where Element: UnsafeRandom {
 
     /// Construct an Array of random elements by randomizing the buffer directly.
+    ///
+    /// This is *significantly* faster than using `init(randomCount:using:)`.
     public init(unsafeRandomCount: Int, using randomGenerator: RandomGenerator = .default) {
         self.init(repeating: .randomizableValue, count: unsafeRandomCount)
         let buffer = UnsafeMutablePointer(mutating: self)
