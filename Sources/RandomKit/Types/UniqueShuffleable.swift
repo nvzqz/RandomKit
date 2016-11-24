@@ -1,5 +1,5 @@
 //
-//  Shuffleable.swift
+//  UniqueShuffleable.swift
 //  RandomKit
 //
 //  The MIT License (MIT)
@@ -25,32 +25,32 @@
 //  THE SOFTWARE.
 //
 
-/// A type whose elements can be shuffled.
-public protocol Shuffleable {
+/// A type whose elements can be shuffled in a unique order.
+public protocol UniqueShuffleable {
 
-    /// Shuffles the elements in `self` and returns the result.
-    func shuffled(using randomGenerator: RandomGenerator) -> Self
+    /// Shuffles the elements in `self` in a unique order and returns the result.
+    func shuffledUnique(using randomGenerator: RandomGenerator) -> Self
 
-    /// Shuffles the elements in `self`.
-    mutating func shuffle(using randomGenerator: RandomGenerator)
+    /// Shuffles the elements in `self` in a unique order.
+    mutating func shuffleUnique(using randomGenerator: RandomGenerator)
 
 }
 
-public extension Shuffleable {
+extension UniqueShuffleable {
 
-    /// Shuffles the elements in `self` and returns the result.
-    public func shuffled() -> Self {
-        return shuffled(using: .default)
+    /// Shuffles the elements in `self` in a unique order and returns the result.
+    public func shuffledUnique() -> Self {
+        return shuffledUnique(using: .default)
     }
 
-    /// Shuffles the elements in `self`.
-    public mutating func shuffle(using randomGenerator: RandomGenerator) {
-        self = shuffled(using: randomGenerator)
+    /// Shuffles the elements in `self` in a unique order.
+    public mutating func shuffleUnique(using randomGenerator: RandomGenerator) {
+        self = shuffledUnique(using: randomGenerator)
     }
 
-    /// Shuffles the elements in `self`.
-    public mutating func shuffle() {
-        shuffle(using: .default)
+    /// Shuffles the elements in `self` in a unique order.
+    public mutating func shuffleUnique() {
+        shuffleUnique(using: .default)
     }
 
 }

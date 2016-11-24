@@ -161,7 +161,7 @@ extension String: Random {
 
 }
 
-extension String: Shuffleable {
+extension String: Shuffleable, UniqueShuffleable {
 
     /// Shuffles the elements in `self` and returns the result.
     public func shuffled(using randomGenerator: RandomGenerator) -> String {
@@ -175,7 +175,7 @@ extension String: Shuffleable {
 
 }
 
-extension String.CharacterView: Shuffleable {
+extension String.CharacterView: Shuffleable, UniqueShuffleable {
 
     /// Shuffles the elements in `self` and returns the result.
     public func shuffled(using randomGenerator: RandomGenerator) -> String.CharacterView {

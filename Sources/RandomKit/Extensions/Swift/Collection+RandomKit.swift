@@ -112,6 +112,10 @@ extension MutableCollection where Self: Shuffleable, Index: Strideable & RandomW
         }
     }
 
+}
+
+extension MutableCollection where Self: UniqueShuffleable, Index: Strideable & RandomWithinRange, Index.Stride: SignedInteger {
+
     /// Shuffles the elements in `self` in a unique order and returns the result.
     public func shuffledUnique(using randomGenerator: RandomGenerator) -> Self {
         return shuffledUnique(from: startIndex, to: endIndex, using: randomGenerator)
@@ -145,11 +149,11 @@ extension MutableCollection where Self: Shuffleable, Index: Strideable & RandomW
 
 }
 
-extension Array: Shuffleable {
+extension Array: Shuffleable, UniqueShuffleable {
 }
 
-extension ArraySlice: Shuffleable {
+extension ArraySlice: Shuffleable, UniqueShuffleable {
 }
 
-extension ContiguousArray: Shuffleable {
+extension ContiguousArray: Shuffleable, UniqueShuffleable {
 }
