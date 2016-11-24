@@ -63,7 +63,7 @@ let benchmarkUnsafeRandomArrayCount = int(after: "--array-unsafe") ?? 100
 
 let count = int(after: "--count") ?? 10_000_000
 
-let generators: [RandomGenerator]
+var generators: [RandomGenerator] = []
 if benchmarkAllGenerators {
     generators = [
         .xoroshiro(threadSafe: false),
@@ -72,37 +72,39 @@ if benchmarkAllGenerators {
         .dev(.random),
         .dev(.urandom)
     ]
-} else if contains("--xoroshiro") {
-    generators = [
-        .xoroshiro(threadSafe: false),
-        .xoroshiro(threadSafe: true)
-    ]
-} else if contains("--xoroshiro-unsafe") {
-    generators = [
-        .xoroshiro(threadSafe: false)
-    ]
-} else if contains("--xoroshiro-safe") {
-    generators = [
-        .xoroshiro(threadSafe: true)
-    ]
-} else if contains("--arc4random") {
-    generators = [
-        .arc4Random
-    ]
-} else if contains("--dev") || contains("--dev-urandom") {
-    generators = [
-        .dev(.urandom)
-    ]
-} else if contains("--dev-random") {
-    generators = [
-        .dev(.random)
-    ]
 } else {
-    generators = [
-        .xoroshiro(threadSafe: false),
-        .xoroshiro(threadSafe: true),
-        .arc4Random
-    ]
+    if contains("--xoroshiro") {
+        generators.append(.xoroshiro(threadSafe: false))
+        generators.append(.xoroshiro(threadSafe: true))
+    } else {
+        if contains("--xoroshiro-unsafe") {
+            generators.append(.xoroshiro(threadSafe: false))
+        }
+        if contains("--xoroshiro-safe") {
+            generators.append(.xoroshiro(threadSafe: true))
+        }
+    }
+    if contains("--arc4random") {
+        generators.append(.arc4Random)
+    }
+    if contains("--dev") {
+        generators.append(.dev(.random))
+        generators.append(.dev(.urandom))
+    } else {
+        if contains("--dev-random") {
+            generators.append(.dev(.random))
+        }
+        if contains("--dev-urandom") {
+            generators.append(.dev(.urandom))
+        }
+    }
+    if generators.isEmpty {
+        generators = [
+            .xoroshiro(threadSafe: false),
+            .xoroshiro(threadSafe: true),
+            .arc4Random
+        ]
+    }
 }
 
 if benchmarkRandom {
