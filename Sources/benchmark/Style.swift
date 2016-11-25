@@ -64,3 +64,7 @@ func style<T>(_ type: T.Type) -> String {
 func style(_ generator: RandomGenerator) -> String {
     return style(generator, with: [.yellow])
 }
+
+func style(count: Int) -> String {
+    return style(count, with: [.bold, .blue])
+}

@@ -45,7 +45,7 @@ func benchmark(count: Int, closure: () -> ()) {
 
 func benchmarkRandom<T: Random>(for type: T.Type, count: Int = count, using generators: [RandomGenerator] = generators) {
     for randomGenerator in generators {
-        print("Generating randoms for " + style(type) + " using " + style(randomGenerator))
+        print("Generating " + style(count: count) + " randoms for " + style(type) + " using " + style(randomGenerator))
         benchmark(count: count) {
             let _ = T.random(using: randomGenerator)
         }
@@ -57,7 +57,7 @@ func benchmarkRandomToValue<T: RandomToValue>(with value: T, count: Int = count,
     for randomGenerator in generators {
         let styledValue = style(value)
         let styledType  = style(T.self)
-        print("Generating randoms to " + styledValue + " for " + styledType + " using " + style(randomGenerator))
+        print("Generating " + style(count: count) + " randoms to " + styledValue + " for " + styledType + " using " + style(randomGenerator))
         benchmark(count: count) {
             let _ = T.random(to: value, using: randomGenerator)
         }
@@ -69,7 +69,7 @@ func benchmarkRandomThroughValue<T: RandomThroughValue>(with value: T, count: In
     for randomGenerator in generators {
         let styledValue = style(value)
         let styledType  = style(T.self)
-        print("Generating randoms through " + styledValue + " for " + styledType + " using " + style(randomGenerator))
+        print("Generating " + style(count: count) + " randoms through " + styledValue + " for " + styledType + " using " + style(randomGenerator))
         benchmark(count: count) {
             let _ = T.random(through: value, using: randomGenerator)
         }
@@ -81,7 +81,7 @@ func benchmarkRandomWithinRange<T: RandomWithinRange>(with range: Range<T>, coun
     for randomGenerator in generators {
         let styledRange = style(range)
         let styledType  = style(T.self)
-        print("Generating randoms within " + styledRange + " for " + styledType + " using " + style(randomGenerator))
+        print("Generating " + style(count: count) + " randoms within " + styledRange + " for " + styledType + " using " + style(randomGenerator))
         benchmark(count: count) {
             let _ = T.random(within: range, using: randomGenerator)
         }
@@ -93,7 +93,7 @@ func benchmarkRandomWithinClosedRange<T: RandomWithinClosedRange>(with closedRan
     for randomGenerator in generators {
         let styledRange = style(closedRange)
         let styledType  = style(T.self)
-        print("Generating randoms within " + styledRange + " for " + styledType + " using " + style(randomGenerator))
+        print("Generating " + style(count: count) + " randoms within " + styledRange + " for " + styledType + " using " + style(randomGenerator))
         benchmark(count: count) {
             let _ = T.random(within: closedRange, using: randomGenerator)
         }
@@ -103,7 +103,7 @@ func benchmarkRandomWithinClosedRange<T: RandomWithinClosedRange>(with closedRan
 
 func benchmarkSafeRandomArray<T: Random>(for type: T.Type, randomCount: Int, count: Int = count, using generators: [RandomGenerator] = generators) {
     for randomGenerator in generators {
-        print("Generating random arrays for " + style(type) + " of " + style(randomCount) + " using " + style(randomGenerator))
+        print("Generating " + style(count: count) + " random arrays for " + style(type) + " of " + style(randomCount) + " using " + style(randomGenerator))
         benchmark(count: count) {
             let _ = [T](randomCount: randomCount, using: randomGenerator)
         }
@@ -113,7 +113,7 @@ func benchmarkSafeRandomArray<T: Random>(for type: T.Type, randomCount: Int, cou
 
 func benchmarkUnsafeRandomArray<T: UnsafeRandom>(for type: T.Type, randomCount: Int, count: Int = count, using generators: [RandomGenerator] = generators) {
     for randomGenerator in generators {
-        print("Generating unsafe random arrays for " + style(type) + " of " + style(randomCount) + " using " + style(randomGenerator))
+        print("Generating " + style(count: count) + " unsafe random arrays for " + style(type) + " of " + style(randomCount) + " using " + style(randomGenerator))
         benchmark(count: count) {
             let _ = [T](unsafeRandomCount: randomCount, using: randomGenerator)
         }
