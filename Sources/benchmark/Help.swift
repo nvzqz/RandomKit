@@ -27,44 +27,60 @@
 
 import Foundation
 
+private func sf(_ flag: String) -> String {
+    return style(flag, with: [.blue])
+}
+
+private func sa(_ arg: String) -> String {
+    return style(arg, with: [.bold, .yellow])
+}
+
+private func sp(_ proto: String) -> String {
+    return style(proto, with: [.red])
+}
+
+private func ss(_ section: String) -> String {
+    return style(section, with: [.underline])
+}
+
 func printHelpAndExit() -> Never {
-    var message = "RandomKit benchmark\n"
+    var message = ""
+    message += ss("Usage:") + "\n"
     message += "\n"
-    message += "Flags:\n"
+    message += "    " + style("benchmark", with: [.green]) + " " + sf("[FLAGS]") + " " + sp("[PROTOCOLS]") + "\n"
     message += "\n"
-    message += "    --help                  Print this help message\n"
-    message += "    --no-color              Output no color\n"
+    message += ss("Flags:") + "\n"
     message += "\n"
-    message += "    --count, -c COUNT       The number of times to benchmark (default: 10000000)\n"
+    message += "    " + sf("--help") + "                  Print this help message\n"
+    message += "    " + sf("--no-color") + "              Output no color\n"
     message += "\n"
-    message += "    --all, -a               Benchmark all of the following\n"
-    message += "    --all-generators        Benchmark all generators\n"
-    message += "    --all-integers          Benchmark all integer types\n"
-    message += "    --all-protocols         Benchmark all protocols\n"
+    message += "    " + sf("--count, -c") + " " + sa("COUNT") + "       The number of times to benchmark (default: 10000000)\n"
     message += "\n"
-    message += "    --array COUNT           Benchmark both safe and unsafe random arrays\n"
-    message += "                            Default count is 100\n"
-    message += "    --array-safe COUNT      Benchmark safe random arrays\n"
-    message += "                            Default count is 100\n"
-    message += "    --array-unsafe COUNT    Benchmark unsafe random arrays\n"
-    message += "                            Default count is 100\n"
+    message += "    " + sf("--all, -a") + "               Benchmark all of the following\n"
+    message += "    " + sf("--all-generators") + "        Benchmark all generators\n"
+    message += "    " + sf("--all-integers") + "          Benchmark all integer types\n"
+    message += "    " + sf("--all-protocols") + "         Benchmark all protocols\n"
     message += "\n"
-    message += "Generators:\n"
+    message += "    " + sf("--array") + " " + sa("COUNT") + "           Benchmark both safe and unsafe random arrays; default count is 100\n"
+    message += "    " + sf("--array-safe") + " " + sa("COUNT") + "      Benchmark safe random arrays; default count is 100\n"
+    message += "    " + sf("--array-unsafe") + " " + sa("COUNT") + "    Benchmark unsafe random arrays; default count is 100\n"
     message += "\n"
-    message += "    --xoroshiro             Use both safe and unsafe xoroshiro generators\n"
-    message += "    --xoroshiro-safe        Use safe xoroshiro generator\n"
-    message += "    --xoroshiro-unsafe      Use unsafe xoroshiro generator\n"
-    message += "    --arc4random            Use arc4random generator\n"
-    message += "    --dev                   Use both /dev/random and /dev/urandom generators\n"
-    message += "    --dev-random            Use /dev/random generator\n"
-    message += "    --dev-urandom           Use /dev/urandom generator\n"
+    message += ss("Generators:") + "\n"
     message += "\n"
-    message += "Protocols: (passed as arguments)\n"
+    message += "    " + sf("--xoroshiro") + "             Use both safe and unsafe xoroshiro generators\n"
+    message += "    " + sf("--xoroshiro-safe") + "        Use safe xoroshiro generator\n"
+    message += "    " + sf("--xoroshiro-unsafe") + "      Use unsafe xoroshiro generator\n"
+    message += "    " + sf("--arc4random") + "            Use arc4random generator\n"
+    message += "    " + sf("--dev") + "                   Use both /dev/random and /dev/urandom generators\n"
+    message += "    " + sf("--dev-random") + "            Use /dev/random generator\n"
+    message += "    " + sf("--dev-urandom") + "           Use /dev/urandom generator\n"
     message += "\n"
-    message += "    Random\n"
-    message += "    RandomToValue\n"
-    message += "    RandomThroughValue\n"
-    message += "    RandomWithinRange\n"
+    message += ss("Protocols:") + " (passed as arguments)\n"
+    message += "\n"
+    message += "    " + sp("Random") + "\n"
+    message += "    " + sp("RandomToValue") + "\n"
+    message += "    " + sp("RandomThroughValue") + "\n"
+    message += "    " + sp("RandomWithinRange") + "\n"
     print(message)
     exit(EXIT_SUCCESS)
 }

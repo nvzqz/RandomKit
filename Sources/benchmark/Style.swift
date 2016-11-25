@@ -30,6 +30,7 @@ import RandomKit
 enum Style: UInt8 {
 
     case bold = 1
+    case underline = 4
 
     case black = 30, red, green, yellow, blue, magenta, cyan, white
 
