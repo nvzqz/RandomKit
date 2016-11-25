@@ -47,6 +47,10 @@ func int(after arg: String) -> Int? {
 
 let styleOutput = !contains("--no-color")
 
+if contains("--help") {
+    printHelpAndExit()
+}
+
 let benchmarkAll           = contains("--all") || contains("-a")
 let benchmarkAllGenerators = benchmarkAll || contains("--all-generators")
 let benchmarkAllIntegers   = benchmarkAll || contains("--all-integers")
