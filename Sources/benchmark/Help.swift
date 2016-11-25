@@ -80,7 +80,7 @@ func printHelpAndExit() -> Never {
     message += "    " + sp("Random") + "\n"
     message += "    " + sp("RandomToValue") + "\n"
     message += "    " + sp("RandomThroughValue") + "\n"
-    message += "    " + sp("RandomWithinRange") + "\n"
+    message += "    " + sp("RandomWithinRange")
     print(message)
     exit(EXIT_SUCCESS)
 }
