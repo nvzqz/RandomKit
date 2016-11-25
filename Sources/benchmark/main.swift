@@ -45,9 +45,14 @@ func int(after arg: String) -> Int? {
     return argument(after: arg).flatMap { Int($0) }
 }
 
+func hasArgs() -> Bool {
+    let args = CommandLine.arguments
+    return args.count > 1 && args.suffix(from: 1).contains(where: { $0 != "--no-color" })
+}
+
 let styleOutput = !contains("--no-color")
 
-if contains("--help") {
+if !hasArgs() || contains("--help") {
     printHelpAndExit()
 }
 
