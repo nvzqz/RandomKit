@@ -51,7 +51,7 @@ func printHelpAndExit() -> Never {
     message += "\n"
     message += ss("Flags:") + "\n"
     message += "\n"
-    message += "    " + sf("--help") + "                  Print this help message\n"
+    message += "    " + sf("--help, -h") + "              Print this help message\n"
     message += "    " + sf("--no-color") + "              Output no color\n"
     message += "\n"
     message += "    " + sf("--count, -c") + " " + sa("COUNT") + "       The number of times to benchmark (default: 10000000)\n"

@@ -52,7 +52,7 @@ func hasArgs() -> Bool {
 
 let styleOutput = !contains("--no-color")
 
-if !hasArgs() || contains("--help") {
+if !hasArgs() || contains("--help") || contains("-h") {
     printHelpAndExit()
 }
 
