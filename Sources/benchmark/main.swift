@@ -47,7 +47,7 @@ func int(after arg: String) -> Int? {
 
 func hasArgs() -> Bool {
     let args = CommandLine.arguments
-    return args.count > 1 && args.suffix(from: 1).contains(where: { $0 != "--no-color" })
+    return args.count > 1 && args.suffix(from: 1).contains(where: { $0.lowercased() != "--no-color" })
 }
 
 let styleOutput = !contains("--no-color")
