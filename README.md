@@ -17,6 +17,7 @@ RandomKit is a Swift framework that makes random data generation simple and easy
     - [Swift Package Manager](#install-using-swift-package-manager)
     - [CocoaPods](#install-using-cocoapods)
     - [Carthage](#install-using-carthage)
+- [Benchmark](#benchmark)
 - [Usage](#usage)
     - [RandomGenerator](#randomgenerator)
     - [Protocols](#protocols)
@@ -135,6 +136,19 @@ manager for Objective-C and Swift.
     ```swift
     import RandomKit
     ```
+
+## Benchmark
+
+Various components of RandomKit can be easily benchmarked by running `benchmark.sh`.
+
+```shell
+./benchmark.sh [FLAGS] [PROTOCOLS]
+```
+
+Use the `--help` flag for information regarding how to use it.
+
+**Note:** The default count is 10000000, which is A LOT if using the `--array` flag.
+This can be changed by passing an argument into `--count` or `-c`.
 
 ## Usage
 
