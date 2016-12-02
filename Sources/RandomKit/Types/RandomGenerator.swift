@@ -31,7 +31,7 @@ import Foundation
 public enum RandomGenerator {
 
     /// The device source for `RandomGenerator.dev`
-    public enum DevSource: String, CustomStringConvertible {
+    public enum DeviceSource: String, CustomStringConvertible {
 
         /// random device.
         case random
@@ -56,8 +56,8 @@ public enum RandomGenerator {
     /// If the OS is Linux, Android, or Windows, `arc4random_buf` will be attempted to be dynamically loaded.
     case arc4Random
 
-    /// Use "/dev/random" or "/dev/urandom". Does nothing on Windows unless using Cygwin.
-    case dev(DevSource)
+    /// Use device at "/dev/random" or "/dev/urandom". Does nothing on Windows unless using Cygwin.
+    case device(DeviceSource)
 
     /// Use Xoroshiro algorithm.
     ///
@@ -90,7 +90,7 @@ public enum RandomGenerator {
         switch self {
         case .arc4Random:
             _arc4random_buf(buffer, size)
-        case let .dev(source):
+        case let .device(source):
             #if !os(Windows) || CYGWIN
             let fd = open(source.path, O_RDONLY)
             read(fd, buffer, size)
@@ -167,7 +167,7 @@ private struct _Xoroshiro {
 
     init() {
         self.init(state: (0, 0))
-        RandomGenerator.dev(.urandom).randomize(buffer: &state, size: MemoryLayout.size(ofValue: state))
+        RandomGenerator.device(.urandom).randomize(buffer: &state, size: MemoryLayout.size(ofValue: state))
     }
 
     mutating func randomize(buffer: UnsafeMutableRawPointer, size: Int) {
