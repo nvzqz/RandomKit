@@ -46,10 +46,13 @@ extension UnicodeScalar: Random, RandomWithinRange, RandomWithinClosedRange {
         let lower = range.lowerBound.value
         let upper = range.upperBound.value
         if lower._isLowerRange && !upper._isLowerRange {
-            if Bool.random(), let value = UInt32.random(within: 0xE000 ..< upper, using: randomGenerator) {
-                return UnicodeScalar(value)
+            let diff: UInt32 = 0xE000 - 0xD7FF - 1
+            let adjustedUpper = upper - diff
+            let random = UInt32.random(within: lower ..< adjustedUpper, using: randomGenerator).unsafelyUnwrapped
+            if random._isLowerRange {
+                return UnicodeScalar(random)
             } else {
-                return UnicodeScalar(UInt32.random(within: lower ... 0xD7FF, using: randomGenerator))
+                return UnicodeScalar(random + diff)
             }
         } else {
             return UInt32.random(within: lower ..< upper, using: randomGenerator).flatMap(UnicodeScalar.init)
@@ -61,13 +64,18 @@ extension UnicodeScalar: Random, RandomWithinRange, RandomWithinClosedRange {
                               using randomGenerator: RandomGenerator) -> UnicodeScalar {
         let lower = closedRange.lowerBound.value
         let upper = closedRange.upperBound.value
-        let range: ClosedRange<UInt32>
         if lower._isLowerRange && !upper._isLowerRange {
-            range = Bool.random(using: randomGenerator) ? lower...0xD7FF : 0xE000...upper
+            let diff: UInt32 = 0xE000 - 0xD7FF - 1
+            let adjustedUpper = upper - diff
+            let random = UInt32.random(within: lower...adjustedUpper, using: randomGenerator)
+            if random._isLowerRange {
+                return UnicodeScalar(random).unsafelyUnwrapped
+            } else {
+                return UnicodeScalar(random + diff).unsafelyUnwrapped
+            }
         } else {
-            range = lower...upper
+            return UnicodeScalar(.random(within: lower...upper, using: randomGenerator)).unsafelyUnwrapped
         }
-        return UnicodeScalar(.random(within: range, using: randomGenerator)).unsafelyUnwrapped
     }
 
     /// Returns an optional random value of `Self` inside of the range.
