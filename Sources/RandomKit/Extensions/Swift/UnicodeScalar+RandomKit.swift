@@ -47,15 +47,16 @@ extension UnicodeScalar: Random, RandomWithinRange, RandomWithinClosedRange {
         let upper = range.upperBound.value
         if lower._isLowerRange && !upper._isLowerRange {
             let diff: UInt32 = 0xE000 - 0xD7FF - 1
-            let adjustedUpper = upper - diff
-            let random = UInt32.random(within: lower ..< adjustedUpper, using: randomGenerator).unsafelyUnwrapped
+            let newRange = Range(uncheckedBounds: (lower, upper - diff))
+            let random = UInt32.random(within: newRange, using: randomGenerator).unsafelyUnwrapped
             if random._isLowerRange {
                 return UnicodeScalar(random)
             } else {
                 return UnicodeScalar(random + diff)
             }
         } else {
-            return UInt32.random(within: lower ..< upper, using: randomGenerator).flatMap(UnicodeScalar.init)
+            let newRange = Range(uncheckedBounds: (lower, upper))
+            return UInt32.random(within: newRange, using: randomGenerator).flatMap(UnicodeScalar.init)
         }
     }
 
@@ -66,15 +67,16 @@ extension UnicodeScalar: Random, RandomWithinRange, RandomWithinClosedRange {
         let upper = closedRange.upperBound.value
         if lower._isLowerRange && !upper._isLowerRange {
             let diff: UInt32 = 0xE000 - 0xD7FF - 1
-            let adjustedUpper = upper - diff
-            let random = UInt32.random(within: lower...adjustedUpper, using: randomGenerator)
+            let newRange = ClosedRange(uncheckedBounds: (lower, upper - diff))
+            let random = UInt32.random(within: newRange, using: randomGenerator)
             if random._isLowerRange {
                 return UnicodeScalar(random).unsafelyUnwrapped
             } else {
                 return UnicodeScalar(random + diff).unsafelyUnwrapped
             }
         } else {
-            return UnicodeScalar(.random(within: lower...upper, using: randomGenerator)).unsafelyUnwrapped
+            let newRange = ClosedRange(uncheckedBounds: (lower, upper))
+            return UnicodeScalar(.random(within: newRange, using: randomGenerator)).unsafelyUnwrapped
         }
     }
 
