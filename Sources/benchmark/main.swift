@@ -91,15 +91,15 @@ if benchmarkAllGenerators {
             .xoroshiro(threadSafe: false),
             .xoroshiro(threadSafe: true),
             .arc4Random,
-            .dev(.random),
-            .dev(.urandom)
+            .device(.random),
+            .device(.urandom)
         ]
     } else {
         generators = [
             .xoroshiro(threadSafe: false),
             .xoroshiro(threadSafe: true),
-            .dev(.random),
-            .dev(.urandom)
+            .device(.random),
+            .device(.urandom)
         ]
         print(style("The arc4random generator is unavailable", with: [.bold, .red]))
     }
@@ -122,10 +122,10 @@ if benchmarkAllGenerators {
 
     let benchmarkWithDev = contains("--dev")
     if benchmarkWithDev || contains("--dev-random") {
-        generators.append(.dev(.random))
+        generators.append(.device(.random))
     }
     if benchmarkWithDev || contains("--dev-urandom") {
-        generators.append(.dev(.urandom))
+        generators.append(.device(.urandom))
     }
 
     if generators.isEmpty {
