@@ -30,7 +30,7 @@ import Foundation
 /// A random generator.
 public enum RandomGenerator {
 
-    /// The device source for `RandomGenerator.dev`
+    /// The device source for `RandomGenerator.device`.
     public enum DeviceSource: String, CustomStringConvertible {
 
         /// random device.
