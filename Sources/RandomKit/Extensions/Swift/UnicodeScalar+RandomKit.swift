@@ -97,7 +97,7 @@ extension UnicodeScalar: Random, RandomWithinRange, RandomWithinClosedRange {
 private extension UInt32 {
 
     var _isLowerRange: Bool {
-        return 0...0xD7FF ~= self
+        return self <= 0xD7FF
     }
 
 }
