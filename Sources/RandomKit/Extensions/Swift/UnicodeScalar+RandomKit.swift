@@ -89,7 +89,7 @@ extension UnicodeScalar: Random, RandomWithinRange, RandomWithinClosedRange {
     /// Returns a random value of `Self` inside of the closed range.
     public static func random(within closedRange: ClosedRange<UInt8>,
                               using randomGenerator: RandomGenerator = .default) -> UnicodeScalar {
-        return UnicodeScalar(UInt8.random(within: closedRange))
+        return UnicodeScalar(UInt8.random(within: closedRange, using: randomGenerator))
     }
 
 }
