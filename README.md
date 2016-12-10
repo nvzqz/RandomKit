@@ -34,6 +34,7 @@ RandomKit is a Swift framework that makes random data generation simple and easy
         - [String, Character, and UnicodeScalar](#string-character-and-unicodescalar)
         - [Sequence and Collection](#sequence-and-collection)
         - [Arrays](#arrays)
+        - [Arrays Benchmark](#arrays-benchmark)
     - [Foundation Types](#foundation-types)
         - [URL](#url)
         - [Date](#date)
@@ -161,18 +162,18 @@ specifying the random generator to use.
 
 **Available Generators:**
 
-- `arc4random`
+- `arc4Random`
 
-- `devRandom` (reads from "/dev/random")
-
-- `devURandom` (reads from "/dev/urandom")
+- `device` (reads from "/dev/random" or "/dev/urandom")
 
 - `xoroshiro`
+
+- `mersenneTwister`
 
 The default random generator is specified with `RandomGenerator.default` and can
 be changed. It is initially `xoroshiro(threadSafe: true)`.
 
-Because the `arc4random` family of functions isn't available on most Linux
+Because the `arc4Random` family of functions isn't available on most Linux
 distros, using this case will do nothing on Linux.
 
 Although there are `randomize` methods publicly available, they're used
@@ -334,15 +335,27 @@ This initializer fills the buffer directly rather than using `random()`.
 let unsafeRandoms = Array<Int>(unsafeRandomCount: 100)  // [759709806207883991, 4618491969012429761, ...]
 ```
 
+##### Arrays Benchmark
+
 A benchmark of generating 1000 random arrays of 10000 count:
 
-| Generator                         | Safe (seconds)        | Unsafe (seconds)  |
-| --------------------------------- | --------------------- | ----------------- |
-| `xoroshiro(threadSafe: false)`    | 3.4709                | 0.1068            |
-| `xoroshiro(threadSafe: true)`     | 3.9388                | 0.1059            |
-| `arc4Random`                      | 6.6060                | 0.3336            |
-| `dev(random)`                     | 67.7667               | 5.7254            |
-| `dev(urandom)`                    | 71.0310               | 5.7347            |
+| Generator                             | Safe (seconds)        | Unsafe (seconds)  |
+| ------------------------------------- | --------------------- | ----------------- |
+| `xoroshiro(threadSafe: false)`        | 3.4709                | 0.1068            |
+| `xoroshiro(threadSafe: true)`         | 3.9388                | 0.1059            |
+| `mersenneTwister(threadSafe: false)`  | 3.4346                | 0.1160            |
+| `mersenneTwister(threadSafe: true)`   | 3.5670                | 0.1215            |
+| `arc4Random`                          | 6.6060                | 0.3336            |
+| `device(random)`                      | 67.7667               | 5.7254            |
+| `device(urandom)`                     | 71.0310               | 5.7347            |
+
+**Note:** Results may vary due to various factors.
+
+This benchmark can be run with:
+
+```shell
+./benchmark.sh --all-generators --array 10000 --count 1000
+```
 
 ### Foundation Types
 
