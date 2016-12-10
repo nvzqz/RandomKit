@@ -90,6 +90,8 @@ if benchmarkAllGenerators {
         generators = [
             .xoroshiro(threadSafe: false),
             .xoroshiro(threadSafe: true),
+            .mersenneTwister(threadSafe: false),
+            .mersenneTwister(threadSafe: true),
             .arc4Random,
             .device(.random),
             .device(.urandom)
@@ -98,6 +100,8 @@ if benchmarkAllGenerators {
         generators = [
             .xoroshiro(threadSafe: false),
             .xoroshiro(threadSafe: true),
+            .mersenneTwister(threadSafe: false),
+            .mersenneTwister(threadSafe: true),
             .device(.random),
             .device(.urandom)
         ]
@@ -110,6 +114,13 @@ if benchmarkAllGenerators {
     }
     if benchmarkWithXoroshiro || contains("--xoroshiro-safe") {
         generators.append(.xoroshiro(threadSafe: true))
+    }
+    let benchmarkWithMersenneTwister = contains("--mersenne-twister")
+    if benchmarkWithMersenneTwister || contains("--mersenne-twister-unsafe") {
+        generators.append(.mersenneTwister(threadSafe: false))
+    }
+    if benchmarkWithMersenneTwister || contains("--mersenne-twister-safe") {
+        generators.append(.mersenneTwister(threadSafe: true))
     }
 
     if contains("--arc4random") {

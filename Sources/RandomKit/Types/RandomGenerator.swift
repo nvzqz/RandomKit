@@ -66,6 +66,11 @@ public enum RandomGenerator {
     /// If `threadSafe` is `true`, a mutex will be used to access the internal state.
     case xoroshiro(threadSafe: Bool)
 
+    /// Use [Mersenne Twister](https://en.wikipedia.org/wiki/Mersenne_Twister) algorithm.
+    ///
+    /// If `threadSafe` is `true`, a mutex will be used to access the internal state.
+    case mersenneTwister(threadSafe: Bool)
+
     /// Use custom generator.
     case custom(randomize: (UnsafeMutableRawPointer, Int) -> ())
 
@@ -101,6 +106,12 @@ public enum RandomGenerator {
                 _Xoroshiro.randomizeThreadSafe(buffer: buffer, size: size)
             } else {
                 _Xoroshiro.randomize(buffer: buffer, size: size)
+            }
+        case let .mersenneTwister(threadSafe):
+            if threadSafe {
+                _MersenneTwister.randomizeThreadSafe(buffer: buffer, size: size)
+            } else {
+                _MersenneTwister.randomize(buffer: buffer, size: size)
             }
         case let .custom(randomize):
             randomize(buffer, size)
@@ -179,6 +190,150 @@ private struct _Xoroshiro {
             state.1 = (x << k2) | (x >> (l - k2))
             return result
         })
+    }
+
+}
+
+private struct _MersenneTwister {
+
+    private static var _instance = _MersenneTwister()
+
+    private static var _mutex: pthread_mutex_t = {
+        var mutex = pthread_mutex_t()
+        pthread_mutex_init(&mutex, nil)
+        return mutex
+    }()
+
+    static func randomize(buffer: UnsafeMutableRawPointer, size: Int) {
+        _instance.randomize(buffer: buffer, size: size)
+    }
+
+    static func randomizeThreadSafe(buffer: UnsafeMutableRawPointer, size: Int) {
+        pthread_mutex_lock(&_mutex)
+        randomize(buffer: buffer, size: size)
+        pthread_mutex_unlock(&_mutex)
+    }
+
+    private static let stateCount: Int = 312
+
+    var state: (
+        UInt64, UInt64, UInt64, UInt64, UInt64, UInt64, UInt64, UInt64, UInt64, UInt64, UInt64, UInt64, UInt64,
+        UInt64, UInt64, UInt64, UInt64, UInt64, UInt64, UInt64, UInt64, UInt64, UInt64, UInt64, UInt64, UInt64,
+        UInt64, UInt64, UInt64, UInt64, UInt64, UInt64, UInt64, UInt64, UInt64, UInt64, UInt64, UInt64, UInt64,
+        UInt64, UInt64, UInt64, UInt64, UInt64, UInt64, UInt64, UInt64, UInt64, UInt64, UInt64, UInt64, UInt64,
+        UInt64, UInt64, UInt64, UInt64, UInt64, UInt64, UInt64, UInt64, UInt64, UInt64, UInt64, UInt64, UInt64,
+        UInt64, UInt64, UInt64, UInt64, UInt64, UInt64, UInt64, UInt64, UInt64, UInt64, UInt64, UInt64, UInt64,
+
+        UInt64, UInt64, UInt64, UInt64, UInt64, UInt64, UInt64, UInt64, UInt64, UInt64, UInt64, UInt64, UInt64,
+        UInt64, UInt64, UInt64, UInt64, UInt64, UInt64, UInt64, UInt64, UInt64, UInt64, UInt64, UInt64, UInt64,
+        UInt64, UInt64, UInt64, UInt64, UInt64, UInt64, UInt64, UInt64, UInt64, UInt64, UInt64, UInt64, UInt64,
+        UInt64, UInt64, UInt64, UInt64, UInt64, UInt64, UInt64, UInt64, UInt64, UInt64, UInt64, UInt64, UInt64,
+        UInt64, UInt64, UInt64, UInt64, UInt64, UInt64, UInt64, UInt64, UInt64, UInt64, UInt64, UInt64, UInt64,
+        UInt64, UInt64, UInt64, UInt64, UInt64, UInt64, UInt64, UInt64, UInt64, UInt64, UInt64, UInt64, UInt64,
+
+        UInt64, UInt64, UInt64, UInt64, UInt64, UInt64, UInt64, UInt64, UInt64, UInt64, UInt64, UInt64, UInt64,
+        UInt64, UInt64, UInt64, UInt64, UInt64, UInt64, UInt64, UInt64, UInt64, UInt64, UInt64, UInt64, UInt64,
+        UInt64, UInt64, UInt64, UInt64, UInt64, UInt64, UInt64, UInt64, UInt64, UInt64, UInt64, UInt64, UInt64,
+        UInt64, UInt64, UInt64, UInt64, UInt64, UInt64, UInt64, UInt64, UInt64, UInt64, UInt64, UInt64, UInt64,
+        UInt64, UInt64, UInt64, UInt64, UInt64, UInt64, UInt64, UInt64, UInt64, UInt64, UInt64, UInt64, UInt64,
+        UInt64, UInt64, UInt64, UInt64, UInt64, UInt64, UInt64, UInt64, UInt64, UInt64, UInt64, UInt64, UInt64,
+
+        UInt64, UInt64, UInt64, UInt64, UInt64, UInt64, UInt64, UInt64, UInt64, UInt64, UInt64, UInt64, UInt64,
+        UInt64, UInt64, UInt64, UInt64, UInt64, UInt64, UInt64, UInt64, UInt64, UInt64, UInt64, UInt64, UInt64,
+        UInt64, UInt64, UInt64, UInt64, UInt64, UInt64, UInt64, UInt64, UInt64, UInt64, UInt64, UInt64, UInt64,
+        UInt64, UInt64, UInt64, UInt64, UInt64, UInt64, UInt64, UInt64, UInt64, UInt64, UInt64, UInt64, UInt64,
+        UInt64, UInt64, UInt64, UInt64, UInt64, UInt64, UInt64, UInt64, UInt64, UInt64, UInt64, UInt64, UInt64,
+        UInt64, UInt64, UInt64, UInt64, UInt64, UInt64, UInt64, UInt64, UInt64, UInt64, UInt64, UInt64, UInt64
+    ) = (
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+    )
+
+    var index: Int
+
+    init() {
+        index = _MersenneTwister.stateCount
+        let seed = UInt64.random(using: .device(.urandom))
+        withUnsafeMutablePointer(to: &state) { pointer in
+            pointer.withMemoryRebound(to: UInt64.self, capacity: _MersenneTwister.stateCount) { state in
+                state[0] = seed
+                for i in 1 ..< _MersenneTwister.stateCount {
+                    state[i] = 6364136223846793005 &* (state[i &- 1] ^ (state[i &- 1] >> 62)) &+ UInt64(i)
+                }
+            }
+        }
+    }
+
+    mutating func randomize(buffer: UnsafeMutableRawPointer, size: Int) {
+        buffer._randomize(size: size) {
+            if index == _MersenneTwister.stateCount {
+                let state = withUnsafeMutablePointer(to: &self.state) {
+                    $0.withMemoryRebound(to: UInt64.self, capacity: _MersenneTwister.stateCount) {
+                        $0
+                    }
+                }
+
+                let n = _MersenneTwister.stateCount
+                let m = n / 2
+                let a: UInt64 = 0xB5026F5AA96619E9
+                let lowerMask: UInt64 = (1 << 31) - 1
+                let upperMask: UInt64 = ~lowerMask
+                var (i, j, stateM) = (0, m, state[m])
+                repeat {
+                    let x1 = (state[i] & upperMask) | (state[i &+ 1] & lowerMask)
+                    state[i] = state[i &+ m] ^ (x1 >> 1) ^ ((state[i &+ 1] & 1) &* a)
+                    let x2 = (state[j] & upperMask) | (state[j &+ 1] & lowerMask)
+                    state[j] = state[j &- m] ^ (x2 >> 1) ^ ((state[j &+ 1] & 1) &* a)
+                    (i, j) = (i &+ 1, j &+ 1)
+                } while i != m &- 1
+
+                let x3 = (state[m &- 1] & upperMask) | (stateM & lowerMask)
+                state[m &- 1] = state[n &- 1] ^ (x3 >> 1) ^ ((stateM & 1) &* a)
+                let x4 = (state[n &- 1] & upperMask) | (state[0] & lowerMask)
+                state[n &- 1] = state[m &- 1] ^ (x4 >> 1) ^ ((state[0] & 1) &* a)
+
+                index = 0
+            }
+
+            var result = withUnsafePointer(to: &state) {
+                $0.withMemoryRebound(to: UInt64.self, capacity: _MersenneTwister.stateCount) { ptr in
+                    return ptr[index]
+                }
+            }
+            index = index &+ 1
+            
+            result ^= (result >> 29) & 0x5555555555555555
+            result ^= (result << 17) & 0x71D67FFFEDA60000
+            result ^= (result << 37) & 0xFFF7EEE000000000
+            result ^= result >> 43
+            
+            return result
+        }
     }
 
 }
