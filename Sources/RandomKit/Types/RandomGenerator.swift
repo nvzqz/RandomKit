@@ -171,14 +171,30 @@ private struct _Xoroshiro {
     }
 
     mutating func randomize(buffer: UnsafeMutableRawPointer, size: Int) {
-        let uInt64Buffer = buffer.assumingMemoryBound(to: UInt64.self)
+        buffer._randomize(size: size, using: {
+            let (l, k0, k1, k2): (UInt64, UInt64, UInt64, UInt64) = (64, 55, 14, 36)
+            let result = state.0 &+ state.1
+            let x = state.0 ^ state.1
+            state.0 = ((state.0 << k0) | (state.0 >> (l - k0))) ^ x ^ (x << k1)
+            state.1 = (x << k2) | (x >> (l - k2))
+            return result
+        })
+    }
+
+}
+
+private extension UnsafeMutableRawPointer {
+
+    @inline(__always)
+    func _randomize(size: Int, using random: () -> UInt64) {
+        let uInt64Buffer = assumingMemoryBound(to: UInt64.self)
         for i in 0 ..< (size / 8) {
-            uInt64Buffer[i] = _random()
+            uInt64Buffer[i] = random()
         }
         let remainder = size % 8
         if remainder > 0 {
-            var remaining = _random()
-            let uInt8Buffer = buffer.assumingMemoryBound(to: UInt8.self)
+            var remaining = random()
+            let uInt8Buffer = assumingMemoryBound(to: UInt8.self)
             withUnsafePointer(to: &remaining) { remainingPtr in
                 remainingPtr.withMemoryRebound(to: UInt8.self, capacity: remainder) { r in
                     for i in 0 ..< remainder {
@@ -187,15 +203,6 @@ private struct _Xoroshiro {
                 }
             }
         }
-    }
-
-    private mutating func _random() -> UInt64 {
-        let (l, k0, k1, k2): (UInt64, UInt64, UInt64, UInt64) = (64, 55, 14, 36)
-        let result = state.0 &+ state.1
-        let x = state.0 ^ state.1
-        state.0 = ((state.0 << k0) | (state.0 >> (l - k0))) ^ x ^ (x << k1)
-        state.1 = (x << k2) | (x >> (l - k2))
-        return result
     }
 
 }
