@@ -34,8 +34,8 @@ extension CGRect: Random {
     /// Generates a random `CGRect`.
     ///
     /// - returns: Random value from random `CGPoint` and `CGSize`.
-    public static func random(using randomGenerator: RandomGenerator) -> CGRect {
-        return CGRect(origin: .random(using: randomGenerator), size: .random(using: randomGenerator))
+    public static func random<R: RandomGenerator>(using randomGenerator: inout R) -> CGRect {
+        return CGRect(origin: .random(using: &randomGenerator), size: .random(using: &randomGenerator))
     }
 
     /// Generates a random `CGRect` within the closed ranges.
@@ -45,12 +45,13 @@ extension CGRect: Random {
     /// - parameter widthRange: The range within which `width` will be generated.
     /// - parameter heightRange: The range within which `height` will be generated.
     /// - parameter randomGenerator: The random generator to use.
-    public static func random(within xRange: ClosedRange<CGFloat>,
+    public static func random<R: RandomGenerator>(within xRange: ClosedRange<CGFloat>,
                               _ yRange:      ClosedRange<CGFloat>,
                               _ widthRange:  ClosedRange<CGFloat>,
                               _ heightRange: ClosedRange<CGFloat>,
-                              using randomGenerator: RandomGenerator = .default) -> CGRect {
-        return CGRect(origin: .random(within: xRange, yRange), size: .random(within: widthRange, heightRange))
+                              using randomGenerator: inout R) -> CGRect {
+        return CGRect(origin: .random(within: xRange, yRange, using: &randomGenerator),
+                      size: .random(within: widthRange, heightRange, using: &randomGenerator))
     }
 
 }

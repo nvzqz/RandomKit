@@ -32,24 +32,15 @@ public protocol RandomThroughValue {
     static var randomBase: Self { get }
 
     /// Generates a random value of `Self` from `Self.randomBase` through `value` using `randomGenerator`.
-    static func random(through value: Self, using randomGenerator: RandomGenerator) -> Self
-
-}
-
-extension RandomThroughValue {
-
-    /// Generates a random value of `Self` from `Self.randomBase` through `value` using the default generator.
-    public static func random(through value: Self) -> Self {
-        return random(through: value, using: .default)
-    }
+    static func random<R: RandomGenerator>(through value: Self, using randomGenerator: inout R) -> Self
 
 }
 
 extension RandomThroughValue where Self: RandomWithMax {
 
     /// Generates a random value of `Self` from `Self.randomBase` through `Self.max` using `randomGenerator`.
-    public static func randomThroughMax(using randomGenerator: RandomGenerator = .default) -> Self {
-        return random(through: max, using: randomGenerator)
+    public static func randomThroughMax<R: RandomGenerator>(using randomGenerator: inout R) -> Self {
+        return random(through: max, using: &randomGenerator)
     }
 
 }
@@ -57,8 +48,8 @@ extension RandomThroughValue where Self: RandomWithMax {
 extension RandomThroughValue where Self: RandomWithMin {
 
     /// Generates a random value of `Self` from `Self.randomBase` through `Self.min` using `randomGenerator`.
-    public static func randomThroughMin(using randomGenerator: RandomGenerator = .default) -> Self {
-        return random(through: min, using: randomGenerator)
+    public static func randomThroughMin<R: RandomGenerator>(using randomGenerator: inout R) -> Self {
+        return random(through: min, using: &randomGenerator)
     }
 
 }

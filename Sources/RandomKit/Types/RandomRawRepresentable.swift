@@ -39,8 +39,8 @@ public protocol RandomRawRepresentable: Random, RawRepresentable {
 extension RandomRawRepresentable {
 
     /// Generates a random value of `Self` using `randomGenerator`.
-    public static func random(using randomGenerator: RandomGenerator) -> Self {
-        return Self(rawValue: .random(using: randomGenerator))
+    public static func random<R: RandomGenerator>(using randomGenerator: inout R) -> Self {
+        return Self(rawValue: .random(using: &randomGenerator))
     }
 
 }

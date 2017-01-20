@@ -28,12 +28,12 @@
 extension Strideable where Self: RandomWithinRange, Stride: RandomToValue {
 
     /// Returns an optional random value of `Self` inside of the range using `randomGenerator`.
-    public static func random(within range: Range<Self>, using randomGenerator: RandomGenerator) -> Self? {
+    public static func random<R: RandomGenerator>(within range: Range<Self>, using randomGenerator: inout R) -> Self? {
         guard !range.isEmpty else {
             return nil
         }
         let distance = range.lowerBound.distance(to: range.upperBound)
-        return range.lowerBound.advanced(by: .random(to: distance, using: randomGenerator))
+        return range.lowerBound.advanced(by: .random(to: distance, using: &randomGenerator))
     }
 
 }
@@ -41,9 +41,9 @@ extension Strideable where Self: RandomWithinRange, Stride: RandomToValue {
 extension Strideable where Self: RandomWithinClosedRange, Stride: RandomThroughValue {
 
     /// Returns a random value of `Self` inside of the closed range using `randomGenerator`.
-    public static func random(within closedRange: ClosedRange<Self>, using randomGenerator: RandomGenerator) -> Self {
+    public static func random<R: RandomGenerator>(within closedRange: ClosedRange<Self>, using randomGenerator: inout R) -> Self {
         let distance = closedRange.lowerBound.distance(to: closedRange.upperBound)
-        return closedRange.lowerBound.advanced(by: .random(through: distance, using: randomGenerator))
+        return closedRange.lowerBound.advanced(by: .random(through: distance, using: &randomGenerator))
     }
 
 }

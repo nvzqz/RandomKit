@@ -30,11 +30,11 @@ import Foundation
 extension FloatingPoint where Self: RandomWithinRange {
 
     /// Returns an optional random value of `Self` inside of the range using `randomGenerator`.
-    public static func random(within range: Range<Self>, using randomGenerator: RandomGenerator) -> Self? {
+    public static func random<R: RandomGenerator>(within range: Range<Self>, using randomGenerator: inout R) -> Self? {
         guard !range.isEmpty else {
             return nil
         }
-        let random = UInt.random()
+        let random = UInt.random(using: &randomGenerator)
         if random == 0 {
             return range.lowerBound
         } else {
@@ -48,9 +48,9 @@ extension FloatingPoint where Self: RandomWithinRange {
 extension FloatingPoint where Self: RandomWithinClosedRange {
 
     /// Returns a random value of `Self` inside of the closed range.
-    public static func random(within closedRange: ClosedRange<Self>, using randomGenerator: RandomGenerator) -> Self {
+    public static func random<R: RandomGenerator>(within closedRange: ClosedRange<Self>, using randomGenerator: inout R) -> Self {
         let multiplier = closedRange.upperBound - closedRange.lowerBound
-        return closedRange.lowerBound + multiplier * (Self(UInt.random(using: randomGenerator)) / Self(UInt.max))
+        return closedRange.lowerBound + multiplier * (Self(UInt.random(using: &randomGenerator)) / Self(UInt.max))
     }
 
 }
@@ -58,8 +58,8 @@ extension FloatingPoint where Self: RandomWithinClosedRange {
 extension FloatingPoint where Self: Random & RandomWithinClosedRange {
 
     /// Generates a random value of `Self`.
-    public static func random(using randomGenerator: RandomGenerator) -> Self {
-        return random(within: 0...1, using: randomGenerator)
+    public static func random<R: RandomGenerator>(using randomGenerator: inout R) -> Self {
+        return random(within: 0...1, using: &randomGenerator)
     }
 
 }
@@ -76,14 +76,14 @@ extension FloatingPoint where Self: RandomToValue & RandomThroughValue {
 extension FloatingPoint where Self: RandomWithinClosedRange & RandomThroughValue {
 
     /// Generates a random value of `Self` from `Self.randomBase` through `value` using `randomGenerator`.
-    public static func random(through value: Self, using randomGenerator: RandomGenerator) -> Self {
+    public static func random<R: RandomGenerator>(through value: Self, using randomGenerator: inout R) -> Self {
         let range: ClosedRange<Self>
         if value < randomBase {
             range = value...randomBase
         } else {
             range = randomBase...value
         }
-        return random(within: range, using: randomGenerator)
+        return random(within: range, using: &randomGenerator)
     }
 
 }
@@ -91,10 +91,10 @@ extension FloatingPoint where Self: RandomWithinClosedRange & RandomThroughValue
 extension FloatingPoint where Self: RandomWithinRange & RandomToValue {
 
     /// Generates a random value of `Self` from `Self.randomBase` to `value` using `randomGenerator`.
-    public static func random(to value: Self, using randomGenerator: RandomGenerator) -> Self {
+    public static func random<R: RandomGenerator>(to value: Self, using randomGenerator: inout R) -> Self {
         let negate = value < randomBase
         let newValue = negate ? -value : value
-        guard let random = self.random(within: randomBase..<newValue, using: randomGenerator) else {
+        guard let random = self.random(within: randomBase..<newValue, using: &randomGenerator) else {
             return randomBase
         }
         return negate ? -random : random

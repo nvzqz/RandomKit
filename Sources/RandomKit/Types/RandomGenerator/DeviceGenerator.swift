@@ -1,5 +1,5 @@
 //
-//  Dictionary+RandomKit.swift
+//  DeviceGenerator.swift
 //  RandomKit
 //
 //  The MIT License (MIT)
@@ -25,34 +25,44 @@
 //  THE SOFTWARE.
 //
 
-extension Dictionary: Shuffleable, UniqueShuffleable {
+import Foundation
 
-    /// Shuffles the elements in `self` and returns the result.
-    public func shuffled<R: RandomGenerator>(using randomGenerator: inout R) -> Dictionary {
-        var copy = self
-        copy.shuffle(using: &randomGenerator)
-        return copy
-    }
+/// A device generator at "/dev/random" or "/dev/urandom".
+public final class DeviceGenerator: RandomGenerator {
 
-    /// Shuffles the elements in `self`.
-    public mutating func shuffle<R: RandomGenerator>(using randomGenerator: inout R) {
-        for (key, value) in zip(keys, Array(values).shuffled(using: &randomGenerator)) {
-            self[key] = value
+    /// The device source.
+    public enum Source: String {
+
+        /// random device.
+        case random
+
+        /// urandom device.
+        case urandom
+
+        /// The path for the device.
+        public var path: String {
+            return "/dev/" + rawValue
         }
+
     }
 
-    /// Shuffles the elements in `self` in a unique order and returns the result.
-    public func shuffledUnique<R: RandomGenerator>(using randomGenerator: inout R) -> Dictionary {
-        var copy = self
-        copy.shuffleUnique(using: &randomGenerator)
-        return copy
+    /// A default global instance.
+    public static var `default` = DeviceGenerator(source: .urandom)
+
+    private let _fileDescriptor: Int32
+
+    /// Creates an instance by opening a file descriptor to the device at `source`.
+    public init(source: Source) {
+        self._fileDescriptor = open(source.path, O_RDONLY)
     }
 
-    /// Shuffles the elements in `self` in a unique order.
-    public mutating func shuffleUnique<R: RandomGenerator>(using randomGenerator: inout R) {
-        for (key, value) in zip(keys, Array(values).shuffledUnique(using: &randomGenerator)) {
-            self[key] = value
-        }
+    deinit {
+        close(_fileDescriptor)
+    }
+
+    /// Randomizes the contents `buffer` up to `size`.
+    public func randomize(buffer: UnsafeMutableRawPointer, size: Int) {
+        read(_fileDescriptor, buffer, size)
     }
 
 }

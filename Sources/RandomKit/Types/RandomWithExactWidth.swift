@@ -29,15 +29,6 @@
 public protocol RandomWithExactWidth {
 
     /// Generates a random value of `Self` with an exact width using `randomGenerator`.
-    static func random(withExactWidth width: Int, using randomGenerator: RandomGenerator) -> Self
-
-}
-
-extension RandomWithExactWidth {
-
-    /// Generates a random value of `Self` with an exact width using the default generator.
-    public static func random(withExactWidth width: Int) -> Self {
-        return random(withExactWidth: width, using: .default)
-    }
+    static func random<R: RandomGenerator>(withExactWidth width: Int, using randomGenerator: inout R) -> Self
 
 }

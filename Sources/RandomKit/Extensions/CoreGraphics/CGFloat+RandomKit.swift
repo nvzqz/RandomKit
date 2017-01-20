@@ -35,9 +35,8 @@ extension CGFloat: Random, RandomToValue, RandomThroughValue, RandomWithinRange,
     ///
     /// - parameter closedRange: The range within which the number will be generated.
     /// - parameter randomGenerator: The random generator to use.
-    public static func random(within closedRange: ClosedRange<NativeType>,
-                              using randomGenerator: RandomGenerator = .default) -> CGFloat {
-        return CGFloat(NativeType.random(within: closedRange, using: randomGenerator))
+    public static func random<R: RandomGenerator>(within closedRange: ClosedRange<NativeType>, using randomGenerator: inout R) -> CGFloat {
+        return CGFloat(NativeType.random(within: closedRange, using: &randomGenerator))
     }
 
 }

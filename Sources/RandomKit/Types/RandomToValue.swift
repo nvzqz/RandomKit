@@ -32,24 +32,15 @@ public protocol RandomToValue {
     static var randomBase: Self { get }
 
     /// Generates a random value of `Self` from `Self.randomBase` to `value` using `randomGenerator`.
-    static func random(to value: Self, using randomGenerator: RandomGenerator) -> Self
-
-}
-
-extension RandomToValue {
-
-    /// Generates a random value of `Self` from `Self.randomBase` to `value` using the default generator.
-    public static func random(to value: Self) -> Self {
-        return random(to: value, using: .default)
-    }
+    static func random<R: RandomGenerator>(to value: Self, using randomGenerator: inout R) -> Self
 
 }
 
 extension RandomToValue where Self: RandomWithMax {
 
     /// Generates a random value of `Self` from `Self.randomBase` to `Self.max` using `randomGenerator`.
-    public static func randomToMax(using randomGenerator: RandomGenerator = .default) -> Self {
-        return random(to: max, using: randomGenerator)
+    public static func randomToMax<R: RandomGenerator>(using randomGenerator: inout R) -> Self {
+        return random(to: max, using: &randomGenerator)
     }
 
 }
@@ -57,8 +48,8 @@ extension RandomToValue where Self: RandomWithMax {
 extension RandomToValue where Self: RandomWithMin {
 
     /// Generates a random value of `Self` from `Self.randomBase` to `Self.min` using `randomGenerator`.
-    public static func randomToMin(using randomGenerator: RandomGenerator = .default) -> Self {
-        return random(to: min, using: randomGenerator)
+    public static func randomToMin<R: RandomGenerator>(using randomGenerator: inout R) -> Self {
+        return random(to: min, using: &randomGenerator)
     }
 
 }

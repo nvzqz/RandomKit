@@ -34,8 +34,8 @@ extension CGPoint: Random {
     /// Generates a random `CGPoint`.
     ///
     /// - returns: Random value within `0...100` for both `x` and `y`.
-    public static func random(using randomGenerator: RandomGenerator) -> CGPoint {
-        return random(within: 0...100, 0...100, using: randomGenerator)
+    public static func random<R: RandomGenerator>(using randomGenerator: inout R) -> CGPoint {
+        return random(within: 0...100, 0...100, using: &randomGenerator)
     }
 
     /// Generates a random `CGPoint` within the closed ranged.
@@ -43,11 +43,11 @@ extension CGPoint: Random {
     /// - parameter xRange: The range within which `x` will be generated.
     /// - parameter yRange: The range within which `y` will be generated.
     /// - parameter randomGenerator: The random generator to use.
-    public static func random(within xRange: ClosedRange<CGFloat>,
+    public static func random<R: RandomGenerator>(within xRange: ClosedRange<CGFloat>,
                               _ yRange: ClosedRange<CGFloat>,
-                              using randomGenerator: RandomGenerator = .default) -> CGPoint {
-        return CGPoint(x: .random(within: xRange, using: randomGenerator),
-                       y: .random(within: yRange, using: randomGenerator))
+                              using randomGenerator: inout R) -> CGPoint {
+        return CGPoint(x: .random(within: xRange, using: &randomGenerator),
+                       y: .random(within: yRange, using: &randomGenerator))
     }
 
 }

@@ -30,8 +30,8 @@ extension Array where Element: Random {
     /// Construct an Array of random elements.
     ///
     /// Although safety is not guaranteed, `init(unsafeRandomCount:)` is *significantly* faster than this.
-    public init(randomCount: Int, using randomGenerator: RandomGenerator = .default) {
-        self = (0 ..< randomCount).map { _ in Element.random(using: randomGenerator) }
+    public init<R: RandomGenerator>(randomCount: Int, using randomGenerator: inout R) {
+        self = (0 ..< randomCount).map { _ in Element.random(using: &randomGenerator) }
     }
 
 }
@@ -41,7 +41,7 @@ extension Array where Element: UnsafeRandom {
     /// Construct an Array of random elements by randomizing the buffer directly.
     ///
     /// This is *significantly* faster than using `init(randomCount:using:)`.
-    public init(unsafeRandomCount: Int, using randomGenerator: RandomGenerator = .default) {
+    public init<R: RandomGenerator>(unsafeRandomCount: Int, using randomGenerator: inout R) {
         self.init(repeating: .randomizableValue, count: unsafeRandomCount)
         let buffer = UnsafeMutablePointer(mutating: self)
         randomGenerator.randomize(buffer: buffer, size: MemoryLayout<Element>.size * unsafeRandomCount)
@@ -52,14 +52,12 @@ extension Array where Element: UnsafeRandom {
 extension Array where Element: RandomWithinRange {
 
     /// Construct an Array of random elements from within the range.
-    public init(randomCount: Int,
-                within range: Range<Element>,
-                using randomGenerator: RandomGenerator = .default) {
+    public init<R: RandomGenerator>(randomCount: Int, within range: Range<Element>, using randomGenerator: inout R) {
         if range.isEmpty {
             self = []
         } else {
             self = (0 ..< randomCount).map { _ in
-                Element.random(within: range, using: randomGenerator).unsafelyUnwrapped
+                Element.random(within: range, using: &randomGenerator).unsafelyUnwrapped
             }
         }
     }
@@ -69,10 +67,8 @@ extension Array where Element: RandomWithinRange {
 extension Array where Element: RandomWithinClosedRange {
 
     /// Construct an Array of random elements from within the closed range.
-    public init(randomCount: Int,
-                within closedRange: ClosedRange<Element>,
-                using randomGenerator: RandomGenerator = .default) {
-        self = (0 ..< randomCount).map { _ in Element.random(within: closedRange, using: randomGenerator) }
+    public init<R: RandomGenerator>(randomCount: Int, within closedRange: ClosedRange<Element>, using randomGenerator: inout R) {
+        self = (0 ..< randomCount).map { _ in Element.random(within: closedRange, using: &randomGenerator) }
     }
 
 }
@@ -85,7 +81,7 @@ extension Array {
     ///
     /// - parameter count: The number of elements to return.
     /// - parameter randomGenerator: The random generator to use.
-    public func randomSlice(count: Int, using randomGenerator: RandomGenerator = .default) -> Array {
+    public func randomSlice<R: RandomGenerator>(count: Int, using randomGenerator: inout R) -> Array {
         if count <= 0  {
             return []
         }
@@ -97,7 +93,7 @@ extension Array {
         var result = Array(self[0..<count])
         // replace elements with gradually decreasing probability
         for i in count..<self.count {
-            let j = Int.random(within: 0 ... i-1, using: randomGenerator)
+            let j = Int.random(within: 0 ... i-1, using: &randomGenerator)
             if j < count {
                 result[j] = self[i]
             }
@@ -112,7 +108,7 @@ extension Array {
     /// - parameter count: The number of elements to return.
     /// - parameter weights: Apply weights on element.
     /// - parameter randomGenerator: The random generator to use.
-    public func randomSlice(count: Int, weights: [Double], using randomGenerator: RandomGenerator = .default) -> Array {
+    public func randomSlice<R: RandomGenerator>(count: Int, weights: [Double], using randomGenerator: inout R) -> Array {
         if count <= 0  {
             return []
         }
@@ -127,9 +123,9 @@ extension Array {
         }
         for i in count..<self.count {
             let p = weights[i] / weightSum
-            let j = Double.random(within: 0.0...1.0, using: randomGenerator)
+            let j = Double.random(within: 0.0...1.0, using: &randomGenerator)
             if j <= p {
-                let index = Int.random(within: 0 ... count-1, using: randomGenerator)
+                let index = Int.random(within: 0 ... count-1, using: &randomGenerator)
                 result[index] = self[i]
             }
             weightSum += weights[i]

@@ -32,26 +32,24 @@ extension NSNumber: Random {
     /// Generates a random number.
     ///
     /// - returns: Random value within `0...100`.
-    public class func random(using randomGenerator: RandomGenerator) -> Self {
-        return random(within: 0...100, using: randomGenerator)
+    public class func random<R: RandomGenerator>(using randomGenerator: inout R) -> Self {
+        return random(within: 0...100, using: &randomGenerator)
     }
 
     /// Generates a random integer within the closed range.
     ///
     /// - parameter closedRange: The range within which the integer will be generated.
     /// - parameter randomGenerator: The random generator to use.
-    public class func random(within closedRange: ClosedRange<Int>,
-                             using randomGenerator: RandomGenerator = .default) -> Self {
-        return .init(value: .random(within: closedRange, using: randomGenerator))
+    public class func random<R: RandomGenerator>(within closedRange: ClosedRange<Int>, using randomGenerator: inout R) -> Self {
+        return .init(value: .random(within: closedRange, using: &randomGenerator))
     }
 
     /// Generates a random double within the closed range.
     ///
     /// - parameter closedRange: The range within which the double will be generated.
     /// - parameter randomGenerator: The random generator to use.
-    public class func random(within closedRange: ClosedRange<Double>,
-                             using randomGenerator: RandomGenerator = .default) -> Self {
-        return .init(value: .random(within: closedRange, using: randomGenerator))
+    public class func random<R: RandomGenerator>(within closedRange: ClosedRange<Double>, using randomGenerator: inout R) -> Self {
+        return .init(value: .random(within: closedRange, using: &randomGenerator))
     }
 
 }

@@ -30,13 +30,9 @@ import Foundation
 extension Collection where Index: RandomWithinRange {
 
     /// Returns a random element of `self`, or `nil` if `self` is empty.
-    public var random: Iterator.Element? {
-        return random(using: .default)
-    }
-
-    /// Returns a random element of `self`, or `nil` if `self` is empty.
-    public func random(using randomGenerator: RandomGenerator) -> Iterator.Element? {
-        guard let index = Index.random(within: Range(uncheckedBounds: (startIndex, endIndex))) else {
+    public func random<R: RandomGenerator>(using randomGenerator: inout R) -> Iterator.Element? {
+        let range = Range(uncheckedBounds: (startIndex, endIndex))
+        guard let index = Index.random(within: range, using: &randomGenerator) else {
             return nil
         }
         return self[index]
@@ -47,13 +43,9 @@ extension Collection where Index: RandomWithinRange {
 extension Collection where Index: RandomWithinRange, IndexDistance: RandomToValue {
 
     /// Returns a random element of `self`, or `nil` if `self` is empty.
-    public var random: Iterator.Element? {
-        return random(using: .default)
-    }
-
-    /// Returns a random element of `self`, or `nil` if `self` is empty.
-    public func random(using randomGenerator: RandomGenerator) -> Iterator.Element? {
-        guard let index = Index.random(within: Range(uncheckedBounds: (startIndex, endIndex))) else {
+    public func random<R: RandomGenerator>(using randomGenerator: inout R) -> Iterator.Element? {
+        let range = Range(uncheckedBounds: (startIndex, endIndex))
+        guard let index = Index.random(within: range, using: &randomGenerator) else {
             return nil
         }
         return self[index]
@@ -64,16 +56,11 @@ extension Collection where Index: RandomWithinRange, IndexDistance: RandomToValu
 extension Collection where IndexDistance: RandomToValue {
 
     /// Returns a random element of `self`, or `nil` if `self` is empty.
-    public var random: Iterator.Element? {
-        return random(using: .default)
-    }
-
-    /// Returns a random element of `self`, or `nil` if `self` is empty.
-    public func random(using randomGenerator: RandomGenerator) -> Iterator.Element? {
+    public func random<R: RandomGenerator>(using randomGenerator: inout R) -> Iterator.Element? {
         guard !self.isEmpty else {
             return nil
         }
-        let elementIndex = IndexDistance.random(to: distance(from: startIndex, to: endIndex), using: randomGenerator)
+        let elementIndex = IndexDistance.random(to: distance(from: startIndex, to: endIndex), using: &randomGenerator)
         return self[index(startIndex, offsetBy: elementIndex)]
     }
 
@@ -82,31 +69,31 @@ extension Collection where IndexDistance: RandomToValue {
 extension MutableCollection where Self: Shuffleable, Index: Strideable & RandomWithinRange, Index.Stride: SignedInteger {
 
     /// Shuffles the elements in `self` and returns the result.
-    public func shuffled(using randomGenerator: RandomGenerator) -> Self {
-        return shuffled(from: startIndex, to: endIndex, using: randomGenerator)
+    public func shuffled<R: RandomGenerator>(using randomGenerator: inout R) -> Self {
+        return shuffled(from: startIndex, to: endIndex, using: &randomGenerator)
     }
 
     /// Shuffles the elements in `self`.
-    public mutating func shuffle(using randomGenerator: RandomGenerator) {
-        shuffle(from: startIndex, to: endIndex, using: randomGenerator)
+    public mutating func shuffle<R: RandomGenerator>(using randomGenerator: inout R) {
+        shuffle(from: startIndex, to: endIndex, using: &randomGenerator)
     }
 
     /// Shuffles the elements in `self` from `startIndex` to `endIndex` and returns the result.
-    public func shuffled(from startIndex: Index,
-                         to endIndex: Index,
-                         using randomGenerator: RandomGenerator = .default) -> Self {
+    public func shuffled<R: RandomGenerator>(from startIndex: Index,
+                                             to endIndex: Index,
+                                             using randomGenerator: inout R) -> Self {
         var copy = self
-        copy.shuffle(from: startIndex, to: endIndex, using: randomGenerator)
+        copy.shuffle(from: startIndex, to: endIndex, using: &randomGenerator)
         return copy
     }
 
     /// Shuffles the elements in `self` from `startIndex` to `endIndex`.
-    public mutating func shuffle(from startIndex: Index,
-                                 to endIndex: Index,
-                                 using randomGenerator: RandomGenerator = .default) {
+    public mutating func shuffle<R: RandomGenerator>(from startIndex: Index,
+                                                     to endIndex: Index,
+                                                     using randomGenerator: inout R) {
         let range = startIndex ..< endIndex
         for i in range {
-            if let j = Index.random(within: range, using: randomGenerator), j != i {
+            if let j = Index.random(within: range, using: &randomGenerator), j != i {
                 swap(&self[i], &self[j])
             }
         }
@@ -117,31 +104,30 @@ extension MutableCollection where Self: Shuffleable, Index: Strideable & RandomW
 extension MutableCollection where Self: UniqueShuffleable, Index: Strideable & RandomWithinRange, Index.Stride: SignedInteger {
 
     /// Shuffles the elements in `self` in a unique order and returns the result.
-    public func shuffledUnique(using randomGenerator: RandomGenerator) -> Self {
-        return shuffledUnique(from: startIndex, to: endIndex, using: randomGenerator)
+    public func shuffledUnique<R: RandomGenerator>(using randomGenerator: inout R) -> Self {
+        return shuffledUnique(from: startIndex, to: endIndex, using: &randomGenerator)
     }
 
     /// Shuffles the elements in `self` in a unique order.
-    public mutating func shuffleUnique(using randomGenerator: RandomGenerator) {
-        shuffleUnique(from: startIndex, to: endIndex, using: randomGenerator)
+    public mutating func shuffleUnique<R: RandomGenerator>(using randomGenerator: inout R) {
+        shuffleUnique(from: startIndex, to: endIndex, using: &randomGenerator)
     }
 
     /// Shuffles the elements in `self` in a unique order from `startIndex` to `endIndex` and returns the result.
-    public func shuffledUnique(from startIndex: Index,
-                               to endIndex: Index,
-                               using randomGenerator: RandomGenerator = .default) -> Self {
+    public func shuffledUnique<R: RandomGenerator>(from startIndex: Index,
+                                                   to endIndex: Index,
+                                                   using randomGenerator: inout R) -> Self {
         var copy = self
-        copy.shuffleUnique(from: startIndex, to: endIndex, using: randomGenerator)
+        copy.shuffleUnique(from: startIndex, to: endIndex, using: &randomGenerator)
         return copy
-
     }
 
     /// Shuffles the elements in `self` in a unique order from `startIndex` to `endIndex`.
-    public mutating func shuffleUnique(from startIndex: Index,
-                                       to endIndex: Index,
-                                       using randomGenerator: RandomGenerator = .default) {
+    public mutating func shuffleUnique<R: RandomGenerator>(from startIndex: Index,
+                                                           to endIndex: Index,
+                                                           using randomGenerator: inout R) {
         for i in startIndex ..< endIndex {
-            if let j = Index.random(within: i.advanced(by: 1) ..< endIndex, using: randomGenerator) {
+            if let j = Index.random(within: i.advanced(by: 1) ..< endIndex, using: &randomGenerator) {
                 swap(&self[i], &self[j])
             }
         }

@@ -33,20 +33,19 @@ extension NSColor: Random {
     /// Generates a random color.
     ///
     /// - returns: Random color without random alpha.
-    public class func random(using randomGenerator: RandomGenerator) -> Self {
-        return random(alpha: false, using: randomGenerator)
+    public class func random<R: RandomGenerator>(using randomGenerator: inout R) -> Self {
+        return random(alpha: false, using: &randomGenerator)
     }
 
     /// Generates a random color.
     ///
     /// - parameter alpha: If `true`, the alpha value will be random. If `false`, the alpha value will be `1.0`.
-    public class func random(alpha: Bool,
-                             using randomGenerator: RandomGenerator = .default) -> Self {
+    public class func random<R: RandomGenerator>(alpha: Bool, using randomGenerator: inout R) -> Self {
         return self.init(
-            red:   CGFloat.random(using: randomGenerator),
-            green: CGFloat.random(using: randomGenerator),
-            blue:  CGFloat.random(using: randomGenerator),
-            alpha: alpha ? CGFloat.random(using: randomGenerator) : 1.0)
+            red:   CGFloat.random(using: &randomGenerator),
+            green: CGFloat.random(using: &randomGenerator),
+            blue:  CGFloat.random(using: &randomGenerator),
+            alpha: alpha ? CGFloat.random(using: &randomGenerator) : 1.0)
     }
 
 }
@@ -66,20 +65,19 @@ extension UIColor: Random {
     /// Generates a random color.
     ///
     /// - returns: Random color without random alpha.
-    public class func random(using randomGenerator: RandomGenerator) -> Self {
-        return random(alpha: false, using: randomGenerator)
+    public class func random<R: RandomGenerator>(using randomGenerator: inout R) -> Self {
+        return random(alpha: false, using: &randomGenerator)
     }
 
     /// Generates a random color.
     ///
     /// - parameter alpha: If `true`, the alpha value will be random. If `false`, the alpha value will be `1.0`.
-    public class func random(alpha: Bool,
-                             using randomGenerator: RandomGenerator = .default) -> Self {
+    public class func random<R: RandomGenerator>(alpha: Bool, using randomGenerator: inout R) -> Self {
         return self.init(
-            red:   CGFloat.random(using: randomGenerator),
-            green: CGFloat.random(using: randomGenerator),
-            blue:  CGFloat.random(using: randomGenerator),
-            alpha: alpha ? CGFloat.random(using: randomGenerator) : 1.0)
+            red:   CGFloat.random(using: &randomGenerator),
+            green: CGFloat.random(using: &randomGenerator),
+            blue:  CGFloat.random(using: &randomGenerator),
+            alpha: alpha ? CGFloat.random(using: &randomGenerator) : 1.0)
     }
 
 }

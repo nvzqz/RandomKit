@@ -50,7 +50,7 @@ public protocol UnsafeRandom: Random {
 extension UnsafeRandom {
 
     /// Generates a random value of `Self` using `randomGenerator`.
-    public static func random(using randomGenerator: RandomGenerator) -> Self {
+    public static func random<R: RandomGenerator>(using randomGenerator: inout R) -> Self {
         var value = randomizableValue
         randomGenerator.randomize(value: &value)
         return value

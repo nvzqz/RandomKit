@@ -1,5 +1,5 @@
 //
-//  Dictionary+RandomKit.swift
+//  SeedableRandomGenerator.swift
 //  RandomKit
 //
 //  The MIT License (MIT)
@@ -25,34 +25,24 @@
 //  THE SOFTWARE.
 //
 
-extension Dictionary: Shuffleable, UniqueShuffleable {
+import Foundation
 
-    /// Shuffles the elements in `self` and returns the result.
-    public func shuffled<R: RandomGenerator>(using randomGenerator: inout R) -> Dictionary {
-        var copy = self
-        copy.shuffle(using: &randomGenerator)
-        return copy
-    }
+/// A random value generator type that can be instantiated with a `Seed`.
+public protocol SeedableRandomGenerator: RandomGenerator {
 
-    /// Shuffles the elements in `self`.
-    public mutating func shuffle<R: RandomGenerator>(using randomGenerator: inout R) {
-        for (key, value) in zip(keys, Array(values).shuffled(using: &randomGenerator)) {
-            self[key] = value
-        }
-    }
+    /// The seed type.
+    associatedtype Seed
 
-    /// Shuffles the elements in `self` in a unique order and returns the result.
-    public func shuffledUnique<R: RandomGenerator>(using randomGenerator: inout R) -> Dictionary {
-        var copy = self
-        copy.shuffleUnique(using: &randomGenerator)
-        return copy
-    }
+    /// Creates an instance from `seed`.
+    init(seed: Seed)
 
-    /// Shuffles the elements in `self` in a unique order.
-    public mutating func shuffleUnique<R: RandomGenerator>(using randomGenerator: inout R) {
-        for (key, value) in zip(keys, Array(values).shuffledUnique(using: &randomGenerator)) {
-            self[key] = value
-        }
+}
+
+extension SeedableRandomGenerator where Seed: Random {
+
+    /// Creates an instance seeded with `randomGenerator`.
+    public init<R: RandomGenerator>(seededWith randomGenerator: inout R) {
+        self.init(seed: Seed.random(using: &randomGenerator))
     }
 
 }

@@ -28,13 +28,8 @@
 extension Range where Bound: RandomWithinRange {
 
     /// Returns a random bound of `self`, or `nil` if `self` is empty.
-    public var random: Bound? {
-        return Bound.random(within: self)
-    }
-
-    /// Returns a random bound of `self`, or `nil` if `self` is empty.
-    public func random(using randomGenerator: RandomGenerator) -> Bound? {
-        return Bound.random(within: self, using: randomGenerator)
+    public func random<R: RandomGenerator>(using randomGenerator: inout R) -> Bound? {
+        return Bound.random(within: self, using: &randomGenerator)
     }
 
 }
@@ -42,13 +37,8 @@ extension Range where Bound: RandomWithinRange {
 extension CountableRange where Bound: RandomWithinRange {
 
     /// Returns a random bound of `self`, or `nil` if `self` is empty.
-    public var random: Bound? {
-        return Bound.random(within: Range(self))
-    }
-
-    /// Returns a random bound of `self`, or `nil` if `self` is empty.
-    public func random(using randomGenerator: RandomGenerator) -> Bound? {
-        return Bound.random(within: Range(self), using: randomGenerator)
+    public func random<R: RandomGenerator>(using randomGenerator: inout R) -> Bound? {
+        return Bound.random(within: Range(self), using: &randomGenerator)
     }
 
 }
@@ -56,13 +46,8 @@ extension CountableRange where Bound: RandomWithinRange {
 extension ClosedRange where Bound: RandomWithinClosedRange {
 
     /// Returns a random bound of `self`, or `nil` if `self` is empty.
-    public var random: Bound? {
-        return Bound.random(within: self)
-    }
-
-    /// Returns a random bound of `self`, or `nil` if `self` is empty.
-    public func random(using randomGenerator: RandomGenerator) -> Bound? {
-        return Bound.random(within: self, using: randomGenerator)
+    public func random<R: RandomGenerator>(using randomGenerator: inout R) -> Bound? {
+        return Bound.random(within: self, using: &randomGenerator)
     }
 
 }
@@ -70,13 +55,8 @@ extension ClosedRange where Bound: RandomWithinClosedRange {
 extension CountableClosedRange where Bound: RandomWithinClosedRange {
 
     /// Returns a random bound of `self`, or `nil` if `self` is empty.
-    public var random: Bound? {
-        return Bound.random(within: ClosedRange(self))
-    }
-
-    /// Returns a random bound of `self`, or `nil` if `self` is empty.
-    public func random(using randomGenerator: RandomGenerator) -> Bound? {
-        return Bound.random(within: ClosedRange(self), using: randomGenerator)
+    public func random<R: RandomGenerator>(using randomGenerator: inout R) -> Bound? {
+        return Bound.random(within: ClosedRange(self), using: &randomGenerator)
     }
 
 }

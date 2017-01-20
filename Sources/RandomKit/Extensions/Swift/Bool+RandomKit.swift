@@ -30,8 +30,8 @@ import Foundation
 extension Bool: Random {
 
     /// Generates a random `Bool`.
-    public static func random(using randomGenerator: RandomGenerator) -> Bool {
-        return UInt.random(using: randomGenerator) % 2 == 0
+    public static func random<R: RandomGenerator>(using randomGenerator: inout R) -> Bool {
+        return UInt8.random(using: &randomGenerator) % 2 == 0
     }
 
 }

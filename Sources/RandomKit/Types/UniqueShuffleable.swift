@@ -29,28 +29,18 @@
 public protocol UniqueShuffleable {
 
     /// Shuffles the elements in `self` in a unique order and returns the result.
-    func shuffledUnique(using randomGenerator: RandomGenerator) -> Self
+    func shuffledUnique<R: RandomGenerator>(using randomGenerator: inout R) -> Self
 
     /// Shuffles the elements in `self` in a unique order.
-    mutating func shuffleUnique(using randomGenerator: RandomGenerator)
+    mutating func shuffleUnique<R: RandomGenerator>(using randomGenerator: inout R)
 
 }
 
 extension UniqueShuffleable {
 
-    /// Shuffles the elements in `self` in a unique order and returns the result.
-    public func shuffledUnique() -> Self {
-        return shuffledUnique(using: .default)
-    }
-
     /// Shuffles the elements in `self` in a unique order.
-    public mutating func shuffleUnique(using randomGenerator: RandomGenerator) {
-        self = shuffledUnique(using: randomGenerator)
-    }
-
-    /// Shuffles the elements in `self` in a unique order.
-    public mutating func shuffleUnique() {
-        shuffleUnique(using: .default)
+    public mutating func shuffleUnique<R: RandomGenerator>(using randomGenerator: inout R) {
+        self = shuffledUnique(using: &randomGenerator)
     }
 
 }

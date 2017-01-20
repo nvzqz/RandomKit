@@ -29,15 +29,6 @@
 public protocol RandomWithMaxWidth {
 
     /// Generates a random value of `Self` with a maximum width using `randomGenerator`.
-    static func random(withMaxWidth width: Int, using randomGenerator: RandomGenerator) -> Self
-
-}
-
-extension RandomWithMaxWidth {
-
-    /// Generates a random value of `Self` with a maximum width using the default generator.
-    public static func random(withMaxWidth width: Int) -> Self {
-        return random(withMaxWidth: width, using: .default)
-    }
+    static func random<R: RandomGenerator>(withMaxWidth width: Int, using randomGenerator: inout R) -> Self
 
 }

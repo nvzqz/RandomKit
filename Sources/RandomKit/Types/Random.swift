@@ -29,41 +29,6 @@
 public protocol Random {
 
     /// Generates a random value of `Self` using `randomGenerator`.
-    static func random(using randomGenerator: RandomGenerator) -> Self
-
-}
-
-extension Random {
-
-    /// Generates a random value of `Self` using the default generator.
-    public static func random() -> Self {
-        return random(using: .default)
-    }
-
-    /// Returns an iterator for infinite random values of `Self`.
-    public static func randomIterator(using randomGenerator: RandomGenerator = .default) -> AnyIterator<Self> {
-        return AnyIterator { random(using: randomGenerator) }
-    }
-
-    /// Returns an iterator for random values of `Self` within `maxCount`.
-    public static func randomIterator<I: Strideable & ExpressibleByIntegerLiteral>(maxCount: I,
-                                      using randomGenerator: RandomGenerator = .default) -> AnyIterator<Self> {
-        var n: I = 0
-        return AnyIterator {
-            defer { n  = n.advanced(by: 1) }
-            return n < maxCount ? random(using: randomGenerator) : nil
-        }
-    }
-
-    /// Returns a sequence of infinite random values of `Self`.
-    public static func randomSequence(using randomGenerator: RandomGenerator = .default) -> AnySequence<Self> {
-        return AnySequence(randomIterator(using: randomGenerator))
-    }
-
-    /// Returns a sequence of random values of `Self` within `maxCount`.
-    public static func randomSequence<I: Strideable & ExpressibleByIntegerLiteral>(maxCount: I,
-                                      using randomGenerator: RandomGenerator = .default) -> AnySequence<Self> {
-        return AnySequence(randomIterator(maxCount: maxCount, using: randomGenerator))
-    }
+    static func random<R: RandomGenerator>(using randomGenerator: inout R) -> Self
 
 }
