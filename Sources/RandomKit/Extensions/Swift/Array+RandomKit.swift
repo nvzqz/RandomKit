@@ -49,6 +49,24 @@ extension Array where Element: UnsafeRandom {
 
 }
 
+extension Array where Element: RandomToValue {
+
+    /// Construct an Array of random elements to a value.
+    public init<R: RandomGenerator>(randomCount: Int, to value: Element, using randomGenerator: inout R) {
+        self.init(Element.randoms(to: value, using: &randomGenerator))
+    }
+
+}
+
+extension Array where Element: RandomThroughValue {
+
+    /// Construct an Array of random elements through a value.
+    public init<R: RandomGenerator>(randomCount: Int, through value: Element, using randomGenerator: inout R) {
+        self.init(Element.randoms(through: value, using: &randomGenerator))
+    }
+
+}
+
 extension Array where Element: RandomWithinRange {
 
     /// Construct an Array of random elements from within the range.
