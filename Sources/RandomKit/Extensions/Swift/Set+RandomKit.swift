@@ -61,7 +61,11 @@ extension Set where Element: RandomThroughValue {
 extension Set where Element: RandomWithinRange {
     /// Creates a set of random elements within `range` using `randomGenerator`.
     public init<R: RandomGenerator>(randomCount: Int, within range: Range<Element>, using randomGenerator: inout R) {
-        self.init(count: randomCount, from: Element.randoms(within: range, using: &randomGenerator))
+        if range.isEmpty {
+            self.init()
+        } else {
+            self.init(count: randomCount, from: Element.randoms(within: range, using: &randomGenerator))
+        }
     }
 }
 
