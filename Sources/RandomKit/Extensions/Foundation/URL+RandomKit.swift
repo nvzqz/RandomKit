@@ -29,6 +29,17 @@ import Foundation
 
 extension URL: Random {
 
+    private static let _urls = ["https://github.com/",
+                                "https://bitbucket.org/",
+                                "https://stackoverflow.com/",
+                                "https://www.reddit.com/",
+                                "https://medium.com/",
+                                "https://www.tumblr.com/",
+                                "https://www.google.com/",
+                                "https://twitter.com/",
+                                "https://www.facebook.com/",
+                                "https://www.youtube.com/"].flatMap(URL.init(string:))
+
     /// Generates a random URL.
     ///
     /// - returns: A random URL within:
@@ -37,17 +48,13 @@ extension URL: Random {
     ///     - https://stackoverflow.com/
     ///     - https://www.reddit.com/
     ///     - https://medium.com/
+    ///     - https://www.tumblr.com/
     ///     - https://www.google.com/
+    ///     - https://twitter.com/
+    ///     - https://www.facebook.com/
     ///     - https://www.youtube.com/
     public static func random<R: RandomGenerator>(using randomGenerator: inout R) -> URL {
-        return random(fromValues: ["https://github.com/",
-                                   "https://bitbucket.org/",
-                                   "https://stackoverflow.com/",
-                                   "https://www.reddit.com/",
-                                   "https://medium.com/",
-                                   "https://www.google.com/",
-                                   "https://www.youtube.com/"],
-                      using: &randomGenerator).unsafelyUnwrapped
+        return _urls.random(using: &randomGenerator).unsafelyUnwrapped
     }
 
     /// Generates a random URL from within the given values, or `nil` if empty or invalid.
@@ -55,10 +62,7 @@ extension URL: Random {
     /// - parameter values: The values from which the URL is generated.
     /// - parameter randomGenerator: The random generator to use.
     public static func random<R: RandomGenerator>(fromValues values: [String], using randomGenerator: inout R) -> URL? {
-        guard let value = values.random(using: &randomGenerator), let url = URL(string: value) else {
-            return nil
-        }
-        return url
+        return values.random(using: &randomGenerator).flatMap(URL.init(string:))
     }
 
 }
