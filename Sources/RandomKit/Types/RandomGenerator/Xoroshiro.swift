@@ -1,5 +1,5 @@
 //
-//  DeviceGenerator.swift
+//  Xoroshiro.swift
 //  RandomKit
 //
 //  The MIT License (MIT)
@@ -27,42 +27,37 @@
 
 import Foundation
 
-/// A device generator at "/dev/random" or "/dev/urandom".
-public final class DeviceGenerator: RandomGenerator {
-
-    /// The device source.
-    public enum Source: String {
-
-        /// random device.
-        case random
-
-        /// urandom device.
-        case urandom
-
-        /// The path for the device.
-        public var path: String {
-            return "/dev/" + rawValue
-        }
-
-    }
+/// A generator that uses the [Xoroshiro][site] algorithm.
+///
+/// [site]: http://xoroshiro.di.unimi.it/
+public struct Xoroshiro: RandomBytesGenerator, SeedableRandomGenerator {
 
     /// A default global instance.
-    public static var `default` = DeviceGenerator(source: .urandom)
+    public static var `default` = Xoroshiro(seededWith: &DeviceRandom.default)
 
-    private let _fileDescriptor: Int32
+    /// The internal state.
+    private var _state: (UInt64, UInt64)
 
-    /// Creates an instance by opening a file descriptor to the device at `source`.
-    public init(source: Source) {
-        self._fileDescriptor = open(source.path, O_RDONLY)
+    /// Creates an instance from `seed`.
+    public init(seed: (UInt64, UInt64)) {
+        _state = seed
     }
 
-    deinit {
-        close(_fileDescriptor)
+    /// Creates an instance seeded with `randomGenerator`.
+    public init<R: RandomGenerator>(seededWith randomGenerator: inout R) {
+        var seed: Seed = (0, 0)
+        randomGenerator.randomize(value: &seed)
+        self.init(seed: seed)
     }
 
-    /// Randomizes the contents `buffer` up to `size`.
-    public func randomize(buffer: UnsafeMutableRawPointer, size: Int) {
-        read(_fileDescriptor, buffer, size)
+    /// Returns random `Bytes`.
+    public mutating func randomBytes() -> UInt64 {
+        let (l, k0, k1, k2): (UInt64, UInt64, UInt64, UInt64) = (64, 55, 14, 36)
+        let result = _state.0 &+ _state.1
+        let x = _state.0 ^ _state.1
+        _state.0 = ((_state.0 << k0) | (_state.0 >> (l - k0))) ^ x ^ (x << k1)
+        _state.1 = (x << k2) | (x >> (l - k2))
+        return result
     }
 
 }

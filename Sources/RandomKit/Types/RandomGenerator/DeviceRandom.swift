@@ -1,5 +1,5 @@
 //
-//  XoroshiroGenerator.swift
+//  DeviceRandom.swift
 //  RandomKit
 //
 //  The MIT License (MIT)
@@ -27,37 +27,42 @@
 
 import Foundation
 
-/// A generator that uses the [Xoroshiro][site] algorithm.
-///
-/// [site]: http://xoroshiro.di.unimi.it/
-public struct XoroshiroGenerator: RandomBytesGenerator, SeedableRandomGenerator {
+/// A device generator at "/dev/random" or "/dev/urandom".
+public final class DeviceRandom: RandomGenerator {
+
+    /// The device source.
+    public enum Source: String {
+
+        /// random device.
+        case random
+
+        /// urandom device.
+        case urandom
+
+        /// The path for the device.
+        public var path: String {
+            return "/dev/" + rawValue
+        }
+
+    }
 
     /// A default global instance.
-    public static var `default` = XoroshiroGenerator(seededWith: &DeviceGenerator.default)
+    public static var `default` = DeviceRandom(source: .urandom)
 
-    /// The internal state.
-    private var _state: (UInt64, UInt64)
+    private let _fileDescriptor: Int32
 
-    /// Creates an instance from `seed`.
-    public init(seed: (UInt64, UInt64)) {
-        _state = seed
+    /// Creates an instance by opening a file descriptor to the device at `source`.
+    public init(source: Source) {
+        self._fileDescriptor = open(source.path, O_RDONLY)
     }
 
-    /// Creates an instance seeded with `randomGenerator`.
-    public init<R: RandomGenerator>(seededWith randomGenerator: inout R) {
-        var seed: Seed = (0, 0)
-        randomGenerator.randomize(value: &seed)
-        self.init(seed: seed)
+    deinit {
+        close(_fileDescriptor)
     }
 
-    /// Returns random `Bytes`.
-    public mutating func randomBytes() -> UInt64 {
-        let (l, k0, k1, k2): (UInt64, UInt64, UInt64, UInt64) = (64, 55, 14, 36)
-        let result = _state.0 &+ _state.1
-        let x = _state.0 ^ _state.1
-        _state.0 = ((_state.0 << k0) | (_state.0 >> (l - k0))) ^ x ^ (x << k1)
-        _state.1 = (x << k2) | (x >> (l - k2))
-        return result
+    /// Randomizes the contents `buffer` up to `size`.
+    public func randomize(buffer: UnsafeMutableRawPointer, size: Int) {
+        read(_fileDescriptor, buffer, size)
     }
 
 }

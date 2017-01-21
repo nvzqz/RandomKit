@@ -1,5 +1,5 @@
 //
-//  MersenneTwisterGenerator.swift
+//  MersenneTwister.swift
 //  RandomKit
 //
 //  The MIT License (MIT)
@@ -28,13 +28,13 @@
 /// A generator that uses the [Mersenne Twister][MT] algorithm.
 ///
 /// [MT]: https://en.wikipedia.org/wiki/Mersenne_Twister
-public struct MersenneTwisterGenerator: RandomBytesGenerator, SeedableRandomGenerator {
+public struct MersenneTwister: RandomBytesGenerator, SeedableRandomGenerator {
 
     /// The number of `UInt64` values in a `_State`.
     private static let _stateCount: Int = 312
 
     /// A default global instance.
-    public static var `default` = MersenneTwisterGenerator(seededWith: &DeviceGenerator.default)
+    public static var `default` = MersenneTwister(seededWith: &DeviceRandom.default)
 
     /// The internal state's type.
     private typealias _State = (
@@ -102,11 +102,11 @@ public struct MersenneTwisterGenerator: RandomBytesGenerator, SeedableRandomGene
 
     /// Creates an instance from `seed`.
     public init(seed: UInt64) {
-        _index = MersenneTwisterGenerator._stateCount
+        _index = MersenneTwister._stateCount
         withUnsafeMutablePointer(to: &_state) { pointer in
-            pointer.withMemoryRebound(to: UInt64.self, capacity: MersenneTwisterGenerator._stateCount) { state in
+            pointer.withMemoryRebound(to: UInt64.self, capacity: MersenneTwister._stateCount) { state in
                 state[0] = seed
-                for i in 1 ..< MersenneTwisterGenerator._stateCount {
+                for i in 1 ..< MersenneTwister._stateCount {
                     state[i] = 6364136223846793005 &* (state[i &- 1] ^ (state[i &- 1] >> 62)) &+ UInt64(i)
                 }
             }
@@ -115,14 +115,14 @@ public struct MersenneTwisterGenerator: RandomBytesGenerator, SeedableRandomGene
 
     /// Returns random `Bytes`.
     public mutating func randomBytes() -> UInt64 {
-        if _index == MersenneTwisterGenerator._stateCount {
+        if _index == MersenneTwister._stateCount {
             let state = withUnsafeMutablePointer(to: &self._state) {
-                $0.withMemoryRebound(to: UInt64.self, capacity: MersenneTwisterGenerator._stateCount) {
+                $0.withMemoryRebound(to: UInt64.self, capacity: MersenneTwister._stateCount) {
                     $0
                 }
             }
 
-            let n = MersenneTwisterGenerator._stateCount
+            let n = MersenneTwister._stateCount
             let m = n / 2
             let a: UInt64 = 0xB5026F5AA96619E9
             let lowerMask: UInt64 = (1 << 31) - 1
@@ -145,7 +145,7 @@ public struct MersenneTwisterGenerator: RandomBytesGenerator, SeedableRandomGene
         }
 
         var result = withUnsafePointer(to: &_state) {
-            $0.withMemoryRebound(to: UInt64.self, capacity: MersenneTwisterGenerator._stateCount) { ptr in
+            $0.withMemoryRebound(to: UInt64.self, capacity: MersenneTwister._stateCount) { ptr in
                 return ptr[_index]
             }
         }

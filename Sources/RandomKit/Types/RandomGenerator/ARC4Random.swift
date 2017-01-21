@@ -1,5 +1,5 @@
 //
-//  ARC4RandomGenerator.swift
+//  ARC4Random.swift
 //  RandomKit
 //
 //  The MIT License (MIT)
@@ -30,10 +30,10 @@ import Foundation
 /// A generator that uses `arc4random()` and friends.
 ///
 /// If the OS is Linux, Android, or Windows, the relevant functions will be attempted to be dynamically loaded.
-public final class ARC4RandomGenerator: RandomGenerator {
+public final class ARC4Random: RandomGenerator {
 
     /// A default global instance.
-    public static var `default` = ARC4RandomGenerator()
+    public static var `default` = ARC4Random()
 
     /// Whether `arc4random()` and friends are available.
     public static var isAvailable: Bool {
