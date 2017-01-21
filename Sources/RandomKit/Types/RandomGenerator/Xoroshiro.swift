@@ -30,13 +30,18 @@ import Foundation
 /// A generator that uses the [Xoroshiro][site] algorithm.
 ///
 /// [site]: http://xoroshiro.di.unimi.it/
-public struct Xoroshiro: RandomBytesGenerator, SeedableRandomGenerator {
+public struct Xoroshiro: RandomBytesGenerator, SeedableRandomGenerator, Random {
 
     /// A default global instance.
     public static var `default` = Xoroshiro(seededWith: &DeviceRandom.default)
 
     /// The internal state.
     private var _state: (UInt64, UInt64)
+
+    /// Generates a random value of `Self` using `randomGenerator`.
+    public static func random<R: RandomGenerator>(using randomGenerator: inout R) -> Xoroshiro {
+        return Xoroshiro(seededWith: &randomGenerator)
+    }
 
     /// Creates an instance from `seed`.
     public init(seed: (UInt64, UInt64)) {
