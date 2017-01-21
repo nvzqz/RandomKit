@@ -74,171 +74,25 @@ let benchmarkSafeRandomArrayCount   = int(after: "--array-safe")   ?? benchmarkR
 let benchmarkUnsafeRandomArray      = benchmarkRandomArray         || contains("--array-unsafe")
 let benchmarkUnsafeRandomArrayCount = int(after: "--array-unsafe") ?? benchmarkRandomArrayCount ?? 100
 
-let count = int(after: "--count") ?? int(after: "-c") ?? 10_000_000
-
 func arc4RandomIsAvailable() -> Bool {
-    let available = RandomGenerator.arc4RandomIsAvailable
+    let available = ARC4Random.isAvailable
     if !available {
         print(style("The arc4random generator is unavailable", with: [.bold, .red]))
     }
     return available
 }
 
-var generators: [RandomGenerator] = []
-if benchmarkAllGenerators {
-    if arc4RandomIsAvailable() {
-        generators = [
-            .xoroshiro(threadSafe: false),
-            .xoroshiro(threadSafe: true),
-            .mersenneTwister(threadSafe: false),
-            .mersenneTwister(threadSafe: true),
-            .arc4Random,
-            .device(.random),
-            .device(.urandom)
-        ]
-    } else {
-        generators = [
-            .xoroshiro(threadSafe: false),
-            .xoroshiro(threadSafe: true),
-            .mersenneTwister(threadSafe: false),
-            .mersenneTwister(threadSafe: true),
-            .device(.random),
-            .device(.urandom)
-        ]
-        print(style("The arc4random generator is unavailable", with: [.bold, .red]))
-    }
-} else {
-    let benchmarkWithXoroshiro = contains("--xoroshiro")
-    if benchmarkWithXoroshiro || contains("--xoroshiro-unsafe") {
-        generators.append(.xoroshiro(threadSafe: false))
-    }
-    if benchmarkWithXoroshiro || contains("--xoroshiro-safe") {
-        generators.append(.xoroshiro(threadSafe: true))
-    }
-    let benchmarkWithMersenneTwister = contains("--mersenne-twister")
-    if benchmarkWithMersenneTwister || contains("--mersenne-twister-unsafe") {
-        generators.append(.mersenneTwister(threadSafe: false))
-    }
-    if benchmarkWithMersenneTwister || contains("--mersenne-twister-safe") {
-        generators.append(.mersenneTwister(threadSafe: true))
-    }
+let count = int(after: "--count") ?? int(after: "-c") ?? 10_000_000
 
-    if contains("--arc4random") {
-        if arc4RandomIsAvailable() {
-            generators.append(.arc4Random)
-        } else {
-            print(style("The arc4random generator is unavailable", with: [.bold, .red]))
-        }
-    }
-
-    let benchmarkWithDev = contains("--dev")
-    if benchmarkWithDev || contains("--dev-random") {
-        generators.append(.device(.random))
-    }
-    if benchmarkWithDev || contains("--dev-urandom") {
-        generators.append(.device(.urandom))
-    }
-
-    if generators.isEmpty {
-        generators = [
-            .xoroshiro(threadSafe: false),
-            .xoroshiro(threadSafe: true)
-        ]
-        if arc4RandomIsAvailable() {
-            generators.append(.arc4Random)
-        }
-    }
+if benchmarkAllGenerators || contains("--xoroshiro") {
+    runBenchmarks(using: &Xoroshiro.default)
 }
-
-if benchmarkRandom {
-    benchmarkRandom(for: Int.self)
-    if benchmarkAllIntegers {
-        benchmarkRandom(for: Int64.self)
-        benchmarkRandom(for: Int32.self)
-        benchmarkRandom(for: Int16.self)
-        benchmarkRandom(for: Int8.self)
-    }
-    benchmarkRandom(for: UInt.self)
-    if benchmarkAllIntegers {
-        benchmarkRandom(for: UInt64.self)
-        benchmarkRandom(for: UInt32.self)
-        benchmarkRandom(for: UInt16.self)
-        benchmarkRandom(for: UInt8.self)
-    }
+if benchmarkAllGenerators || contains("--mersenne-twister") {
+    runBenchmarks(using: &MersenneTwister.default)
 }
-
-if benchmarkRandomToValue {
-    benchmarkRandomToValue(with: Int.maxAdjusted)
-    if benchmarkAllIntegers {
-        benchmarkRandomToValue(with: Int64.maxAdjusted)
-        benchmarkRandomToValue(with: Int32.maxAdjusted)
-        benchmarkRandomToValue(with: Int16.maxAdjusted)
-        benchmarkRandomToValue(with: Int8.maxAdjusted)
-    }
-    benchmarkRandomToValue(with: UInt.maxAdjusted)
-    if benchmarkAllIntegers {
-        benchmarkRandomToValue(with: UInt64.maxAdjusted)
-        benchmarkRandomToValue(with: UInt32.maxAdjusted)
-        benchmarkRandomToValue(with: UInt16.maxAdjusted)
-        benchmarkRandomToValue(with: UInt8.maxAdjusted)
-    }
+if (benchmarkAllGenerators || contains("--arc4random")) && arc4RandomIsAvailable() {
+    runBenchmarks(using: &ARC4Random.default)
 }
-
-if benchmarkRandomThroughValue {
-    benchmarkRandomThroughValue(with: Int.maxAdjusted)
-    if benchmarkAllIntegers {
-        benchmarkRandomThroughValue(with: Int64.maxAdjusted)
-        benchmarkRandomThroughValue(with: Int32.maxAdjusted)
-        benchmarkRandomThroughValue(with: Int16.maxAdjusted)
-        benchmarkRandomThroughValue(with: Int8.maxAdjusted)
-    }
-    benchmarkRandomThroughValue(with: UInt.maxAdjusted)
-    if benchmarkAllIntegers {
-        benchmarkRandomThroughValue(with: UInt64.maxAdjusted)
-        benchmarkRandomThroughValue(with: UInt32.maxAdjusted)
-        benchmarkRandomThroughValue(with: UInt16.maxAdjusted)
-        benchmarkRandomThroughValue(with: UInt8.maxAdjusted)
-    }
-}
-
-if benchmarkRandomWithinRange {
-    benchmarkRandomWithinRange(with: Int.minMaxRange)
-    if benchmarkAllIntegers {
-        benchmarkRandomWithinRange(with: Int64.minMaxRange)
-        benchmarkRandomWithinRange(with: Int32.minMaxRange)
-        benchmarkRandomWithinRange(with: Int16.minMaxRange)
-        benchmarkRandomWithinRange(with: Int8.minMaxRange)
-    }
-    benchmarkRandomWithinRange(with: UInt.minMaxRange)
-    if benchmarkAllIntegers {
-        benchmarkRandomWithinRange(with: UInt64.minMaxRange)
-        benchmarkRandomWithinRange(with: UInt32.minMaxRange)
-        benchmarkRandomWithinRange(with: UInt16.minMaxRange)
-        benchmarkRandomWithinRange(with: UInt8.minMaxRange)
-    }
-}
-
-if benchmarkRandomWithinClosedRange {
-    benchmarkRandomWithinClosedRange(with: Int.minMaxClosedRange)
-    if benchmarkAllIntegers {
-        benchmarkRandomWithinClosedRange(with: Int64.minMaxClosedRange)
-        benchmarkRandomWithinClosedRange(with: Int32.minMaxClosedRange)
-        benchmarkRandomWithinClosedRange(with: Int16.minMaxClosedRange)
-        benchmarkRandomWithinClosedRange(with: Int8.minMaxClosedRange)
-    }
-    benchmarkRandomWithinClosedRange(with: UInt.minMaxClosedRange)
-    if benchmarkAllIntegers {
-        benchmarkRandomWithinClosedRange(with: UInt64.minMaxClosedRange)
-        benchmarkRandomWithinClosedRange(with: UInt32.minMaxClosedRange)
-        benchmarkRandomWithinClosedRange(with: UInt16.minMaxClosedRange)
-        benchmarkRandomWithinClosedRange(with: UInt8.minMaxClosedRange)
-    }
-}
-
-if benchmarkSafeRandomArray {
-    benchmarkSafeRandomArray(for: Int.self, randomCount: benchmarkSafeRandomArrayCount)
-}
-
-if benchmarkUnsafeRandomArray {
-    benchmarkUnsafeRandomArray(for: Int.self, randomCount: benchmarkUnsafeRandomArrayCount)
+if benchmarkAllGenerators || contains("--dev") {
+    runBenchmarks(using: &DeviceRandom.default)
 }

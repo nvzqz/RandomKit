@@ -61,8 +61,8 @@ func style<T>(_ type: T.Type) -> String {
     return style(type, with: [.bold, .green])
 }
 
-func style(_ generator: RandomGenerator) -> String {
-    return style(generator, with: [.yellow])
+func style<R: RandomGenerator>(_: R) -> String {
+    return style(R.self, with: [.yellow])
 }
 
 func style(count: Int) -> String {
