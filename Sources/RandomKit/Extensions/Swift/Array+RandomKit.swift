@@ -53,10 +53,10 @@ extension Array where Element: RandomWithinRange {
 
     /// Construct an Array of random elements from within the range.
     public init<R: RandomGenerator>(randomCount: Int, within range: Range<Element>, using randomGenerator: inout R) {
-        if range.isEmpty {
+        if range.isEmpty || randomCount <= 0 {
             self = []
         } else {
-            self = (0 ..< randomCount).map { _ in
+            self = CountableRange(uncheckedBounds: (0, randomCount)).map { _ in
                 Element.random(within: range, using: &randomGenerator).unsafelyUnwrapped
             }
         }
@@ -68,7 +68,13 @@ extension Array where Element: RandomWithinClosedRange {
 
     /// Construct an Array of random elements from within the closed range.
     public init<R: RandomGenerator>(randomCount: Int, within closedRange: ClosedRange<Element>, using randomGenerator: inout R) {
-        self = (0 ..< randomCount).map { _ in Element.random(within: closedRange, using: &randomGenerator) }
+        if randomCount <= 0 {
+            self = []
+        } else {
+            self = CountableRange(uncheckedBounds: (0, randomCount)).map { _ in
+                Element.random(within: closedRange, using: &randomGenerator)
+            }
+        }
     }
 
 }
