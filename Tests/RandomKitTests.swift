@@ -11,7 +11,7 @@ import RandomKit
 
 class RandomKitTests: XCTestCase {
 
-    static var generatorToTest = XoroshiroGenerator.default
+    static var generatorToTest = Xoroshiro.default
 
     let testCount = 100_000
 
