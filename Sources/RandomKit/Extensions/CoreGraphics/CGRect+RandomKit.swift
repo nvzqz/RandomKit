@@ -45,13 +45,13 @@ extension CGRect: Random {
     /// - parameter widthRange: The range within which `width` will be generated.
     /// - parameter heightRange: The range within which `height` will be generated.
     /// - parameter randomGenerator: The random generator to use.
-    public static func random<R: RandomGenerator>(within xRange: ClosedRange<CGFloat>,
-                              _ yRange:      ClosedRange<CGFloat>,
-                              _ widthRange:  ClosedRange<CGFloat>,
-                              _ heightRange: ClosedRange<CGFloat>,
+    public static func random<R: RandomGenerator>(xRange: ClosedRange<CGFloat>,
+                              yRange:      ClosedRange<CGFloat>,
+                              widthRange:  ClosedRange<CGFloat>,
+                              heightRange: ClosedRange<CGFloat>,
                               using randomGenerator: inout R) -> CGRect {
-        return CGRect(origin: .random(within: xRange, yRange, using: &randomGenerator),
-                      size: .random(within: widthRange, heightRange, using: &randomGenerator))
+        return CGRect(origin: .random(xRange: xRange, yRange: yRange, using: &randomGenerator),
+                      size: .random(widthRange: widthRange, heightRange: heightRange, using: &randomGenerator))
     }
 
 }
