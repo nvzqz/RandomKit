@@ -34,4 +34,9 @@ extension Bool: Random {
         return UInt8.random(using: &randomGenerator) % 2 == 0
     }
 
+    /// Generates a random `Bool` with a 1 in n chance of being `true`.
+    public static func random<R: RandomGenerator>(withWeight weight: UInt, using randomGenerator: inout R) -> Bool {
+        return weight <= 1 || UInt.random(to: weight, using: &randomGenerator) == 0
+    }
+
 }
