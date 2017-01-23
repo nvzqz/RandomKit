@@ -60,6 +60,11 @@ extension RandomGenerator {
         randomize(buffer: &value, size: MemoryLayout<T>.size)
     }
 
+    /// Randomizes the contents of `buffer`.
+    public mutating func randomize(buffer: UnsafeMutableRawBufferPointer) {
+        randomize(buffer: buffer.baseAddress.unsafelyUnwrapped, size: buffer.count)
+    }
+
     /// Randomize the contents of `buffer` with max `width` bits.
     public mutating func randomize(buffer: UnsafeMutableRawPointer, maxWidth width: Int) {
         let byteCount = (width + 7) / 8
