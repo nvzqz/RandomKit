@@ -25,6 +25,8 @@
 //  THE SOFTWARE.
 //
 
+import Foundation
+
 /// A type that can generate a random value using a randomizable base value.
 ///
 /// The randomizable value is passed into the `randomize(value:)` method of `randomGenerator` in `random(using:)`.
@@ -48,6 +50,12 @@ public protocol UnsafeRandom: Random {
 }
 
 extension UnsafeRandom {
+
+    /// The base randomizable value for `Self`.
+    public static var randomizableValue: Self {
+        var value: Self? = nil
+        return UnsafeMutableRawPointer(&value).assumingMemoryBound(to: self).pointee
+    }
 
     /// Generates a random value of `Self` using `randomGenerator`.
     public static func random<R: RandomGenerator>(using randomGenerator: inout R) -> Self {
