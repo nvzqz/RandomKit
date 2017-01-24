@@ -51,14 +51,26 @@ public final class ARC4Random: RandomGenerator {
         _arc4random_buf(buffer, size)
     }
 
-    /// Generates a random 64-bit integer.
+    /// Generates a random unsigned 64-bit integer.
     public func random64() -> UInt64 {
         return unsafeBitCast((random32(), random32()), to: UInt64.self)
     }
 
-    /// Generates a random 32-bit integer.
+    /// Generates a random unsigned 32-bit integer.
     public func random32() -> UInt32 {
         return _arc4random()
+    }
+
+    /// Generates a random unsigned 16-bit integer.
+    public func random16() -> UInt16 {
+        var value = random32()
+        return _unsafeCast(&value)
+    }
+
+    /// Generates a random unsigned 8-bit integer.
+    public func random8() -> UInt8 {
+        var value = random32()
+        return _unsafeCast(&value)
     }
 
 }
