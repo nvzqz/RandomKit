@@ -42,9 +42,7 @@ extension Array where Element: UnsafeRandom {
     ///
     /// This is *significantly* faster than using `init(randomCount:using:)`.
     public init<R: RandomGenerator>(unsafeRandomCount: Int, using randomGenerator: inout R) {
-        self.init(repeating: .randomizableValue, count: unsafeRandomCount)
-        let buffer = UnsafeMutablePointer(mutating: self)
-        randomGenerator.randomize(buffer: buffer, size: MemoryLayout<Element>.size * unsafeRandomCount)
+        self.init(ContiguousArray(unsafeRandomCount: unsafeRandomCount, using: &randomGenerator))
     }
 
 }
@@ -81,6 +79,20 @@ extension Array where Element: RandomWithinClosedRange {
     /// Construct an Array of random elements from within the closed range.
     public init<R: RandomGenerator>(randomCount: Int, within closedRange: ClosedRange<Element>, using randomGenerator: inout R) {
         self.init(Element.randoms(limitedBy: randomCount, within: closedRange, using: &randomGenerator))
+    }
+
+}
+
+extension ContiguousArray where Element: UnsafeRandom {
+
+    /// Construct a ContiguousArray of random elements by randomizing the buffer directly.
+    ///
+    /// This is *significantly* faster than using `init(randomCount:using:)`.
+    public init<R: RandomGenerator>(unsafeRandomCount: Int, using randomGenerator: inout R) {
+        self.init(repeating: .randomizableValue, count: unsafeRandomCount)
+        withUnsafeMutableBufferPointer {
+            randomGenerator.randomize(buffer: UnsafeMutableRawBufferPointer($0))
+        }
     }
 
 }
