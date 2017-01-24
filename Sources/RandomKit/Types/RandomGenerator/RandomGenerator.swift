@@ -28,11 +28,17 @@
 /// A type that generates random values.
 public protocol RandomGenerator {
 
-    /// Generates a random 64-bit integer.
+    /// Generates a random unsigned 64-bit integer.
     mutating func random64() -> UInt64
 
-    /// Generates a random 32-bit integer.
+    /// Generates a random unsigned 32-bit integer.
     mutating func random32() -> UInt32
+
+    /// Generates a random unsigned 16-bit integer.
+    mutating func random16() -> UInt16
+
+    /// Generates a random unsigned 8-bit integer.
+    mutating func random8() -> UInt8
 
     /// Randomizes the contents `buffer` up to `size`.
     mutating func randomize(buffer: UnsafeMutableRawPointer, size: Int)
@@ -41,17 +47,31 @@ public protocol RandomGenerator {
 
 extension RandomGenerator {
 
-    /// Generates a random 64-bit integer.
+    /// Generates a random unsigned 64-bit integer.
     public mutating func random64() -> UInt64 {
         var result: UInt64 = 0
         randomize(buffer: &result, size: MemoryLayout<UInt64>.size)
         return result
     }
 
-    /// Generates a random 32-bit integer.
+    /// Generates a random unsigned 32-bit integer.
     public mutating func random32() -> UInt32 {
         var result: UInt32 = 0
         randomize(buffer: &result, size: MemoryLayout<UInt32>.size)
+        return result
+    }
+
+    /// Generates a random unsigned 16-bit integer.
+    public mutating func random16() -> UInt16 {
+        var result: UInt16 = 0
+        randomize(buffer: &result, size: MemoryLayout<UInt16>.size)
+        return result
+    }
+
+    /// Generates a random unsigned 8-bit integer.
+    public mutating func random8() -> UInt8 {
+        var result: UInt8 = 0
+        randomize(buffer: &result, size: MemoryLayout<UInt8>.size)
         return result
     }
 
