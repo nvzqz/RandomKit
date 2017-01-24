@@ -1,5 +1,5 @@
 //
-//  UnsafeRandom.swift
+//  Typecasting.swift
 //  RandomKit
 //
 //  The MIT License (MIT)
@@ -25,43 +25,13 @@
 //  THE SOFTWARE.
 //
 
-import Foundation
+// Allows casting between types of potentially different sizes.
 
-/// A type that can generate a random value using a randomizable base value.
-///
-/// The randomizable value is passed into the `randomize(value:)` method of `randomGenerator` in `random(using:)`.
-///
-/// ```swift
-/// struct Code: UnsafeRandom {
-///
-///     static let randomizableValue = Code(value: 0)
-///
-///     var value: UInt8
-///
-/// }
-///
-/// let random = Code.random()  // Code(value: 158)
-/// ```
-public protocol UnsafeRandom: Random {
-
-    /// The base randomizable value for `Self`.
-    static var randomizableValue: Self { get }
-
+internal func _unsafeCast<T, U>(_ value: inout T, to type: U.Type = U.self) -> U {
+    return UnsafeMutableRawPointer(&value).assumingMemoryBound(to: type).pointee
 }
 
-extension UnsafeRandom {
-
-    /// The base randomizable value for `Self`.
-    public static var randomizableValue: Self {
-        var value: Self? = nil
-        return _unsafeCast(&value)
-    }
-
-    /// Generates a random value of `Self` using `randomGenerator`.
-    public static func random<R: RandomGenerator>(using randomGenerator: inout R) -> Self {
-        var value = randomizableValue
-        randomGenerator.randomize(value: &value)
-        return value
-    }
-
+internal func _unsafeCast<T, U>(_ value: T, to type: U.Type = U.self) -> U {
+    var value = value
+    return _unsafeCast(&value, to: type)
 }
