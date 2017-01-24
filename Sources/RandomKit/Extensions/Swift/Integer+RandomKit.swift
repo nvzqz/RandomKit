@@ -334,8 +334,6 @@ extension Int8: UnsafeRandom, RandomWithMax, RandomWithMin, RandomToValue, Rando
 
 extension UInt: UnsafeRandom, RandomWithMax, RandomWithMin, RandomToValue, RandomThroughValue, RandomWithinRange, RandomWithinClosedRange, RandomWithMaxWidth, RandomWithExactWidth {
 
-    private static let _mostSignificantBit: UInt = 1 << UInt((MemoryLayout<UInt>.size * 8) - 1)
-
     /// Generates a random value of `Self` using `randomGenerator`.
     public static func random<R: RandomGenerator>(using randomGenerator: inout R) -> UInt {
         if MemoryLayout<Int>.size == 8 {
@@ -346,7 +344,13 @@ extension UInt: UnsafeRandom, RandomWithMax, RandomWithMin, RandomToValue, Rando
     }
 
     fileprivate var _resigned: UInt {
-        return self ^ ._mostSignificantBit
+        let msb: UInt
+        if MemoryLayout<Int>.size == 8 {
+            msb = 1 << 63
+        } else {
+            msb = 1 << 31
+        }
+        return self ^ msb
     }
 
 }
