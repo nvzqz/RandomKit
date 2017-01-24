@@ -204,6 +204,11 @@ extension UnsignedInteger where Self: ShiftOperations & RandomWithMaxWidth & Ran
 
 extension Int: UnsafeRandom, RandomWithMax, RandomWithMin, RandomToValue, RandomThroughValue, RandomWithinRange, RandomWithinClosedRange {
 
+    /// Generates a random value of `Self` using `randomGenerator`.
+    public static func random<R: RandomGenerator>(using randomGenerator: inout R) -> Int {
+        return unsafeBitCast(UInt.random(using: &randomGenerator), to: self)
+    }
+
     /// Returns an optional random value of `Self` inside of the range.
     public static func random<R: RandomGenerator>(within range: Range<Int>, using randomGenerator: inout R) -> Int? {
         let lo = UInt(bitPattern: range.lowerBound)._resigned
@@ -224,6 +229,11 @@ extension Int: UnsafeRandom, RandomWithMax, RandomWithMin, RandomToValue, Random
 }
 
 extension Int64: UnsafeRandom, RandomWithMax, RandomWithMin, RandomToValue, RandomThroughValue, RandomWithinRange, RandomWithinClosedRange {
+
+    /// Generates a random value of `Self` using `randomGenerator`.
+    public static func random<R: RandomGenerator>(using randomGenerator: inout R) -> Int64 {
+        return unsafeBitCast(UInt64.random(using: &randomGenerator), to: self)
+    }
 
     /// Returns an optional random value of `Self` inside of the range.
     public static func random<R: RandomGenerator>(within range: Range<Int64>, using randomGenerator: inout R) -> Int64? {
@@ -246,6 +256,11 @@ extension Int64: UnsafeRandom, RandomWithMax, RandomWithMin, RandomToValue, Rand
 
 extension Int32: UnsafeRandom, RandomWithMax, RandomWithMin, RandomToValue, RandomThroughValue, RandomWithinRange, RandomWithinClosedRange {
 
+    /// Generates a random value of `Self` using `randomGenerator`.
+    public static func random<R: RandomGenerator>(using randomGenerator: inout R) -> Int32 {
+        return unsafeBitCast(UInt32.random(using: &randomGenerator), to: self)
+    }
+
     /// Returns an optional random value of `Self` inside of the range.
     public static func random<R: RandomGenerator>(within range: Range<Int32>, using randomGenerator: inout R) -> Int32? {
         let lo = UInt32(bitPattern: range.lowerBound)._resigned
@@ -267,6 +282,11 @@ extension Int32: UnsafeRandom, RandomWithMax, RandomWithMin, RandomToValue, Rand
 
 extension Int16: UnsafeRandom, RandomWithMax, RandomWithMin, RandomToValue, RandomThroughValue, RandomWithinRange, RandomWithinClosedRange {
 
+    /// Generates a random value of `Self` using `randomGenerator`.
+    public static func random<R: RandomGenerator>(using randomGenerator: inout R) -> Int16 {
+        return unsafeBitCast(UInt16.random(using: &randomGenerator), to: self)
+    }
+
     /// Returns an optional random value of `Self` inside of the range.
     public static func random<R: RandomGenerator>(within range: Range<Int16>, using randomGenerator: inout R) -> Int16? {
         let lo = UInt16(bitPattern: range.lowerBound)._resigned
@@ -287,6 +307,11 @@ extension Int16: UnsafeRandom, RandomWithMax, RandomWithMin, RandomToValue, Rand
 }
 
 extension Int8: UnsafeRandom, RandomWithMax, RandomWithMin, RandomToValue, RandomThroughValue, RandomWithinRange, RandomWithinClosedRange {
+
+    /// Generates a random value of `Self` using `randomGenerator`.
+    public static func random<R: RandomGenerator>(using randomGenerator: inout R) -> Int8 {
+        return unsafeBitCast(UInt8.random(using: &randomGenerator), to: self)
+    }
 
     /// Returns an optional random value of `Self` inside of the range.
     public static func random<R: RandomGenerator>(within range: Range<Int8>, using randomGenerator: inout R) -> Int8? {
@@ -311,6 +336,15 @@ extension UInt: UnsafeRandom, RandomWithMax, RandomWithMin, RandomToValue, Rando
 
     private static let _mostSignificantBit: UInt = 1 << UInt((MemoryLayout<UInt>.size * 8) - 1)
 
+    /// Generates a random value of `Self` using `randomGenerator`.
+    public static func random<R: RandomGenerator>(using randomGenerator: inout R) -> UInt {
+        if MemoryLayout<Int>.size == 8 {
+            return unsafeBitCast(randomGenerator.random64(), to: self)
+        } else {
+            return unsafeBitCast(randomGenerator.random32(), to: self)
+        }
+    }
+
     fileprivate var _resigned: UInt {
         return self ^ ._mostSignificantBit
     }
@@ -318,6 +352,11 @@ extension UInt: UnsafeRandom, RandomWithMax, RandomWithMin, RandomToValue, Rando
 }
 
 extension UInt64: UnsafeRandom, RandomWithMax, RandomWithMin, RandomToValue, RandomThroughValue, RandomWithinRange, RandomWithinClosedRange, RandomWithMaxWidth, RandomWithExactWidth {
+
+    /// Generates a random value of `Self` using `randomGenerator`.
+    public static func random<R: RandomGenerator>(using randomGenerator: inout R) -> UInt64 {
+        return randomGenerator.random64()
+    }
 
     fileprivate var _resigned: UInt64 {
         return self ^ (1 << 63)
@@ -327,6 +366,11 @@ extension UInt64: UnsafeRandom, RandomWithMax, RandomWithMin, RandomToValue, Ran
 
 extension UInt32: UnsafeRandom, RandomWithMax, RandomWithMin, RandomToValue, RandomThroughValue, RandomWithinRange, RandomWithinClosedRange, RandomWithMaxWidth, RandomWithExactWidth {
 
+    /// Generates a random value of `Self` using `randomGenerator`.
+    public static func random<R: RandomGenerator>(using randomGenerator: inout R) -> UInt32 {
+        return randomGenerator.random32()
+    }
+
     fileprivate var _resigned: UInt32 {
         return self ^ (1 << 31)
     }
@@ -335,6 +379,11 @@ extension UInt32: UnsafeRandom, RandomWithMax, RandomWithMin, RandomToValue, Ran
 
 extension UInt16: UnsafeRandom, RandomWithMax, RandomWithMin, RandomToValue, RandomThroughValue, RandomWithinRange, RandomWithinClosedRange, RandomWithMaxWidth, RandomWithExactWidth {
 
+    /// Generates a random value of `Self` using `randomGenerator`.
+    public static func random<R: RandomGenerator>(using randomGenerator: inout R) -> UInt16 {
+        return randomGenerator.random16()
+    }
+
     fileprivate var _resigned: UInt16 {
         return self ^ (1 << 15)
     }
@@ -342,6 +391,11 @@ extension UInt16: UnsafeRandom, RandomWithMax, RandomWithMin, RandomToValue, Ran
 }
 
 extension UInt8: UnsafeRandom, RandomWithMax, RandomWithMin, RandomToValue, RandomThroughValue, RandomWithinRange, RandomWithinClosedRange, RandomWithMaxWidth, RandomWithExactWidth {
+
+    /// Generates a random value of `Self` using `randomGenerator`.
+    public static func random<R: RandomGenerator>(using randomGenerator: inout R) -> UInt8 {
+        return randomGenerator.random8()
+    }
 
     fileprivate var _resigned: UInt8 {
         return self ^ (1 << 7)
