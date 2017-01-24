@@ -38,18 +38,53 @@ public protocol RandomBytesGenerator: RandomGenerator {
 
 extension RandomBytesGenerator where Bytes == UInt64 {
 
-    /// Generates a random 64-bit integer.
+    /// Generates a random unsigned 64-bit integer.
     public mutating func random64() -> UInt64 {
         return randomBytes()
+    }
+
+    /// Generates a random unsigned 32-bit integer.
+    public mutating func random32() -> UInt32 {
+        var value = randomBytes()
+        return _unsafeCast(&value)
+    }
+
+    /// Generates a random unsigned 16-bit integer.
+    public mutating func random16() -> UInt16 {
+        var value = randomBytes()
+        return _unsafeCast(&value)
+    }
+
+    /// Generates a random unsigned 8-bit integer.
+    public mutating func random8() -> UInt8 {
+        var value = randomBytes()
+        return _unsafeCast(&value)
     }
 
 }
 
 extension RandomBytesGenerator where Bytes == UInt32 {
 
-    /// Generates a random 32-bit integer.
+    /// Generates a random unsigned 64-bit integer.
+    public mutating func random64() -> UInt64 {
+        return unsafeBitCast((randomBytes(), randomBytes()), to: UInt64.self)
+    }
+
+    /// Generates a random unsigned 32-bit integer.
     public mutating func random32() -> UInt32 {
         return randomBytes()
+    }
+
+    /// Generates a random unsigned 16-bit integer.
+    public mutating func random16() -> UInt16 {
+        var value = randomBytes()
+        return _unsafeCast(&value)
+    }
+
+    /// Generates a random unsigned 8-bit integer.
+    public mutating func random8() -> UInt8 {
+        var value = randomBytes()
+        return _unsafeCast(&value)
     }
 
 }
