@@ -90,8 +90,8 @@ extension ContiguousArray where Element: UnsafeRandom {
     /// This is *significantly* faster than using `init(randomCount:using:)`.
     public init<R: RandomGenerator>(unsafeRandomCount: Int, using randomGenerator: inout R) {
         self.init(repeating: .randomizableValue, count: unsafeRandomCount)
-        withUnsafeMutableBufferPointer {
-            randomGenerator.randomize(buffer: UnsafeMutableRawBufferPointer($0))
+        withUnsafeMutableBytes {
+            randomGenerator.randomize(buffer: $0)
         }
     }
 
