@@ -35,3 +35,9 @@ internal func _unsafeCast<T, U>(_ value: T, to type: U.Type = U.self) -> U {
     var value = value
     return _unsafeCast(&value, to: type)
 }
+
+/// Unsafely creates a new value of type `T`.
+internal func _unsafeValue<T>(of type: T.Type = T.self) -> T {
+    return _unsafeCast(Optional<T>.none)
+}
+
