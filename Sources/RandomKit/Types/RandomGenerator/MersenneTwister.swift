@@ -40,7 +40,7 @@ public struct MersenneTwister: RandomBytesGenerator, SeedableRandomGenerator, Ra
     private typealias _State = _Array312<UInt64>
 
     /// The internal state.
-    private var _state: _State = _unsafeValue()
+    private var _state: _State = _zero312()
 
     private var _index: Int
 

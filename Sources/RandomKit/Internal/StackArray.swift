@@ -25,33 +25,36 @@
 //  THE SOFTWARE.
 //
 
-/// A stack array of 312 elements.
+/// A stack-allocated array of 312 elements.
 internal typealias _Array312<T> = (
-    T, T, T, T, T, T, T, T, T, T, T, T, T,
-    T, T, T, T, T, T, T, T, T, T, T, T, T,
-    T, T, T, T, T, T, T, T, T, T, T, T, T,
-    T, T, T, T, T, T, T, T, T, T, T, T, T,
-    T, T, T, T, T, T, T, T, T, T, T, T, T,
-    T, T, T, T, T, T, T, T, T, T, T, T, T,
-
-    T, T, T, T, T, T, T, T, T, T, T, T, T,
-    T, T, T, T, T, T, T, T, T, T, T, T, T,
-    T, T, T, T, T, T, T, T, T, T, T, T, T,
-    T, T, T, T, T, T, T, T, T, T, T, T, T,
-    T, T, T, T, T, T, T, T, T, T, T, T, T,
-    T, T, T, T, T, T, T, T, T, T, T, T, T,
-
-    T, T, T, T, T, T, T, T, T, T, T, T, T,
-    T, T, T, T, T, T, T, T, T, T, T, T, T,
-    T, T, T, T, T, T, T, T, T, T, T, T, T,
-    T, T, T, T, T, T, T, T, T, T, T, T, T,
-    T, T, T, T, T, T, T, T, T, T, T, T, T,
-    T, T, T, T, T, T, T, T, T, T, T, T, T,
-
-    T, T, T, T, T, T, T, T, T, T, T, T, T,
-    T, T, T, T, T, T, T, T, T, T, T, T, T,
-    T, T, T, T, T, T, T, T, T, T, T, T, T,
-    T, T, T, T, T, T, T, T, T, T, T, T, T,
-    T, T, T, T, T, T, T, T, T, T, T, T, T,
-    T, T, T, T, T, T, T, T, T, T, T, T, T
+    T, T, T, T, T, T, T, T, T, T, T, T, T, T, T, T, T, T, T, T, T, T, T, T, T, T,
+    T, T, T, T, T, T, T, T, T, T, T, T, T, T, T, T, T, T, T, T, T, T, T, T, T, T,
+    T, T, T, T, T, T, T, T, T, T, T, T, T, T, T, T, T, T, T, T, T, T, T, T, T, T,
+    T, T, T, T, T, T, T, T, T, T, T, T, T, T, T, T, T, T, T, T, T, T, T, T, T, T,
+    T, T, T, T, T, T, T, T, T, T, T, T, T, T, T, T, T, T, T, T, T, T, T, T, T, T,
+    T, T, T, T, T, T, T, T, T, T, T, T, T, T, T, T, T, T, T, T, T, T, T, T, T, T,
+    T, T, T, T, T, T, T, T, T, T, T, T, T, T, T, T, T, T, T, T, T, T, T, T, T, T,
+    T, T, T, T, T, T, T, T, T, T, T, T, T, T, T, T, T, T, T, T, T, T, T, T, T, T,
+    T, T, T, T, T, T, T, T, T, T, T, T, T, T, T, T, T, T, T, T, T, T, T, T, T, T,
+    T, T, T, T, T, T, T, T, T, T, T, T, T, T, T, T, T, T, T, T, T, T, T, T, T, T,
+    T, T, T, T, T, T, T, T, T, T, T, T, T, T, T, T, T, T, T, T, T, T, T, T, T, T,
+    T, T, T, T, T, T, T, T, T, T, T, T, T, T, T, T, T, T, T, T, T, T, T, T, T, T
 )
+
+/// Returns a stack-allocated array of all zeros.
+internal func _zero312<T: ExpressibleByIntegerLiteral>() -> _Array312<T> {
+    return (
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+    )
+}
