@@ -87,6 +87,9 @@ let count = int(after: "--count") ?? int(after: "-c") ?? 10_000_000
 if benchmarkAllGenerators || contains("--xoroshiro") {
     runBenchmarks(using: &Xoroshiro.default)
 }
+if benchmarkAllGenerators || contains("--xorshift") {
+    runBenchmarks(using: &Xorshift.default)
+}
 if benchmarkAllGenerators || contains("--mersenne-twister") {
     runBenchmarks(using: &MersenneTwister.default)
 }
