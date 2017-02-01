@@ -27,9 +27,12 @@
 
 import Foundation
 
-/// A generator that uses the [Xoroshiro][site] algorithm.
+/// A generator that uses the [Xoroshiro][1] algorithm.
 ///
-/// [site]: http://xoroshiro.di.unimi.it/
+/// Its source is located [here][2].
+///
+/// [1]: http://xoroshiro.di.unimi.it/
+/// [2]: http://xoroshiro.di.unimi.it/xoroshiro128plus.c
 public struct Xoroshiro: RandomBytesGenerator, SeedableRandomGenerator, Random {
 
     /// A default global instance.
@@ -63,6 +66,25 @@ public struct Xoroshiro: RandomBytesGenerator, SeedableRandomGenerator, Random {
         _state.0 = ((_state.0 << k0) | (_state.0 >> (l - k0))) ^ x ^ (x << k1)
         _state.1 = (x << k2) | (x >> (l - k2))
         return result
+    }
+
+    /// Moves the generator 2^64 calls forward.
+    public mutating func jump() {
+        var s0: UInt64 = 0
+        var s1: UInt64 = 0
+        @inline(__always)
+        func doThings(with value: UInt64) {
+            for i: UInt64 in 0 ..< 64 {
+                if (value & 1) << i != 0 {
+                    s0 ^= _state.0
+                    s1 ^= _state.1
+                }
+                _ = randomBytes()
+            }
+        }
+        doThings(with: 0xBEAC0467EBA5FACB)
+        doThings(with: 0xD86B048B86AA9922)
+        _state = (s0, s1)
     }
 
 }
