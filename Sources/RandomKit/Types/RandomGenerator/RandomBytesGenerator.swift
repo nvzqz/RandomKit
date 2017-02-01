@@ -100,14 +100,8 @@ extension RandomBytesGenerator {
         let remainder = size % MemoryLayout<Bytes>.size
         if remainder > 0 {
             var remaining = randomBytes()
-            let remainingBuffer = buffer.assumingMemoryBound(to: UInt8.self)
-            withUnsafePointer(to: &remaining) { remainingPtr in
-                remainingPtr.withMemoryRebound(to: UInt8.self, capacity: remainder) { r in
-                    for i in CountableRange(uncheckedBounds: (0, remainder)) {
-                        remainingBuffer[size - i - 1] = r[i]
-                    }
-                }
-            }
+            let remainingBuffer = buffer.advanced(by: size &- remainder)
+            remainingBuffer.copyBytes(from: &remaining, count: remainder)
         }
     }
 
