@@ -84,21 +84,30 @@ func arc4RandomIsAvailable() -> Bool {
 
 let count = int(after: "--count") ?? int(after: "-c") ?? 10_000_000
 
-if benchmarkAllGenerators || contains("--xoroshiro") {
+func bench(_ generator: String) -> Bool {
+    return benchmarkAllGenerators || contains(generator)
+}
+
+if bench("--xoroshiro") {
     runBenchmarks(using: &Xoroshiro.default)
 }
-if benchmarkAllGenerators || contains("--xorshift") {
+
+if bench("--xorshift") {
     runBenchmarks(using: &Xorshift.default)
 }
-if benchmarkAllGenerators || contains("--xorshift-star") {
+
+if bench("--xorshift-star") {
     runBenchmarks(using: &XorshiftStar.default)
 }
-if benchmarkAllGenerators || contains("--mersenne-twister") {
+
+if bench("--mersenne-twister") {
     runBenchmarks(using: &MersenneTwister.default)
 }
-if (benchmarkAllGenerators || contains("--arc4random")) && arc4RandomIsAvailable() {
+
+if bench("--arc4random") && arc4RandomIsAvailable() {
     runBenchmarks(using: &ARC4Random.default)
 }
-if benchmarkAllGenerators || contains("--dev") {
+
+if bench("--dev") {
     runBenchmarks(using: &DeviceRandom.default)
 }
