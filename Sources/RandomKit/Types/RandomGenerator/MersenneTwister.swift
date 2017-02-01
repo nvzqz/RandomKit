@@ -47,13 +47,10 @@ public struct MersenneTwister: RandomBytesGenerator, SeedableRandomGenerator, Ra
     /// Creates an instance from `seed`.
     public init(seed: UInt64) {
         _index = MersenneTwister._stateCount
-        withUnsafeMutablePointer(to: &_state) { pointer in
-            pointer.withMemoryRebound(to: UInt64.self, capacity: MersenneTwister._stateCount) { state in
-                state[0] = seed
-                for i in 1 ..< MersenneTwister._stateCount {
-                    state[i] = 6364136223846793005 &* (state[i &- 1] ^ (state[i &- 1] >> 62)) &+ UInt64(i)
-                }
-            }
+        let state = _contents(of: &_state)
+        state[0] = seed
+        for i in 1 ..< MersenneTwister._stateCount {
+            state[i] = 6364136223846793005 &* (state[i &- 1] ^ (state[i &- 1] >> 62)) &+ UInt64(i)
         }
     }
 
