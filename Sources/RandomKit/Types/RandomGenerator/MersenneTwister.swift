@@ -56,13 +56,9 @@ public struct MersenneTwister: RandomBytesGenerator, SeedableRandomGenerator, Ra
 
     /// Returns random `Bytes`.
     public mutating func randomBytes() -> UInt64 {
-        if _index == MersenneTwister._stateCount {
-            let state = withUnsafeMutablePointer(to: &self._state) {
-                $0.withMemoryRebound(to: UInt64.self, capacity: MersenneTwister._stateCount) {
-                    $0
-                }
-            }
+        let state = _contents(of: &_state)
 
+        if _index == MersenneTwister._stateCount {
             let n = MersenneTwister._stateCount
             let m = n / 2
             let a: UInt64 = 0xB5026F5AA96619E9
@@ -85,11 +81,7 @@ public struct MersenneTwister: RandomBytesGenerator, SeedableRandomGenerator, Ra
             _index = 0
         }
 
-        var result = withUnsafePointer(to: &_state) {
-            $0.withMemoryRebound(to: UInt64.self, capacity: MersenneTwister._stateCount) { ptr in
-                return ptr[_index]
-            }
-        }
+        var result = state[_index]
         _index = _index &+ 1
 
         result ^= (result >> 29) & 0x5555555555555555
