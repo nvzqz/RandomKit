@@ -90,6 +90,9 @@ if benchmarkAllGenerators || contains("--xoroshiro") {
 if benchmarkAllGenerators || contains("--xorshift") {
     runBenchmarks(using: &Xorshift.default)
 }
+if benchmarkAllGenerators || contains("--xorshift-star") {
+    runBenchmarks(using: &XorshiftStar.default)
+}
 if benchmarkAllGenerators || contains("--mersenne-twister") {
     runBenchmarks(using: &MersenneTwister.default)
 }

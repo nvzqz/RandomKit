@@ -28,7 +28,7 @@
 // Allows casting between types of potentially different sizes.
 
 internal func _unsafeCast<T, U>(_ value: inout T, to type: U.Type = U.self) -> U {
-    return UnsafeMutableRawPointer(&value).assumingMemoryBound(to: type).pointee
+    return _pointer(to: &value, as: type).pointee
 }
 
 internal func _unsafeCast<T, U>(_ value: T, to type: U.Type = U.self) -> U {
@@ -41,3 +41,6 @@ internal func _unsafeValue<T>(of type: T.Type = T.self) -> T {
     return _unsafeCast(Optional<T>.none)
 }
 
+internal func _pointer<T, U>(to value: inout T, as type: U.Type) -> UnsafeMutablePointer<U> {
+    return UnsafeMutableRawPointer(&value).assumingMemoryBound(to: type)
+}

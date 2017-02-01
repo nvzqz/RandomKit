@@ -41,7 +41,10 @@ internal typealias _Array312<T> = (
     T, T, T, T, T, T, T, T, T, T, T, T, T, T, T, T, T, T, T, T, T, T, T, T, T, T
 )
 
-/// Returns a stack-allocated array of all zeros.
+/// A stack-allocated array of 16 elements.
+internal typealias _Array16<T> = (T, T, T, T, T, T, T, T, T, T, T, T, T, T, T, T)
+
+/// Returns a stack-allocated array of 312 zeros.
 internal func _zero312<T: ExpressibleByIntegerLiteral>() -> _Array312<T> {
     return (
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -57,4 +60,14 @@ internal func _zero312<T: ExpressibleByIntegerLiteral>() -> _Array312<T> {
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
     )
+}
+
+/// Returns a stack-allocated array of 16 zeros.
+internal func _zero16<T: ExpressibleByIntegerLiteral>() -> _Array16<T> {
+    return (0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+}
+
+/// Returns a mutable pointer to the contents of `array`.
+internal func _contents<T>(of array: inout _Array16<T>) -> UnsafeMutablePointer<T> {
+    return _pointer(to: &array, as: T.self)
 }

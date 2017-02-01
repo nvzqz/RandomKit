@@ -25,8 +25,6 @@
 //  THE SOFTWARE.
 //
 
-import Foundation
-
 /// A generator that uses the [Xoroshiro][1] algorithm.
 ///
 /// Its source is located [here][2].
@@ -70,7 +68,7 @@ public struct Xoroshiro: RandomBytesGenerator, SeedableRandomGenerator, Random {
         return result
     }
 
-    /// Moves the generator 2^64 calls forward.
+    /// Advances the generator 2^64 calls forward.
     public mutating func jump() {
         var s0: UInt64 = 0
         var s1: UInt64 = 0
