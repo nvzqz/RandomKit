@@ -67,6 +67,8 @@ let benchmarkRandomThroughValue      = benchmarkAllProtocols || contains("Random
 let benchmarkRandomWithinRange       = benchmarkAllProtocols || contains("RandomWithinRange")
 let benchmarkRandomWithinClosedRange = benchmarkAllProtocols || contains("RandomWithinClosedRange")
 
+let benchmarkRandoms = contains("--randoms")
+
 let benchmarkRandomArray            = contains("--array")
 let benchmarkRandomArrayCount       = int(after: "--array")
 let benchmarkSafeRandomArray        = benchmarkRandomArray         || contains("--array-safe")

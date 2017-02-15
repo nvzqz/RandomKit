@@ -101,6 +101,14 @@ func benchmarkRandomWithinClosedRange<T: RandomWithinClosedRange, R: RandomGener
     print("")
 }
 
+func benchmarkRandoms<T: Random, R: RandomGenerator>(for type: T.Type, count: Int = count, using randomGenerator: inout R) {
+    print("Generating " + style(count: count) + " limited randoms for " + style(type) + " using " + style(randomGenerator))
+    benchmark(count: 1) {
+        var randoms = type.randoms(limitedBy: count, using: &randomGenerator)
+        while let _ = randoms.next() {}
+    }
+}
+
 func benchmarkSafeRandomArray<T: Random, R: RandomGenerator>(for type: T.Type, randomCount: Int,
                               count: Int = count,
                               using randomGenerator: inout R) {
@@ -206,6 +214,10 @@ func runBenchmarks<R: RandomGenerator>(using randomGenerator: inout R) {
             benchmarkRandomWithinClosedRange(with: UInt16.minMaxClosedRange, using: &randomGenerator)
             benchmarkRandomWithinClosedRange(with: UInt8.minMaxClosedRange, using: &randomGenerator)
         }
+    }
+
+    if benchmarkRandoms {
+        benchmarkRandoms(for: Int.self, using: &randomGenerator)
     }
 
     if benchmarkSafeRandomArray {

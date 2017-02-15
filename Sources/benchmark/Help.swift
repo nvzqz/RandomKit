@@ -61,6 +61,7 @@ func printHelpAndExit() -> Never {
     message += "    " + sf("--all-integers") + "              Benchmark all integer types\n"
     message += "    " + sf("--all-protocols") + "             Benchmark all protocols\n"
     message += "\n"
+    message += "    " + sf("--randoms") + "                   Benchmark limit randoms\n"
     message += "    " + sf("--array") + " " + sa("COUNT") + "               Benchmark both safe and unsafe random arrays; default count is 100\n"
     message += "    " + sf("--array-safe") + " " + sa("COUNT") + "          Benchmark safe random arrays; default count is 100\n"
     message += "    " + sf("--array-unsafe") + " " + sa("COUNT") + "        Benchmark unsafe random arrays; default count is 100\n"
