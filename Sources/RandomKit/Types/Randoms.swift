@@ -95,10 +95,18 @@ public struct LimitedRandoms<Input, Output, Limit: Strideable & ExpressibleByInt
     /// Advances to the next element and returns it, or `nil` if no next element
     /// exists. Once `nil` has been returned, all subsequent calls return `nil`.
     public mutating func next() -> Output? {
-        guard _iteration < limit else {
-            return nil
+        if Limit.self == Int.self {
+            let (iter, limit) = unsafeBitCast((_iteration, self.limit), to: (Int, Int).self)
+            guard iter < limit else {
+                return nil
+            }
+            _iteration = unsafeBitCast(iter &+ 1, to: Limit.self)
+        } else {
+            guard _iteration < limit else {
+                return nil
+            }
+            _iteration = _iteration.advanced(by: 1)
         }
-        _iteration = _iteration.advanced(by: 1)
         return generate(input, &_randomGeneratorPointer.pointee)
     }
 
