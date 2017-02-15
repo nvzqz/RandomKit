@@ -64,7 +64,7 @@ public struct Randoms<Input, Output, RG: RandomGenerator>: IteratorProtocol, Seq
 /// - warning: An instance *should not* outlive its `RandomGenerator`.
 ///
 /// - seealso: `Randoms`
-public struct LimitedRandoms<Input, Output, Limit: Strideable & ExpressibleByIntegerLiteral, RG: RandomGenerator>: IteratorProtocol, Sequence {
+public struct LimitedRandoms<Input, Output, RG: RandomGenerator>: IteratorProtocol, Sequence {
 
     /// A function that takes an `Input` and mutable `Generator` and returns an optional `Output`.
     public typealias Generate = (Input, inout RG) -> Output?
@@ -72,19 +72,27 @@ public struct LimitedRandoms<Input, Output, Limit: Strideable & ExpressibleByInt
     /// A pointer to the `RandomGenerator`
     private let _randomGeneratorPointer: UnsafeMutablePointer<RG>
 
-    private var _iteration: Limit
+    private var _iteration: Int
 
     /// The input value.
     public var input: Input
 
     /// The limit value.
-    public var limit: Limit
+    public var limit: Int
 
     /// The function that generates a random `Output`.
     public var generate: Generate
 
+    /// A value less than or equal to the number of elements in
+    /// the sequence, calculated nondestructively.
+    ///
+    /// - Complexity: O(1)
+    public var underestimatedCount: Int {
+        return limit
+    }
+
     /// Creates an instance with `input`, `randomGenerator`, and `generate`.
-    public init(input: Input, limit: Limit, randomGenerator: inout RG, generate: @escaping Generate) {
+    public init(input: Input, limit: Int, randomGenerator: inout RG, generate: @escaping Generate) {
         _randomGeneratorPointer = UnsafeMutablePointer(&randomGenerator)
         _iteration = 0
         self.input = input
@@ -95,31 +103,13 @@ public struct LimitedRandoms<Input, Output, Limit: Strideable & ExpressibleByInt
     /// Advances to the next element and returns it, or `nil` if no next element
     /// exists. Once `nil` has been returned, all subsequent calls return `nil`.
     public mutating func next() -> Output? {
-        if Limit.self == Int.self {
-            let (iter, limit) = unsafeBitCast((_iteration, self.limit), to: (Int, Int).self)
-            guard iter < limit else {
-                return nil
-            }
-            _iteration = unsafeBitCast(iter &+ 1, to: Limit.self)
-        } else {
-            guard _iteration < limit else {
-                return nil
-            }
-            _iteration = _iteration.advanced(by: 1)
+        guard _iteration < limit else {
+            return nil
         }
+        _iteration = _iteration &+ 1
         return generate(input, &_randomGeneratorPointer.pointee)
     }
 
-}
-
-extension LimitedRandoms where Limit: Integer {
-    /// A value less than or equal to the number of elements in
-    /// the sequence, calculated nondestructively.
-    ///
-    /// - Complexity: O(1)
-    public var underestimatedCount: Int {
-        return Int(limit.toIntMax())
-    }
 }
 
 extension Random {
@@ -134,8 +124,7 @@ extension Random {
     }
 
     /// Returns a sequence of random values limited by `limit` using `randomGenerator`.
-    public static func randoms<R: RandomGenerator, L: Strideable & ExpressibleByIntegerLiteral>(limitedBy limit: L,
-                               using randomGenerator: inout R) -> LimitedRandoms<(), Self, L, R> {
+    public static func randoms<R: RandomGenerator>(limitedBy limit: Int, using randomGenerator: inout R) -> LimitedRandoms<(), Self, R> {
         return LimitedRandoms(input: (), limit: limit, randomGenerator: &randomGenerator, generate: _generate)
     }
 
@@ -149,9 +138,7 @@ extension RandomToValue {
     }
 
     /// Returns a sequence of random values limited by `limit` to `value` using `randomGenerator`.
-    public static func randoms<R: RandomGenerator, L: Strideable & ExpressibleByIntegerLiteral>(limitedBy limit: L,
-                               to value: Self,
-                               using randomGenerator: inout R) -> LimitedRandoms<Self, Self, L, R> {
+    public static func randoms<R: RandomGenerator>(limitedBy limit: Int, to value: Self, using randomGenerator: inout R) -> LimitedRandoms<Self, Self, R> {
         return LimitedRandoms(input: value, limit: limit, randomGenerator: &randomGenerator, generate: random)
     }
 
@@ -165,9 +152,7 @@ extension RandomThroughValue {
     }
 
     /// Returns a sequence of random values limited by `limit` through `value` using `randomGenerator`.
-    public static func randoms<R: RandomGenerator, L: Strideable & ExpressibleByIntegerLiteral>(limitedBy limit: L,
-                               through value: Self,
-                               using randomGenerator: inout R) -> LimitedRandoms<Self, Self, L, R> {
+    public static func randoms<R: RandomGenerator>(limitedBy limit: Int, through value: Self, using randomGenerator: inout R) -> LimitedRandoms<Self, Self, R> {
         return LimitedRandoms(input: value, limit: limit, randomGenerator: &randomGenerator, generate: random)
     }
 
@@ -181,9 +166,7 @@ extension RandomWithinRange {
     }
 
     /// Returns a sequence of random values limited by `limit` within `range` using `randomGenerator`.
-    public static func randoms<R: RandomGenerator, L: Strideable & ExpressibleByIntegerLiteral>(limitedBy limit: L,
-                               within range: Range<Self>,
-                               using randomGenerator: inout R) -> LimitedRandoms<Range<Self>, Self, L, R> {
+    public static func randoms<R: RandomGenerator>(limitedBy limit: Int, within range: Range<Self>, using randomGenerator: inout R) -> LimitedRandoms<Range<Self>, Self, R> {
         return LimitedRandoms(input: range, limit: limit, randomGenerator: &randomGenerator, generate: random)
     }
 
@@ -197,9 +180,7 @@ extension RandomWithinClosedRange {
     }
 
     /// Returns a sequence of random values limited by `limit` within `closedRange` using `randomGenerator`.
-    public static func randoms<R: RandomGenerator, L: Strideable & ExpressibleByIntegerLiteral>(limitedBy limit: L,
-                               within closedRange: ClosedRange<Self>,
-                               using randomGenerator: inout R) -> LimitedRandoms<ClosedRange<Self>, Self, L, R> {
+    public static func randoms<R: RandomGenerator>(limitedBy limit: Int, within closedRange: ClosedRange<Self>, using randomGenerator: inout R) -> LimitedRandoms<ClosedRange<Self>, Self, R> {
         return LimitedRandoms(input: closedRange, limit: limit, randomGenerator: &randomGenerator, generate: random)
     }
 
@@ -213,9 +194,7 @@ extension RandomWithMaxWidth {
     }
 
     /// Returns a sequence of random values limited by `limit` with a max width using `randomGenerator`.
-    public static func randoms<R: RandomGenerator, L: Strideable & ExpressibleByIntegerLiteral>(limitedBy limit: L,
-                               withMaxWidth width: Int,
-                               using randomGenerator: inout R) -> LimitedRandoms<Int, Self, L, R> {
+    public static func randoms<R: RandomGenerator>(limitedBy limit: Int, withMaxWidth width: Int, using randomGenerator: inout R) -> LimitedRandoms<Int, Self, R> {
         return LimitedRandoms(input: width, limit: limit, randomGenerator: &randomGenerator, generate: random)
     }
 
@@ -229,9 +208,7 @@ extension RandomWithExactWidth {
     }
 
     /// Returns a sequence of random values limited by `limit` with an exact width using `randomGenerator`.
-    public static func randoms<R: RandomGenerator, L: Strideable & ExpressibleByIntegerLiteral>(limitedBy limit: L,
-                               withExactWidth width: Int,
-                               using randomGenerator: inout R) -> LimitedRandoms<Int, Self, L, R> {
+    public static func randoms<R: RandomGenerator>(limitedBy limit: Int, withExactWidth width: Int, using randomGenerator: inout R) -> LimitedRandoms<Int, Self, R> {
         return LimitedRandoms(input: width, limit: limit, randomGenerator: &randomGenerator, generate: random)
     }
 
