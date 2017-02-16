@@ -69,6 +69,9 @@ let benchmarkRandomWithinClosedRange = benchmarkAllProtocols || contains("Random
 
 let benchmarkRandoms = contains("--randoms")
 
+let benchmarkRandomSet      = contains("--set")
+let benchmarkRandomSetCount = int(after: "--set") ?? 100
+
 let benchmarkRandomArray            = contains("--array")
 let benchmarkRandomArrayCount       = int(after: "--array")
 let benchmarkSafeRandomArray        = benchmarkRandomArray         || contains("--array-safe")

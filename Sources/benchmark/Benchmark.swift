@@ -109,6 +109,16 @@ func benchmarkRandoms<T: Random, R: RandomGenerator>(for type: T.Type, count: In
     }
 }
 
+func benchmarkRandomSet<T: Random & Hashable, R: RandomGenerator>(for type: T.Type, randomCount: Int,
+                        count: Int = count,
+                        using randomGenerator: inout R) {
+    print("Generating " + style(count: count) + " random sets for " + style(type) + " of " + style(randomCount) + " using " + style(randomGenerator))
+    benchmark(count: count) {
+        let _ = Set<T>(randomCount: randomCount, using: &randomGenerator)
+    }
+    print("")
+}
+
 func benchmarkSafeRandomArray<T: Random, R: RandomGenerator>(for type: T.Type, randomCount: Int,
                               count: Int = count,
                               using randomGenerator: inout R) {
@@ -218,6 +228,10 @@ func runBenchmarks<R: RandomGenerator>(using randomGenerator: inout R) {
 
     if benchmarkRandoms {
         benchmarkRandoms(for: Int.self, using: &randomGenerator)
+    }
+
+    if benchmarkRandomSet {
+        benchmarkRandomSet(for: Int.self, randomCount: benchmarkRandomSetCount, using: &randomGenerator)
     }
 
     if benchmarkSafeRandomArray {
