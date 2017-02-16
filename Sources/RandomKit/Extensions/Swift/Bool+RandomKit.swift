@@ -33,8 +33,8 @@ extension Bool: Random {
     }
 
     /// Generates a random `Bool` with a 1 in n chance of being `true`.
-    public static func random<R: RandomGenerator>(withWeight weight: UInt, using randomGenerator: inout R) -> Bool {
-        return weight <= 1 || UInt.random(to: weight, using: &randomGenerator) == 0
+    public static func random<R: RandomGenerator>(withWeight weight: UInt64, using randomGenerator: inout R) -> Bool {
+        return weight <= 1 || UInt64.random(to: weight, using: &randomGenerator) == 0
     }
 
 }
