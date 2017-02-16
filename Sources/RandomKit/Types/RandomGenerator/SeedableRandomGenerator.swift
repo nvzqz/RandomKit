@@ -25,8 +25,6 @@
 //  THE SOFTWARE.
 //
 
-import Foundation
-
 /// A random value generator type that can be instantiated with a `Seed`.
 public protocol SeedableRandomGenerator: RandomGenerator {
 

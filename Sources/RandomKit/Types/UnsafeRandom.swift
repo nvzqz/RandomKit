@@ -25,8 +25,6 @@
 //  THE SOFTWARE.
 //
 
-import Foundation
-
 /// A type that can generate a random value using a randomizable base value.
 ///
 /// The randomizable value is passed into the `randomize(value:)` method of `randomGenerator` in `random(using:)`.

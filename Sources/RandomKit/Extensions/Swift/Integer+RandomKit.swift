@@ -25,7 +25,6 @@
 //  THE SOFTWARE.
 //
 
-import Foundation
 import ShiftOperations
 
 extension ExpressibleByIntegerLiteral where Self: UnsafeRandom {

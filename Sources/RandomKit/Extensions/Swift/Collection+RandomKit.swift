@@ -25,8 +25,6 @@
 //  THE SOFTWARE.
 //
 
-import Foundation
-
 extension Collection where Index: RandomWithinRange {
 
     /// Returns a random element of `self`, or `nil` if `self` is empty.

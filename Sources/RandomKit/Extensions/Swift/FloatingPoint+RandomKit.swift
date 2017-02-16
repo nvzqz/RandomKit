@@ -25,8 +25,6 @@
 //  THE SOFTWARE.
 //
 
-import Foundation
-
 extension FloatingPoint where Self: RandomWithinRange {
 
     /// Returns an optional random value of `Self` inside of the range using `randomGenerator`.
