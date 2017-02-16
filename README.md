@@ -344,7 +344,7 @@ An array of random values can be generated for types conforming to `Random` with
 Similar initializers exist for all other `Random-` protocols.
 
 ```swift
-let randoms = Array<Int>(randomCount: 100, using: &randomGenerator)  // [[8845477344689834233, -957454203475087100, ...]
+let randoms = Array<Int>(randomCount: 100, using: &randomGenerator)  // [8845477344689834233, -957454203475087100, ...]
 ```
 
 For types conforming to `UnsafeRandom`, a faster alternative is `init(unsafeRandomCount:using:)`.
