@@ -159,6 +159,13 @@ Try it out for yourself! Download the repo and open 'RandomKit.playground'.
 The `RandomGenerator` protocol defines basic methods for generating primitive
 values and randomizing a buffer.
 
+All provided types that conform to `RandomGenerator` have a static `default`
+value that can be passed as an `inout` argument to generation functions.
+
+```swift
+let value = Int.random(using: &Xoroshiro.default)
+```
+
 #### Available Generators
 
 - `ARC4Random`
