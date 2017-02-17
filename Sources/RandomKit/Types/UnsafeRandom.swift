@@ -51,8 +51,7 @@ extension UnsafeRandom {
 
     /// The base randomizable value for `Self`.
     public static var randomizableValue: Self {
-        var value: Self? = nil
-        return _unsafeCast(&value)
+        return _unsafeValue()
     }
 
     /// Generates a random value of `Self` using `randomGenerator`.
