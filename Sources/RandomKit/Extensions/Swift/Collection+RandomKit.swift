@@ -171,10 +171,24 @@ extension ContiguousArray: Shuffleable, UniqueShuffleable {
         }
     }
 
+    /// Shuffles the elements of `self` in `range`.
+    public mutating func shuffle<R: RandomGenerator>(in range: CountableRange<Int>, using randomGenerator: inout R) {
+        withUnsafeMutableBufferPointer { buffer in
+            buffer.shuffle(in: range, using: &randomGenerator)
+        }
+    }
+
     /// Shuffles the elements of `self` in a unique order.
     public mutating func shuffleUnique<R: RandomGenerator>(using randomGenerator: inout R) {
         withUnsafeMutableBufferPointer { buffer in
             buffer.shuffleUnique(using: &randomGenerator)
+        }
+    }
+
+    /// Shuffles the elements of `self` in a unique order in `range`.
+    public mutating func shuffleUnique<R: RandomGenerator>(in range: CountableRange<Int>, using randomGenerator: inout R) {
+        withUnsafeMutableBufferPointer { buffer in
+            buffer.shuffleUnique(in: range, using: &randomGenerator)
         }
     }
 
