@@ -28,17 +28,17 @@
 /// A type whose elements can be shuffled.
 public protocol Shuffleable {
 
-    /// Shuffles the elements in `self` and returns the result.
+    /// Shuffles the elements of `self` and returns the result.
     func shuffled<R: RandomGenerator>(using randomGenerator: inout R) -> Self
 
-    /// Shuffles the elements in `self`.
+    /// Shuffles the elements of `self`.
     mutating func shuffle<R: RandomGenerator>(using randomGenerator: inout R)
 
 }
 
 public extension Shuffleable {
 
-    /// Shuffles the elements in `self`.
+    /// Shuffles the elements of `self`.
     public mutating func shuffle<R: RandomGenerator>(using randomGenerator: inout R) {
         self = shuffled(using: &randomGenerator)
     }
