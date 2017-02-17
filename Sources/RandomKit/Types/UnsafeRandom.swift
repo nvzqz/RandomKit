@@ -38,7 +38,7 @@
 ///
 /// }
 ///
-/// let random = Code.random()  // Code(value: 158)
+/// let random = Code.random(using: &randomGenerator)  // Code(value: 158)
 /// ```
 public protocol UnsafeRandom: Random {
 

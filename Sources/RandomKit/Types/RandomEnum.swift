@@ -60,7 +60,7 @@
 ///
 /// }
 ///
-/// let random = Month.random()  // november
+/// let random = Month.random(using: &randomGenerator)  // november
 /// ```
 public protocol RandomEnum: Random, Hashable {
 

@@ -44,7 +44,7 @@
 ///
 /// }
 ///
-/// let random = Direction.random()  // east
+/// let random = Direction.random(using: &randomGenerator)  // east
 /// ```
 public protocol RandomWithAll: Random {
 
