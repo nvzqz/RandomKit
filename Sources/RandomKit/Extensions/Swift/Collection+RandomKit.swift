@@ -136,6 +136,12 @@ extension MutableCollection where Self: UniqueShuffleable, Index: Strideable & R
 extension Array: Shuffleable, UniqueShuffleable {
 }
 
+extension UnsafeMutableBufferPointer: Shuffleable, UniqueShuffleable {
+}
+
+extension UnsafeMutableRawBufferPointer: Shuffleable, UniqueShuffleable {
+}
+
 extension ArraySlice: Shuffleable, UniqueShuffleable {
 }
 
