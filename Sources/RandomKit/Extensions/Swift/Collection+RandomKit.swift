@@ -133,17 +133,90 @@ extension MutableCollection where Self: UniqueShuffleable, Index: Strideable & R
 
 }
 
-extension Array: Shuffleable, UniqueShuffleable {
-}
-
 extension UnsafeMutableBufferPointer: Shuffleable, UniqueShuffleable {
 }
 
 extension UnsafeMutableRawBufferPointer: Shuffleable, UniqueShuffleable {
 }
 
-extension ArraySlice: Shuffleable, UniqueShuffleable {
+extension Array: Shuffleable, UniqueShuffleable {
+
+    /// Shuffles the elements in `self`.
+    public mutating func shuffle<R : RandomGenerator>(using randomGenerator: inout R) {
+        withUnsafeMutableBufferPointer { buffer in
+            buffer.shuffle(using: &randomGenerator)
+        }
+    }
+
+    /// Shuffles the elements in `self` from `startIndex` to `endIndex`.
+    public mutating func shuffle<R: RandomGenerator>(from startIndex: Int, to endIndex: Int, using randomGenerator: inout R) {
+        withUnsafeMutableBufferPointer { buffer in
+            buffer.shuffle(from: startIndex, to: endIndex, using: &randomGenerator)
+        }
+    }
+
+    /// Shuffles the elements in `self` in a unique order.
+    public mutating func shuffleUnique<R: RandomGenerator>(using randomGenerator: inout R) {
+        withUnsafeMutableBufferPointer { buffer in
+            buffer.shuffleUnique(using: &randomGenerator)
+        }
+    }
+
+    /// Shuffles the elements in `self` in a unique order from `startIndex` to `endIndex`.
+    public mutating func shuffleUnique<R: RandomGenerator>(from startIndex: Int, to endIndex: Int, using randomGenerator: inout R) {
+        withUnsafeMutableBufferPointer { buffer in
+            buffer.shuffleUnique(from: startIndex, to: endIndex, using: &randomGenerator)
+        }
+    }
+
 }
 
 extension ContiguousArray: Shuffleable, UniqueShuffleable {
+
+    /// Shuffles the elements in `self`.
+    public mutating func shuffle<R : RandomGenerator>(using randomGenerator: inout R) {
+        withUnsafeMutableBufferPointer { buffer in
+            buffer.shuffle(using: &randomGenerator)
+        }
+    }
+
+    /// Shuffles the elements in `self` from `startIndex` to `endIndex`.
+    public mutating func shuffle<R: RandomGenerator>(from startIndex: Int, to endIndex: Int, using randomGenerator: inout R) {
+        withUnsafeMutableBufferPointer { buffer in
+            buffer.shuffle(from: startIndex, to: endIndex, using: &randomGenerator)
+        }
+    }
+
+    /// Shuffles the elements in `self` in a unique order.
+    public mutating func shuffleUnique<R: RandomGenerator>(using randomGenerator: inout R) {
+        withUnsafeMutableBufferPointer { buffer in
+            buffer.shuffleUnique(using: &randomGenerator)
+        }
+    }
+
+    /// Shuffles the elements in `self` in a unique order from `startIndex` to `endIndex`.
+    public mutating func shuffleUnique<R: RandomGenerator>(from startIndex: Int, to endIndex: Int, using randomGenerator: inout R) {
+        withUnsafeMutableBufferPointer { buffer in
+            buffer.shuffleUnique(from: startIndex, to: endIndex, using: &randomGenerator)
+        }
+    }
+
+}
+
+extension ArraySlice: Shuffleable, UniqueShuffleable {
+
+    /// Shuffles the elements in `self`.
+    public mutating func shuffle<R : RandomGenerator>(using randomGenerator: inout R) {
+        withUnsafeMutableBufferPointer { buffer in
+            buffer.shuffle(using: &randomGenerator)
+        }
+    }
+
+    /// Shuffles the elements in `self` in a unique order.
+    public mutating func shuffleUnique<R: RandomGenerator>(using randomGenerator: inout R) {
+        withUnsafeMutableBufferPointer { buffer in
+            buffer.shuffleUnique(using: &randomGenerator)
+        }
+    }
+
 }
