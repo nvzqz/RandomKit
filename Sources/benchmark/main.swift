@@ -67,6 +67,11 @@ let benchmarkRandomThroughValue      = benchmarkAllProtocols || contains("Random
 let benchmarkRandomWithinRange       = benchmarkAllProtocols || contains("RandomWithinRange")
 let benchmarkRandomWithinClosedRange = benchmarkAllProtocols || contains("RandomWithinClosedRange")
 
+let benchmarkShuffle = contains("--shuffle")
+let benchmarkShuffleCount = int(after: "--shuffle") ?? 100
+let benchmarkShuffleUnique = contains("--shuffle-unique")
+let benchmarkShuffleUniqueCount = int(after: "--shuffle-unique") ?? 100
+
 let benchmarkRandoms = contains("--randoms")
 
 let benchmarkRandomSet      = contains("--set")

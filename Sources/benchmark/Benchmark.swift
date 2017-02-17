@@ -101,6 +101,22 @@ func benchmarkRandomWithinClosedRange<T: RandomWithinClosedRange, R: RandomGener
     print("")
 }
 
+func benchmarkShuffle<R: RandomGenerator>(count: Int = count, using randomGenerator: inout R) {
+    var array = Array(0 ..< benchmarkShuffleCount)
+    print("Shuffling " + style(count: count) + " arrays of " + style(benchmarkShuffleCount) + " using " + style(randomGenerator))
+    benchmark(count: count) {
+        array.shuffle(using: &randomGenerator)
+    }
+}
+
+func benchmarkShuffleUnique<R: RandomGenerator>(count: Int = count, using randomGenerator: inout R) {
+    var array = Array(0 ..< benchmarkShuffleCount)
+    print("Shuffling uniquely " + style(count: count) + " arrays of " + style(benchmarkShuffleCount) + " using " + style(randomGenerator))
+    benchmark(count: count) {
+        array.shuffleUnique(using: &randomGenerator)
+    }
+}
+
 func benchmarkRandoms<T: Random, R: RandomGenerator>(for type: T.Type, count: Int = count, using randomGenerator: inout R) {
     print("Generating " + style(count: count) + " limited randoms for " + style(type) + " using " + style(randomGenerator))
     benchmark(count: 1) {
@@ -224,6 +240,14 @@ func runBenchmarks<R: RandomGenerator>(using randomGenerator: inout R) {
             benchmarkRandomWithinClosedRange(with: UInt16.minMaxClosedRange, using: &randomGenerator)
             benchmarkRandomWithinClosedRange(with: UInt8.minMaxClosedRange, using: &randomGenerator)
         }
+    }
+
+    if benchmarkShuffle {
+        benchmarkShuffle(using: &randomGenerator)
+    }
+
+    if benchmarkShuffleUnique {
+        benchmarkShuffleUnique(using: &randomGenerator)
     }
 
     if benchmarkRandoms {
