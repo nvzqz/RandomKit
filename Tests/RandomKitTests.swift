@@ -43,7 +43,7 @@ class RandomKitTests: XCTestCase {
     }
 
     func testRandomBool() {
-        let falseCount = (0...testCount).reduce(0) { count, _ in
+        let falseCount = (0 ..< testCount).reduce(0) { count, _ in
             Bool.random(using: &RandomKitTests.generatorToTest) ? count : count + 1
         }
         let difference = 0.25
