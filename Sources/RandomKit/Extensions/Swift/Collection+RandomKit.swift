@@ -68,28 +68,23 @@ extension MutableCollection where Self: Shuffleable, Index: Strideable & RandomW
 
     /// Shuffles the elements in `self` and returns the result.
     public func shuffled<R: RandomGenerator>(using randomGenerator: inout R) -> Self {
-        return shuffled(from: startIndex, to: endIndex, using: &randomGenerator)
+        return shuffled(in: CountableRange(uncheckedBounds: (startIndex, endIndex)), using: &randomGenerator)
     }
 
     /// Shuffles the elements in `self`.
     public mutating func shuffle<R: RandomGenerator>(using randomGenerator: inout R) {
-        shuffle(from: startIndex, to: endIndex, using: &randomGenerator)
+        shuffle(in: CountableRange(uncheckedBounds: (startIndex, endIndex)), using: &randomGenerator)
     }
 
-    /// Shuffles the elements in `self` from `startIndex` to `endIndex` and returns the result.
-    public func shuffled<R: RandomGenerator>(from startIndex: Index,
-                                             to endIndex: Index,
-                                             using randomGenerator: inout R) -> Self {
+    /// Shuffles the elements in `self` in `range` and returns the result.
+    public func shuffled<R: RandomGenerator>(in range: CountableRange<Index>, using randomGenerator: inout R) -> Self {
         var copy = self
-        copy.shuffle(from: startIndex, to: endIndex, using: &randomGenerator)
+        copy.shuffle(in: range, using: &randomGenerator)
         return copy
     }
 
-    /// Shuffles the elements in `self` from `startIndex` to `endIndex`.
-    public mutating func shuffle<R: RandomGenerator>(from startIndex: Index,
-                                                     to endIndex: Index,
-                                                     using randomGenerator: inout R) {
-        let range = startIndex ..< endIndex
+    /// Shuffles the elements in `self` in `range`.
+    public mutating func shuffle<R: RandomGenerator>(in range: CountableRange<Index>, using randomGenerator: inout R) {
         for i in range {
             if let j = Index.random(within: range, using: &randomGenerator), j != i {
                 swap(&self[i], &self[j])
@@ -103,28 +98,24 @@ extension MutableCollection where Self: UniqueShuffleable, Index: Strideable & R
 
     /// Shuffles the elements in `self` in a unique order and returns the result.
     public func shuffledUnique<R: RandomGenerator>(using randomGenerator: inout R) -> Self {
-        return shuffledUnique(from: startIndex, to: endIndex, using: &randomGenerator)
+        return shuffledUnique(in: CountableRange(uncheckedBounds: (startIndex, endIndex)), using: &randomGenerator)
     }
 
     /// Shuffles the elements in `self` in a unique order.
     public mutating func shuffleUnique<R: RandomGenerator>(using randomGenerator: inout R) {
-        shuffleUnique(from: startIndex, to: endIndex, using: &randomGenerator)
+        shuffleUnique(in: CountableRange(uncheckedBounds: (startIndex, endIndex)), using: &randomGenerator)
     }
 
-    /// Shuffles the elements in `self` in a unique order from `startIndex` to `endIndex` and returns the result.
-    public func shuffledUnique<R: RandomGenerator>(from startIndex: Index,
-                                                   to endIndex: Index,
-                                                   using randomGenerator: inout R) -> Self {
+    /// Shuffles the elements in `self` in a unique order in `range` and returns the result.
+    public func shuffledUnique<R: RandomGenerator>(in range: CountableRange<Index>, using randomGenerator: inout R) -> Self {
         var copy = self
-        copy.shuffleUnique(from: startIndex, to: endIndex, using: &randomGenerator)
+        copy.shuffleUnique(in: range, using: &randomGenerator)
         return copy
     }
 
-    /// Shuffles the elements in `self` in a unique order from `startIndex` to `endIndex`.
-    public mutating func shuffleUnique<R: RandomGenerator>(from startIndex: Index,
-                                                           to endIndex: Index,
-                                                           using randomGenerator: inout R) {
-        for i in startIndex ..< endIndex {
+    /// Shuffles the elements in `self` in a unique order in `range`.
+    public mutating func shuffleUnique<R: RandomGenerator>(in range: CountableRange<Index>, using randomGenerator: inout R) {
+        for i in range {
             if let j = Index.random(within: i.advanced(by: 1) ..< endIndex, using: &randomGenerator) {
                 swap(&self[i], &self[j])
             }
@@ -142,16 +133,16 @@ extension UnsafeMutableRawBufferPointer: Shuffleable, UniqueShuffleable {
 extension Array: Shuffleable, UniqueShuffleable {
 
     /// Shuffles the elements in `self`.
-    public mutating func shuffle<R : RandomGenerator>(using randomGenerator: inout R) {
+    public mutating func shuffle<R: RandomGenerator>(using randomGenerator: inout R) {
         withUnsafeMutableBufferPointer { buffer in
             buffer.shuffle(using: &randomGenerator)
         }
     }
 
-    /// Shuffles the elements in `self` from `startIndex` to `endIndex`.
-    public mutating func shuffle<R: RandomGenerator>(from startIndex: Int, to endIndex: Int, using randomGenerator: inout R) {
+    /// Shuffles the elements in `self` in `range`.
+    public mutating func shuffle<R: RandomGenerator>(in range: CountableRange<Int>, using randomGenerator: inout R) {
         withUnsafeMutableBufferPointer { buffer in
-            buffer.shuffle(from: startIndex, to: endIndex, using: &randomGenerator)
+            buffer.shuffle(in: range, using: &randomGenerator)
         }
     }
 
@@ -162,10 +153,10 @@ extension Array: Shuffleable, UniqueShuffleable {
         }
     }
 
-    /// Shuffles the elements in `self` in a unique order from `startIndex` to `endIndex`.
-    public mutating func shuffleUnique<R: RandomGenerator>(from startIndex: Int, to endIndex: Int, using randomGenerator: inout R) {
+    /// Shuffles the elements in `self` in a unique order in `range`.
+    public mutating func shuffleUnique<R: RandomGenerator>(in range: CountableRange<Int>, using randomGenerator: inout R) {
         withUnsafeMutableBufferPointer { buffer in
-            buffer.shuffleUnique(from: startIndex, to: endIndex, using: &randomGenerator)
+            buffer.shuffleUnique(in: range, using: &randomGenerator)
         }
     }
 
@@ -174,16 +165,9 @@ extension Array: Shuffleable, UniqueShuffleable {
 extension ContiguousArray: Shuffleable, UniqueShuffleable {
 
     /// Shuffles the elements in `self`.
-    public mutating func shuffle<R : RandomGenerator>(using randomGenerator: inout R) {
+    public mutating func shuffle<R: RandomGenerator>(using randomGenerator: inout R) {
         withUnsafeMutableBufferPointer { buffer in
             buffer.shuffle(using: &randomGenerator)
-        }
-    }
-
-    /// Shuffles the elements in `self` from `startIndex` to `endIndex`.
-    public mutating func shuffle<R: RandomGenerator>(from startIndex: Int, to endIndex: Int, using randomGenerator: inout R) {
-        withUnsafeMutableBufferPointer { buffer in
-            buffer.shuffle(from: startIndex, to: endIndex, using: &randomGenerator)
         }
     }
 
@@ -194,19 +178,12 @@ extension ContiguousArray: Shuffleable, UniqueShuffleable {
         }
     }
 
-    /// Shuffles the elements in `self` in a unique order from `startIndex` to `endIndex`.
-    public mutating func shuffleUnique<R: RandomGenerator>(from startIndex: Int, to endIndex: Int, using randomGenerator: inout R) {
-        withUnsafeMutableBufferPointer { buffer in
-            buffer.shuffleUnique(from: startIndex, to: endIndex, using: &randomGenerator)
-        }
-    }
-
 }
 
 extension ArraySlice: Shuffleable, UniqueShuffleable {
 
     /// Shuffles the elements in `self`.
-    public mutating func shuffle<R : RandomGenerator>(using randomGenerator: inout R) {
+    public mutating func shuffle<R: RandomGenerator>(using randomGenerator: inout R) {
         withUnsafeMutableBufferPointer { buffer in
             buffer.shuffle(using: &randomGenerator)
         }
