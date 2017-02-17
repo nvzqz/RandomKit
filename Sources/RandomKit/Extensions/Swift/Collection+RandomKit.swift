@@ -68,7 +68,9 @@ extension MutableCollection where Self: Shuffleable, Index: Strideable & RandomW
 
     /// Shuffles the elements of `self` and returns the result.
     public func shuffled<R: RandomGenerator>(using randomGenerator: inout R) -> Self {
-        return shuffled(in: CountableRange(uncheckedBounds: (startIndex, endIndex)), using: &randomGenerator)
+        var copy = self
+        copy.shuffle(using: &randomGenerator)
+        return copy
     }
 
     /// Shuffles the elements of `self`.
@@ -98,7 +100,9 @@ extension MutableCollection where Self: UniqueShuffleable, Index: Strideable & R
 
     /// Shuffles the elements of `self` in a unique order and returns the result.
     public func shuffledUnique<R: RandomGenerator>(using randomGenerator: inout R) -> Self {
-        return shuffledUnique(in: CountableRange(uncheckedBounds: (startIndex, endIndex)), using: &randomGenerator)
+        var copy = self
+        copy.shuffleUnique(using: &randomGenerator)
+        return copy
     }
 
     /// Shuffles the elements of `self` in a unique order.
