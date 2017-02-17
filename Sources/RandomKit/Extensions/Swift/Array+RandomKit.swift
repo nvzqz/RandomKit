@@ -106,18 +106,18 @@ extension Array {
     /// - parameter count: The number of elements to return.
     /// - parameter randomGenerator: The random generator to use.
     public func randomSlice<R: RandomGenerator>(count: Int, using randomGenerator: inout R) -> Array {
-        if count <= 0  {
+        guard count > 0 else {
             return []
         }
-        if count >= self.count {
-            return Array(self)
+        guard count < self.count else {
+            return self
         }
         // Algorithm R
         // fill the reservoir array
-        var result = Array(self[0..<count])
+        var result = Array(self.prefix(upTo: count))
         // replace elements with gradually decreasing probability
-        for i in count..<self.count {
-            let j = Int.random(within: 0 ... i-1, using: &randomGenerator)
+        for i in CountableRange(uncheckedBounds: (count, self.count)) {
+            let j = Int.random(to: i, using: &randomGenerator)
             if j < count {
                 result[j] = self[i]
             }
@@ -133,23 +133,23 @@ extension Array {
     /// - parameter weights: Apply weights on element.
     /// - parameter randomGenerator: The random generator to use.
     public func randomSlice<R: RandomGenerator>(count: Int, weights: [Double], using randomGenerator: inout R) -> Array {
-        if count <= 0  {
+        guard count > 0 else {
             return []
         }
-        if count >= self.count || weights.count < self.count {
-            return Array(self)
+        guard count < self.count && weights.count >= self.count else {
+            return self
         }
 
         // Algorithm A-Chao
-        var result = Array(self[0..<count])
-        var weightSum: Double = weights[0..<count].reduce(0.0) { (total, value) in
+        var result = Array(self.prefix(upTo: count))
+        var weightSum: Double = weights.prefix(upTo: count).reduce(0.0) { (total, value) in
             total + value
         }
-        for i in count..<self.count {
+        for i in CountableRange(uncheckedBounds: (count, self.count)) {
             let p = weights[i] / weightSum
-            let j = Double.random(within: 0.0...1.0, using: &randomGenerator)
+            let j = Double.random(through: 1.0, using: &randomGenerator)
             if j <= p {
-                let index = Int.random(within: 0 ... count-1, using: &randomGenerator)
+                let index = Int.random(to: count, using: &randomGenerator)
                 result[index] = self[i]
             }
             weightSum += weights[i]
