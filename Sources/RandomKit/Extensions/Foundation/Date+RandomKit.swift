@@ -36,7 +36,7 @@ extension Date: Random, RandomWithinRange, RandomWithinClosedRange {
         return random(within: .distantPast ... .distantFuture, using: &randomGenerator)
     }
 
-    /// Returns an optional random value of `Self` inside of the range using `randomGenerator`.
+    /// Returns a random value of `Self` inside of the unchecked range using `randomGenerator`.
     ///
     /// - parameter range: The range within which the date will be generated.
     /// - parameter randomGenerator: The random generator to use.
