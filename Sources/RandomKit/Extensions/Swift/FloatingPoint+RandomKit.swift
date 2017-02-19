@@ -92,7 +92,8 @@ extension FloatingPoint where Self: RandomWithinRange & RandomToValue {
     public static func random<R: RandomGenerator>(to value: Self, using randomGenerator: inout R) -> Self {
         let negate = value < randomBase
         let newValue = negate ? -value : value
-        guard let random = self.random(within: randomBase..<newValue, using: &randomGenerator) else {
+        let randomRange = Range(uncheckedBounds: (randomBase, newValue))
+        guard let random = self.random(within: randomRange, using: &randomGenerator) else {
             return randomBase
         }
         return negate ? -random : random
