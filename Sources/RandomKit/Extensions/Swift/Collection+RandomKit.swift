@@ -88,7 +88,8 @@ extension MutableCollection where Self: Shuffleable, Index: Strideable & RandomW
     /// Shuffles the elements of `self` in `range`.
     public mutating func shuffle<R: RandomGenerator>(in range: CountableRange<Index>, using randomGenerator: inout R) {
         for i in range {
-            if let j = Index.random(within: range, using: &randomGenerator), j != i {
+            let j = Index.uncheckedRandom(within: range, using: &randomGenerator)
+            if j != i {
                 swap(&self[i], &self[j])
             }
         }
