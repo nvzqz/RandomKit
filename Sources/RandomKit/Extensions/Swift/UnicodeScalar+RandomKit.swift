@@ -67,13 +67,14 @@ extension UnicodeScalar: Random, RandomWithinRange, RandomWithinClosedRange {
             let newRange = ClosedRange(uncheckedBounds: (lower, upper - diff))
             let random = UInt32.random(within: newRange, using: &randomGenerator)
             if random._isLowerRange {
-                return UnicodeScalar(random).unsafelyUnwrapped
+                return unsafeBitCast(random, to: UnicodeScalar.self)
             } else {
-                return UnicodeScalar(random + diff).unsafelyUnwrapped
+                return unsafeBitCast(random, to: UnicodeScalar.self)
             }
         } else {
             let newRange = ClosedRange(uncheckedBounds: (lower, upper))
-            return UnicodeScalar(.random(within: newRange, using: &randomGenerator)).unsafelyUnwrapped
+            let random = UInt32.random(within: newRange, using: &randomGenerator)
+            return unsafeBitCast(random, to: UnicodeScalar.self)
         }
     }
 
