@@ -121,7 +121,7 @@ extension MutableCollection where Self: UniqueShuffleable, Index: Strideable & R
     /// Shuffles the elements of `self` in a unique order in `range`.
     public mutating func shuffleUnique<R: RandomGenerator>(in range: CountableRange<Index>, using randomGenerator: inout R) {
         for i in range {
-            let randomRange = Range(uncheckedBounds: (i.advanced(by: 1), endIndex))
+            let randomRange = Range(uncheckedBounds: (i.advanced(by: 1), range.upperBound))
             if let j = Index.random(within: randomRange, using: &randomGenerator) {
                 swap(&self[i], &self[j])
             }
