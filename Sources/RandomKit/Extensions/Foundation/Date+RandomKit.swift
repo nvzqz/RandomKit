@@ -40,10 +40,11 @@ extension Date: Random, RandomWithinRange, RandomWithinClosedRange {
     ///
     /// - parameter range: The range within which the date will be generated.
     /// - parameter randomGenerator: The random generator to use.
-    public static func random<R: RandomGenerator>(within range: Range<Date>, using randomGenerator: inout R) -> Date? {
+    public static func uncheckedRandom<R: RandomGenerator>(within range: Range<Date>, using randomGenerator: inout R) -> Date {
         let lower = range.lowerBound.timeIntervalSince1970
         let upper = range.upperBound.timeIntervalSince1970
-        return random(within: Range(uncheckedBounds: (lower, upper)), using: &randomGenerator)
+        let range = Range(uncheckedBounds: (lower, upper))
+        return Date(timeIntervalSince1970: TimeInterval.uncheckedRandom(within: range, using: &randomGenerator))
     }
 
     /// Returns a random value of `Self` inside of the closed range using `randomGenerator`.

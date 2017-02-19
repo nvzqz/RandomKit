@@ -31,14 +31,32 @@ public protocol RandomWithinRange: Comparable {
     /// Returns an optional random value of `Self` inside of the range using `randomGenerator`.
     static func random<R: RandomGenerator>(within range: Range<Self>, using randomGenerator: inout R) -> Self?
 
+    /// Returns a random value of `Self` inside of the unchecked range using `randomGenerator`.
+    static func uncheckedRandom<R: RandomGenerator>(within range: Range<Self>, using randomGenerator: inout R) -> Self
+
+}
+
+extension RandomWithinRange {
+    /// Returns an optional random value of `Self` inside of the range using `randomGenerator`.
+    public static func random<R: RandomGenerator>(within range: Range<Self>, using randomGenerator: inout R) -> Self? {
+        if range.isEmpty {
+            return nil
+        } else {
+            return uncheckedRandom(within: range, using: &randomGenerator)
+        }
+    }
 }
 
 extension RandomWithinRange where Self: Strideable & Comparable, Self.Stride : SignedInteger {
 
-    /// Returns an optional random value of `Self` inside of the range.
-    public static func random<R: RandomGenerator>(within range: CountableRange<Self>,
-                                                  using randomGenerator: inout R) -> Self? {
+    /// Returns an optional random value of `Self` inside of the range using `randomGenerator`.
+    public static func random<R: RandomGenerator>(within range: CountableRange<Self>, using randomGenerator: inout R) -> Self? {
         return random(within: Range(range), using: &randomGenerator)
+    }
+
+    /// Returns a random value of `Self` inside of the unchecked range using `randomGenerator`.
+    public static func uncheckedRandom<R: RandomGenerator>(within range: CountableRange<Self>, using randomGenerator: inout R) -> Self {
+        return uncheckedRandom(within: Range(range), using: &randomGenerator)
     }
 
 }

@@ -128,11 +128,8 @@ extension UnsignedInteger where Self: Random & RandomToValue & RandomWithMax {
 
 extension UnsignedInteger where Self: RandomToValue & RandomWithinRange {
 
-    /// Returns an optional random value of `Self` inside of the range.
-    public static func random<R: RandomGenerator>(within range: Range<Self>, using randomGenerator: inout R) -> Self? {
-        guard !range.isEmpty else {
-            return nil
-        }
+    /// Returns a random value of `Self` inside of the unchecked range using `randomGenerator`.
+    public static func uncheckedRandom<R: RandomGenerator>(within range: Range<Self>, using randomGenerator: inout R) -> Self {
         return range.lowerBound &+ random(to: range.upperBound &- range.lowerBound, using: &randomGenerator)
     }
 
@@ -203,19 +200,29 @@ extension UnsignedInteger where Self: ShiftOperations & RandomWithMaxWidth & Ran
 
 extension Int: UnsafeRandom, RandomWithMax, RandomWithMin, RandomToValue, RandomThroughValue, RandomWithinRange, RandomWithinClosedRange {
 
+    @inline(__always)
+    private static func _resignedRange(from range: Range<Int>) -> Range<UInt> {
+        let lo = UInt(bitPattern: range.lowerBound)._resigned
+        let hi = UInt(bitPattern: range.upperBound)._resigned
+        return Range(uncheckedBounds: (lo, hi))
+    }
+
     /// Generates a random value of `Self` using `randomGenerator`.
     public static func random<R: RandomGenerator>(using randomGenerator: inout R) -> Int {
         return unsafeBitCast(UInt.random(using: &randomGenerator), to: self)
     }
 
-    /// Returns an optional random value of `Self` inside of the range.
+    /// Returns an optional random value of `Self` inside of the range using `randomGenerator`.
     public static func random<R: RandomGenerator>(within range: Range<Int>, using randomGenerator: inout R) -> Int? {
-        let lo = UInt(bitPattern: range.lowerBound)._resigned
-        let hi = UInt(bitPattern: range.upperBound)._resigned
-        let range = Range(uncheckedBounds: (lo, hi))
-        guard let random = UInt.random(within: range, using: &randomGenerator) else {
+        guard let random = UInt.random(within: _resignedRange(from: range), using: &randomGenerator) else {
             return nil
         }
+        return Int(bitPattern: random._resigned)
+    }
+
+    /// Returns a random value of `Self` inside of the unchecked range using `randomGenerator`.
+    public static func uncheckedRandom<R: RandomGenerator>(within range: Range<Int>, using randomGenerator: inout R) -> Int {
+        let random = UInt.uncheckedRandom(within: _resignedRange(from: range), using: &randomGenerator)
         return Int(bitPattern: random._resigned)
     }
 
@@ -231,19 +238,32 @@ extension Int: UnsafeRandom, RandomWithMax, RandomWithMin, RandomToValue, Random
 
 extension Int64: UnsafeRandom, RandomWithMax, RandomWithMin, RandomToValue, RandomThroughValue, RandomWithinRange, RandomWithinClosedRange {
 
+    @inline(__always)
+    private static func _resignedRange(from range: Range<Int64>) -> Range<UInt64> {
+        let lo = UInt64(bitPattern: range.lowerBound)._resigned
+        let hi = UInt64(bitPattern: range.upperBound)._resigned
+        return Range(uncheckedBounds: (lo, hi))
+    }
+
     /// Generates a random value of `Self` using `randomGenerator`.
     public static func random<R: RandomGenerator>(using randomGenerator: inout R) -> Int64 {
         return unsafeBitCast(UInt64.random(using: &randomGenerator), to: self)
     }
 
-    /// Returns an optional random value of `Self` inside of the range.
+    /// Returns an optional random value of `Self` inside of the range using `randomGenerator`.
     public static func random<R: RandomGenerator>(within range: Range<Int64>, using randomGenerator: inout R) -> Int64? {
+        guard let random = UInt64.random(within: _resignedRange(from: range), using: &randomGenerator) else {
+            return nil
+        }
+        return Int64(bitPattern: random._resigned)
+    }
+
+    /// Returns a random value of `Self` inside of the unchecked range using `randomGenerator`.
+    public static func uncheckedRandom<R: RandomGenerator>(within range: Range<Int64>, using randomGenerator: inout R) -> Int64 {
         let lo = UInt64(bitPattern: range.lowerBound)._resigned
         let hi = UInt64(bitPattern: range.upperBound)._resigned
         let range = Range(uncheckedBounds: (lo, hi))
-        guard let random = UInt64.random(within: range, using: &randomGenerator) else {
-            return nil
-        }
+        let random = UInt64.uncheckedRandom(within: range, using: &randomGenerator)
         return Int64(bitPattern: random._resigned)
     }
 
@@ -259,19 +279,32 @@ extension Int64: UnsafeRandom, RandomWithMax, RandomWithMin, RandomToValue, Rand
 
 extension Int32: UnsafeRandom, RandomWithMax, RandomWithMin, RandomToValue, RandomThroughValue, RandomWithinRange, RandomWithinClosedRange {
 
+    @inline(__always)
+    private static func _resignedRange(from range: Range<Int32>) -> Range<UInt32> {
+        let lo = UInt32(bitPattern: range.lowerBound)._resigned
+        let hi = UInt32(bitPattern: range.upperBound)._resigned
+        return Range(uncheckedBounds: (lo, hi))
+    }
+
     /// Generates a random value of `Self` using `randomGenerator`.
     public static func random<R: RandomGenerator>(using randomGenerator: inout R) -> Int32 {
         return unsafeBitCast(UInt32.random(using: &randomGenerator), to: self)
     }
 
-    /// Returns an optional random value of `Self` inside of the range.
+    /// Returns an optional random value of `Self` inside of the range using `randomGenerator`.
     public static func random<R: RandomGenerator>(within range: Range<Int32>, using randomGenerator: inout R) -> Int32? {
+        guard let random = UInt32.random(within: _resignedRange(from: range), using: &randomGenerator) else {
+            return nil
+        }
+        return Int32(bitPattern: random._resigned)
+    }
+
+    /// Returns a random value of `Self` inside of the unchecked range using `randomGenerator`.
+    public static func uncheckedRandom<R: RandomGenerator>(within range: Range<Int32>, using randomGenerator: inout R) -> Int32 {
         let lo = UInt32(bitPattern: range.lowerBound)._resigned
         let hi = UInt32(bitPattern: range.upperBound)._resigned
         let range = Range(uncheckedBounds: (lo, hi))
-        guard let random = UInt32.random(within: range, using: &randomGenerator) else {
-            return nil
-        }
+        let random = UInt32.uncheckedRandom(within: range, using: &randomGenerator)
         return Int32(bitPattern: random._resigned)
     }
 
@@ -287,19 +320,32 @@ extension Int32: UnsafeRandom, RandomWithMax, RandomWithMin, RandomToValue, Rand
 
 extension Int16: UnsafeRandom, RandomWithMax, RandomWithMin, RandomToValue, RandomThroughValue, RandomWithinRange, RandomWithinClosedRange {
 
+    @inline(__always)
+    private static func _resignedRange(from range: Range<Int16>) -> Range<UInt16> {
+        let lo = UInt16(bitPattern: range.lowerBound)._resigned
+        let hi = UInt16(bitPattern: range.upperBound)._resigned
+        return Range(uncheckedBounds: (lo, hi))
+    }
+
     /// Generates a random value of `Self` using `randomGenerator`.
     public static func random<R: RandomGenerator>(using randomGenerator: inout R) -> Int16 {
         return unsafeBitCast(UInt16.random(using: &randomGenerator), to: self)
     }
 
-    /// Returns an optional random value of `Self` inside of the range.
+    /// Returns an optional random value of `Self` inside of the range using `randomGenerator`.
     public static func random<R: RandomGenerator>(within range: Range<Int16>, using randomGenerator: inout R) -> Int16? {
+        guard let random = UInt16.random(within: _resignedRange(from: range), using: &randomGenerator) else {
+            return nil
+        }
+        return Int16(bitPattern: random._resigned)
+    }
+
+    /// Returns a random value of `Self` inside of the unchecked range using `randomGenerator`.
+    public static func uncheckedRandom<R: RandomGenerator>(within range: Range<Int16>, using randomGenerator: inout R) -> Int16 {
         let lo = UInt16(bitPattern: range.lowerBound)._resigned
         let hi = UInt16(bitPattern: range.upperBound)._resigned
         let range = Range(uncheckedBounds: (lo, hi))
-        guard let random = UInt16.random(within: range, using: &randomGenerator) else {
-            return nil
-        }
+        let random = UInt16.uncheckedRandom(within: range, using: &randomGenerator)
         return Int16(bitPattern: random._resigned)
     }
 
@@ -315,19 +361,32 @@ extension Int16: UnsafeRandom, RandomWithMax, RandomWithMin, RandomToValue, Rand
 
 extension Int8: UnsafeRandom, RandomWithMax, RandomWithMin, RandomToValue, RandomThroughValue, RandomWithinRange, RandomWithinClosedRange {
 
+    @inline(__always)
+    private static func _resignedRange(from range: Range<Int8>) -> Range<UInt8> {
+        let lo = UInt8(bitPattern: range.lowerBound)._resigned
+        let hi = UInt8(bitPattern: range.upperBound)._resigned
+        return Range(uncheckedBounds: (lo, hi))
+    }
+
     /// Generates a random value of `Self` using `randomGenerator`.
     public static func random<R: RandomGenerator>(using randomGenerator: inout R) -> Int8 {
         return unsafeBitCast(UInt8.random(using: &randomGenerator), to: self)
     }
 
-    /// Returns an optional random value of `Self` inside of the range.
+    /// Returns an optional random value of `Self` inside of the range using `randomGenerator`.
     public static func random<R: RandomGenerator>(within range: Range<Int8>, using randomGenerator: inout R) -> Int8? {
+        guard let random = UInt8.random(within: _resignedRange(from: range), using: &randomGenerator) else {
+            return nil
+        }
+        return Int8(bitPattern: random._resigned)
+    }
+
+    /// Returns a random value of `Self` inside of the unchecked range using `randomGenerator`.
+    public static func uncheckedRandom<R: RandomGenerator>(within range: Range<Int8>, using randomGenerator: inout R) -> Int8 {
         let lo = UInt8(bitPattern: range.lowerBound)._resigned
         let hi = UInt8(bitPattern: range.upperBound)._resigned
         let range = Range(uncheckedBounds: (lo, hi))
-        guard let random = UInt8.random(within: range, using: &randomGenerator) else {
-            return nil
-        }
+        let random = UInt8.uncheckedRandom(within: range, using: &randomGenerator)
         return Int8(bitPattern: random._resigned)
     }
 

@@ -38,25 +38,22 @@ extension UnicodeScalar: Random, RandomWithinRange, RandomWithinClosedRange {
     }
 
     /// Returns a random value of `Self` inside of the closed range.
-    public static func random<R: RandomGenerator>(within range: Range<UnicodeScalar>,
-                                                  using randomGenerator: inout R) -> UnicodeScalar? {
-        guard !range.isEmpty else {
-            return nil
-        }
+    public static func uncheckedRandom<R: RandomGenerator>(within range: Range<UnicodeScalar>, using randomGenerator: inout R) -> UnicodeScalar {
         let lower = range.lowerBound.value
         let upper = range.upperBound.value
         if lower._isLowerRange && !upper._isLowerRange {
             let diff: UInt32 = 0xE000 - 0xD7FF - 1
             let newRange = Range(uncheckedBounds: (lower, upper - diff))
-            let random = UInt32.random(within: newRange, using: &randomGenerator).unsafelyUnwrapped
+            let random = UInt32.uncheckedRandom(within: newRange, using: &randomGenerator)
             if random._isLowerRange {
-                return UnicodeScalar(random)
+                return unsafeBitCast(random, to: UnicodeScalar.self)
             } else {
-                return UnicodeScalar(random + diff)
+                return unsafeBitCast(random + diff, to: UnicodeScalar.self)
             }
         } else {
             let newRange = Range(uncheckedBounds: (lower, upper))
-            return UInt32.random(within: newRange, using: &randomGenerator).flatMap(UnicodeScalar.init)
+            let random = UInt32.uncheckedRandom(within: newRange, using: &randomGenerator)
+            return unsafeBitCast(random, to: UnicodeScalar.self)
         }
     }
 

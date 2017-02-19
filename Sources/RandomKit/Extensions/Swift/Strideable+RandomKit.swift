@@ -28,10 +28,7 @@
 extension Strideable where Self: RandomWithinRange, Stride: RandomToValue {
 
     /// Returns an optional random value of `Self` inside of the range using `randomGenerator`.
-    public static func random<R: RandomGenerator>(within range: Range<Self>, using randomGenerator: inout R) -> Self? {
-        guard !range.isEmpty else {
-            return nil
-        }
+    public static func uncheckedRandom<R: RandomGenerator>(within range: Range<Self>, using randomGenerator: inout R) -> Self {
         let distance = range.lowerBound.distance(to: range.upperBound)
         return range.lowerBound.advanced(by: .random(to: distance, using: &randomGenerator))
     }
