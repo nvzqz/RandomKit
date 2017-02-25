@@ -33,7 +33,7 @@ extension NSNumber: Random {
     ///
     /// - returns: Random value within `0...100`.
     public class func random<R: RandomGenerator>(using randomGenerator: inout R) -> Self {
-        return random(within: 0...100, using: &randomGenerator)
+        return .init(value: UInt.random(through: 100, using: &randomGenerator))
     }
 
     /// Generates a random integer within the closed range.
