@@ -117,6 +117,10 @@
 		52ADBEEA1DE55D18004CB28A /* ShiftOperations.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52ADBEE41DE55CEA004CB28A /* ShiftOperations.framework */; };
 		52ADBEEB1DE55D1E004CB28A /* ShiftOperations.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52ADBEE61DE55CEA004CB28A /* ShiftOperations.framework */; };
 		52ADBEEC1DE55D24004CB28A /* ShiftOperations.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52ADBEE81DE55CEA004CB28A /* ShiftOperations.framework */; };
+		52CA18191E623DF6004C18FA /* RandomTuple.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52CA18181E623DF6004C18FA /* RandomTuple.swift */; };
+		52CA181A1E623DF6004C18FA /* RandomTuple.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52CA18181E623DF6004C18FA /* RandomTuple.swift */; };
+		52CA181B1E623DF6004C18FA /* RandomTuple.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52CA18181E623DF6004C18FA /* RandomTuple.swift */; };
+		52CA181C1E623DF6004C18FA /* RandomTuple.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52CA18181E623DF6004C18FA /* RandomTuple.swift */; };
 		52CE98D11E4052ED00DA001B /* Xorshift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52CE98D01E4052ED00DA001B /* Xorshift.swift */; };
 		52CE98D21E4052ED00DA001B /* Xorshift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52CE98D01E4052ED00DA001B /* Xorshift.swift */; };
 		52CE98D31E4052ED00DA001B /* Xorshift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52CE98D01E4052ED00DA001B /* Xorshift.swift */; };
@@ -301,6 +305,7 @@
 		52ADBE7B1DE54BBF004CB28A /* RandomWithExactWidth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RandomWithExactWidth.swift; sourceTree = "<group>"; };
 		52ADBEDA1DE55CE9004CB28A /* ShiftOperations.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ShiftOperations.xcodeproj; path = Carthage/Checkouts/ShiftOperations/ShiftOperations.xcodeproj; sourceTree = "<group>"; };
 		52C96A1F1BD9828F00C3CBE0 /* RandomKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RandomKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		52CA18181E623DF6004C18FA /* RandomTuple.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RandomTuple.swift; sourceTree = "<group>"; };
 		52CE98D01E4052ED00DA001B /* Xorshift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Xorshift.swift; sourceTree = "<group>"; };
 		52D47D721E3165360050588E /* RandomGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RandomGenerator.swift; sourceTree = "<group>"; };
 		52D47D771E31654B0050588E /* DeviceRandom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceRandom.swift; sourceTree = "<group>"; };
@@ -361,6 +366,7 @@
 			isa = PBXGroup;
 			children = (
 				525EB2BE1DBD696B00E8B246 /* Types */,
+				52CA18171E623DEC004C18FA /* Functions */,
 				525EB2C91DBD697200E8B246 /* Extensions */,
 				52A6B1531E37B980001533D3 /* Internal */,
 			);
@@ -524,6 +530,14 @@
 				52ADBEE81DE55CEA004CB28A /* ShiftOperations.framework */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		52CA18171E623DEC004C18FA /* Functions */ = {
+			isa = PBXGroup;
+			children = (
+				52CA18181E623DF6004C18FA /* RandomTuple.swift */,
+			);
+			path = Functions;
 			sourceTree = "<group>";
 		};
 		52D47D711E3165360050588E /* RandomGenerator */ = {
@@ -842,6 +856,7 @@
 				52D47D781E31654B0050588E /* DeviceRandom.swift in Sources */,
 				524F1E2D1E31301600BDE35F /* RandomRawRepresentable.swift in Sources */,
 				524F1E441E31335200BDE35F /* Collection+RandomKit.swift in Sources */,
+				52CA18191E623DF6004C18FA /* RandomTuple.swift in Sources */,
 				52D47D5D1E3160A10050588E /* CGVector+RandomKit.swift in Sources */,
 				524F1E4E1E31356E00BDE35F /* UnicodeScalar+RandomKit.swift in Sources */,
 				52D47D611E3161060050588E /* Date+RandomKit.swift in Sources */,
@@ -897,6 +912,7 @@
 				52D47D791E31654B0050588E /* DeviceRandom.swift in Sources */,
 				524F1E2E1E31301600BDE35F /* RandomRawRepresentable.swift in Sources */,
 				524F1E431E31335100BDE35F /* Collection+RandomKit.swift in Sources */,
+				52CA181A1E623DF6004C18FA /* RandomTuple.swift in Sources */,
 				52D47D5E1E3160A10050588E /* CGVector+RandomKit.swift in Sources */,
 				524F1E4F1E31356F00BDE35F /* UnicodeScalar+RandomKit.swift in Sources */,
 				52D47D621E3161070050588E /* Date+RandomKit.swift in Sources */,
@@ -952,6 +968,7 @@
 				52D47D7A1E31654B0050588E /* DeviceRandom.swift in Sources */,
 				524F1E2F1E31301700BDE35F /* RandomRawRepresentable.swift in Sources */,
 				524F1E421E31335100BDE35F /* Collection+RandomKit.swift in Sources */,
+				52CA181B1E623DF6004C18FA /* RandomTuple.swift in Sources */,
 				52D47D5F1E3160A10050588E /* CGVector+RandomKit.swift in Sources */,
 				524F1E501E31357000BDE35F /* UnicodeScalar+RandomKit.swift in Sources */,
 				52D47D631E3161070050588E /* Date+RandomKit.swift in Sources */,
@@ -1015,6 +1032,7 @@
 				52D47D7B1E31654B0050588E /* DeviceRandom.swift in Sources */,
 				524F1E301E31301700BDE35F /* RandomRawRepresentable.swift in Sources */,
 				524F1E411E31335000BDE35F /* Collection+RandomKit.swift in Sources */,
+				52CA181C1E623DF6004C18FA /* RandomTuple.swift in Sources */,
 				52D47D601E3160A20050588E /* CGVector+RandomKit.swift in Sources */,
 				524F1E511E31357000BDE35F /* UnicodeScalar+RandomKit.swift in Sources */,
 				52D47D641E3161080050588E /* Date+RandomKit.swift in Sources */,
