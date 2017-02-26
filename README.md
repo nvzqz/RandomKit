@@ -262,6 +262,9 @@ A protocol for types whose elements can be shuffled.
 
 The mutable counterpart of `shuffled(using:)` is `shuffle(using:)`.
 
+For better `Array` shuffling performance, consider shuffling in-place with
+`shuffle(using:)`.
+
 ### Swift Types
 
 #### Integers
