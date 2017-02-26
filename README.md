@@ -220,7 +220,6 @@ using a `RandomGenerator`.
 
 ```swift
 Int.random(within: -100 ... 100, using: &randomGenerator)       // -79
-Character.random(within: "a" ... "z", using: &randomGenerator)  // "f"
 ```
 
 #### RandomToValue
