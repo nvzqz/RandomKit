@@ -265,6 +265,10 @@ The mutable counterpart of `shuffled(using:)` is `shuffle(using:)`.
 For better `Array` shuffling performance, consider shuffling in-place with
 `shuffle(using:)`.
 
+#### UniqueShuffleable
+
+Similar to `Shuffleable`, except no element is ever in its initial position.
+
 ### Swift Types
 
 #### Integers

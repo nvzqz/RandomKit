@@ -25,7 +25,7 @@
 //  THE SOFTWARE.
 //
 
-/// A type whose elements can be shuffled in a unique order.
+/// A type whose elements can be shuffled in a unique order such that no element is ever in its initial position.
 public protocol UniqueShuffleable {
 
     /// Shuffles the elements in `self` in a unique order and returns the result.
