@@ -245,7 +245,8 @@ Int.random(to: -5, using: &randomGenerator)  // -3
 A protocol for types that can generate random values from a base value through
 another value, inclusive.
 
-The same rules for the base value of `RandomToMax` apply to `RandomThroughMax`.
+The same rules regarding the base value of `RandomToValue` apply to
+`RandomThroughValue`.
 
 #### Shuffleable
 
