@@ -27,7 +27,7 @@ RandomKit is a Swift framework that makes random data generation simple and easy
         - [RandomToValue](#randomtovalue)
         - [RandomThroughValue](#randomthroughvalue)
         - [Shuffleable](#shuffleable)
-        - [UniqueShuffleable](#uniqueShuffleable)
+        - [UniqueShuffleable](#uniqueshuffleable)
     - [Swift Types](#swift-types)
         - [Integers](#integers)
         - [Floating Point Numbers](#floating-point-numbers)
