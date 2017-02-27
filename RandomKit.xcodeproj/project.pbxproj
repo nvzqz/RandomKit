@@ -121,6 +121,10 @@
 		52CA181A1E623DF6004C18FA /* RandomTuple.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52CA18181E623DF6004C18FA /* RandomTuple.swift */; };
 		52CA181B1E623DF6004C18FA /* RandomTuple.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52CA18181E623DF6004C18FA /* RandomTuple.swift */; };
 		52CA181C1E623DF6004C18FA /* RandomTuple.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52CA18181E623DF6004C18FA /* RandomTuple.swift */; };
+		52CA181F1E63A818004C18FA /* NSArray+RandomKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52CA181E1E63A818004C18FA /* NSArray+RandomKit.swift */; };
+		52CA18201E63A818004C18FA /* NSArray+RandomKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52CA181E1E63A818004C18FA /* NSArray+RandomKit.swift */; };
+		52CA18211E63A818004C18FA /* NSArray+RandomKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52CA181E1E63A818004C18FA /* NSArray+RandomKit.swift */; };
+		52CA18221E63A818004C18FA /* NSArray+RandomKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52CA181E1E63A818004C18FA /* NSArray+RandomKit.swift */; };
 		52CE98D11E4052ED00DA001B /* Xorshift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52CE98D01E4052ED00DA001B /* Xorshift.swift */; };
 		52CE98D21E4052ED00DA001B /* Xorshift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52CE98D01E4052ED00DA001B /* Xorshift.swift */; };
 		52CE98D31E4052ED00DA001B /* Xorshift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52CE98D01E4052ED00DA001B /* Xorshift.swift */; };
@@ -306,6 +310,7 @@
 		52ADBEDA1DE55CE9004CB28A /* ShiftOperations.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ShiftOperations.xcodeproj; path = Carthage/Checkouts/ShiftOperations/ShiftOperations.xcodeproj; sourceTree = "<group>"; };
 		52C96A1F1BD9828F00C3CBE0 /* RandomKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RandomKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		52CA18181E623DF6004C18FA /* RandomTuple.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RandomTuple.swift; sourceTree = "<group>"; };
+		52CA181E1E63A818004C18FA /* NSArray+RandomKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSArray+RandomKit.swift"; sourceTree = "<group>"; };
 		52CE98D01E4052ED00DA001B /* Xorshift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Xorshift.swift; sourceTree = "<group>"; };
 		52D47D721E3165360050588E /* RandomGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RandomGenerator.swift; sourceTree = "<group>"; };
 		52D47D771E31654B0050588E /* DeviceRandom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceRandom.swift; sourceTree = "<group>"; };
@@ -465,6 +470,7 @@
 				52737E291DBEBEF8009B5E9D /* Date+RandomKit.swift */,
 				52737E451DBEC9C6009B5E9D /* Decimal+RandomKit.swift */,
 				52737E2A1DBEBEF8009B5E9D /* NSNumber+RandomKit.swift */,
+				52CA181E1E63A818004C18FA /* NSArray+RandomKit.swift */,
 			);
 			path = Foundation;
 			sourceTree = "<group>";
@@ -827,6 +833,7 @@
 				524F1E561E31364B00BDE35F /* Array+RandomKit.swift in Sources */,
 				524F1E0D1E312E2900BDE35F /* RandomToValue.swift in Sources */,
 				524F1E521E31360300BDE35F /* Character+RandomKit.swift in Sources */,
+				52CA181F1E63A818004C18FA /* NSArray+RandomKit.swift in Sources */,
 				52D47D411E315D840050588E /* Strideable+RandomKit.swift in Sources */,
 				524F1E051E312E0500BDE35F /* RandomWithMax.swift in Sources */,
 				52A6B1321E329045001533D3 /* Set+RandomKit.swift in Sources */,
@@ -883,6 +890,7 @@
 				524F1E571E31364C00BDE35F /* Array+RandomKit.swift in Sources */,
 				524F1E0E1E312E2900BDE35F /* RandomToValue.swift in Sources */,
 				524F1E531E31360400BDE35F /* Character+RandomKit.swift in Sources */,
+				52CA18201E63A818004C18FA /* NSArray+RandomKit.swift in Sources */,
 				52D47D421E315D850050588E /* Strideable+RandomKit.swift in Sources */,
 				524F1E061E312E0500BDE35F /* RandomWithMax.swift in Sources */,
 				52A6B1331E329045001533D3 /* Set+RandomKit.swift in Sources */,
@@ -939,6 +947,7 @@
 				524F1E581E31364C00BDE35F /* Array+RandomKit.swift in Sources */,
 				524F1E0F1E312E2A00BDE35F /* RandomToValue.swift in Sources */,
 				524F1E541E31360500BDE35F /* Character+RandomKit.swift in Sources */,
+				52CA18211E63A818004C18FA /* NSArray+RandomKit.swift in Sources */,
 				52D47D431E315D860050588E /* Strideable+RandomKit.swift in Sources */,
 				524F1E071E312E0600BDE35F /* RandomWithMax.swift in Sources */,
 				52A6B1341E329045001533D3 /* Set+RandomKit.swift in Sources */,
@@ -1003,6 +1012,7 @@
 				524F1E591E31364D00BDE35F /* Array+RandomKit.swift in Sources */,
 				524F1E101E312E2A00BDE35F /* RandomToValue.swift in Sources */,
 				524F1E551E31360600BDE35F /* Character+RandomKit.swift in Sources */,
+				52CA18221E63A818004C18FA /* NSArray+RandomKit.swift in Sources */,
 				52D47D441E315D870050588E /* Strideable+RandomKit.swift in Sources */,
 				524F1E081E312E0600BDE35F /* RandomWithMax.swift in Sources */,
 				52A6B1351E329045001533D3 /* Set+RandomKit.swift in Sources */,
