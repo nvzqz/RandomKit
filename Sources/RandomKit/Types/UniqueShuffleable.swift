@@ -44,3 +44,18 @@ extension UniqueShuffleable {
     }
 
 }
+
+/// A type whose elements can be shuffled in an index range in a unique order such that no element is ever in its
+/// initial position.
+public protocol UniqueShuffleableInRange: UniqueShuffleable {
+
+    /// A type that represents a position in an instance of `Self`.
+    associatedtype Index: Comparable
+
+    /// Shuffles the elements of `self` in a unique order in `range` and returns the result.
+    func shuffledUnique<R: RandomGenerator>(in range: Range<Index>, using randomGenerator: inout R) -> Self
+
+    /// Shuffles the elements of `self` in a unique order in `range`.
+    mutating func shuffleUnique<R: RandomGenerator>(in range: Range<Index>, using randomGenerator: inout R)
+
+}

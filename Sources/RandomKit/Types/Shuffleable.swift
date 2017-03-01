@@ -36,11 +36,25 @@ public protocol Shuffleable {
 
 }
 
-public extension Shuffleable {
+extension Shuffleable {
 
     /// Shuffles the elements of `self`.
     public mutating func shuffle<R: RandomGenerator>(using randomGenerator: inout R) {
         self = shuffled(using: &randomGenerator)
     }
+
+}
+
+/// A type whose elements can be shuffled in an index range.
+public protocol ShuffleableInRange: Shuffleable {
+
+    /// A type that represents a position in an instance of `Self`.
+    associatedtype Index: Comparable
+
+    /// Shuffles the elements of `self` in `range` and returns the result.
+    func shuffled<R: RandomGenerator>(in range: Range<Index>, using randomGenerator: inout R) -> Self
+
+    /// Shuffles the elements of `self` in `range`.
+    mutating func shuffle<R: RandomGenerator>(in range: Range<Index>, using randomGenerator: inout R)
 
 }
