@@ -45,7 +45,7 @@ extension NSMutableArray: ShuffleableInRange, UniqueShuffleableInRange {
         for i in CountableRange(range) {
             let j = Index.uncheckedRandom(within: range, using: &randomGenerator)
             if j != i {
-                swap(&self[i], &self[j])
+                exchangeObject(at: i, withObjectAt: j)
             }
         }
     }
@@ -83,7 +83,7 @@ extension NSMutableArray: ShuffleableInRange, UniqueShuffleableInRange {
         for i in CountableRange(uncheckedBounds: (range.lowerBound, range.upperBound.advanced(by: -1))) {
             let randomRange = Range(uncheckedBounds: (i.advanced(by: 1), range.upperBound))
             let j = Index.uncheckedRandom(within: randomRange, using: &randomGenerator)
-            swap(&self[i], &self[j])
+            exchangeObject(at: i, withObjectAt: j)
         }
     }
 
