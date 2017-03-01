@@ -75,28 +75,13 @@ extension MutableCollection where Self: Shuffleable {
 
 }
 
-extension MutableCollection where Self: ShuffleableInRange, Index: Strideable & RandomWithinRange, Index.Stride: SignedInteger {
-
-    /// Shuffles the elements of `self`.
-    public mutating func shuffle<R: RandomGenerator>(using randomGenerator: inout R) {
-        shuffle(in: Range(uncheckedBounds: (startIndex, endIndex)), using: &randomGenerator)
-    }
+extension MutableCollection where Self: ShuffleableInRange {
 
     /// Shuffles the elements of `self` in `range` and returns the result.
     public func shuffled<R: RandomGenerator>(in range: Range<Index>, using randomGenerator: inout R) -> Self {
         var copy = self
         copy.shuffle(in: range, using: &randomGenerator)
         return copy
-    }
-
-    /// Shuffles the elements of `self` in `range`.
-    public mutating func shuffle<R: RandomGenerator>(in range: Range<Index>, using randomGenerator: inout R) {
-        for i in CountableRange(range) {
-            let j = Index.uncheckedRandom(within: range, using: &randomGenerator)
-            if j != i {
-                swap(&self[i], &self[j])
-            }
-        }
     }
 
 }
@@ -112,12 +97,7 @@ extension MutableCollection where Self: UniqueShuffleable {
 
 }
 
-extension MutableCollection where Self: UniqueShuffleable, Index: Strideable & RandomWithinRange, Index.Stride: SignedInteger {
-
-    /// Shuffles the elements of `self` in a unique order.
-    public mutating func shuffleUnique<R: RandomGenerator>(using randomGenerator: inout R) {
-        shuffleUnique(in: Range(uncheckedBounds: (startIndex, endIndex)), using: &randomGenerator)
-    }
+extension MutableCollection where Self: UniqueShuffleableInRange {
 
     /// Shuffles the elements of `self` in a unique order in `range` and returns the result.
     public func shuffledUnique<R: RandomGenerator>(in range: Range<Index>, using randomGenerator: inout R) -> Self {
@@ -126,24 +106,42 @@ extension MutableCollection where Self: UniqueShuffleable, Index: Strideable & R
         return copy
     }
 
+}
+
+extension UnsafeMutableBufferPointer: ShuffleableInRange, UniqueShuffleableInRange {
+
+    /// Shuffles the elements of `self`.
+    public func shuffle<R: RandomGenerator>(using randomGenerator: inout R) {
+        shuffle(in: Range(indices), using: &randomGenerator)
+    }
+
+    /// Shuffles the elements of `self` in `range`.
+    public func shuffle<R: RandomGenerator>(in range: Range<Int>, using randomGenerator: inout R) {
+        for i in CountableRange(range) {
+            let j = Int.uncheckedRandom(within: range, using: &randomGenerator)
+            if j != i {
+                swap(&self[i], &self[j])
+            }
+        }
+    }
+
+    /// Shuffles the elements of `self` in a unique order.
+    public func shuffleUnique<R: RandomGenerator>(using randomGenerator: inout R) {
+        shuffleUnique(in: Range(indices), using: &randomGenerator)
+    }
+
     /// Shuffles the elements of `self` in a unique order in `range`.
-    public mutating func shuffleUnique<R: RandomGenerator>(in range: Range<Index>, using randomGenerator: inout R) {
+    public func shuffleUnique<R: RandomGenerator>(in range: Range<Int>, using randomGenerator: inout R) {
         if range.isEmpty {
             return
         }
-        for i in CountableRange(uncheckedBounds: (range.lowerBound, range.upperBound.advanced(by: -1))) {
-            let randomRange = Range(uncheckedBounds: (i.advanced(by: 1), range.upperBound))
-            let j = Index.uncheckedRandom(within: randomRange, using: &randomGenerator)
+        for i in CountableRange(uncheckedBounds: (range.lowerBound, range.upperBound &- 1)) {
+            let randomRange = Range(uncheckedBounds: (i &+ 1, range.upperBound))
+            let j = Int.uncheckedRandom(within: randomRange, using: &randomGenerator)
             swap(&self[i], &self[j])
         }
     }
 
-}
-
-extension UnsafeMutableBufferPointer: ShuffleableInRange, UniqueShuffleableInRange {
-}
-
-extension UnsafeMutableRawBufferPointer: ShuffleableInRange, UniqueShuffleableInRange {
 }
 
 extension Array: ShuffleableInRange, UniqueShuffleableInRange {
