@@ -98,7 +98,7 @@ public struct LimitedRandomsWithExactWidth<Element: RandomWithExactWidth, RG: Ra
     ///
     /// - Complexity: O(1)
     public var underestimatedCount: Int {
-        return limit
+        return limit &- _iteration
     }
 
     /// Creates an instance with `limit`, `width`, and `randomGenerator`.

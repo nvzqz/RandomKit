@@ -108,7 +108,7 @@ public struct LimitedRandomsWithinClosedRange<Element: RandomWithinClosedRange, 
     ///
     /// - Complexity: O(1)
     public var underestimatedCount: Int {
-        return limit
+        return limit &- _iteration
     }
 
     /// Creates an instance with `limit`, `closedRange`, and `randomGenerator`.

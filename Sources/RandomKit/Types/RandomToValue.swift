@@ -119,7 +119,7 @@ public struct LimitedRandomsToValue<Element: RandomToValue, RG: RandomGenerator>
     ///
     /// - Complexity: O(1)
     public var underestimatedCount: Int {
-        return limit
+        return limit &- _iteration
     }
 
     /// Creates an instance with `limit`, `value`, and `randomGenerator`.
