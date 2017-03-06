@@ -208,7 +208,12 @@ extension ContiguousArray: ShuffleableInRange, UniqueShuffleableInRange {
 
 }
 
-extension ArraySlice: Shuffleable, UniqueShuffleable {
+extension ArraySlice: ShuffleableInRange, UniqueShuffleableInRange {
+
+    private func _adjust(range: Range<Int>) -> Range<Int> {
+        let diff = startIndex
+        return Range(uncheckedBounds: (range.lowerBound &- diff, range.upperBound &- diff))
+    }
 
     /// Shuffles the elements of `self`.
     public mutating func shuffle<R: RandomGenerator>(using randomGenerator: inout R) {
@@ -217,10 +222,26 @@ extension ArraySlice: Shuffleable, UniqueShuffleable {
         }
     }
 
+    /// Shuffles the elements of `self` in `range`.
+    public mutating func shuffle<R: RandomGenerator>(in range: Range<Int>, using randomGenerator: inout R) {
+        let range = _adjust(range: range)
+        withUnsafeMutableBufferPointer { buffer in
+            buffer.shuffle(in: range, using: &randomGenerator)
+        }
+    }
+
     /// Shuffles the elements of `self` in a unique order.
     public mutating func shuffleUnique<R: RandomGenerator>(using randomGenerator: inout R) {
         withUnsafeMutableBufferPointer { buffer in
             buffer.shuffleUnique(using: &randomGenerator)
+        }
+    }
+
+    /// Shuffles the elements of `self` in a unique order in `range`.
+    public mutating func shuffleUnique<R: RandomGenerator>(in range: Range<Int>, using randomGenerator: inout R) {
+        let range = _adjust(range: range)
+        withUnsafeMutableBufferPointer { buffer in
+            buffer.shuffleUnique(in: range, using: &randomGenerator)
         }
     }
 
