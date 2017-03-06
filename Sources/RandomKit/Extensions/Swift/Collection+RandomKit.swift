@@ -25,6 +25,14 @@
 //  THE SOFTWARE.
 //
 
+private extension Collection {
+    func _boundsCheck(range: Range<Index>, line: UInt = #line) {
+        if range.lowerBound < startIndex || range.upperBound > endIndex {
+            fatalError("Range \(range) out of bounds", line: line)
+        }
+    }
+}
+
 extension Collection where Index: RandomWithinRange {
 
     /// Returns a random element of `self`, or `nil` if `self` is empty.
@@ -155,6 +163,7 @@ extension Array: ShuffleableInRange, UniqueShuffleableInRange {
 
     /// Shuffles the elements of `self` in `range`.
     public mutating func shuffle<R: RandomGenerator>(in range: Range<Int>, using randomGenerator: inout R) {
+        _boundsCheck(range: range)
         withUnsafeMutableBufferPointer { buffer in
             buffer.shuffle(in: range, using: &randomGenerator)
         }
@@ -169,6 +178,7 @@ extension Array: ShuffleableInRange, UniqueShuffleableInRange {
 
     /// Shuffles the elements of `self` in a unique order in `range`.
     public mutating func shuffleUnique<R: RandomGenerator>(in range: Range<Int>, using randomGenerator: inout R) {
+        _boundsCheck(range: range)
         withUnsafeMutableBufferPointer { buffer in
             buffer.shuffleUnique(in: range, using: &randomGenerator)
         }
@@ -187,6 +197,7 @@ extension ContiguousArray: ShuffleableInRange, UniqueShuffleableInRange {
 
     /// Shuffles the elements of `self` in `range`.
     public mutating func shuffle<R: RandomGenerator>(in range: Range<Int>, using randomGenerator: inout R) {
+        _boundsCheck(range: range)
         withUnsafeMutableBufferPointer { buffer in
             buffer.shuffle(in: range, using: &randomGenerator)
         }
@@ -201,6 +212,7 @@ extension ContiguousArray: ShuffleableInRange, UniqueShuffleableInRange {
 
     /// Shuffles the elements of `self` in a unique order in `range`.
     public mutating func shuffleUnique<R: RandomGenerator>(in range: Range<Int>, using randomGenerator: inout R) {
+        _boundsCheck(range: range)
         withUnsafeMutableBufferPointer { buffer in
             buffer.shuffleUnique(in: range, using: &randomGenerator)
         }
@@ -224,6 +236,7 @@ extension ArraySlice: ShuffleableInRange, UniqueShuffleableInRange {
 
     /// Shuffles the elements of `self` in `range`.
     public mutating func shuffle<R: RandomGenerator>(in range: Range<Int>, using randomGenerator: inout R) {
+        _boundsCheck(range: range)
         let range = _adjust(range: range)
         withUnsafeMutableBufferPointer { buffer in
             buffer.shuffle(in: range, using: &randomGenerator)
@@ -239,6 +252,7 @@ extension ArraySlice: ShuffleableInRange, UniqueShuffleableInRange {
 
     /// Shuffles the elements of `self` in a unique order in `range`.
     public mutating func shuffleUnique<R: RandomGenerator>(in range: Range<Int>, using randomGenerator: inout R) {
+        _boundsCheck(range: range)
         let range = _adjust(range: range)
         withUnsafeMutableBufferPointer { buffer in
             buffer.shuffleUnique(in: range, using: &randomGenerator)
