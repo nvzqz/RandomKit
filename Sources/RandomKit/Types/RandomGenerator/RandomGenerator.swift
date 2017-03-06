@@ -40,7 +40,7 @@ public protocol RandomGenerator {
     /// Generates a random unsigned 8-bit integer.
     mutating func random8() -> UInt8
 
-    /// Randomizes the contents `buffer` up to `size`.
+    /// Randomizes the contents of `buffer` up to `size`.
     mutating func randomize(buffer: UnsafeMutableRawPointer, size: Int)
 
 }

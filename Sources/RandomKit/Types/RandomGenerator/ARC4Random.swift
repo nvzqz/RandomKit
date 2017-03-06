@@ -46,7 +46,7 @@ public final class ARC4Random: RandomGenerator {
 
     private init() {}
 
-    /// Randomizes the contents `buffer` up to `size`.
+    /// Randomizes the contents of `buffer` up to `size`.
     public func randomize(buffer: UnsafeMutableRawPointer, size: Int) {
         _arc4random_buf(buffer, size)
     }

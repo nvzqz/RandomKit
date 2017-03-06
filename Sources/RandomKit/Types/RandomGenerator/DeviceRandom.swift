@@ -60,7 +60,7 @@ public final class DeviceRandom: RandomGenerator {
         close(_fileDescriptor)
     }
 
-    /// Randomizes the contents `buffer` up to `size`.
+    /// Randomizes the contents of `buffer` up to `size`.
     public func randomize(buffer: UnsafeMutableRawPointer, size: Int) {
         read(_fileDescriptor, buffer, size)
     }

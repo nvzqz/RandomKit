@@ -91,7 +91,7 @@ extension RandomBytesGenerator where Bytes == UInt32 {
 
 extension RandomBytesGenerator {
 
-    /// Randomizes the contents `buffer` up to `size`.
+    /// Randomizes the contents of `buffer` up to `size`.
     public mutating func randomize(buffer: UnsafeMutableRawPointer, size: Int) {
         let bytesBuffer = buffer.assumingMemoryBound(to: Bytes.self)
         for i in CountableRange(uncheckedBounds: (0, size / MemoryLayout<Bytes>.size)) {
