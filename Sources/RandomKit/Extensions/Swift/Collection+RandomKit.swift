@@ -152,6 +152,34 @@ extension UnsafeMutableBufferPointer: ShuffleableInRange, UniqueShuffleableInRan
 
 }
 
+extension UnsafeMutableRawBufferPointer: ShuffleableInRange, UniqueShuffleableInRange {
+
+    private var _casted: UnsafeMutableBufferPointer<UInt8> {
+        return UnsafeMutableBufferPointer(start: baseAddress?.assumingMemoryBound(to: UInt8.self), count: count)
+    }
+
+    /// Shuffles the elements of `self`.
+    public func shuffle<R: RandomGenerator>(using randomGenerator: inout R) {
+        _casted.shuffle(using: &randomGenerator)
+    }
+
+    /// Shuffles the elements of `self` in `range`.
+    public func shuffle<R: RandomGenerator>(in range: Range<Int>, using randomGenerator: inout R) {
+        _casted.shuffle(in: range, using: &randomGenerator)
+    }
+
+    /// Shuffles the elements of `self` in a unique order.
+    public func shuffleUnique<R: RandomGenerator>(using randomGenerator: inout R) {
+        _casted.shuffleUnique(using: &randomGenerator)
+    }
+
+    /// Shuffles the elements of `self` in a unique order in `range`.
+    public func shuffleUnique<R: RandomGenerator>(in range: Range<Int>, using randomGenerator: inout R) {
+        _casted.shuffleUnique(in: range, using: &randomGenerator)
+    }
+
+}
+
 extension Array: ShuffleableInRange, UniqueShuffleableInRange {
 
     /// Shuffles the elements of `self`.
