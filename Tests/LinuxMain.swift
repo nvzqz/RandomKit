@@ -1,6 +1,6 @@
 //
-//  Package.swift
-//  RandomKit
+//  LinuxMain.swift
+//  RandomKitTests
 //
 //  The MIT License (MIT)
 //
@@ -25,17 +25,9 @@
 //  THE SOFTWARE.
 //
 
-import PackageDescription
+import XCTest
+@testable import RandomKitTests
 
-let package = Package(
-    name: "RandomKit",
-    targets: [
-        Target(name: "RandomKit"),
-        Target(name: "benchmark",
-               dependencies: ["RandomKit"])
-    ],
-    dependencies: [
-        .Package(url: "https://github.com/nvzqz/ShiftOperations.git",
-                 majorVersion: 1)
-    ]
-)
+XCTMain([
+     testCase(RandomKitTests.allTests),
+])

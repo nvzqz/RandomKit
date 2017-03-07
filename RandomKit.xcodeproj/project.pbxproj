@@ -103,7 +103,6 @@
 		524F1E5B1E31370D00BDE35F /* FloatingPoint+RandomKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52737DF41DBEBEED009B5E9D /* FloatingPoint+RandomKit.swift */; };
 		524F1E5C1E31370E00BDE35F /* FloatingPoint+RandomKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52737DF41DBEBEED009B5E9D /* FloatingPoint+RandomKit.swift */; };
 		524F1E5D1E31370E00BDE35F /* FloatingPoint+RandomKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52737DF41DBEBEED009B5E9D /* FloatingPoint+RandomKit.swift */; };
-		528200F41BC9FA42001FDD58 /* RandomKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528200F31BC9FA42001FDD58 /* RandomKitTests.swift */; };
 		528200F61BC9FA42001FDD58 /* RandomKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 528200911BC9C4A2001FDD58 /* RandomKit.framework */; };
 		52A6B1321E329045001533D3 /* Set+RandomKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A6B1311E329045001533D3 /* Set+RandomKit.swift */; };
 		52A6B1331E329045001533D3 /* Set+RandomKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A6B1311E329045001533D3 /* Set+RandomKit.swift */; };
@@ -117,6 +116,7 @@
 		52ADBEEA1DE55D18004CB28A /* ShiftOperations.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52ADBEE41DE55CEA004CB28A /* ShiftOperations.framework */; };
 		52ADBEEB1DE55D1E004CB28A /* ShiftOperations.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52ADBEE61DE55CEA004CB28A /* ShiftOperations.framework */; };
 		52ADBEEC1DE55D24004CB28A /* ShiftOperations.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52ADBEE81DE55CEA004CB28A /* ShiftOperations.framework */; };
+		52BD45681E6E572700E2C9A1 /* RandomKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52BD45631E6E56D700E2C9A1 /* RandomKitTests.swift */; };
 		52CA18191E623DF6004C18FA /* RandomTuple.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52CA18181E623DF6004C18FA /* RandomTuple.swift */; };
 		52CA181A1E623DF6004C18FA /* RandomTuple.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52CA18181E623DF6004C18FA /* RandomTuple.swift */; };
 		52CA181B1E623DF6004C18FA /* RandomTuple.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52CA18181E623DF6004C18FA /* RandomTuple.swift */; };
@@ -299,7 +299,6 @@
 		5282009F1BC9C4B6001FDD58 /* RandomKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RandomKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		528200AC1BC9C4C0001FDD58 /* RandomKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RandomKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		528200F11BC9FA42001FDD58 /* RandomKit Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "RandomKit Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		528200F31BC9FA42001FDD58 /* RandomKitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomKitTests.swift; sourceTree = "<group>"; };
 		528200F51BC9FA42001FDD58 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		52879EB61DE7BCDF004EF9FE /* Help.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Help.swift; sourceTree = "<group>"; };
 		52A248B41DC68200004C9991 /* Strideable+RandomKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Strideable+RandomKit.swift"; sourceTree = "<group>"; };
@@ -308,6 +307,8 @@
 		52ADBE761DE54A98004CB28A /* RandomWithMaxWidth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RandomWithMaxWidth.swift; sourceTree = "<group>"; };
 		52ADBE7B1DE54BBF004CB28A /* RandomWithExactWidth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RandomWithExactWidth.swift; sourceTree = "<group>"; };
 		52ADBEDA1DE55CE9004CB28A /* ShiftOperations.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ShiftOperations.xcodeproj; path = Carthage/Checkouts/ShiftOperations/ShiftOperations.xcodeproj; sourceTree = "<group>"; };
+		52BD455D1E6E56CE00E2C9A1 /* LinuxMain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LinuxMain.swift; sourceTree = "<group>"; };
+		52BD45631E6E56D700E2C9A1 /* RandomKitTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RandomKitTests.swift; sourceTree = "<group>"; };
 		52C96A1F1BD9828F00C3CBE0 /* RandomKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RandomKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		52CA18181E623DF6004C18FA /* RandomTuple.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RandomTuple.swift; sourceTree = "<group>"; };
 		52CA181E1E63A818004C18FA /* NSArray+RandomKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSArray+RandomKit.swift"; sourceTree = "<group>"; };
@@ -504,8 +505,9 @@
 		528200F21BC9FA42001FDD58 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				528200F31BC9FA42001FDD58 /* RandomKitTests.swift */,
 				528200F51BC9FA42001FDD58 /* Info.plist */,
+				52BD455D1E6E56CE00E2C9A1 /* LinuxMain.swift */,
+				52BD45621E6E56D700E2C9A1 /* RandomKitTests */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -536,6 +538,14 @@
 				52ADBEE81DE55CEA004CB28A /* ShiftOperations.framework */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		52BD45621E6E56D700E2C9A1 /* RandomKitTests */ = {
+			isa = PBXGroup;
+			children = (
+				52BD45631E6E56D700E2C9A1 /* RandomKitTests.swift */,
+			);
+			path = RandomKitTests;
 			sourceTree = "<group>";
 		};
 		52CA18171E623DEC004C18FA /* Functions */ = {
@@ -996,7 +1006,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				528200F41BC9FA42001FDD58 /* RandomKitTests.swift in Sources */,
+				52BD45681E6E572700E2C9A1 /* RandomKitTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
