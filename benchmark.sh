@@ -1,5 +1,3 @@
-#!/usr/bin/env bash -e
+#!/usr/bin/env bash
 
-swift build -c release
-
-./.build/release/benchmark "$@"
+swift build -c release && ./.build/release/benchmark "$@"
