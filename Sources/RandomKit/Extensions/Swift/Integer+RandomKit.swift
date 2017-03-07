@@ -412,13 +412,15 @@ extension UInt: UnsafeRandom, RandomWithMax, RandomWithMin, RandomToValue, Rando
     }
 
     fileprivate var _resigned: UInt {
-        let msb: UInt
-        if MemoryLayout<Int>.size == 8 {
-            msb = 1 << 63
-        } else {
-            msb = 1 << 31
-        }
-        return self ^ msb
+        let bits: UInt
+        #if arch(i386) || arch(arm)
+            bits = 31
+        #elseif arch(x86_64) || arch(arm64) || arch(powerpc64) || arch(powerpc64le) || arch(s390x)
+            bits = 63
+        #else
+            bits = UInt(bitPattern: MemoryLayout<UInt>.size * 8 - 1)
+        #endif
+        return self ^ (1 << bits)
     }
 
 }
