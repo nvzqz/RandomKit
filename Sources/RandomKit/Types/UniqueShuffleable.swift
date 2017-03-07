@@ -59,3 +59,17 @@ public protocol UniqueShuffleableInRange: UniqueShuffleable {
     mutating func shuffleUnique<R: RandomGenerator>(in range: Range<Index>, using randomGenerator: inout R)
 
 }
+
+extension UniqueShuffleableInRange where Index: Strideable, Index.Stride: SignedInteger {
+
+    /// Shuffles the elements of `self` in a unique order in `range` and returns the result.
+    public func shuffledUnique<R: RandomGenerator>(in range: CountableRange<Index>, using randomGenerator: inout R) -> Self {
+        return shuffledUnique(in: Range(range), using: &randomGenerator)
+    }
+
+    /// Shuffles the elements of `self` in a unique order in `range`.
+    public mutating func shuffleUnique<R: RandomGenerator>(in range: CountableRange<Index>, using randomGenerator: inout R) {
+        shuffleUnique(in: Range(range), using: &randomGenerator)
+    }
+
+}

@@ -58,3 +58,17 @@ public protocol ShuffleableInRange: Shuffleable {
     mutating func shuffle<R: RandomGenerator>(in range: Range<Index>, using randomGenerator: inout R)
 
 }
+
+extension ShuffleableInRange where Index: Strideable, Index.Stride: SignedInteger {
+
+    /// Shuffles the elements of `self` in `range` and returns the result.
+    public func shuffled<R: RandomGenerator>(in range: CountableRange<Index>, using randomGenerator: inout R) -> Self {
+        return shuffled(in: Range(range), using: &randomGenerator)
+    }
+
+    /// Shuffles the elements of `self` in `range`.
+    public mutating func shuffle<R: RandomGenerator>(in range: CountableRange<Index>, using randomGenerator: inout R) {
+        shuffle(in: Range(range), using: &randomGenerator)
+    }
+
+}
