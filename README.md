@@ -81,7 +81,7 @@ decentralized dependency manager for Swift.
         name: "MyAwesomeProject",
         dependencies: [
             .Package(url: "https://github.com/nvzqz/RandomKit.git",
-                     majorVersion: 3)
+                     majorVersion: 4)
         ]
     )
     ```
@@ -102,7 +102,7 @@ to learn more.
     ```ruby
     use_frameworks!
 
-    pod 'RandomKit', '~> 3.0.0'
+    pod 'RandomKit', '~> 4.0.0'
     ```
 
     If you want to be on the bleeding edge, replace the last line with:
