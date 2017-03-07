@@ -1,0 +1,8 @@
+module: RandomKit
+module_version: 4.0.0
+github_url: https://github.com/nvzqz/RandomKit
+swift_version: 3.0.2
+author: Nikolai Vazquez
+author_url: https://github.com/nvzqz
+theme: fullwidth
+clean: true
