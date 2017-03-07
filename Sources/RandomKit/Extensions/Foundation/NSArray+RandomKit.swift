@@ -40,6 +40,13 @@ extension NSArray {
 
 extension NSMutableArray: ShuffleableInRange, UniqueShuffleableInRange {
 
+    private func _mutableCopy() -> Self {
+        func makeCopy<T>() -> T {
+            return mutableCopy() as! T
+        }
+        return makeCopy()
+    }
+
     /// Shuffles the elements of `self` in `range`.
     public func shuffle<R: RandomGenerator>(in range: Range<Int>, using randomGenerator: inout R) {
         for i in CountableRange(range) {
@@ -52,10 +59,7 @@ extension NSMutableArray: ShuffleableInRange, UniqueShuffleableInRange {
 
     /// Shuffles the elements of `self` in `range` and returns the result.
     public func shuffled<R: RandomGenerator>(in range: Range<Int>, using randomGenerator: inout R) -> Self {
-        func copy<T>(as _: T.Type) -> T {
-            return mutableCopy() as! T
-        }
-        let result = copy(as: type(of: self))
+        let result = _mutableCopy()
         result.shuffle(in: range, using: &randomGenerator)
         return result
     }
@@ -67,10 +71,7 @@ extension NSMutableArray: ShuffleableInRange, UniqueShuffleableInRange {
 
     /// Shuffles the elements of `self` and returns the result.
     public func shuffled<R: RandomGenerator>(using randomGenerator: inout R) -> Self {
-        func copy<T>(as _: T.Type) -> T {
-            return mutableCopy() as! T
-        }
-        let result = copy(as: type(of: self))
+        let result = _mutableCopy()
         result.shuffle(using: &randomGenerator)
         return result
     }
@@ -89,10 +90,7 @@ extension NSMutableArray: ShuffleableInRange, UniqueShuffleableInRange {
 
     /// Shuffles the elements of `self` in a unique order in `range` and returns the result.
     public func shuffledUnique<R: RandomGenerator>(in range: Range<Int>, using randomGenerator: inout R) -> Self {
-        func copy<T>(as _: T.Type) -> T {
-            return mutableCopy() as! T
-        }
-        let result = copy(as: type(of: self))
+        let result = _mutableCopy()
         result.shuffleUnique(in: range, using: &randomGenerator)
         return result
     }
@@ -104,10 +102,7 @@ extension NSMutableArray: ShuffleableInRange, UniqueShuffleableInRange {
 
     /// Shuffles the elements in `self` in a unique order and returns the result.
     public func shuffledUnique<R: RandomGenerator>(using randomGenerator: inout R) -> Self {
-        func copy<T>(as _: T.Type) -> T {
-            return mutableCopy() as! T
-        }
-        let result = copy(as: type(of: self))
+        let result = _mutableCopy()
         result.shuffleUnique(using: &randomGenerator)
         return result
     }
