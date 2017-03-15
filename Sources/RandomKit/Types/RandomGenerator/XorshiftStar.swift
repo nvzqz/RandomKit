@@ -40,8 +40,14 @@ public struct XorshiftStar: RandomBytesGenerator, SeedableRandomGenerator, Rando
 
     private typealias _State = _Array16<UInt64>
 
-    /// A default global instance.
-    public static var `default` = XorshiftStar(seededWith: &DeviceRandom.default)
+
+    /// A default global instance seeded with `DeviceRandom.default`.
+    public static var `default` = seeded
+
+    /// Returns an instance seeded with `DeviceRandom.default`.
+    public static var seeded: XorshiftStar {
+        return XorshiftStar(seededWith: &DeviceRandom.default)
+    }
 
     /// Generates a random value of `Self` using `randomGenerator`.
     public static func random<R: RandomGenerator>(using randomGenerator: inout R) -> XorshiftStar {

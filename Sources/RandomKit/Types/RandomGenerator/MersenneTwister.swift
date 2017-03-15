@@ -33,8 +33,13 @@ public struct MersenneTwister: RandomBytesGenerator, SeedableRandomGenerator, Ra
     /// The number of `UInt64` values in a `_State`.
     private static let _stateCount: Int = 312
 
-    /// A default global instance.
-    public static var `default` = MersenneTwister(seededWith: &DeviceRandom.default)
+    /// A default global instance seeded with `DeviceRandom.default`.
+    public static var `default` = seeded
+
+    /// Returns an instance seeded with `DeviceRandom.default`.
+    public static var seeded: MersenneTwister {
+        return MersenneTwister(seededWith: &DeviceRandom.default)
+    }
 
     /// The internal state's type.
     private typealias _State = _Array312<UInt64>

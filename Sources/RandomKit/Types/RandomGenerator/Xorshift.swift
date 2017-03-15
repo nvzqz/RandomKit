@@ -33,8 +33,14 @@
 /// [2]: https://doc.rust-lang.org/rand/rand/struct.XorShiftRng.html
 public struct Xorshift: RandomBytesGenerator, SeedableRandomGenerator, Random {
 
-    /// A default global instance.
-    public static var `default` = Xorshift(seededWith: &DeviceRandom.default)
+
+    /// A default global instance seeded with `DeviceRandom.default`.
+    public static var `default` = seeded
+
+    /// Returns an instance seeded with `DeviceRandom.default`.
+    public static var seeded: Xorshift {
+        return Xorshift(seededWith: &DeviceRandom.default)
+    }
 
     /// Generates a random value of `Self` using `randomGenerator`.
     public static func random<R: RandomGenerator>(using randomGenerator: inout R) -> Xorshift {
