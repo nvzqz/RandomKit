@@ -38,13 +38,24 @@ private extension Array {
     }
 }
 
+private extension UnsafeMutablePointer {
+    @inline(__always)
+    func initialize(at offset: Int, to value: Pointee) {
+        advanced(by: offset).initialize(to: value)
+    }
+}
+
 extension Array where Element: Random {
 
     /// Construct an Array of random elements.
     ///
     /// Although safety is not guaranteed, `init(unsafeRandomCount:)` is *significantly* faster than this.
     public init<R: RandomGenerator>(randomCount: Int, using randomGenerator: inout R) {
-        self.init(Element.randoms(limitedBy: randomCount, using: &randomGenerator))
+        let (array, buffer) = Array._uninitialized(count: randomCount)
+        for i in array.indices {
+            buffer.initialize(at: i, to: Element.random(using: &randomGenerator))
+        }
+        self = array
     }
 
 }
@@ -68,7 +79,11 @@ extension Array where Element: RandomToValue {
 
     /// Construct an Array of random elements to a value.
     public init<R: RandomGenerator>(randomCount: Int, to value: Element, using randomGenerator: inout R) {
-        self.init(Element.randoms(to: value, using: &randomGenerator))
+        let (array, buffer) = Array._uninitialized(count: randomCount)
+        for i in array.indices {
+            buffer.initialize(at: i, to: Element.random(to: value, using: &randomGenerator))
+        }
+        self = array
     }
 
 }
@@ -77,7 +92,11 @@ extension Array where Element: RandomThroughValue {
 
     /// Construct an Array of random elements through a value.
     public init<R: RandomGenerator>(randomCount: Int, through value: Element, using randomGenerator: inout R) {
-        self.init(Element.randoms(through: value, using: &randomGenerator))
+        let (array, buffer) = Array._uninitialized(count: randomCount)
+        for i in array.indices {
+            buffer.initialize(at: i, to: Element.random(through: value, using: &randomGenerator))
+        }
+        self = array
     }
 
 }
@@ -86,7 +105,15 @@ extension Array where Element: RandomWithinRange {
 
     /// Construct an Array of random elements from within the range.
     public init<R: RandomGenerator>(randomCount: Int, within range: Range<Element>, using randomGenerator: inout R) {
-        self.init(Element.randoms(limitedBy: randomCount, within: range, using: &randomGenerator))
+        guard !range.isEmpty else {
+            self = []
+            return
+        }
+        let (array, buffer) = Array._uninitialized(count: randomCount)
+        for i in array.indices {
+            buffer.initialize(at: i, to: Element.uncheckedRandom(within: range, using: &randomGenerator))
+        }
+        self = array
     }
 
 }
@@ -95,7 +122,11 @@ extension Array where Element: RandomWithinClosedRange {
 
     /// Construct an Array of random elements from within the closed range.
     public init<R: RandomGenerator>(randomCount: Int, within closedRange: ClosedRange<Element>, using randomGenerator: inout R) {
-        self.init(Element.randoms(limitedBy: randomCount, within: closedRange, using: &randomGenerator))
+        let (array, buffer) = Array._uninitialized(count: randomCount)
+        for i in array.indices {
+            buffer.initialize(at: i, to: Element.random(within: closedRange, using: &randomGenerator))
+        }
+        self = array
     }
 
 }
