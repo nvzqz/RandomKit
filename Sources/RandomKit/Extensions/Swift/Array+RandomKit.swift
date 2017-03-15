@@ -38,24 +38,19 @@ private extension Array {
     }
 }
 
-private extension UnsafeMutablePointer {
-    @inline(__always)
-    func initialize(at offset: Int, to value: Pointee) {
-        advanced(by: offset).initialize(to: value)
-    }
-}
-
 extension Array where Element: Random {
 
     /// Construct an Array of random elements.
     ///
     /// Although safety is not guaranteed, `init(unsafeRandomCount:)` is *significantly* faster than this.
     public init<R: RandomGenerator>(randomCount: Int, using randomGenerator: inout R) {
-        let (array, buffer) = Array._uninitialized(count: randomCount)
-        for i in array.indices {
-            buffer.initialize(at: i, to: Element.random(using: &randomGenerator))
+        var pointer: UnsafeMutablePointer<Element>, count = randomCount
+        (self, pointer) = Array._uninitialized(count: randomCount)
+        while count != 0 {
+            pointer.initialize(to: Element.random(using: &randomGenerator))
+            pointer += 1
+            count -= 1
         }
-        self = array
     }
 
 }
@@ -79,11 +74,13 @@ extension Array where Element: RandomToValue {
 
     /// Construct an Array of random elements to a value.
     public init<R: RandomGenerator>(randomCount: Int, to value: Element, using randomGenerator: inout R) {
-        let (array, buffer) = Array._uninitialized(count: randomCount)
-        for i in array.indices {
-            buffer.initialize(at: i, to: Element.random(to: value, using: &randomGenerator))
+        var pointer: UnsafeMutablePointer<Element>, count = randomCount
+        (self, pointer) = Array._uninitialized(count: randomCount)
+        while count != 0 {
+            pointer.initialize(to: Element.random(to: value, using: &randomGenerator))
+            pointer += 1
+            count -= 1
         }
-        self = array
     }
 
 }
@@ -92,11 +89,13 @@ extension Array where Element: RandomThroughValue {
 
     /// Construct an Array of random elements through a value.
     public init<R: RandomGenerator>(randomCount: Int, through value: Element, using randomGenerator: inout R) {
-        let (array, buffer) = Array._uninitialized(count: randomCount)
-        for i in array.indices {
-            buffer.initialize(at: i, to: Element.random(through: value, using: &randomGenerator))
+        var pointer: UnsafeMutablePointer<Element>, count = randomCount
+        (self, pointer) = Array._uninitialized(count: randomCount)
+        while count != 0 {
+            pointer.initialize(to: Element.random(through: value, using: &randomGenerator))
+            pointer += 1
+            count -= 1
         }
-        self = array
     }
 
 }
@@ -109,11 +108,13 @@ extension Array where Element: RandomWithinRange {
             self = []
             return
         }
-        let (array, buffer) = Array._uninitialized(count: randomCount)
-        for i in array.indices {
-            buffer.initialize(at: i, to: Element.uncheckedRandom(within: range, using: &randomGenerator))
+        var pointer: UnsafeMutablePointer<Element>, count = randomCount
+        (self, pointer) = Array._uninitialized(count: randomCount)
+        while count != 0 {
+            pointer.initialize(to: Element.uncheckedRandom(within: range, using: &randomGenerator))
+            pointer += 1
+            count -= 1
         }
-        self = array
     }
 
 }
@@ -122,11 +123,13 @@ extension Array where Element: RandomWithinClosedRange {
 
     /// Construct an Array of random elements from within the closed range.
     public init<R: RandomGenerator>(randomCount: Int, within closedRange: ClosedRange<Element>, using randomGenerator: inout R) {
-        let (array, buffer) = Array._uninitialized(count: randomCount)
-        for i in array.indices {
-            buffer.initialize(at: i, to: Element.random(within: closedRange, using: &randomGenerator))
+        var pointer: UnsafeMutablePointer<Element>, count = randomCount
+        (self, pointer) = Array._uninitialized(count: randomCount)
+        while count != 0 {
+            pointer.initialize(to: Element.random(within: closedRange, using: &randomGenerator))
+            pointer += 1
+            count -= 1
         }
-        self = array
     }
 
 }
