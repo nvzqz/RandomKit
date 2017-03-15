@@ -51,12 +51,12 @@ extension String: Random {
     public static func random<I: ExpressibleByIntegerLiteral & Strideable, R: RandomGenerator>(ofLength length: I,
                               within range: Range<UnicodeScalar>,
                               using randomGenerator: inout R) -> String? where I.Stride: SignedInteger {
+        if range.isEmpty {
+            return nil
+        }
         var result = UnicodeScalarView()
         for _ in 0 ..< length {
-            guard let scalar = UnicodeScalar.random(within: range, using: &randomGenerator) else {
-                return nil
-            }
-            result.append(scalar)
+            result.append(UnicodeScalar.uncheckedRandom(within: range, using: &randomGenerator))
         }
         return String(result)
     }
