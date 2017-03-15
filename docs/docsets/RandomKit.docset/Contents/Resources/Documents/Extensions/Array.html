@@ -375,9 +375,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:Fe9RandomKitRxS_6RandomrSacuRd__S_15RandomGeneratorrFT11randomCountSi5usingRqd___GSax_"></a>
-                    <a name="//apple_ref/swift/Method/init(randomCount:using:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:Fe9RandomKitRxS_6RandomrSacuRd__S_15RandomGeneratorrFT11randomCountSi5usingRqd___GSax_">init(randomCount:using:)</a>
+                    <a name="/s:FE9RandomKitSacuRd__S_15RandomGeneratorrFT17unsafeRandomCountSi5usingRqd___GSax_"></a>
+                    <a name="//apple_ref/swift/Method/init(unsafeRandomCount:using:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FE9RandomKitSacuRd__S_15RandomGeneratorrFT17unsafeRandomCountSi5usingRqd___GSax_">init(unsafeRandomCount:using:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -385,16 +385,25 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Construct an Array of random elements.</p>
+                        <p>Construct an Array of random elements by unsafely randomizing the buffer directly.</p>
 
-<p>Although safety is not guaranteed, <code>init(unsafeRandomCount:)</code> is <em>significantly</em> faster than this.</p>
+<p>This is generally significantly faster than using <code><a href="../Extensions/Array.html#/s:Fe9RandomKitRxS_6RandomrSacuRd__S_15RandomGeneratorrFT11randomCountSi5usingRqd___GSax_">init(randomCount:using:)</a></code>. However, calling this initializer
+directly is unnecessary for native integer types because the other initializer uses this in that case.</p>
+
+<div class="aside aside-warning">
+    <p class="aside-title">Warning</p>
+    Do not use this initializer if you don&rsquo;t know what you&rsquo;re doing. This is an extremely unsafe
+operation and should be done with great care. Only call this for trivial types that don&rsquo;t contain references
+and have no spare bits.
+
+</div>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">init</span><span class="o">&lt;</span><span class="kt">R</span><span class="p">:</span> <span class="kt"><a href="../Protocols/RandomGenerator.html">RandomGenerator</a></span><span class="o">&gt;</span><span class="p">(</span><span class="nv">randomCount</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span> <span class="n">using</span> <span class="nv">randomGenerator</span><span class="p">:</span> <span class="k">inout</span> <span class="kt">R</span><span class="p">)</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">init</span><span class="o">&lt;</span><span class="kt">R</span><span class="p">:</span> <span class="kt"><a href="../Protocols/RandomGenerator.html">RandomGenerator</a></span><span class="o">&gt;</span><span class="p">(</span><span class="nv">unsafeRandomCount</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span> <span class="n">using</span> <span class="nv">randomGenerator</span><span class="p">:</span> <span class="k">inout</span> <span class="kt">R</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -408,9 +417,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:Fe9RandomKitRxS_12UnsafeRandomrSacuRd__S_15RandomGeneratorrFT17unsafeRandomCountSi5usingRqd___GSax_"></a>
-                    <a name="//apple_ref/swift/Method/init(unsafeRandomCount:using:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:Fe9RandomKitRxS_12UnsafeRandomrSacuRd__S_15RandomGeneratorrFT17unsafeRandomCountSi5usingRqd___GSax_">init(unsafeRandomCount:using:)</a>
+                    <a name="/s:Fe9RandomKitRxS_6RandomrSacuRd__S_15RandomGeneratorrFT11randomCountSi5usingRqd___GSax_"></a>
+                    <a name="//apple_ref/swift/Method/init(randomCount:using:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:Fe9RandomKitRxS_6RandomrSacuRd__S_15RandomGeneratorrFT11randomCountSi5usingRqd___GSax_">init(randomCount:using:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -418,16 +427,17 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Construct an Array of random elements by randomizing the buffer directly.</p>
+                        <p>Construct an Array of random elements.</p>
 
-<p>This is <em>significantly</em> faster than using <code><a href="../Extensions/Array.html#/s:Fe9RandomKitRxS_6RandomrSacuRd__S_15RandomGeneratorrFT11randomCountSi5usingRqd___GSax_">init(randomCount:using:)</a></code>.</p>
+<p>For better performance, this initializer uses <code><a href="../Extensions/Array.html#/s:FE9RandomKitSacuRd__S_15RandomGeneratorrFT17unsafeRandomCountSi5usingRqd___GSax_">init(unsafeRandomCount:using:)</a></code> for trivial types such as native
+integers. Otherwise it will call <code>Element.random(using:)</code> to generate values.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">init</span><span class="o">&lt;</span><span class="kt">R</span><span class="p">:</span> <span class="kt"><a href="../Protocols/RandomGenerator.html">RandomGenerator</a></span><span class="o">&gt;</span><span class="p">(</span><span class="nv">unsafeRandomCount</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span> <span class="n">using</span> <span class="nv">randomGenerator</span><span class="p">:</span> <span class="k">inout</span> <span class="kt">R</span><span class="p">)</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">init</span><span class="o">&lt;</span><span class="kt">R</span><span class="p">:</span> <span class="kt"><a href="../Protocols/RandomGenerator.html">RandomGenerator</a></span><span class="o">&gt;</span><span class="p">(</span><span class="nv">randomCount</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span> <span class="n">using</span> <span class="nv">randomGenerator</span><span class="p">:</span> <span class="k">inout</span> <span class="kt">R</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -819,7 +829,7 @@
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2017 <a class="link" href="https://github.com/nvzqz" target="_blank" rel="external">Nikolai Vazquez</a>. All rights reserved. (Last updated: 2017-03-07)</p>
+      <p>&copy; 2017 <a class="link" href="https://github.com/nvzqz" target="_blank" rel="external">Nikolai Vazquez</a>. All rights reserved. (Last updated: 2017-03-15)</p>
       <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.4</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
     </section>
   </body>
