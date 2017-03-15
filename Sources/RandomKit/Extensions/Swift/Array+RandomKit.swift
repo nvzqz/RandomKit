@@ -39,12 +39,14 @@ private extension Array {
 }
 
 extension Array {
-    /// Construct an Array of random elements by randomizing the buffer directly.
+    /// Construct an Array of random elements by unsafely randomizing the buffer directly.
     ///
-    /// This is *significantly* faster than using `init(randomCount:using:)`.
+    /// This is generally significantly faster than using `init(randomCount:using:)`. However, calling this initializer
+    /// directly is unnecessary for native integer types because the other initializer uses this in that case.
     ///
     /// - warning: Do not use this initializer if you don't know what you're doing. This is an extremely unsafe
-    ///   operation and should be done with great care. Only call this for trivial types such as native integers.
+    ///   operation and should be done with great care. Only call this for trivial types that don't contain references
+    ///   and have no spare bits.
     public init<R: RandomGenerator>(unsafeRandomCount: Int, using randomGenerator: inout R) {
         let (array, pointer) = Array._uninitialized(count: unsafeRandomCount)
         let buffer = UnsafeMutableRawPointer(pointer)
@@ -55,10 +57,11 @@ extension Array {
 }
 
 extension ContiguousArray {
-    /// Construct a ContiguousArray of random elements by randomizing the buffer directly.
+    /// Construct a ContiguousArray of random elements by unsafely randomizing the buffer directly.
     ///
     /// - warning: Do not use this initializer if you don't know what you're doing. This is an extremely unsafe
-    ///   operation and should be done with great care. Only call this for trivial types such as native integers.
+    ///   operation and should be done with great care. Only call this for trivial types that don't contain references
+    ///   and have no spare bits.
     public init<R: RandomGenerator>(unsafeRandomCount: Int, using randomGenerator: inout R) {
         self.init(Array(unsafeRandomCount: unsafeRandomCount, using: &randomGenerator))
     }
@@ -67,14 +70,19 @@ extension ContiguousArray {
 extension Array where Element: Random {
     /// Construct an Array of random elements.
     ///
-    /// Although safety is not guaranteed, `init(unsafeRandomCount:)` is *significantly* faster than this.
+    /// For better performance, this initializer uses `init(unsafeRandomCount:using:)` for trivial types such as native
+    /// integers. Otherwise it will call `Element.random(using:)` to generate values.
     public init<R: RandomGenerator>(randomCount: Int, using randomGenerator: inout R) {
-        var pointer: UnsafeMutablePointer<Element>, count = randomCount
-        (self, pointer) = Array._uninitialized(count: randomCount)
-        while count != 0 {
-            pointer.initialize(to: Element.random(using: &randomGenerator))
-            pointer += 1
-            count -= 1
+        if Element.self is _Trivial.Type {
+            self = Array(unsafeRandomCount: randomCount, using: &randomGenerator)
+        } else {
+            var pointer: UnsafeMutablePointer<Element>, count = randomCount
+            (self, pointer) = Array._uninitialized(count: randomCount)
+            while count != 0 {
+                pointer.initialize(to: Element.random(using: &randomGenerator))
+                pointer += 1
+                count -= 1
+            }
         }
     }
 }
