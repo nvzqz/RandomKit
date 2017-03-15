@@ -376,12 +376,12 @@ A benchmark of generating 1000 random arrays of 10000 count:
 
 | Generator                 | Safe (seconds)        | Unsafe (seconds)  |
 | ------------------------- | --------------------- | ----------------- |
-| `Xoroshiro`               | 0.3465                | 0.1068            |
-| `Xorshift`                | 0.3812                | 0.1302            |
-| `XorshiftStar`            | 0.3644                | 0.1113            |
-| `MersenneTwister`         | 0.3707                | 0.1160            |
-| `ARC4Random`              | 1.2793                | 0.3267            |
-| `DeviceRandom`            | 10.8478               | 5.5924            |
+| `Xoroshiro`               | 0.0948                | 0.0271            |
+| `Xorshift`                | 0.1066                | 0.0568            |
+| `XorshiftStar`            | 0.1028                | 0.0341            |
+| `MersenneTwister`         | 0.1208                | 0.0432            |
+| `ARC4Random`              | 1.0034                | 0.2416            |
+| `DeviceRandom`            | 10.0906               | 5.3348            |
 
 **Note:** Results may vary due to various factors.
 
