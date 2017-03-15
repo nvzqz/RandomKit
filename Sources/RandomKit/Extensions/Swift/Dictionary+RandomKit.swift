@@ -36,7 +36,9 @@ extension Dictionary: Shuffleable, UniqueShuffleable {
 
     /// Shuffles the elements in `self`.
     public mutating func shuffle<R: RandomGenerator>(using randomGenerator: inout R) {
-        for (key, value) in zip(keys, Array(values).shuffled(using: &randomGenerator)) {
+        var values = Array(self.values)
+        values.shuffle(using: &randomGenerator)
+        for (key, value) in zip(keys, values) {
             self[key] = value
         }
     }
@@ -50,7 +52,9 @@ extension Dictionary: Shuffleable, UniqueShuffleable {
 
     /// Shuffles the elements in `self` in a unique order.
     public mutating func shuffleUnique<R: RandomGenerator>(using randomGenerator: inout R) {
-        for (key, value) in zip(keys, Array(values).shuffledUnique(using: &randomGenerator)) {
+        var values = Array(self.values)
+        values.shuffle(using: &randomGenerator)
+        for (key, value) in zip(keys, values) {
             self[key] = value
         }
     }
