@@ -25,6 +25,19 @@
 //  THE SOFTWARE.
 //
 
+private extension Array {
+    @inline(__always)
+    static func _uninitialized(count: Int) -> (Array, UnsafeMutablePointer<Element>) {
+        func cast<T, U>(_ value: T) -> U {
+            return unsafeBitCast(value, to: U.self)
+        }
+        func castResult<T>(_ result: (Array, T)) -> (Array, UnsafeMutablePointer<Element>) {
+            return cast(result)
+        }
+        return castResult(_allocateUninitializedArray(cast(count)))
+    }
+}
+
 extension Array where Element: Random {
 
     /// Construct an Array of random elements.
@@ -42,7 +55,11 @@ extension Array where Element: UnsafeRandom {
     ///
     /// This is *significantly* faster than using `init(randomCount:using:)`.
     public init<R: RandomGenerator>(unsafeRandomCount: Int, using randomGenerator: inout R) {
-        self.init(ContiguousArray(unsafeRandomCount: unsafeRandomCount, using: &randomGenerator))
+        let (array, pointer) = Array._uninitialized(count: unsafeRandomCount)
+        let buffer = UnsafeMutableRawPointer(pointer)
+        let size = unsafeRandomCount &* MemoryLayout<Element>.stride
+        randomGenerator.randomize(buffer: buffer, size: size)
+        self = array
     }
 
 }
@@ -89,10 +106,7 @@ extension ContiguousArray where Element: UnsafeRandom {
     ///
     /// This is *significantly* faster than using `init(randomCount:using:)`.
     public init<R: RandomGenerator>(unsafeRandomCount: Int, using randomGenerator: inout R) {
-        self.init(repeating: .randomizableValue, count: unsafeRandomCount)
-        withUnsafeMutableBytes {
-            randomGenerator.randomize(buffer: $0)
-        }
+        self.init(Array(unsafeRandomCount: unsafeRandomCount, using: &randomGenerator))
     }
 
 }
