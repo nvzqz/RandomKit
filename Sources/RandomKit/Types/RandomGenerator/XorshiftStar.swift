@@ -28,7 +28,7 @@
 /// A generator that uses the [Xorshift1024*][1] algorithm.
 ///
 /// [1]: http://xoroshiro.di.unimi.it/xorshift1024star.c
-public struct XorshiftStar: RandomBytesGenerator, SeedableRandomGenerator, Random {
+public struct XorshiftStar: RandomBytesGenerator, SeedableFromOtherRandomGenerator {
 
     /// The seed type.
     public typealias Seed = (
@@ -47,11 +47,6 @@ public struct XorshiftStar: RandomBytesGenerator, SeedableRandomGenerator, Rando
     /// Returns an instance seeded with `DeviceRandom.default`.
     public static var seeded: XorshiftStar {
         return XorshiftStar(seededWith: &DeviceRandom.default)
-    }
-
-    /// Generates a random value of `Self` using `randomGenerator`.
-    public static func random<R: RandomGenerator>(using randomGenerator: inout R) -> XorshiftStar {
-        return XorshiftStar(seededWith: &randomGenerator)
     }
 
     private var _state: _State

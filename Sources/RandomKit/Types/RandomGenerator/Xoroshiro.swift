@@ -31,7 +31,7 @@
 ///
 /// [1]: http://xoroshiro.di.unimi.it/
 /// [2]: http://xoroshiro.di.unimi.it/xoroshiro128plus.c
-public struct Xoroshiro: RandomBytesGenerator, SeedableRandomGenerator, Random {
+public struct Xoroshiro: RandomBytesGenerator, SeedableFromOtherRandomGenerator {
 
 
     /// A default global instance seeded with `DeviceRandom.default`.
@@ -44,11 +44,6 @@ public struct Xoroshiro: RandomBytesGenerator, SeedableRandomGenerator, Random {
 
     /// The internal state.
     private var _state: (UInt64, UInt64)
-
-    /// Generates a random value of `Self` using `randomGenerator`.
-    public static func random<R: RandomGenerator>(using randomGenerator: inout R) -> Xoroshiro {
-        return Xoroshiro(seededWith: &randomGenerator)
-    }
 
     /// Creates an instance from `seed`.
     public init(seed: (UInt64, UInt64)) {

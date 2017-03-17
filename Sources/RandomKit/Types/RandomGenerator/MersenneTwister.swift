@@ -28,7 +28,7 @@
 /// A generator that uses the [Mersenne Twister][MT] algorithm.
 ///
 /// [MT]: https://en.wikipedia.org/wiki/Mersenne_Twister
-public struct MersenneTwister: RandomBytesGenerator, SeedableRandomGenerator, Random {
+public struct MersenneTwister: RandomBytesGenerator, SeedableFromOtherRandomGenerator {
 
     /// The number of `UInt64` values in a `_State`.
     private static let _stateCount: Int = 312

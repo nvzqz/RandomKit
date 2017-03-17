@@ -36,6 +36,23 @@ public protocol SeedableRandomGenerator: RandomGenerator {
 
 }
 
+/// A random value generator type that can be seeded by another `randomGenerator`.
+public protocol SeedableFromOtherRandomGenerator: SeedableRandomGenerator, Random {
+
+    /// Creates an instance seeded with `randomGenerator`.
+    init<R: RandomGenerator>(seededWith randomGenerator: inout R)
+
+}
+
+extension SeedableFromOtherRandomGenerator {
+
+    /// Generates a random value of `Self` using `randomGenerator`.
+    public static func random<R: RandomGenerator>(using randomGenerator: inout R) -> Self {
+        return Self(seededWith: &randomGenerator)
+    }
+
+}
+
 extension SeedableRandomGenerator where Seed: Random {
 
     /// Creates an instance seeded with `randomGenerator`.
