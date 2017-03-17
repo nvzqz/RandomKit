@@ -33,14 +33,8 @@
 /// [2]: http://xoroshiro.di.unimi.it/xoroshiro128plus.c
 public struct Xoroshiro: RandomBytesGenerator, SeedableFromOtherRandomGenerator {
 
-
     /// A default global instance seeded with `DeviceRandom.default`.
     public static var `default` = seeded
-
-    /// Returns an instance seeded with `DeviceRandom.default`.
-    public static var seeded: Xoroshiro {
-        return Xoroshiro(seededWith: &DeviceRandom.default)
-    }
 
     /// The internal state.
     private var _state: (UInt64, UInt64)

@@ -46,6 +46,11 @@ public protocol SeedableFromOtherRandomGenerator: SeedableRandomGenerator, Rando
 
 extension SeedableFromOtherRandomGenerator {
 
+    /// Returns an instance seeded with `DeviceRandom.default`.
+    public static var seeded: Self {
+        return Self(seededWith: &DeviceRandom.default)
+    }
+
     /// Generates a random value of `Self` using `randomGenerator`.
     public static func random<R: RandomGenerator>(using randomGenerator: inout R) -> Self {
         return Self(seededWith: &randomGenerator)

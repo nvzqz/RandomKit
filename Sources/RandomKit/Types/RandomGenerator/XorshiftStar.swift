@@ -40,14 +40,8 @@ public struct XorshiftStar: RandomBytesGenerator, SeedableFromOtherRandomGenerat
 
     private typealias _State = _Array16<UInt64>
 
-
     /// A default global instance seeded with `DeviceRandom.default`.
     public static var `default` = seeded
-
-    /// Returns an instance seeded with `DeviceRandom.default`.
-    public static var seeded: XorshiftStar {
-        return XorshiftStar(seededWith: &DeviceRandom.default)
-    }
 
     private var _state: _State
 
