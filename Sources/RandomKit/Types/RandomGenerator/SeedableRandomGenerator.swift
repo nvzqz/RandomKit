@@ -34,6 +34,18 @@ public protocol SeedableRandomGenerator: RandomGenerator {
     /// Creates an instance from `seed`.
     init(seed: Seed)
 
+    /// Reseeds `self` with `seed`.
+    mutating func reseed(with seed: Seed)
+
+}
+
+extension SeedableRandomGenerator {
+
+    /// Reseeds `self` with `seed`.
+    public mutating func reseed(with seed: Seed) {
+        self = Self(seed: seed)
+    }
+
 }
 
 /// A random value generator type that can be seeded by another `randomGenerator`.
@@ -41,6 +53,9 @@ public protocol SeedableFromOtherRandomGenerator: SeedableRandomGenerator, Rando
 
     /// Creates an instance seeded with `randomGenerator`.
     init<R: RandomGenerator>(seededWith randomGenerator: inout R)
+
+    /// Reseeds self with `randomGenerator`.
+    mutating func reseed<R: RandomGenerator>(with randomGenerator: inout R)
 
 }
 
@@ -54,6 +69,11 @@ extension SeedableFromOtherRandomGenerator {
     /// Generates a random value of `Self` using `randomGenerator`.
     public static func random<R: RandomGenerator>(using randomGenerator: inout R) -> Self {
         return Self(seededWith: &randomGenerator)
+    }
+
+    /// Reseeds self with `randomGenerator`.
+    public mutating func reseed<R: RandomGenerator>(with randomGenerator: inout R) {
+        self = Self(seededWith: &randomGenerator)
     }
 
 }
