@@ -51,7 +51,7 @@ public struct ReseedingRandomGenerator<Base: SeedableFromOtherRandomGenerator, R
         self.threshold = max(threshold, 0)
     }
 
-    /// Creates an instance with `reseeder` and `threshold` by instantiating .
+    /// Creates an instance with `reseeder` and `threshold` by instantiating `base` from `reseeder`.
     public init(reseeder: Reseeder, threshold: Int = defaultThreshold) {
         self.reseeder = reseeder
         self.base = Base(seededWith: &self.reseeder)
