@@ -66,6 +66,11 @@ extension SeedableFromOtherRandomGenerator {
         return Self(seededWith: &DeviceRandom.default)
     }
 
+    /// Returns an instance that reseeds itself with `DeviceRandom.default`.
+    public static var reseeding: ReseedingRandomGenerator<Self, DeviceRandom> {
+        return ReseedingRandomGenerator(reseeder: DeviceRandom.default)
+    }
+
     /// Generates a random value of `Self` using `randomGenerator`.
     public static func random<R: RandomGenerator>(using randomGenerator: inout R) -> Self {
         return Self(seededWith: &randomGenerator)

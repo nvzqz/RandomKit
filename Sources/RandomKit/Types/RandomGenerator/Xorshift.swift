@@ -36,6 +36,9 @@ public struct Xorshift: RandomBytesGenerator, SeedableFromOtherRandomGenerator {
     /// A default global instance seeded with `DeviceRandom.default`.
     public static var `default` = seeded
 
+    /// A default global instance that reseeds itself with `DeviceRandom.default`.
+    public static var defaultReseeding = reseeding
+
     private var x, y, z, w: UInt32
 
     /// Creates an unseeded instance.

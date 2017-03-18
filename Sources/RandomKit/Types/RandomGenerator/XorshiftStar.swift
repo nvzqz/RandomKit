@@ -43,6 +43,9 @@ public struct XorshiftStar: RandomBytesGenerator, SeedableFromOtherRandomGenerat
     /// A default global instance seeded with `DeviceRandom.default`.
     public static var `default` = seeded
 
+    /// A default global instance that reseeds itself with `DeviceRandom.default`.
+    public static var defaultReseeding = reseeding
+
     private var _state: _State
 
     private var _index: Int

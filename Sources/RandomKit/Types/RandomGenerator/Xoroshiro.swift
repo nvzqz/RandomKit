@@ -36,6 +36,9 @@ public struct Xoroshiro: RandomBytesGenerator, SeedableFromOtherRandomGenerator 
     /// A default global instance seeded with `DeviceRandom.default`.
     public static var `default` = seeded
 
+    /// A default global instance that reseeds itself with `DeviceRandom.default`.
+    public static var defaultReseeding = reseeding
+
     /// The internal state.
     private var _state: (UInt64, UInt64)
 

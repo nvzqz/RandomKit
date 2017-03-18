@@ -36,6 +36,9 @@ public struct MersenneTwister: RandomBytesGenerator, SeedableFromOtherRandomGene
     /// A default global instance seeded with `DeviceRandom.default`.
     public static var `default` = seeded
 
+    /// A default global instance that reseeds itself with `DeviceRandom.default`.
+    public static var defaultReseeding = reseeding
+
     /// The internal state's type.
     private typealias _State = _Array312<UInt64>
 
