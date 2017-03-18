@@ -51,6 +51,9 @@ extension SeedableRandomGenerator {
 /// A random value generator type that can be seeded by another `randomGenerator`.
 public protocol SeedableFromOtherRandomGenerator: SeedableRandomGenerator, Random {
 
+    /// The default byte threshold at which `self` is reseeded in a `ReseedingRandomGenerator`.
+    static var reseedingThreshold: Int { get }
+
     /// Creates an instance seeded with `randomGenerator`.
     init<R: RandomGenerator>(seededWith randomGenerator: inout R)
 
@@ -60,6 +63,11 @@ public protocol SeedableFromOtherRandomGenerator: SeedableRandomGenerator, Rando
 }
 
 extension SeedableFromOtherRandomGenerator {
+
+    /// The default byte threshold at which `self` is reseeded in a `ReseedingRandomGenerator` (32KB).
+    public static var reseedingThreshold: Int {
+        return 1024 * 32
+    }
 
     /// Returns an instance seeded with `DeviceRandom.default`.
     public static var seeded: Self {

@@ -28,11 +28,6 @@
 /// A generator that generates values with a base generator that is reseeded by another generator.
 public struct ReseedingRandomGenerator<Base: SeedableFromOtherRandomGenerator, Reseeder: RandomGenerator> {
 
-    /// The default byte threshold for `Base` (32KB).
-    public static var defaultThreshold: Int {
-        return 32 * 1024
-    }
-
     fileprivate var _bytesGenerated: Int = 0
 
     /// The byte threshold indicating the maximum number of bytes that can be generated before `self` is reseeded.
@@ -45,14 +40,14 @@ public struct ReseedingRandomGenerator<Base: SeedableFromOtherRandomGenerator, R
     public var reseeder: Reseeder
 
     /// Creates an instance with `base`, `reseeder`, and `threshold`.
-    public init(base: Base, reseeder: Reseeder, threshold: Int = defaultThreshold) {
+    public init(base: Base, reseeder: Reseeder, threshold: Int = Base.reseedingThreshold) {
         self.base = base
         self.reseeder = reseeder
         self.threshold = max(threshold, 0)
     }
 
     /// Creates an instance with `reseeder` and `threshold` by instantiating `base` from `reseeder`.
-    public init(reseeder: Reseeder, threshold: Int = defaultThreshold) {
+    public init(reseeder: Reseeder, threshold: Int = Base.reseedingThreshold) {
         self.reseeder = reseeder
         self.base = Base(seededWith: &self.reseeder)
         self.threshold = max(threshold, 0)
