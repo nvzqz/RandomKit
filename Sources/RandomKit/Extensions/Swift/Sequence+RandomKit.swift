@@ -29,7 +29,15 @@ extension Sequence {
 
     /// Returns a random element of `self`, or `nil` if `self` is empty.
     public func random<R: RandomGenerator>(using randomGenerator: inout R) -> Iterator.Element? {
-        return Array(self).random(using: &randomGenerator)
+        typealias A = Array<Iterator.Element>
+        typealias C = ContiguousArray<Iterator.Element>
+        if Self.self == A.self {
+            return unsafeBitCast(self, to: A.self).random(using: &randomGenerator)
+        } else if Self.self == C.self {
+            return unsafeBitCast(self, to: C.self).random(using: &randomGenerator)
+        } else {
+            return Array(self).random(using: &randomGenerator)
+        }
     }
 
 }
