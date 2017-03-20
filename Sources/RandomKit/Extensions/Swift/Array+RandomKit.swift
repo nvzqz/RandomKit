@@ -143,7 +143,33 @@ extension Array where Element: RandomWithinClosedRange {
     }
 }
 
+extension ContiguousArray {
+
+    /// Returns a random element of `self`, or `nil` if `self` is empty.
+    public func random<R: RandomGenerator>(using randomGenerator: inout R) -> Element? {
+        let range = Range(uncheckedBounds: (0, count))
+        guard let index = range.random(using: &randomGenerator) else {
+            return nil
+        }
+        return _buffer.firstElementAddress[index]
+    }
+
+}
+
 extension Array {
+
+    /// Returns a random element of `self`, or `nil` if `self` is empty.
+    public func random<R: RandomGenerator>(using randomGenerator: inout R) -> Element? {
+        let range = Range(uncheckedBounds: (0, count))
+        guard let index = range.random(using: &randomGenerator) else {
+            return nil
+        }
+        if let address = _buffer.firstElementAddressIfContiguous {
+            return address[index]
+        } else {
+            return self[index]
+        }
+    }
 
     /// Returns an array of randomly choosen elements.
     ///
