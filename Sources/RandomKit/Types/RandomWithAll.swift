@@ -59,7 +59,8 @@ extension RandomWithAll {
     ///
     /// - warning: `Self.all` should be non-empty or else this will cause a crash.
     public static func random<R: RandomGenerator>(using randomGenerator: inout R) -> Self {
-        return all.random(using: &randomGenerator).unsafelyUnwrapped
+        let all = self.all
+        return all[Int.uncheckedRandom(within: all._indexRange, using: &randomGenerator)]
     }
 
 }
