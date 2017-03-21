@@ -41,10 +41,11 @@ extension Date: Random, RandomWithinRange, RandomWithinClosedRange {
     /// - parameter range: The range within which the date will be generated.
     /// - parameter randomGenerator: The random generator to use.
     public static func uncheckedRandom<R: RandomGenerator>(within range: Range<Date>, using randomGenerator: inout R) -> Date {
-        let lower = range.lowerBound.timeIntervalSince1970
-        let upper = range.upperBound.timeIntervalSince1970
+        let lower = range.lowerBound.timeIntervalSinceReferenceDate
+        let upper = range.upperBound.timeIntervalSinceReferenceDate
         let range = Range(uncheckedBounds: (lower, upper))
-        return Date(timeIntervalSince1970: TimeInterval.uncheckedRandom(within: range, using: &randomGenerator))
+        let value = TimeInterval.uncheckedRandom(within: range, using: &randomGenerator)
+        return Date(timeIntervalSinceReferenceDate: value)
     }
 
     /// Returns a random value of `Self` inside of the closed range using `randomGenerator`.
@@ -52,9 +53,11 @@ extension Date: Random, RandomWithinRange, RandomWithinClosedRange {
     /// - parameter closedRange: The range within which the date will be generated.
     /// - parameter randomGenerator: The random generator to use.
     public static func random<R: RandomGenerator>(within closedRange: ClosedRange<Date>, using randomGenerator: inout R) -> Date {
-        let lower = closedRange.lowerBound.timeIntervalSince1970
-        let upper = closedRange.upperBound.timeIntervalSince1970
-        return random(within: ClosedRange(uncheckedBounds: (lower, upper)), using: &randomGenerator)
+        let lower = closedRange.lowerBound.timeIntervalSinceReferenceDate
+        let upper = closedRange.upperBound.timeIntervalSinceReferenceDate
+        let range = ClosedRange(uncheckedBounds: (lower, upper))
+        let value = TimeInterval.random(within: range, using: &randomGenerator)
+        return Date(timeIntervalSinceReferenceDate: value)
     }
 
     /// Generates a random date within the range.
