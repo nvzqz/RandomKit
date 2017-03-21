@@ -37,13 +37,6 @@ class RandomKitTests: XCTestCase {
                            ("testRandomBool", testRandomBool),
                            ("testRandomCharacter", testRandomCharacter),
                            ("testRandomString", testRandomString),
-                           ("testRandomFromArrayTime", testRandomFromArrayTime),
-                           ("testRandomFromSetTime", testRandomFromSetTime),
-                           ("testRandomFromDictTime", testRandomFromDictTime),
-                           ("testRandomFromCollectionType", testRandomFromCollectionType),
-                           ("testArrayShuffleTime", testArrayShuffleTime),
-                           ("testDictionaryShuffleTime", testDictionaryShuffleTime),
-                           ("testStringShuffleTime", testStringShuffleTime),
                            ("testRandoms", testRandoms),
                            ("testRandomArray", testRandomArray),
                            ("testRandomSet", testRandomSet),
@@ -112,69 +105,6 @@ class RandomKitTests: XCTestCase {
             return count + (r1 == r2 ? 1 : 0)
         }
         XCTAssertFalse(sameCount > 1, "Too many equal random strings")
-    }
-
-    func testRandomFromArrayTime() {
-        let arr = Array(0 ..< 10000)
-        self.measure {
-            XCTAssertNotNil(arr.random(using: &RandomKitTests.generatorToTest))
-        }
-    }
-
-    func testRandomFromSetTime() {
-        let set = Set(0 ..< 10000)
-        self.measure {
-            XCTAssertNotNil(set.random(using: &RandomKitTests.generatorToTest))
-        }
-    }
-
-    func testRandomFromDictTime() {
-        let dict: [Int : Int] = RandomKitTests.randomDictionaryOfCount(10000)
-
-        NSLog("done with making dict")
-        self.measure {
-            XCTAssertNotNil(dict.random(using: &RandomKitTests.generatorToTest))
-        }
-    }
-
-    func testRandomFromCollectionType() {
-        let arr = ["A", "B", "C", "D", "E", "F", "H", "I"]
-        let dict = ["k1" : "v1", "k2" : "v2", "k3" : "v3"]
-        for _ in 0...testCount {
-            XCTAssertNotNil(arr.random(using: &RandomKitTests.generatorToTest),
-                            "Random element in non-empty array is nil")
-            XCTAssertNotNil(dict.random(using: &RandomKitTests.generatorToTest),
-                            "Random element in non-empty dictionary is nil")
-        }
-    }
-
-    func testArrayShuffleTime() {
-        let a1: [Int] = (0 ..< 10000).reduce([]) { $0 + [$1] }
-        var a2: [Int] = []
-        self.measure {
-            a2 = a1.shuffled(using: &RandomKitTests.generatorToTest)
-        }
-        XCTAssertNotEqual(a1, a2)
-    }
-
-    func testDictionaryShuffleTime() {
-        let d1: [Int : Int] = RandomKitTests.randomDictionaryOfCount(1000)
-        var d2: [Int : Int] = [:]
-        self.measure {
-            d2 = d1.shuffled(using: &RandomKitTests.generatorToTest)
-        }
-        XCTAssertNotEqual(d1, d2)
-    }
-
-    func testStringShuffleTime() {
-        let str1 = (0 ..< 10000).reduce("") { str, _ in
-            str + String(Int.random(within: 0...9, using: &RandomKitTests.generatorToTest))
-        }
-        var str2 = ""
-        self.measure {
-            str2 = str1.shuffled(using: &RandomKitTests.generatorToTest)
-        }
-        XCTAssertNotEqual(str1, str2)
     }
 
     func testRandoms() {
