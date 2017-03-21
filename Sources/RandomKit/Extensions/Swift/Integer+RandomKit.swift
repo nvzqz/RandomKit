@@ -209,7 +209,7 @@ extension Int: UnsafeRandom, RandomWithMax, RandomWithMin, RandomToValue, Random
 
     /// Generates a random value of `Self` using `randomGenerator`.
     public static func random<R: RandomGenerator>(using randomGenerator: inout R) -> Int {
-        return unsafeBitCast(UInt.random(using: &randomGenerator), to: self)
+        return Int(bitPattern: UInt.random(using: &randomGenerator))
     }
 
     /// Returns an optional random value of `Self` inside of the range using `randomGenerator`.
@@ -247,7 +247,7 @@ extension Int64: UnsafeRandom, RandomWithMax, RandomWithMin, RandomToValue, Rand
 
     /// Generates a random value of `Self` using `randomGenerator`.
     public static func random<R: RandomGenerator>(using randomGenerator: inout R) -> Int64 {
-        return unsafeBitCast(UInt64.random(using: &randomGenerator), to: self)
+        return Int64(bitPattern: UInt64.random(using: &randomGenerator))
     }
 
     /// Returns an optional random value of `Self` inside of the range using `randomGenerator`.
@@ -288,7 +288,7 @@ extension Int32: UnsafeRandom, RandomWithMax, RandomWithMin, RandomToValue, Rand
 
     /// Generates a random value of `Self` using `randomGenerator`.
     public static func random<R: RandomGenerator>(using randomGenerator: inout R) -> Int32 {
-        return unsafeBitCast(UInt32.random(using: &randomGenerator), to: self)
+        return Int32(bitPattern: UInt32.random(using: &randomGenerator))
     }
 
     /// Returns an optional random value of `Self` inside of the range using `randomGenerator`.
@@ -329,7 +329,7 @@ extension Int16: UnsafeRandom, RandomWithMax, RandomWithMin, RandomToValue, Rand
 
     /// Generates a random value of `Self` using `randomGenerator`.
     public static func random<R: RandomGenerator>(using randomGenerator: inout R) -> Int16 {
-        return unsafeBitCast(UInt16.random(using: &randomGenerator), to: self)
+        return Int16(bitPattern: UInt16.random(using: &randomGenerator))
     }
 
     /// Returns an optional random value of `Self` inside of the range using `randomGenerator`.
@@ -370,7 +370,7 @@ extension Int8: UnsafeRandom, RandomWithMax, RandomWithMin, RandomToValue, Rando
 
     /// Generates a random value of `Self` using `randomGenerator`.
     public static func random<R: RandomGenerator>(using randomGenerator: inout R) -> Int8 {
-        return unsafeBitCast(UInt8.random(using: &randomGenerator), to: self)
+        return Int8(bitPattern: UInt8.random(using: &randomGenerator))
     }
 
     /// Returns an optional random value of `Self` inside of the range using `randomGenerator`.
