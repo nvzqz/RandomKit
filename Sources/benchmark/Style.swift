@@ -46,7 +46,7 @@ private func style(_ string: String, with codes: [String]) -> String {
 }
 
 private func style(_ string: String, with codes: [UInt8]) -> String {
-    return style(string, with: codes.map(String.init(_:)))
+    return style(string, with: codes.map { String($0) })
 }
 
 func style(_ string: String, with styles: [Style]) -> String {
