@@ -405,9 +405,9 @@ extension UInt: UnsafeRandom, RandomWithMax, RandomWithMin, RandomToValue, Rando
     /// Generates a random value of `Self` using `randomGenerator`.
     public static func random<R: RandomGenerator>(using randomGenerator: inout R) -> UInt {
         if MemoryLayout<Int>.size == 8 {
-            return unsafeBitCast(randomGenerator.random64(), to: self)
+            return UInt(randomGenerator.random64())
         } else {
-            return unsafeBitCast(randomGenerator.random32(), to: self)
+            return UInt(randomGenerator.random32())
         }
     }
 
