@@ -25,16 +25,20 @@
 //  THE SOFTWARE.
 //
 
+@inline(__always)
+private func _cast<T, U>(_ value: T) -> U {
+    return unsafeBitCast(value, to: U.self)
+}
+
+@inline(__always)
+private func _castResult<T, P>(_ result: ([T], P)) -> ([T], UnsafeMutablePointer<T>) {
+    return _cast(result)
+}
+
 private extension Array {
     @inline(__always)
     static func _uninitialized(count: Int) -> (Array, UnsafeMutablePointer<Element>) {
-        func cast<T, U>(_ value: T) -> U {
-            return unsafeBitCast(value, to: U.self)
-        }
-        func castResult<T>(_ result: (Array, T)) -> (Array, UnsafeMutablePointer<Element>) {
-            return cast(result)
-        }
-        return castResult(_allocateUninitializedArray(cast(count)))
+        return _castResult(_allocateUninitializedArray(_cast(count)))
     }
 }
 
