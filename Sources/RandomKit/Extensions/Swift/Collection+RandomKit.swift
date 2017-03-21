@@ -25,20 +25,25 @@
 //  THE SOFTWARE.
 //
 
-private extension Collection {
-    func _boundsCheck(range: Range<Index>, line: UInt = #line) {
+extension Collection {
+
+    internal var _indexRange: Range<Index> {
+        return Range(uncheckedBounds: (startIndex, endIndex))
+    }
+
+    fileprivate func _boundsCheck(range: Range<Index>, line: UInt = #line) {
         if range.lowerBound < startIndex || range.upperBound > endIndex {
             fatalError("Range \(range) out of bounds", line: line)
         }
     }
+
 }
 
 extension Collection where Index: RandomWithinRange {
 
     /// Returns a random element of `self`, or `nil` if `self` is empty.
     public func random<R: RandomGenerator>(using randomGenerator: inout R) -> Iterator.Element? {
-        let range = Range(uncheckedBounds: (startIndex, endIndex))
-        guard let index = Index.random(within: range, using: &randomGenerator) else {
+        guard let index = Index.random(within: _indexRange, using: &randomGenerator) else {
             return nil
         }
         return self[index]
@@ -50,8 +55,7 @@ extension Collection where Index: RandomWithinRange, IndexDistance: RandomToValu
 
     /// Returns a random element of `self`, or `nil` if `self` is empty.
     public func random<R: RandomGenerator>(using randomGenerator: inout R) -> Iterator.Element? {
-        let range = Range(uncheckedBounds: (startIndex, endIndex))
-        guard let index = Index.random(within: range, using: &randomGenerator) else {
+        guard let index = Index.random(within: _indexRange, using: &randomGenerator) else {
             return nil
         }
         return self[index]
