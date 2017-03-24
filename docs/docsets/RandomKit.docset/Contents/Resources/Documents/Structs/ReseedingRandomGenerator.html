@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Integer Extension Reference</title>
+    <title>ReseedingRandomGenerator Struct Reference</title>
     <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
     <meta charset="utf-8">
@@ -14,9 +14,9 @@
   </head>
   <body>
 
-    <a name="//apple_ref/swift/Extension/Integer" class="dashAnchor"></a>
+    <a name="//apple_ref/swift/Struct/ReseedingRandomGenerator" class="dashAnchor"></a>
 
-    <a title="Integer Extension Reference"></a>
+    <a title="ReseedingRandomGenerator Struct Reference"></a>
 
     <header class="header">
       <p class="header-col header-col--primary">
@@ -44,7 +44,7 @@
     <p class="breadcrumbs">
       <a class="breadcrumb" href="../index.html">RandomKit Reference</a>
       <img class="carat" src="../img/carat.png" />
-      Integer Extension Reference
+      ReseedingRandomGenerator Struct Reference
     </p>
 
     <div class="content-wrapper">
@@ -363,14 +363,15 @@
 
         <section class="section">
           <div class="section-content">
-            <h1>Integer</h1>
+            <h1>ReseedingRandomGenerator</h1>
               <div class="declaration">
                 <div class="language">
-                  <pre class="highlight"><code><span class="kd">protocol</span> <span class="kt">Integer</span> <span class="p">:</span> <span class="n">_Integer</span><span class="p">,</span> <span class="kt">Strideable</span></code></pre>
+                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">ReseedingRandomGenerator</span><span class="o">&lt;</span><span class="kt">Base</span><span class="p">:</span> <span class="kt"><a href="../Protocols/SeedableFromOtherRandomGenerator.html">SeedableFromOtherRandomGenerator</a></span><span class="p">,</span> <span class="kt">Reseeder</span><span class="p">:</span> <span class="kt"><a href="../Protocols/RandomGenerator.html">RandomGenerator</a></span><span class="o">&gt;</span></code></pre>
 
                 </div>
               </div>
-            
+            <p>A generator that generates values with a base generator that is reseeded by another generator.</p>
+
           </div>
         </section>
 
@@ -381,9 +382,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:Zve9RandomKitRxS_18RandomThroughValuexS_13RandomToValuexs7IntegerrS2_10randomBasex"></a>
-                    <a name="//apple_ref/swift/Variable/randomBase" class="dashAnchor"></a>
-                    <a class="token" href="#/s:Zve9RandomKitRxS_18RandomThroughValuexS_13RandomToValuexs7IntegerrS2_10randomBasex">randomBase</a>
+                    <a name="/s:vV9RandomKit24ReseedingRandomGenerator9thresholdSi"></a>
+                    <a name="//apple_ref/swift/Property/threshold" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vV9RandomKit24ReseedingRandomGenerator9thresholdSi">threshold</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -391,14 +392,289 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>The random base from which to generate.</p>
+                        <p>The byte threshold indicating the maximum number of bytes that can be generated before <code>self</code> is reseeded.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">var</span> <span class="nv">randomBase</span><span class="p">:</span> <span class="k">Self</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">threshold</span><span class="p">:</span> <span class="kt">Int</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vV9RandomKit24ReseedingRandomGenerator4basex"></a>
+                    <a name="//apple_ref/swift/Property/base" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vV9RandomKit24ReseedingRandomGenerator4basex">base</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The base <code><a href="../Protocols/RandomGenerator.html">RandomGenerator</a></code> from which to generate values.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">base</span><span class="p">:</span> <span class="kt">Base</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vV9RandomKit24ReseedingRandomGenerator8reseederq_"></a>
+                    <a name="//apple_ref/swift/Property/reseeder" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vV9RandomKit24ReseedingRandomGenerator8reseederq_">reseeder</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The <code><a href="../Protocols/RandomGenerator.html">RandomGenerator</a></code> used to reseed <code><a href="../Structs/ReseedingRandomGenerator.html#/s:vV9RandomKit24ReseedingRandomGenerator4basex">base</a></code>.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">reseeder</span><span class="p">:</span> <span class="kt">Reseeder</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FV9RandomKit24ReseedingRandomGeneratorcFT4basex8reseederq_9thresholdSi_GS0_xq__"></a>
+                    <a name="//apple_ref/swift/Method/init(base:reseeder:threshold:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FV9RandomKit24ReseedingRandomGeneratorcFT4basex8reseederq_9thresholdSi_GS0_xq__">init(base:reseeder:threshold:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Creates an instance with <code><a href="../Structs/ReseedingRandomGenerator.html#/s:vV9RandomKit24ReseedingRandomGenerator4basex">base</a></code>, <code><a href="../Structs/ReseedingRandomGenerator.html#/s:vV9RandomKit24ReseedingRandomGenerator8reseederq_">reseeder</a></code>, and <code><a href="../Structs/ReseedingRandomGenerator.html#/s:vV9RandomKit24ReseedingRandomGenerator9thresholdSi">threshold</a></code>.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">base</span><span class="p">:</span> <span class="kt">Base</span><span class="p">,</span> <span class="nv">reseeder</span><span class="p">:</span> <span class="kt">Reseeder</span><span class="p">,</span> <span class="nv">threshold</span><span class="p">:</span> <span class="kt">Int</span> <span class="o">=</span> <span class="kt">Base</span><span class="o">.</span><span class="n">reseedingThreshold</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FV9RandomKit24ReseedingRandomGeneratorcFT8reseederq_9thresholdSi_GS0_xq__"></a>
+                    <a name="//apple_ref/swift/Method/init(reseeder:threshold:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FV9RandomKit24ReseedingRandomGeneratorcFT8reseederq_9thresholdSi_GS0_xq__">init(reseeder:threshold:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Creates an instance with <code><a href="../Structs/ReseedingRandomGenerator.html#/s:vV9RandomKit24ReseedingRandomGenerator8reseederq_">reseeder</a></code> and <code><a href="../Structs/ReseedingRandomGenerator.html#/s:vV9RandomKit24ReseedingRandomGenerator9thresholdSi">threshold</a></code> by instantiating <code><a href="../Structs/ReseedingRandomGenerator.html#/s:vV9RandomKit24ReseedingRandomGenerator4basex">base</a></code> from <code><a href="../Structs/ReseedingRandomGenerator.html#/s:vV9RandomKit24ReseedingRandomGenerator8reseederq_">reseeder</a></code>.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">reseeder</span><span class="p">:</span> <span class="kt">Reseeder</span><span class="p">,</span> <span class="nv">threshold</span><span class="p">:</span> <span class="kt">Int</span> <span class="o">=</span> <span class="kt">Base</span><span class="o">.</span><span class="n">reseedingThreshold</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FV9RandomKit24ReseedingRandomGenerator17reseedIfNecessaryFT_Sb"></a>
+                    <a name="//apple_ref/swift/Method/reseedIfNecessary()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FV9RandomKit24ReseedingRandomGenerator17reseedIfNecessaryFT_Sb">reseedIfNecessary()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Reseeds <code>self</code> if the number of bytes generated is greater than or equal to <code><a href="../Structs/ReseedingRandomGenerator.html#/s:vV9RandomKit24ReseedingRandomGenerator9thresholdSi">threshold</a></code>. Returns <code>true</code> if
+<code>self</code> was reseeded</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">mutating</span> <span class="kd">func</span> <span class="nf">reseedIfNecessary</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FV9RandomKit24ReseedingRandomGenerator9randomizeFT6bufferSv4sizeSi_T_"></a>
+                    <a name="//apple_ref/swift/Method/randomize(buffer:size:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FV9RandomKit24ReseedingRandomGenerator9randomizeFT6bufferSv4sizeSi_T_">randomize(buffer:size:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Randomizes the contents of <code>buffer</code> up to <code>size</code>.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">mutating</span> <span class="kd">func</span> <span class="nf">randomize</span><span class="p">(</span><span class="nv">buffer</span><span class="p">:</span> <span class="kt">UnsafeMutableRawPointer</span><span class="p">,</span> <span class="nv">size</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FV9RandomKit24ReseedingRandomGenerator8random64FT_Vs6UInt64"></a>
+                    <a name="//apple_ref/swift/Method/random64()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FV9RandomKit24ReseedingRandomGenerator8random64FT_Vs6UInt64">random64()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Generates a random unsigned 64-bit integer.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">mutating</span> <span class="kd">func</span> <span class="nf">random64</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">UInt64</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FV9RandomKit24ReseedingRandomGenerator8random32FT_Vs6UInt32"></a>
+                    <a name="//apple_ref/swift/Method/random32()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FV9RandomKit24ReseedingRandomGenerator8random32FT_Vs6UInt32">random32()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Generates a random unsigned 32-bit integer.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">mutating</span> <span class="kd">func</span> <span class="nf">random32</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">UInt32</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FV9RandomKit24ReseedingRandomGenerator8random16FT_Vs6UInt16"></a>
+                    <a name="//apple_ref/swift/Method/random16()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FV9RandomKit24ReseedingRandomGenerator8random16FT_Vs6UInt16">random16()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Generates a random unsigned 16-bit integer.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">mutating</span> <span class="kd">func</span> <span class="nf">random16</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">UInt16</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FV9RandomKit24ReseedingRandomGenerator7random8FT_Vs5UInt8"></a>
+                    <a name="//apple_ref/swift/Method/random8()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FV9RandomKit24ReseedingRandomGenerator7random8FT_Vs5UInt8">random8()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Generates a random unsigned 8-bit integer.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">mutating</span> <span class="kd">func</span> <span class="nf">random8</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">UInt8</span></code></pre>
 
                         </div>
                       </div>

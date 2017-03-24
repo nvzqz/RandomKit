@@ -273,6 +273,9 @@
                 <a class="nav-group-task-link" href="../Protocols/RandomWithinRange.html">RandomWithinRange</a>
               </li>
               <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/SeedableFromOtherRandomGenerator.html">SeedableFromOtherRandomGenerator</a>
+              </li>
+              <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Protocols/SeedableRandomGenerator.html">SeedableRandomGenerator</a>
               </li>
               <li class="nav-group-task">
@@ -341,6 +344,9 @@
                 <a class="nav-group-task-link" href="../Structs/RandomsWithinRange.html">RandomsWithinRange</a>
               </li>
               <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/ReseedingRandomGenerator.html">ReseedingRandomGenerator</a>
+              </li>
+              <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Structs/Xoroshiro.html">Xoroshiro</a>
               </li>
               <li class="nav-group-task">
@@ -360,7 +366,7 @@
             <h1>Xorshift</h1>
               <div class="declaration">
                 <div class="language">
-                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">Xorshift</span><span class="p">:</span> <span class="kt"><a href="../Protocols/RandomBytesGenerator.html">RandomBytesGenerator</a></span><span class="p">,</span> <span class="kt"><a href="../Protocols/SeedableRandomGenerator.html">SeedableRandomGenerator</a></span><span class="p">,</span> <span class="kt"><a href="../Protocols/Random.html">Random</a></span></code></pre>
+                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">Xorshift</span><span class="p">:</span> <span class="kt"><a href="../Protocols/RandomBytesGenerator.html">RandomBytesGenerator</a></span><span class="p">,</span> <span class="kt"><a href="../Protocols/SeedableFromOtherRandomGenerator.html">SeedableFromOtherRandomGenerator</a></span></code></pre>
 
                 </div>
               </div>
@@ -395,7 +401,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">var</span> <span class="err">`</span><span class="k">default</span><span class="err">`</span> <span class="o">=</span> <span class="n"><a href="../Structs/Xorshift.html#/s:ZvV9RandomKit8Xorshift6seededS0_">seeded</a></span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">var</span> <span class="err">`</span><span class="k">default</span><span class="err">`</span> <span class="o">=</span> <span class="n">seeded</span></code></pre>
 
                         </div>
                       </div>
@@ -405,9 +411,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:ZvV9RandomKit8Xorshift6seededS0_"></a>
-                    <a name="//apple_ref/swift/Variable/seeded" class="dashAnchor"></a>
-                    <a class="token" href="#/s:ZvV9RandomKit8Xorshift6seededS0_">seeded</a>
+                    <a name="/s:ZvV9RandomKit8Xorshift16defaultReseedingGVS_24ReseedingRandomGeneratorS0_CS_12DeviceRandom_"></a>
+                    <a name="//apple_ref/swift/Variable/defaultReseeding" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZvV9RandomKit8Xorshift16defaultReseedingGVS_24ReseedingRandomGeneratorS0_CS_12DeviceRandom_">defaultReseeding</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -415,41 +421,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Returns an instance seeded with <code><a href="../Classes/DeviceRandom.html#/s:ZvC9RandomKit12DeviceRandom7defaultS0_">DeviceRandom.default</a></code>.</p>
+                        <p>A default global instance that reseeds itself with <code><a href="../Classes/DeviceRandom.html#/s:ZvC9RandomKit12DeviceRandom7defaultS0_">DeviceRandom.default</a></code>.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">var</span> <span class="nv">seeded</span><span class="p">:</span> <span class="kt">Xorshift</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:ZFV9RandomKit8Xorshift6randomuRxS_15RandomGeneratorrFT5usingRx_S0_"></a>
-                    <a name="//apple_ref/swift/Method/random(using:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:ZFV9RandomKit8Xorshift6randomuRxS_15RandomGeneratorrFT5usingRx_S0_">random(using:)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Generates a random value of <code>Self</code> using <code>randomGenerator</code>.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="n">random</span><span class="o">&lt;</span><span class="kt">R</span><span class="p">:</span> <span class="kt"><a href="../Protocols/RandomGenerator.html">RandomGenerator</a></span><span class="o">&gt;</span><span class="p">(</span><span class="n">using</span> <span class="nv">randomGenerator</span><span class="p">:</span> <span class="k">inout</span> <span class="kt">R</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Xorshift</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">var</span> <span class="nv">defaultReseeding</span> <span class="o">=</span> <span class="n">reseeding</span></code></pre>
 
                         </div>
                       </div>
@@ -578,7 +557,7 @@
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2017 <a class="link" href="https://github.com/nvzqz" target="_blank" rel="external">Nikolai Vazquez</a>. All rights reserved. (Last updated: 2017-03-15)</p>
+      <p>&copy; 2017 <a class="link" href="https://github.com/nvzqz" target="_blank" rel="external">Nikolai Vazquez</a>. All rights reserved. (Last updated: 2017-03-24)</p>
       <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.4</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
     </section>
   </body>
