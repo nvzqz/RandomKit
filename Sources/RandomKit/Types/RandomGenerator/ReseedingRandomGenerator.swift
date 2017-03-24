@@ -68,6 +68,16 @@ public struct ReseedingRandomGenerator<Base: SeedableFromOtherRandomGenerator, R
 
 }
 
+extension ReseedingRandomGenerator where Reseeder: SeedableFromOtherRandomGenerator {
+
+    /// Creates an instance with `threshold` by instantiating `base` from a `Reseeder` that was in turn seeded with
+    /// `DeviceRandom.default`.
+    public init(threshold: Int = Base.reseedingThreshold) {
+        self.init(reseeder: Reseeder.seeded, threshold: threshold)
+    }
+
+}
+
 extension Int {
     @inline(__always)
     fileprivate func _saturatingAddPositive(_ other: Int) -> Int {
