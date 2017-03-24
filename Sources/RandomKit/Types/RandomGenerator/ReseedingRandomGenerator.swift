@@ -78,6 +78,26 @@ extension ReseedingRandomGenerator where Reseeder: SeedableFromOtherRandomGenera
 
 }
 
+#if swift(>=3.1)
+extension ReseedingRandomGenerator where Reseeder == DeviceRandom {
+
+    /// Creates an instance with `threshold` by instantiating `base` from `DeviceRandom.default`.
+    public init(threshold: Int = Base.reseedingThreshold) {
+        self.init(reseeder: .default, threshold: threshold)
+    }
+
+}
+
+extension ReseedingRandomGenerator where Reseeder == ARC4Random {
+
+    /// Creates an instance with `threshold` by instantiating `base` from `ARC4Random.default`.
+    public init(threshold: Int = Base.reseedingThreshold) {
+        self.init(reseeder: .default, threshold: threshold)
+    }
+
+}
+#endif
+
 extension Int {
     @inline(__always)
     fileprivate func _saturatingAddPositive(_ other: Int) -> Int {
