@@ -67,7 +67,7 @@ extension RandomBytesGenerator where Bytes == UInt32 {
 
     /// Generates a random unsigned 64-bit integer.
     public mutating func random64() -> UInt64 {
-        return unsafeBitCast((randomBytes(), randomBytes()), to: UInt64.self)
+        return _unsafeBitCast((randomBytes(), randomBytes()))
     }
 
     /// Generates a random unsigned 32-bit integer.

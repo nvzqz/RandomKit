@@ -46,14 +46,14 @@ extension UnicodeScalar: Random, RandomWithinRange, RandomWithinClosedRange {
             let newRange = Range(uncheckedBounds: (lower, upper - diff))
             let random = UInt32.uncheckedRandom(within: newRange, using: &randomGenerator)
             if random._isLowerRange {
-                return unsafeBitCast(random, to: UnicodeScalar.self)
+                return _unsafeBitCast(random)
             } else {
-                return unsafeBitCast(random &+ diff, to: UnicodeScalar.self)
+                return _unsafeBitCast(random &+ diff)
             }
         } else {
             let newRange = Range(uncheckedBounds: (lower, upper))
             let random = UInt32.uncheckedRandom(within: newRange, using: &randomGenerator)
-            return unsafeBitCast(random, to: UnicodeScalar.self)
+            return _unsafeBitCast(random)
         }
     }
 
@@ -67,14 +67,14 @@ extension UnicodeScalar: Random, RandomWithinRange, RandomWithinClosedRange {
             let newRange = ClosedRange(uncheckedBounds: (lower, upper - diff))
             let random = UInt32.random(within: newRange, using: &randomGenerator)
             if random._isLowerRange {
-                return unsafeBitCast(random, to: UnicodeScalar.self)
+                return _unsafeBitCast(random)
             } else {
-                return unsafeBitCast(random &+ diff, to: UnicodeScalar.self)
+                return _unsafeBitCast(random &+ diff)
             }
         } else {
             let newRange = ClosedRange(uncheckedBounds: (lower, upper))
             let random = UInt32.random(within: newRange, using: &randomGenerator)
-            return unsafeBitCast(random, to: UnicodeScalar.self)
+            return _unsafeBitCast(random)
         }
     }
 

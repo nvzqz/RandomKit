@@ -25,6 +25,12 @@
 //  THE SOFTWARE.
 //
 
+/// Same as `unsafeBitCast(_:to:)` except the output type is inferred.
+@inline(__always)
+internal func _unsafeBitCast<T, U>(_ value: T) -> U {
+    return unsafeBitCast(value, to: U.self)
+}
+
 // Allows casting between types of potentially different sizes.
 
 internal func _unsafeCast<T, U>(_ value: inout T, to type: U.Type = U.self) -> U {
