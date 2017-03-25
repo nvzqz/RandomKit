@@ -75,6 +75,42 @@ extension RandomGenerator {
         return result
     }
 
+    /// Generates a random 32-bit floating-point value within (0, 1).
+    public mutating func randomOpen32() -> Float {
+        return randomHalfOpen32() + 0.25 / ._scale
+    }
+
+    /// Generates a random 32-bit floating-point value within [0, 1).
+    public mutating func randomHalfOpen32() -> Float {
+        let upper: UInt32 = 0x3F800000 //  7 bits
+        let lower: UInt32 = 0x007FFFFF // 23 bits
+        let value = upper | (random32() & lower)
+        return Float(bitPattern: value) - 1.0
+    }
+
+    /// Generates a random 32-bit floating-point value within [0, 1].
+    public mutating func randomClosed32() -> Float {
+        return randomHalfOpen32() * ._scale / (._scale - 1.0)
+    }
+
+    /// Generates a random 64-bit floating-point value within (0, 1).
+    public mutating func randomOpen64() -> Double {
+        return randomHalfOpen64() + 0.25 / ._scale
+    }
+
+    /// Generates a random 64-bit floating-point value within [0, 1).
+    public mutating func randomHalfOpen64() -> Double {
+        let upper: UInt64 = 0x3FF0000000000000 // 10 bits
+        let lower: UInt64 = 0x000FFFFFFFFFFFFF // 52 bits
+        let value = upper | (random64() & lower)
+        return Double(bitPattern: value) - 1.0
+    }
+
+    /// Generates a random 64-bit floating-point value within [0, 1].
+    public mutating func randomClosed64() -> Double {
+        return randomHalfOpen64() * ._scale / (._scale - 1.0)
+    }
+
     /// Randomizes the contents of `value`.
     public mutating func randomize<T>(value: inout T) {
         randomize(buffer: &value, size: MemoryLayout<T>.size)
@@ -104,4 +140,12 @@ extension RandomGenerator {
         rebounded[byteCount - 1] |= 1 << UInt8((width - 1) % 8)
     }
 
+}
+
+extension Float {
+    fileprivate static let _scale = Float(1 << 24 as UInt32)
+}
+
+extension Double {
+    fileprivate static let _scale = Double(1 << 53 as UInt64)
 }
