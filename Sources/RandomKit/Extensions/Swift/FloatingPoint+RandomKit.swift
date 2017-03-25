@@ -99,9 +99,21 @@ extension FloatingPoint where Self: RandomWithinRange & RandomToValue {
 }
 
 extension Double: Random, RandomToValue, RandomThroughValue, RandomWithinRange, RandomWithinClosedRange {
+
+    /// Generates a random value of `Self` using `randomGenerator`.
+    public static func random<R: RandomGenerator>(using randomGenerator: inout R) -> Double {
+        return randomGenerator.randomClosed64()
+    }
+
 }
 
 extension Float: Random, RandomToValue, RandomThroughValue, RandomWithinRange, RandomWithinClosedRange {
+
+    /// Generates a random value of `Self` using `randomGenerator`.
+    public static func random<R: RandomGenerator>(using randomGenerator: inout R) -> Float {
+        return randomGenerator.randomClosed32()
+    }
+
 }
 
 #if arch(i386) || arch(x86_64)
