@@ -118,7 +118,7 @@ class RandomKitTests: XCTestCase {
         let falseCount = (0 ..< testCount).reduce(0) { count, _ in
             Bool.random(using: &RandomKitTests.generatorToTest) ? count : count + 1
         }
-        let difference = 0.25
+        let difference = 0.5
         let percentRange = (50 - difference)...(50 + difference)
         let percentFalse = Double(falseCount) / Double(testCount) * 100
         XCTAssertTrue(percentRange ~= percentFalse, "One happens more often than the other.")
