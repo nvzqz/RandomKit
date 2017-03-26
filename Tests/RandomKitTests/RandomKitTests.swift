@@ -45,8 +45,6 @@ class RandomKitTests: XCTestCase {
                            ("testRandomDouble", testRandomDouble),
                            ("testRandomFloat", testRandomFloat),
                            ("testRandomBool", testRandomBool),
-                           ("testRandomCharacter", testRandomCharacter),
-                           ("testRandomString", testRandomString),
                            ("testRandoms", testRandoms),
                            ("testRandomArray", testRandomArray),
                            ("testRandomSet", testRandomSet),
@@ -122,29 +120,6 @@ class RandomKitTests: XCTestCase {
         let percentRange = (50 - difference)...(50 + difference)
         let percentFalse = Double(falseCount) / Double(testCount) * 100
         XCTAssertTrue(percentRange ~= percentFalse, "One happens more often than the other.")
-    }
-
-    let min: UnicodeScalar = .init(0)
-    let max: UnicodeScalar = .init(.max)
-
-    var range: ClosedRange<UnicodeScalar> { return min...max }
-
-    func testRandomCharacter() {
-        let sameCount = (0...testCount).reduce(0) { count, _ in
-            let r1 = Character.random(within: self.range, using: &RandomKitTests.generatorToTest)
-            let r2 = Character.random(within: self.range, using: &RandomKitTests.generatorToTest)
-            return count + (r1 == r2 ? 1 : 0)
-        }
-        XCTAssertFalse(sameCount > testCount / 100, "Too many equal random characters")
-    }
-
-    func testRandomString() {
-        let sameCount = (0...(testCount/2)).reduce(0) { count, _ in
-            let r1 = String.random(ofLength: 10, within: range, using: &RandomKitTests.generatorToTest)
-            let r2 = String.random(ofLength: 10, within: range, using: &RandomKitTests.generatorToTest)
-            return count + (r1 == r2 ? 1 : 0)
-        }
-        XCTAssertFalse(sameCount > 1, "Too many equal random strings")
     }
 
     func testRandoms() {
