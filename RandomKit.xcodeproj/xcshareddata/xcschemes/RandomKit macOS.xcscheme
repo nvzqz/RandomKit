@@ -34,8 +34,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "528200F01BC9FA42001FDD58"
-               BuildableName = "RandomKit Tests.xctest"
-               BlueprintName = "RandomKit Tests"
+               BuildableName = "RandomKit macOS Tests.xctest"
+               BlueprintName = "RandomKit macOS Tests"
                ReferencedContainer = "container:RandomKit.xcodeproj">
             </BuildableReference>
          </TestableReference>

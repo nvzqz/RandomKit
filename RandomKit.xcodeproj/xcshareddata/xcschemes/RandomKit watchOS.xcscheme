@@ -29,6 +29,15 @@
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
       </Testables>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "528200AB1BC9C4C0001FDD58"
+            BuildableName = "RandomKit.framework"
+            BlueprintName = "RandomKit watchOS"
+            ReferencedContainer = "container:RandomKit.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </TestAction>
