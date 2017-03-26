@@ -13,6 +13,7 @@
 
 RandomKit is a Swift framework that makes random data generation simple and easy.
 
+- [Build Status](#build-status)
 - [Installation](#installation)
     - [Compatibility](#compatibility)
     - [Swift Package Manager](#install-using-swift-package-manager)
@@ -52,6 +53,12 @@ RandomKit is a Swift framework that makes random data generation simple and easy
 - [Extra](#extra)
     - [BigInt](#bigint)
 - [License](#license)
+
+## Build Status
+
+| Branch    | Status |
+| :-------: | :----: |
+| `master`  | [![Build Status](https://travis-ci.org/nvzqz/RandomKit.svg?branch=master)](https://travis-ci.org/nvzqz/RandomKit) |
 
 ## Installation
 
