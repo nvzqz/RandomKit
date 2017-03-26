@@ -1,0 +1,33 @@
+branches:
+  only:
+    - master
+matrix:
+  include:
+    - os: osx
+      osx_image: xcode8
+      language: objective-c
+    - os: linux
+      language: generic
+      sudo: required
+      dist: trusty
+env:
+  global:
+    - LC_CTYPE=en_US.UTF-8
+    - LANG=en_US.UTF-8
+    - FRAMEWORK_NAME="RandomKit"
+    - SWIFT_VERSION=swift-3.0.2
+    - SWIFTENV_INSTALL="https://gist.githubusercontent.com/kylef/5c0475ff02b7c7671d2a/raw/9f442512a46d7a2af7b850d65a7e9bd31edfb09b/swiftenv-install.sh"
+before_install:
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then gem install xcpretty -N; fi
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then eval "$(curl -sL $SWIFTENV_INSTALL)"; fi
+script:
+  - set -o pipefail
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then swift build; fi
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then swift test; fi
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then swiftc -O -whole-module-optimization Sources/*.swift Benchmark/main.swift -o bmark && ./bmark; fi
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then xcodebuild -version; fi
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then xcodebuild -project $FRAMEWORK_NAME.xcodeproj -scheme "$FRAMEWORK_NAME macOS" ONLY_ACTIVE_ARCH=YES test | xcpretty -c; fi
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then xcodebuild -project $FRAMEWORK_NAME.xcodeproj -scheme "$FRAMEWORK_NAME iOS" -sdk iphonesimulator -destination "platform=iOS Simulator,name=iPhone 6" ONLY_ACTIVE_ARCH=NO test | xcpretty -c; fi
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then xcodebuild -project $FRAMEWORK_NAME.xcodeproj -scheme "$FRAMEWORK_NAME tvOS" -sdk appletvsimulator -destination "platform=tvOS Simulator,name=Apple TV 1080p" ONLY_ACTIVE_ARCH=NO test | xcpretty -c; fi
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then pod lib lint --quick; fi
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then xcrun -sdk macosx swiftc -O -whole-module-optimization Sources/*.swift Benchmark/main.swift -o bmark && ./bmark; fi
