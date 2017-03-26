@@ -29,9 +29,19 @@ import XCTest
 import Foundation
 import RandomKit
 
+struct ConstantRandomGenerator: RandomBytesGenerator {
+    var value: UInt64
+    mutating func randomBytes() -> UInt64 {
+        return value
+    }
+}
+
 class RandomKitTests: XCTestCase {
 
     static let allTests = [("testRandomInt", testRandomInt),
+                           ("testRandomHalfOpenEdgeCase", testRandomHalfOpenEdgeCase),
+                           ("testRandomOpen", testRandomOpen),
+                           ("testRandomClosed", testRandomClosed),
                            ("testRandomDouble", testRandomDouble),
                            ("testRandomFloat", testRandomFloat),
                            ("testRandomBool", testRandomBool),
@@ -53,6 +63,36 @@ class RandomKitTests: XCTestCase {
         for _ in 0...testCount {
             let r = Int.random(within: min...max, using: &RandomKitTests.generatorToTest)
             XCTAssertTrue(r >= min && r <= max, "Random `Int` is out of bounds.")
+        }
+    }
+
+    func testRandomHalfOpenEdgeCase() {
+        var gen = ConstantRandomGenerator(value: .max)
+        XCTAssertNotEqual(gen.randomHalfOpen32(), 1.0)
+        XCTAssertNotEqual(gen.randomHalfOpen64(), 1.0)
+    }
+
+    func testRandomOpen() {
+        func test<F: Comparable & ExpressibleByFloatLiteral>(with value: F) {
+            XCTAssertGreaterThan(value, 0.0)
+            XCTAssertLessThan(value, 1.0)
+        }
+        var gen = RandomKitTests.generatorToTest
+        for _ in 0 ..< testCount {
+            test(with: gen.randomOpen32())
+            test(with: gen.randomOpen64())
+        }
+    }
+
+    func testRandomClosed() {
+        func test<F: Comparable & ExpressibleByFloatLiteral>(with value: F) {
+            XCTAssertGreaterThanOrEqual(value, 0.0)
+            XCTAssertLessThanOrEqual(value, 1.0)
+        }
+        var gen = RandomKitTests.generatorToTest
+        for _ in 0 ..< testCount {
+            test(with: gen.randomClosed32())
+            test(with: gen.randomClosed64())
         }
     }
 
