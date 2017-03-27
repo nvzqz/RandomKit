@@ -111,6 +111,15 @@ extension RandomGenerator {
         return randomHalfOpen64() * ._scale / (._scale - 1.0)
     }
 
+    /// Generates a value of type `T` with its contents unsafely randomized.
+    ///
+    /// - warning: This is a very unsafe method and should be used with great care.
+    public mutating func randomUnsafeValue<T>() -> T {
+        var result: T = _unsafeValue()
+        randomize(value: &result)
+        return result
+    }
+
     /// Randomizes the contents of `value`.
     public mutating func randomize<T>(value: inout T) {
         randomize(buffer: &value, size: MemoryLayout<T>.size)
