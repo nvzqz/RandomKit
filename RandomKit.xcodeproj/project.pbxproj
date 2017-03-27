@@ -1984,6 +1984,7 @@
 				52B64ACA1E8857AF000BBDDA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		52B64AD71E8857D0000BBDDA /* Build configuration list for PBXNativeTarget "RandomKit tvOS Tests" */ = {
 			isa = XCConfigurationList;
@@ -1992,6 +1993,7 @@
 				52B64AD91E8857D0000BBDDA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		52C96A241BD9828F00C3CBE0 /* Build configuration list for PBXNativeTarget "RandomKit tvOS" */ = {
 			isa = XCConfigurationList;
