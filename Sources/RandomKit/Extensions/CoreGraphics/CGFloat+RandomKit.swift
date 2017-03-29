@@ -31,6 +31,11 @@ import CoreGraphics
 
 extension CGFloat: Random, RandomToValue, RandomThroughValue, RandomWithinRange, RandomWithinClosedRange {
 
+    /// Generates a random value of `Self` using `randomGenerator`.
+    public static func random<R: RandomGenerator>(using randomGenerator: inout R) -> CGFloat {
+        return CGFloat(NativeType.random(using: &randomGenerator))
+    }
+
     /// Generates a random `CGFloat` within the closed range using `randomGenerator`.
     ///
     /// - parameter closedRange: The range within which the number will be generated.
