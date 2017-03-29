@@ -90,7 +90,7 @@ extension RandomGenerator {
 
     /// Generates a random 32-bit floating-point value within [0, 1].
     public mutating func randomClosed32() -> Float {
-        return randomHalfOpen32() * ._scale / (._scale - 1.0)
+        return randomHalfOpen32() * ._scale / (._scale - 1.5)
     }
 
     /// Generates a random 64-bit floating-point value within (0, 1).
@@ -108,7 +108,7 @@ extension RandomGenerator {
 
     /// Generates a random 64-bit floating-point value within [0, 1].
     public mutating func randomClosed64() -> Double {
-        return randomHalfOpen64() * ._scale / (._scale - 1.0)
+        return randomHalfOpen64() * ._scale / (._scale - 1.5)
     }
 
     /// Generates a value of type `T` with its contents unsafely randomized.

@@ -70,6 +70,12 @@ class RandomKitTests: XCTestCase {
         XCTAssertNotEqual(gen.randomHalfOpen64(), 1.0)
     }
 
+    func testRandomClosedEdgeCase() {
+        var gen = ConstantRandomGenerator(value: .max)
+        XCTAssertEqual(gen.randomClosed64(), 1.0)
+        XCTAssertEqual(gen.randomClosed32(), 1.0)
+    }
+
     func testRandomOpen() {
         func test<F: Comparable & ExpressibleByFloatLiteral>(with value: F) {
             XCTAssertGreaterThan(value, 0.0)
