@@ -40,6 +40,8 @@ class RandomKitTests: XCTestCase {
 
     static let allTests = [("testRandomInt", testRandomInt),
                            ("testRandomHalfOpenEdgeCase", testRandomHalfOpenEdgeCase),
+                           ("testRandomClosedEdgeCase", testRandomClosedEdgeCase),
+                           ("testRandomOpenEdgeCase", testRandomOpenEdgeCase),
                            ("testRandomOpen", testRandomOpen),
                            ("testRandomClosed", testRandomClosed),
                            ("testRandomDouble", testRandomDouble),
@@ -72,8 +74,14 @@ class RandomKitTests: XCTestCase {
 
     func testRandomClosedEdgeCase() {
         var gen = ConstantRandomGenerator(value: .max)
-        XCTAssertEqual(gen.randomClosed64(), 1.0)
         XCTAssertEqual(gen.randomClosed32(), 1.0)
+        XCTAssertEqual(gen.randomClosed64(), 1.0)
+    }
+
+    func testRandomOpenEdgeCase() {
+        var gen = ConstantRandomGenerator(value: 0)
+        XCTAssertNotEqual(gen.randomOpen32(), 0.0)
+        XCTAssertNotEqual(gen.randomOpen64(), 0.0)
     }
 
     func testRandomOpen() {
