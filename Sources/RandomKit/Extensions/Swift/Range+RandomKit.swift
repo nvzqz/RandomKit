@@ -32,6 +32,11 @@ extension Range where Bound: RandomWithinRange {
         return Bound.random(within: self, using: &randomGenerator)
     }
 
+    /// Returns a random bound of `self` without checking whether `self` is empty.
+    public func uncheckedRandom<R: RandomGenerator>(using randomGenerator: inout R) -> Bound {
+        return Bound.uncheckedRandom(within: self, using: &randomGenerator)
+    }
+
 }
 
 extension CountableRange where Bound: RandomWithinRange {
@@ -39,6 +44,11 @@ extension CountableRange where Bound: RandomWithinRange {
     /// Returns a random bound of `self`, or `nil` if `self` is empty.
     public func random<R: RandomGenerator>(using randomGenerator: inout R) -> Bound? {
         return Bound.random(within: Range(self), using: &randomGenerator)
+    }
+
+    /// Returns a random bound of `self` without checking whether `self` is empty.
+    public func uncheckedRandom<R: RandomGenerator>(using randomGenerator: inout R) -> Bound {
+        return Bound.uncheckedRandom(within: Range(self), using: &randomGenerator)
     }
 
 }
@@ -50,12 +60,22 @@ extension ClosedRange where Bound: RandomWithinClosedRange {
         return Bound.random(within: self, using: &randomGenerator)
     }
 
+    /// Returns a random bound of `self` without checking whether `self` is empty.
+    public func uncheckedRandom<R: RandomGenerator>(using randomGenerator: inout R) -> Bound {
+        return Bound.random(within: self, using: &randomGenerator)
+    }
+
 }
 
 extension CountableClosedRange where Bound: RandomWithinClosedRange {
 
     /// Returns a random bound of `self`, or `nil` if `self` is empty.
     public func random<R: RandomGenerator>(using randomGenerator: inout R) -> Bound? {
+        return Bound.random(within: ClosedRange(self), using: &randomGenerator)
+    }
+
+    /// Returns a random bound of `self` without checking whether `self` is empty.
+    public func uncheckedRandom<R: RandomGenerator>(using randomGenerator: inout R) -> Bound {
         return Bound.random(within: ClosedRange(self), using: &randomGenerator)
     }
 

@@ -27,15 +27,32 @@
 
 import Foundation
 
-extension NSArray {
-    /// Returns a random element of `self`, or `nil` if `self` is empty.
-    public func random<R: RandomGenerator>(using randomGenerator: inout R) -> Any? {
-        let count = self.count
-        guard count > 0 else {
+extension NSArray: RandomRetrievableInRange {
+
+    /// Returns a random element in `range` without checking whether `self` or `range` is empty.
+    public func uncheckedRandom<R: RandomGenerator>(in range: Range<Int>, using randomGenerator: inout R) -> Any {
+        let index = Int.uncheckedRandom(within: range, using: &randomGenerator)
+        return self[index]
+    }
+
+    /// Returns a random element in `self` without checking whether `self` is empty.
+    public func uncheckedRandom<R: RandomGenerator>(using randomGenerator: inout R) -> Any {
+        return uncheckedRandom(in: Range(uncheckedBounds: (0, count)), using: &randomGenerator)
+    }
+
+    /// Returns an optional random element in `range`. The result is `nil` if `self` or `range` is empty.
+    public func random<R: RandomGenerator>(in range: Range<Int>, using randomGenerator: inout R) -> Any? {
+        guard count > 0 && range.upperBound > range.lowerBound else {
             return nil
         }
-        return self[Int.random(to: count, using: &randomGenerator)]
+        return uncheckedRandom(in: range, using: &randomGenerator)
     }
+
+    /// Returns an optional random element in `self`. The result is `nil` if `self` is empty.
+    public func random<R: RandomGenerator>(using randomGenerator: inout R) -> Any? {
+        return count > 0 ? uncheckedRandom(using: &randomGenerator) : nil
+    }
+
 }
 
 extension NSMutableArray: ShuffleableInRange, UniqueShuffleableInRange {

@@ -25,7 +25,7 @@
 //  THE SOFTWARE.
 //
 
-extension Dictionary: Shuffleable, UniqueShuffleable {
+extension Dictionary: RandomRetrievableInRange, Shuffleable, UniqueShuffleable {
 
     /// Shuffles the elements in `self` and returns the result.
     public func shuffled<R: RandomGenerator>(using randomGenerator: inout R) -> Dictionary {

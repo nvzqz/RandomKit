@@ -161,6 +161,11 @@ extension String: Random {
 
 }
 
+extension String.UnicodeScalarView: RandomRetrievableInRange {}
+extension String.CharacterView: RandomRetrievableInRange {}
+extension String.UTF8View: RandomRetrievableInRange {}
+extension String.UTF16View: RandomRetrievableInRange {}
+
 extension String: Shuffleable, UniqueShuffleable {
 
     /// Shuffles the elements in `self` and returns the result.
