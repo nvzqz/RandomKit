@@ -41,16 +41,15 @@ extension NSColor: Random {
     ///
     /// - parameter alpha: If `true`, the alpha value will be random. If `false`, the alpha value will be `1.0`.
     public class func random<R: RandomGenerator>(alpha: Bool, using randomGenerator: inout R) -> Self {
-        return self.init(
-            red:   CGFloat.random(using: &randomGenerator),
-            green: CGFloat.random(using: &randomGenerator),
-            blue:  CGFloat.random(using: &randomGenerator),
-            alpha: alpha ? CGFloat.random(using: &randomGenerator) : 1.0)
+        return self.init(red:   CGFloat.random(using: &randomGenerator),
+                         green: CGFloat.random(using: &randomGenerator),
+                         blue:  CGFloat.random(using: &randomGenerator),
+                         alpha: alpha ? CGFloat.random(using: &randomGenerator) : 1.0)
     }
 
 }
 
-#elseif os(iOS)
+#elseif os(iOS) || os(tvOS)
 import UIKit
 
 #elseif os(watchOS)
@@ -58,8 +57,7 @@ import WatchKit
 
 #endif
 
-
-#if os(iOS) || os(watchOS)
+#if os(iOS) || os(tvOS) || os(watchOS)
 extension UIColor: Random {
 
     /// Generates a random color.
@@ -73,15 +71,11 @@ extension UIColor: Random {
     ///
     /// - parameter alpha: If `true`, the alpha value will be random. If `false`, the alpha value will be `1.0`.
     public class func random<R: RandomGenerator>(alpha: Bool, using randomGenerator: inout R) -> Self {
-        return self.init(
-            red:   CGFloat.random(using: &randomGenerator),
-            green: CGFloat.random(using: &randomGenerator),
-            blue:  CGFloat.random(using: &randomGenerator),
-            alpha: alpha ? CGFloat.random(using: &randomGenerator) : 1.0)
+        return self.init(red:   CGFloat.random(using: &randomGenerator),
+                         green: CGFloat.random(using: &randomGenerator),
+                         blue:  CGFloat.random(using: &randomGenerator),
+                         alpha: alpha ? CGFloat.random(using: &randomGenerator) : 1.0)
     }
 
 }
 #endif
-
-
-
