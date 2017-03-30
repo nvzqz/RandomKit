@@ -22,6 +22,7 @@ RandomKit is a Swift framework that makes random data generation simple and easy
 - [Benchmark](#benchmark)
 - [Usage](#usage)
     - [RandomGenerator](#randomgenerator)
+    - [Thread Safety](#thread-safety)
     - [Protocols](#protocols)
         - [Random](#random)
         - [RandomWithinRange](#randomwithinrange)
@@ -203,6 +204,26 @@ let value = Int.random(using: &Xoroshiro.default)
 The `RandomBytesGenerator` protocol is for types that specialize in generating a
 specific type that fills up a number of bytes. For example, `MersenneTwister`
 specializes in generating `UInt64` while `Xorshift` generates `UInt32` values.
+
+### Thread Safety
+
+For single-threaded programs, it is safe to use a global generator instance such
+as `Xoroshiro.default` as a source of randomness.
+
+For multi-threaded programs, the thread-local instances should be used. This
+allows for different threads to use their own seperate random generators without
+a shared mutable state.
+
+In the following example, `randomGenerator` is unique to each thread.
+
+```swift
+let randomBytes = Xoroshiro.withThreadLocal { randomGenerator in
+    return [UInt8](randomCount: 1000, using: &randomGenerator)
+}
+```
+
+Thread-local generators are deallocated upon thread exit, so there's no need to
+worry about cleanup.
 
 ### Protocols
 
