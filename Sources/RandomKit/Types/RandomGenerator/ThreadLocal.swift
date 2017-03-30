@@ -84,7 +84,17 @@ extension SeedableFromOtherRandomGenerator {
 
     /// Returns the thread-local instance of `self` that reseeds itself with `DeviceRandom.default`.
     public static var threadLocalReseeding: UnsafeMutablePointer<ReseedingRandomGenerator<Self, DeviceRandom>> {
-        return ReseedingRandomGenerator.threadLocal(createdWith: { Self.reseeding })
+        return threadLocalReseeding(seededFrom: DeviceRandom.default)
+    }
+
+    /// Returns the thread-local instance of `self` that reseeds itself with `reseeder`.
+    public static func threadLocalReseeding<R: RandomGenerator>(
+        seededFrom reseeder: R,
+        threshold: Int = Self.reseedingThreshold
+    ) -> UnsafeMutablePointer<ReseedingRandomGenerator<Self, R>> {
+        return ReseedingRandomGenerator.threadLocal {
+            ReseedingRandomGenerator(reseeder: reseeder, threshold: threshold)
+        }
     }
 
     /// Returns the result of performing `body` on the thread-local instance of `self` seeded with
@@ -97,6 +107,16 @@ extension SeedableFromOtherRandomGenerator {
     /// `DeviceRandom.default`.
     public static func withThreadLocalReseeding<T>(_ body: (inout ReseedingRandomGenerator<Self, DeviceRandom>) throws -> T) rethrows -> T {
         return try body(&threadLocalReseeding.pointee)
+    }
+
+    /// Returns the result of performing `body` on the thread-local instance of `self` that reseeds itself with
+    /// `reseeder`.
+    public static func withThreadLocalReseeding<R: RandomGenerator, T>(
+        seededFrom reseeder: R,
+        threshold: Int = Self.reseedingThreshold,
+        _ body: (inout ReseedingRandomGenerator<Self, R>) throws -> T
+    ) rethrows -> T {
+        return try body(&threadLocalReseeding(seededFrom: reseeder, threshold: threshold).pointee)
     }
 
 }
