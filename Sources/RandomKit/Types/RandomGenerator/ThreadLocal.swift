@@ -34,11 +34,41 @@ private final class _Box<T> {
     }
 }
 
+/// A readers-writer lock.
+private final class _RWLock {
+
+    private var _lock: pthread_rwlock_t
+
+    init() {
+        _lock = pthread_rwlock_t()
+        pthread_rwlock_init(&_lock, nil)
+    }
+
+    deinit {
+        pthread_rwlock_destroy(&_lock)
+    }
+
+    func withReadLock<T>(_ body: () throws -> T) rethrows -> T {
+        pthread_rwlock_rdlock(&_lock)
+        defer { pthread_rwlock_unlock(&_lock) }
+        return try body()
+    }
+
+    func withWriteLock<T>(_ body: () throws -> T) rethrows -> T {
+        pthread_rwlock_wrlock(&_lock)
+        defer { pthread_rwlock_unlock(&_lock) }
+        return try body()
+    }
+
+}
+
 private var _keys = [ObjectIdentifier: pthread_key_t]()
+
+private let _keysLock = _RWLock()
 
 private func _key<T>(for _: T.Type) -> pthread_key_t {
     let id = ObjectIdentifier(T.self)
-    if let key = _keys[id] {
+    if let key = _keysLock.withReadLock({ _keys[id] }) {
         return key
     } else {
         var key = pthread_key_t()
@@ -48,7 +78,9 @@ private func _key<T>(for _: T.Type) -> pthread_key_t {
             }
             Unmanaged<AnyObject>.fromOpaque(rawPointer).release()
         }
-        _keys[id] = key
+        _keysLock.withWriteLock {
+            _keys[id] = key
+        }
         return key
     }
 }
