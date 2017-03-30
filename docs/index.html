@@ -118,7 +118,13 @@
                 <a class="nav-group-task-link" href="Extensions/Dictionary.html">Dictionary</a>
               </li>
               <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Extensions/Double.html">Double</a>
+              </li>
+              <li class="nav-group-task">
                 <a class="nav-group-task-link" href="Extensions/ExpressibleByIntegerLiteral.html">ExpressibleByIntegerLiteral</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Extensions/Float.html">Float</a>
               </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="Extensions/FloatingPoint.html">FloatingPoint</a>
@@ -379,6 +385,7 @@
 <p>RandomKit is a Swift framework that makes random data generation simple and easy.</p>
 
 <ul>
+<li><a href="#build-status">Build Status</a></li>
 <li><a href="#installation">Installation</a>
 
 <ul>
@@ -392,6 +399,7 @@
 
 <ul>
 <li><a href="#randomgenerator">RandomGenerator</a></li>
+<li><a href="#thread-safety">Thread Safety</a></li>
 <li><a href="#protocols">Protocols</a>
 
 <ul>
@@ -443,6 +451,19 @@
 </ul></li>
 <li><a href="#license">License</a></li>
 </ul>
+<a href='#build-status' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='build-status'>Build Status</h2>
+
+<table><thead>
+<tr>
+<th style="text-align: center">Branch</th>
+<th style="text-align: center">Status</th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: center"><code>master</code></td>
+<td style="text-align: center"><a href="https://travis-ci.org/nvzqz/RandomKit"><img src="https://travis-ci.org/nvzqz/RandomKit.svg?branch=master" alt="Build Status"></a></td>
+</tr>
+</tbody></table>
 <a href='#installation' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='installation'>Installation</h2>
 <a href='#compatibility' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='compatibility'>Compatibility</h3>
 
@@ -493,7 +514,7 @@ to learn more.</p>
 <li><p>Add the project to your <a href="https://guides.cocoapods.org/using/the-podfile.html">Podfile</a>.</p>
 <pre class="highlight ruby"><code><span class="n">use_frameworks!</span>
 
-<span class="n">pod</span> <span class="s1">'RandomKit'</span><span class="p">,</span> <span class="s1">'~&gt; 4.3.1'</span>
+<span class="n">pod</span> <span class="s1">'RandomKit'</span><span class="p">,</span> <span class="s1">'~&gt; 4.4.0'</span>
 </code></pre>
 
 <p>If you want to be on the bleeding edge, replace the last line with:</p>
@@ -570,6 +591,23 @@ loaded at runtime.</li>
 <p>The <code>RandomBytesGenerator</code> protocol is for types that specialize in generating a
 specific type that fills up a number of bytes. For example, <code>MersenneTwister</code>
 specializes in generating <code>UInt64</code> while <code>Xorshift</code> generates <code>UInt32</code> values.</p>
+<a href='#thread-safety' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='thread-safety'>Thread Safety</h3>
+
+<p>For single-threaded programs, it is safe to use a global generator instance such
+as <code>Xoroshiro.default</code> as a source of randomness.</p>
+
+<p>For multi-threaded programs, the thread-local instances should be used. This
+allows for different threads to use their own separate random generators without
+a shared mutable state.</p>
+
+<p>In the following example, <code>randomGenerator</code> is unique to each thread.</p>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">randomBytes</span> <span class="o">=</span> <span class="kt">Xoroshiro</span><span class="o">.</span><span class="n">withThreadLocal</span> <span class="p">{</span> <span class="n">randomGenerator</span> <span class="k">in</span>
+    <span class="k">return</span> <span class="p">[</span><span class="kt">UInt8</span><span class="p">](</span><span class="nv">randomCount</span><span class="p">:</span> <span class="mi">1000</span><span class="p">,</span> <span class="nv">using</span><span class="p">:</span> <span class="o">&amp;</span><span class="n">randomGenerator</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre>
+
+<p>Thread-local generators are deallocated upon thread exit, so there&rsquo;s no need to
+worry about cleanup.</p>
 <a href='#protocols' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='protocols'>Protocols</h3>
 
 <p>RandomKit is very protocol-oriented, which gives it the ability to be very
@@ -840,7 +878,7 @@ branch.</p>
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2017 <a class="link" href="https://github.com/nvzqz" target="_blank" rel="external">Nikolai Vazquez</a>. All rights reserved. (Last updated: 2017-03-24)</p>
+      <p>&copy; 2017 <a class="link" href="https://github.com/nvzqz" target="_blank" rel="external">Nikolai Vazquez</a>. All rights reserved. (Last updated: 2017-03-30)</p>
       <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.4</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
     </section>
   </body>

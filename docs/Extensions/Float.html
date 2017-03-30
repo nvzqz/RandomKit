@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>SeedableRandomGenerator Protocol Reference</title>
+    <title>Float Extension Reference</title>
     <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
     <meta charset="utf-8">
@@ -14,9 +14,9 @@
   </head>
   <body>
 
-    <a name="//apple_ref/swift/Protocol/SeedableRandomGenerator" class="dashAnchor"></a>
+    <a name="//apple_ref/swift/Extension/Float" class="dashAnchor"></a>
 
-    <a title="SeedableRandomGenerator Protocol Reference"></a>
+    <a title="Float Extension Reference"></a>
 
     <header class="header">
       <p class="header-col header-col--primary">
@@ -44,7 +44,7 @@
     <p class="breadcrumbs">
       <a class="breadcrumb" href="../index.html">RandomKit Reference</a>
       <img class="carat" src="../img/carat.png" />
-      SeedableRandomGenerator Protocol Reference
+      Float Extension Reference
     </p>
 
     <div class="content-wrapper">
@@ -369,15 +369,14 @@
 
         <section class="section">
           <div class="section-content">
-            <h1>SeedableRandomGenerator</h1>
+            <h1>Float</h1>
               <div class="declaration">
                 <div class="language">
-                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">SeedableRandomGenerator</span><span class="p">:</span> <span class="kt"><a href="../Protocols/RandomGenerator.html">RandomGenerator</a></span></code></pre>
+                  <pre class="highlight"><code><span class="kd">struct</span> <span class="kt">Float</span></code></pre>
 
                 </div>
               </div>
-            <p>A random value generator type that can be instantiated with a <code>Seed</code>.</p>
-
+            
           </div>
         </section>
 
@@ -388,140 +387,10 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FP9RandomKit23SeedableRandomGeneratorcFT4seedwx4Seed_x"></a>
-                    <a name="//apple_ref/swift/Method/init(seed:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FP9RandomKit23SeedableRandomGeneratorcFT4seedwx4Seed_x">init(seed:)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Creates an instance from <code>seed</code>.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="nf">init</span><span class="p">(</span><span class="nv">seed</span><span class="p">:</span> <span class="kt"><a href="../Protocols/SeedableRandomGenerator.html#/s:P9RandomKit23SeedableRandomGenerator4Seed">Seed</a></span><span class="p">)</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:P9RandomKit23SeedableRandomGenerator4Seed"></a>
-                    <a name="//apple_ref/swift/Alias/Seed" class="dashAnchor"></a>
-                    <a class="token" href="#/s:P9RandomKit23SeedableRandomGenerator4Seed">Seed</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>The seed type.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="k">as</span><span class="n">sociatedtype</span> <span class="kt">Seed</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:FP9RandomKit23SeedableRandomGenerator6reseedFT4withwx4Seed_T_"></a>
-                    <a name="//apple_ref/swift/Method/reseed(with:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FP9RandomKit23SeedableRandomGenerator6reseedFT4withwx4Seed_T_">reseed(with:)</a>
-                    </code>
-                      <span class="declaration-note">
-                        Default implementation
-                      </span>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Reseeds <code>self</code> with <code>seed</code>.</p>
-
-                      </div>
-                      <h4>Default Implementation</h4>
-                      <div class="default_impl abstract">
-                        <p>Reseeds <code>self</code> with <code>seed</code>.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="k">mutating</span> <span class="kd">func</span> <span class="nf">reseed</span><span class="p">(</span><span class="n">with</span> <span class="nv">seed</span><span class="p">:</span> <span class="kt"><a href="../Protocols/SeedableRandomGenerator.html#/s:P9RandomKit23SeedableRandomGenerator4Seed">Seed</a></span><span class="p">)</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <ul class="item-container">
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:Fe9RandomKitRxS_23SeedableRandomGeneratorwx4SeedS_6RandomrS0_cuRd__S_15RandomGeneratorrFT10seededWithRqd___x"></a>
-                    <a name="//apple_ref/swift/Method/init(seededWith:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:Fe9RandomKitRxS_23SeedableRandomGeneratorwx4SeedS_6RandomrS0_cuRd__S_15RandomGeneratorrFT10seededWithRqd___x">init(seededWith:)</a>
-                    </code>
-                      <span class="declaration-note">
-                        Extension method
-                      </span>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Creates an instance seeded with <code>randomGenerator</code>.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">init</span><span class="o">&lt;</span><span class="kt">R</span><span class="p">:</span> <span class="kt"><a href="../Protocols/RandomGenerator.html">RandomGenerator</a></span><span class="o">&gt;</span><span class="p">(</span><span class="n">seededWith</span> <span class="nv">randomGenerator</span><span class="p">:</span> <span class="k">inout</span> <span class="kt">R</span><span class="p">)</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <ul class="item-container">
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:ZFe9RandomKitRxS_6RandomxS_23SeedableRandomGeneratorwxPS1_4SeedS0_rS1_6randomuRd__S_15RandomGeneratorrFT5usingRqd___x"></a>
+                    <a name="/s:ZFE9RandomKitSf6randomuRxS_15RandomGeneratorrFT5usingRx_Sf"></a>
                     <a name="//apple_ref/swift/Method/random(using:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:ZFe9RandomKitRxS_6RandomxS_23SeedableRandomGeneratorwxPS1_4SeedS0_rS1_6randomuRd__S_15RandomGeneratorrFT5usingRqd___x">random(using:)</a>
+                    <a class="token" href="#/s:ZFE9RandomKitSf6randomuRxS_15RandomGeneratorrFT5usingRx_Sf">random(using:)</a>
                     </code>
-                      <span class="declaration-note">
-                        Extension method
-                      </span>
                   </div>
                   <div class="height-container">
                     <div class="pointer-container"></div>
@@ -535,7 +404,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="n">random</span><span class="o">&lt;</span><span class="kt">R</span><span class="p">:</span> <span class="kt"><a href="../Protocols/RandomGenerator.html">RandomGenerator</a></span><span class="o">&gt;</span><span class="p">(</span><span class="n">using</span> <span class="nv">randomGenerator</span><span class="p">:</span> <span class="k">inout</span> <span class="kt">R</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="k">Self</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="n">random</span><span class="o">&lt;</span><span class="kt">R</span><span class="p">:</span> <span class="kt"><a href="../Protocols/RandomGenerator.html">RandomGenerator</a></span><span class="o">&gt;</span><span class="p">(</span><span class="n">using</span> <span class="nv">randomGenerator</span><span class="p">:</span> <span class="k">inout</span> <span class="kt">R</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Float</span></code></pre>
 
                         </div>
                       </div>
