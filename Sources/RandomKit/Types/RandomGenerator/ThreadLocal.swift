@@ -66,8 +66,8 @@ private var _keys = [ObjectIdentifier: pthread_key_t]()
 
 private let _keysLock = _RWLock()
 
-private func _key<T>(for _: T.Type) -> pthread_key_t {
-    let id = ObjectIdentifier(T.self)
+private func _key(for type: Any.Type) -> pthread_key_t {
+    let id = ObjectIdentifier(type)
     if let key = _keysLock.withReadLock({ _keys[id] }) {
         return key
     } else {
