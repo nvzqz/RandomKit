@@ -211,7 +211,7 @@ For single-threaded programs, it is safe to use a global generator instance such
 as `Xoroshiro.default` as a source of randomness.
 
 For multi-threaded programs, the thread-local instances should be used. This
-allows for different threads to use their own seperate random generators without
+allows for different threads to use their own separate random generators without
 a shared mutable state.
 
 In the following example, `randomGenerator` is unique to each thread.
