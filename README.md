@@ -246,7 +246,7 @@ Xoroshiro.withThreadLocal { randomGenerator in
 }
 ```
 
-Prior to [v4.0.0](https://github.com/nvzqz/RandomKit/releases/tag/v4.4.0),
+Prior to [v4.4.0](https://github.com/nvzqz/RandomKit/releases/tag/v4.4.0),
 thread safety could be achieved by instantiating a new seeded instance of a
 given `RandomGenerator` type. The problem with this is that unnecessary seeding
 occurs each time. With this, the generator is seeded once and can then be reused
