@@ -60,25 +60,4 @@ extension Date: Random, RandomWithinRange, RandomWithinClosedRange {
         return Date(timeIntervalSinceReferenceDate: value)
     }
 
-    /// Generates a random date within the range.
-    ///
-    /// - parameter range: The range within which the date will be generated.
-    /// - parameter randomGenerator: The random generator to use.
-    @available(*, deprecated, message: "will be removed in RandomKit 5.0")
-    public static func random<R: RandomGenerator>(within range: Range<TimeInterval>, using randomGenerator: inout R) -> Date? {
-        guard let random = TimeInterval.random(within: range, using: &randomGenerator) else {
-            return nil
-        }
-        return Date(timeIntervalSince1970: random)
-    }
-
-    /// Generates a random date within the closed range.
-    ///
-    /// - parameter closedRange: The range within which the date will be generated.
-    /// - parameter randomGenerator: The random generator to use.
-    @available(*, deprecated, message: "will be removed in RandomKit 5.0")
-    public static func random<R: RandomGenerator>(within closedRange: ClosedRange<TimeInterval>, using randomGenerator: inout R) -> Date {
-        return Date(timeIntervalSince1970: .random(within: closedRange, using: &randomGenerator))
-    }
-
 }
