@@ -75,12 +75,11 @@ extension Array where Element: Random {
         if Element.self is _Trivial.Type {
             self = Array(unsafeRandomCount: randomCount, using: &randomGenerator)
         } else {
-            var pointer: UnsafeMutablePointer<Element>, count = randomCount
+            var pointer: UnsafeMutablePointer<Element>
             (self, pointer) = Array._uninitialized(count: randomCount)
-            while count != 0 {
+            for _ in CountableRange(uncheckedBounds: (0, randomCount)) {
                 pointer.initialize(to: Element.random(using: &randomGenerator))
                 pointer += 1
-                count -= 1
             }
         }
     }
@@ -89,12 +88,11 @@ extension Array where Element: Random {
 extension Array where Element: RandomToValue {
     /// Construct an Array of random elements to a value.
     public init<R: RandomGenerator>(randomCount: Int, to value: Element, using randomGenerator: inout R) {
-        var pointer: UnsafeMutablePointer<Element>, count = randomCount
+        var pointer: UnsafeMutablePointer<Element>
         (self, pointer) = Array._uninitialized(count: randomCount)
-        while count != 0 {
+        for _ in CountableRange(uncheckedBounds: (0, randomCount)) {
             pointer.initialize(to: Element.random(to: value, using: &randomGenerator))
             pointer += 1
-            count -= 1
         }
     }
 }
@@ -102,12 +100,11 @@ extension Array where Element: RandomToValue {
 extension Array where Element: RandomThroughValue {
     /// Construct an Array of random elements through a value.
     public init<R: RandomGenerator>(randomCount: Int, through value: Element, using randomGenerator: inout R) {
-        var pointer: UnsafeMutablePointer<Element>, count = randomCount
+        var pointer: UnsafeMutablePointer<Element>
         (self, pointer) = Array._uninitialized(count: randomCount)
-        while count != 0 {
+        for _ in CountableRange(uncheckedBounds: (0, randomCount)) {
             pointer.initialize(to: Element.random(through: value, using: &randomGenerator))
             pointer += 1
-            count -= 1
         }
     }
 }
@@ -119,12 +116,11 @@ extension Array where Element: RandomWithinRange {
             self = []
             return
         }
-        var pointer: UnsafeMutablePointer<Element>, count = randomCount
+        var pointer: UnsafeMutablePointer<Element>
         (self, pointer) = Array._uninitialized(count: randomCount)
-        while count != 0 {
+        for _ in CountableRange(uncheckedBounds: (0, randomCount)) {
             pointer.initialize(to: Element.uncheckedRandom(within: range, using: &randomGenerator))
             pointer += 1
-            count -= 1
         }
     }
 }
@@ -132,12 +128,11 @@ extension Array where Element: RandomWithinRange {
 extension Array where Element: RandomWithinClosedRange {
     /// Construct an Array of random elements from within the closed range.
     public init<R: RandomGenerator>(randomCount: Int, within closedRange: ClosedRange<Element>, using randomGenerator: inout R) {
-        var pointer: UnsafeMutablePointer<Element>, count = randomCount
+        var pointer: UnsafeMutablePointer<Element>
         (self, pointer) = Array._uninitialized(count: randomCount)
-        while count != 0 {
+        for _ in CountableRange(uncheckedBounds: (0, randomCount)) {
             pointer.initialize(to: Element.random(within: closedRange, using: &randomGenerator))
             pointer += 1
-            count -= 1
         }
     }
 }
