@@ -225,6 +225,47 @@ let randomBytes = Xoroshiro.withThreadLocal { randomGenerator in
 Thread-local generators are deallocated upon thread exit, so there's no need to
 worry about cleanup.
 
+It's recommended to not call `withThreadLocal(_:)` or get the `threadLocal`
+pointer each individual time it's needed. Retrieving the thread-local instance
+incurs avoidable overhead.
+
+```swift
+// Bad
+let value = Int.random(using: &Xoroshiro.threadLocal.pointee)
+array.shuffle(using: &Xoroshiro.threadLocal.pointee)
+
+// Good
+let threadLocal = Xoroshiro.threadLocal
+let value = Int.random(using: &threadLocal.pointee)
+array.shuffle(using: &threadLocal.pointee)
+
+// Better
+Xoroshiro.withThreadLocal { randomGenerator in
+    let value = Int.random(using: &randomGenerator)
+    array.shuffle(using: &randomGenerator)
+}
+```
+
+Prior to [v4.0.0](https://github.com/nvzqz/RandomKit/releases/tag/v4.4.0),
+thread safety could be achieved by instantiating a new seeded instance of a
+given `RandomGenerator` type. The problem with this is that unnecessary seeding
+occurs each time. With this, the generator is seeded once and can then be reused
+at later points.
+
+Shortcuts to the reseeding version of a generator are also available:
+```swift
+Xoroshiro.withThreadLocalReseeding {
+    ...
+}
+```
+
+Which is *way* better than writing:
+```swift
+ReseedingRandomGenerator.withThreadLocal(createdWith: { Xoroshiro.reseeding }) {
+    ...
+}
+```
+
 ### Protocols
 
 RandomKit is very protocol-oriented, which gives it the ability to be very
