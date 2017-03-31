@@ -94,6 +94,11 @@ extension SeedableFromOtherRandomGenerator {
         self = Self(seededWith: &randomGenerator)
     }
 
+    /// Reseeds self with `DeviceRandom.default`.
+    public mutating func reseed() {
+        reseed(with: &DeviceRandom.default)
+    }
+
 }
 
 extension SeedableRandomGenerator where Seed: Random {
