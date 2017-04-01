@@ -61,7 +61,7 @@ class RandomKitTests: XCTestCase {
         let min = -10
         let max =  10
         for _ in 0...testCount {
-            let r = Int.random(within: min...max, using: &RandomKitTests.generatorToTest.threadLocal.pointee)
+            let r = Int.random(in: min...max, using: &RandomKitTests.generatorToTest.threadLocal.pointee)
             XCTAssertTrue(r >= min && r <= max, "Random `Int` is out of bounds.")
         }
     }
@@ -112,7 +112,7 @@ class RandomKitTests: XCTestCase {
         let min = -1.5
         let max =  0.5
         for _ in 0...testCount {
-            let r = Double.random(within: min...max, using: &RandomKitTests.generatorToTest.threadLocal.pointee)
+            let r = Double.random(in: min...max, using: &RandomKitTests.generatorToTest.threadLocal.pointee)
             XCTAssertTrue(r >= min && r <= max, "Random `Double` is out of bounds.")
         }
     }
@@ -121,7 +121,7 @@ class RandomKitTests: XCTestCase {
         let min: Float = -1.5
         let max: Float =  0.5
         for _ in 0...testCount {
-            let r = Float.random(within: min...max, using: &RandomKitTests.generatorToTest.threadLocal.pointee)
+            let r = Float.random(in: min...max, using: &RandomKitTests.generatorToTest.threadLocal.pointee)
             XCTAssertTrue(r >= min && r <= max, "Random `Float` is out of bounds.")
         }
     }
@@ -208,7 +208,7 @@ class RandomKitTests: XCTestCase {
 
         let weightsArray: [[Double]] = [
             Array(randomCount: count, using: &generator.pointee),
-            Array(randomCount: count, within: 0...100, using: &generator.pointee)
+            Array(randomCount: count, in: 0...100, using: &generator.pointee)
         ]
 
         for weights in weightsArray {

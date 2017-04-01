@@ -57,7 +57,7 @@ public struct RandomsWithMaxWidth<Element: RandomWithMaxWidth, RG: RandomGenerat
     /// A pointer to the `RandomGenerator`
     private let _randomGenerator: UnsafeMutablePointer<RG>
 
-    /// The max width to generate within.
+    /// The max width to generate in.
     public var width: Int
 
     /// Creates an instance with `width` and `randomGenerator`.
@@ -90,7 +90,7 @@ public struct LimitedRandomsWithMaxWidth<Element: RandomWithMaxWidth, RG: Random
     /// The limit value.
     public var limit: Int
 
-    /// The max width to generate within.
+    /// The max width to generate in.
     public var width: Int
 
     /// A value less than or equal to the number of elements in

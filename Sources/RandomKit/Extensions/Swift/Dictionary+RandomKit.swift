@@ -105,20 +105,20 @@ extension Dictionary where Key: RandomThroughValue, Value: RandomThroughValue {
     }
 }
 
-extension Dictionary where Key: RandomWithinRange, Value: RandomWithinRange {
-    /// Creates a set of random key-value pairs within key and value ranges using `randomGenerator`.
-    public init<R: RandomGenerator>(randomCount: Int, withinKeys keys: Range<Key>, withinValues values: Range<Value>, using randomGenerator: inout R) {
-        let keys = Key.randoms(within: keys, using: &randomGenerator)
-        let values = Value.randoms(within: values, using: &randomGenerator)
+extension Dictionary where Key: RandomInRange, Value: RandomInRange {
+    /// Creates a set of random key-value pairs in key and value ranges using `randomGenerator`.
+    public init<R: RandomGenerator>(randomCount: Int, inKeys keys: Range<Key>, inValues values: Range<Value>, using randomGenerator: inout R) {
+        let keys = Key.randoms(in: keys, using: &randomGenerator)
+        let values = Value.randoms(in: values, using: &randomGenerator)
         self.init(count: randomCount, keys: keys, values: values)
     }
 }
 
-extension Dictionary where Key: RandomWithinClosedRange, Value: RandomWithinClosedRange {
-    /// Creates a set of random key-value pairs within key and value closed ranges using `randomGenerator`.
-    public init<R: RandomGenerator>(randomCount: Int, withinKeys keys: ClosedRange<Key>, withinValues values: ClosedRange<Value>, using randomGenerator: inout R) {
-        let keys = Key.randoms(within: keys, using: &randomGenerator)
-        let values = Value.randoms(within: values, using: &randomGenerator)
+extension Dictionary where Key: RandomInClosedRange, Value: RandomInClosedRange {
+    /// Creates a set of random key-value pairs in key and value closed ranges using `randomGenerator`.
+    public init<R: RandomGenerator>(randomCount: Int, inKeys keys: ClosedRange<Key>, inValues values: ClosedRange<Value>, using randomGenerator: inout R) {
+        let keys = Key.randoms(in: keys, using: &randomGenerator)
+        let values = Value.randoms(in: values, using: &randomGenerator)
         self.init(count: randomCount, keys: keys, values: values)
     }
 }

@@ -29,19 +29,19 @@
 
 import CoreGraphics
 
-extension CGFloat: Random, RandomToValue, RandomThroughValue, RandomWithinRange, RandomWithinClosedRange {
+extension CGFloat: Random, RandomToValue, RandomThroughValue, RandomInRange, RandomInClosedRange {
 
     /// Generates a random value of `Self` using `randomGenerator`.
     public static func random<R: RandomGenerator>(using randomGenerator: inout R) -> CGFloat {
         return CGFloat(NativeType.random(using: &randomGenerator))
     }
 
-    /// Generates a random `CGFloat` within the closed range using `randomGenerator`.
+    /// Generates a random `CGFloat` in the closed range using `randomGenerator`.
     ///
-    /// - parameter closedRange: The range within which the number will be generated.
+    /// - parameter closedRange: The range in which the number will be generated.
     /// - parameter randomGenerator: The random generator to use.
-    public static func random<R: RandomGenerator>(within closedRange: ClosedRange<NativeType>, using randomGenerator: inout R) -> CGFloat {
-        return CGFloat(NativeType.random(within: closedRange, using: &randomGenerator))
+    public static func random<R: RandomGenerator>(in closedRange: ClosedRange<NativeType>, using randomGenerator: inout R) -> CGFloat {
+        return CGFloat(NativeType.random(in: closedRange, using: &randomGenerator))
     }
 
 }

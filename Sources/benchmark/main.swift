@@ -61,11 +61,11 @@ let benchmarkAllGenerators = benchmarkAll || contains("--all-generators")
 let benchmarkAllIntegers   = benchmarkAll || contains("--all-integers")
 let benchmarkAllProtocols  = benchmarkAll || contains("--all-protocols")
 
-let benchmarkRandom                  = benchmarkAllProtocols || contains("Random")
-let benchmarkRandomToValue           = benchmarkAllProtocols || contains("RandomToValue")
-let benchmarkRandomThroughValue      = benchmarkAllProtocols || contains("RandomThroughValue")
-let benchmarkRandomWithinRange       = benchmarkAllProtocols || contains("RandomWithinRange")
-let benchmarkRandomWithinClosedRange = benchmarkAllProtocols || contains("RandomWithinClosedRange")
+let benchmarkRandom              = benchmarkAllProtocols || contains("Random")
+let benchmarkRandomToValue       = benchmarkAllProtocols || contains("RandomToValue")
+let benchmarkRandomThroughValue  = benchmarkAllProtocols || contains("RandomThroughValue")
+let benchmarkRandomInRange       = benchmarkAllProtocols || contains("RandomInRange")
+let benchmarkRandomInClosedRange = benchmarkAllProtocols || contains("RandomInClosedRange")
 
 let benchmarkShuffle = contains("--shuffle")
 let benchmarkShuffleCount = int(after: "--shuffle") ?? 100

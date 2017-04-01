@@ -31,7 +31,7 @@ extension NSArray: RandomRetrievableInRange {
 
     /// Returns a random element in `range` without checking whether `self` or `range` is empty.
     public func uncheckedRandom<R: RandomGenerator>(in range: Range<Int>, using randomGenerator: inout R) -> Any {
-        let index = Int.uncheckedRandom(within: range, using: &randomGenerator)
+        let index = Int.uncheckedRandom(in: range, using: &randomGenerator)
         return self[index]
     }
 
@@ -67,7 +67,7 @@ extension NSMutableArray: ShuffleableInRange, UniqueShuffleableInRange {
     /// Shuffles the elements of `self` in `range`.
     public func shuffle<R: RandomGenerator>(in range: Range<Int>, using randomGenerator: inout R) {
         for i in CountableRange(range) {
-            let j = Index.uncheckedRandom(within: range, using: &randomGenerator)
+            let j = Index.uncheckedRandom(in: range, using: &randomGenerator)
             if j != i {
                 exchangeObject(at: i, withObjectAt: j)
             }
@@ -100,7 +100,7 @@ extension NSMutableArray: ShuffleableInRange, UniqueShuffleableInRange {
         }
         for i in CountableRange(uncheckedBounds: (range.lowerBound, range.upperBound.advanced(by: -1))) {
             let randomRange = Range(uncheckedBounds: (i.advanced(by: 1), range.upperBound))
-            let j = Index.uncheckedRandom(within: randomRange, using: &randomGenerator)
+            let j = Index.uncheckedRandom(in: randomRange, using: &randomGenerator)
             exchangeObject(at: i, withObjectAt: j)
         }
     }

@@ -77,26 +77,26 @@ func benchmarkRandomThroughValue<T: RandomThroughValue, R: RandomGenerator>(with
     print("")
 }
 
-func benchmarkRandomWithinRange<T: RandomWithinRange, R: RandomGenerator>(with range: Range<T>,
-                                count: Int = count,
-                                using randomGenerator: inout R) {
+func benchmarkRandomInRange<T: RandomInRange, R: RandomGenerator>(with range: Range<T>,
+                            count: Int = count,
+                            using randomGenerator: inout R) {
     let styledRange = style(range)
     let styledType  = style(T.self)
-    print("Generating " + style(count: count) + " randoms within " + styledRange + " for " + styledType + " using " + style(randomGenerator))
+    print("Generating " + style(count: count) + " randoms in " + styledRange + " for " + styledType + " using " + style(randomGenerator))
     benchmark(count: count) {
-        let _ = T.random(within: range, using: &randomGenerator)
+        let _ = T.random(in: range, using: &randomGenerator)
     }
     print("")
 }
 
-func benchmarkRandomWithinClosedRange<T: RandomWithinClosedRange, R: RandomGenerator>(with closedRange: ClosedRange<T>,
-                                      count: Int = count,
-                                      using randomGenerator: inout R) {
+func benchmarkRandomInClosedRange<T: RandomInClosedRange, R: RandomGenerator>(with closedRange: ClosedRange<T>,
+                                  count: Int = count,
+                                  using randomGenerator: inout R) {
     let styledRange = style(closedRange)
     let styledType  = style(T.self)
-    print("Generating " + style(count: count) + " randoms within " + styledRange + " for " + styledType + " using " + style(randomGenerator))
+    print("Generating " + style(count: count) + " randoms in " + styledRange + " for " + styledType + " using " + style(randomGenerator))
     benchmark(count: count) {
-        let _ = T.random(within: closedRange, using: &randomGenerator)
+        let _ = T.random(in: closedRange, using: &randomGenerator)
     }
     print("")
 }
@@ -208,37 +208,37 @@ func runBenchmarks<R: RandomGenerator>(using randomGenerator: inout R) {
         }
     }
 
-    if benchmarkRandomWithinRange {
-        benchmarkRandomWithinRange(with: Int.minMaxRange, using: &randomGenerator)
+    if benchmarkRandomInRange {
+        benchmarkRandomInRange(with: Int.minMaxRange, using: &randomGenerator)
         if benchmarkAllIntegers {
-            benchmarkRandomWithinRange(with: Int64.minMaxRange, using: &randomGenerator)
-            benchmarkRandomWithinRange(with: Int32.minMaxRange, using: &randomGenerator)
-            benchmarkRandomWithinRange(with: Int16.minMaxRange, using: &randomGenerator)
-            benchmarkRandomWithinRange(with: Int8.minMaxRange, using: &randomGenerator)
+            benchmarkRandomInRange(with: Int64.minMaxRange, using: &randomGenerator)
+            benchmarkRandomInRange(with: Int32.minMaxRange, using: &randomGenerator)
+            benchmarkRandomInRange(with: Int16.minMaxRange, using: &randomGenerator)
+            benchmarkRandomInRange(with: Int8.minMaxRange, using: &randomGenerator)
         }
-        benchmarkRandomWithinRange(with: UInt.minMaxRange, using: &randomGenerator)
+        benchmarkRandomInRange(with: UInt.minMaxRange, using: &randomGenerator)
         if benchmarkAllIntegers {
-            benchmarkRandomWithinRange(with: UInt64.minMaxRange, using: &randomGenerator)
-            benchmarkRandomWithinRange(with: UInt32.minMaxRange, using: &randomGenerator)
-            benchmarkRandomWithinRange(with: UInt16.minMaxRange, using: &randomGenerator)
-            benchmarkRandomWithinRange(with: UInt8.minMaxRange, using: &randomGenerator)
+            benchmarkRandomInRange(with: UInt64.minMaxRange, using: &randomGenerator)
+            benchmarkRandomInRange(with: UInt32.minMaxRange, using: &randomGenerator)
+            benchmarkRandomInRange(with: UInt16.minMaxRange, using: &randomGenerator)
+            benchmarkRandomInRange(with: UInt8.minMaxRange, using: &randomGenerator)
         }
     }
 
-    if benchmarkRandomWithinClosedRange {
-        benchmarkRandomWithinClosedRange(with: Int.minMaxClosedRange, using: &randomGenerator)
+    if benchmarkRandomInClosedRange {
+        benchmarkRandomInClosedRange(with: Int.minMaxClosedRange, using: &randomGenerator)
         if benchmarkAllIntegers {
-            benchmarkRandomWithinClosedRange(with: Int64.minMaxClosedRange, using: &randomGenerator)
-            benchmarkRandomWithinClosedRange(with: Int32.minMaxClosedRange, using: &randomGenerator)
-            benchmarkRandomWithinClosedRange(with: Int16.minMaxClosedRange, using: &randomGenerator)
-            benchmarkRandomWithinClosedRange(with: Int8.minMaxClosedRange, using: &randomGenerator)
+            benchmarkRandomInClosedRange(with: Int64.minMaxClosedRange, using: &randomGenerator)
+            benchmarkRandomInClosedRange(with: Int32.minMaxClosedRange, using: &randomGenerator)
+            benchmarkRandomInClosedRange(with: Int16.minMaxClosedRange, using: &randomGenerator)
+            benchmarkRandomInClosedRange(with: Int8.minMaxClosedRange, using: &randomGenerator)
         }
-        benchmarkRandomWithinClosedRange(with: UInt.minMaxClosedRange, using: &randomGenerator)
+        benchmarkRandomInClosedRange(with: UInt.minMaxClosedRange, using: &randomGenerator)
         if benchmarkAllIntegers {
-            benchmarkRandomWithinClosedRange(with: UInt64.minMaxClosedRange, using: &randomGenerator)
-            benchmarkRandomWithinClosedRange(with: UInt32.minMaxClosedRange, using: &randomGenerator)
-            benchmarkRandomWithinClosedRange(with: UInt16.minMaxClosedRange, using: &randomGenerator)
-            benchmarkRandomWithinClosedRange(with: UInt8.minMaxClosedRange, using: &randomGenerator)
+            benchmarkRandomInClosedRange(with: UInt64.minMaxClosedRange, using: &randomGenerator)
+            benchmarkRandomInClosedRange(with: UInt32.minMaxClosedRange, using: &randomGenerator)
+            benchmarkRandomInClosedRange(with: UInt16.minMaxClosedRange, using: &randomGenerator)
+            benchmarkRandomInClosedRange(with: UInt8.minMaxClosedRange, using: &randomGenerator)
         }
     }
 

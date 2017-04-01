@@ -38,12 +38,12 @@ extension CGRect: Random {
         return CGRect(origin: .random(using: &randomGenerator), size: .random(using: &randomGenerator))
     }
 
-    /// Generates a random `CGRect` within the closed ranges.
+    /// Generates a random `CGRect` in the closed ranges.
     ///
-    /// - parameter xRange: The range within which `x` will be generated.
-    /// - parameter yRange: The range within which `y` will be generated.
-    /// - parameter widthRange: The range within which `width` will be generated.
-    /// - parameter heightRange: The range within which `height` will be generated.
+    /// - parameter xRange: The range in which `x` will be generated.
+    /// - parameter yRange: The range in which `y` will be generated.
+    /// - parameter widthRange: The range in which `width` will be generated.
+    /// - parameter heightRange: The range in which `height` will be generated.
     /// - parameter randomGenerator: The random generator to use.
     public static func random<R: RandomGenerator>(xRange: ClosedRange<CGFloat>,
                               yRange:      ClosedRange<CGFloat>,

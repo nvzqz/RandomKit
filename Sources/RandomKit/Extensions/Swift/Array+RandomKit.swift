@@ -109,9 +109,9 @@ extension Array where Element: RandomThroughValue {
     }
 }
 
-extension Array where Element: RandomWithinRange {
-    /// Construct an Array of random elements from within the range.
-    public init<R: RandomGenerator>(randomCount: Int, within range: Range<Element>, using randomGenerator: inout R) {
+extension Array where Element: RandomInRange {
+    /// Construct an Array of random elements in the range.
+    public init<R: RandomGenerator>(randomCount: Int, in range: Range<Element>, using randomGenerator: inout R) {
         guard !range.isEmpty else {
             self = []
             return
@@ -119,19 +119,19 @@ extension Array where Element: RandomWithinRange {
         var pointer: UnsafeMutablePointer<Element>
         (self, pointer) = Array._uninitialized(count: randomCount)
         for _ in CountableRange(uncheckedBounds: (0, randomCount)) {
-            pointer.initialize(to: Element.uncheckedRandom(within: range, using: &randomGenerator))
+            pointer.initialize(to: Element.uncheckedRandom(in: range, using: &randomGenerator))
             pointer += 1
         }
     }
 }
 
-extension Array where Element: RandomWithinClosedRange {
-    /// Construct an Array of random elements from within the closed range.
-    public init<R: RandomGenerator>(randomCount: Int, within closedRange: ClosedRange<Element>, using randomGenerator: inout R) {
+extension Array where Element: RandomInClosedRange {
+    /// Construct an Array of random elements in the closed range.
+    public init<R: RandomGenerator>(randomCount: Int, in closedRange: ClosedRange<Element>, using randomGenerator: inout R) {
         var pointer: UnsafeMutablePointer<Element>
         (self, pointer) = Array._uninitialized(count: randomCount)
         for _ in CountableRange(uncheckedBounds: (0, randomCount)) {
-            pointer.initialize(to: Element.random(within: closedRange, using: &randomGenerator))
+            pointer.initialize(to: Element.random(in: closedRange, using: &randomGenerator))
             pointer += 1
         }
     }

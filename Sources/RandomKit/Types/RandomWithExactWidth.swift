@@ -57,7 +57,7 @@ public struct RandomsWithExactWidth<Element: RandomWithExactWidth, RG: RandomGen
     /// A pointer to the `RandomGenerator`
     private let _randomGenerator: UnsafeMutablePointer<RG>
 
-    /// The exact width to generate within.
+    /// The exact width to generate in.
     public var width: Int
 
     /// Creates an instance with `width` and `randomGenerator`.
@@ -90,7 +90,7 @@ public struct LimitedRandomsWithExactWidth<Element: RandomWithExactWidth, RG: Ra
     /// The limit value.
     public var limit: Int
 
-    /// The exact width to generate within.
+    /// The exact width to generate in.
     public var width: Int
 
     /// A value less than or equal to the number of elements in

@@ -33,21 +33,21 @@ extension CGVector: Random {
 
     /// Generates a random `CGVector`.
     ///
-    /// - returns: Random value within `0...100` for both `dx` and `dy`.
+    /// - returns: Random value in `0...100` for both `dx` and `dy`.
     public static func random<R: RandomGenerator>(using randomGenerator: inout R) -> CGVector {
         return random(dxRange: 0...100, dyRange: 0...100, using: &randomGenerator)
     }
 
-    /// Generates a random `CGVector` within the closed ranges.
+    /// Generates a random `CGVector` in the closed ranges.
     ///
-    /// - parameter dxRange: The range within which `dx` will be generated.
-    /// - parameter dyRange: The range within which `dy` will be generated.
+    /// - parameter dxRange: The range in which `dx` will be generated.
+    /// - parameter dyRange: The range in which `dy` will be generated.
     /// - parameter randomGenerator: The random generator to use.
     public static func random<R: RandomGenerator>(dxRange: ClosedRange<CGFloat>,
                               dyRange: ClosedRange<CGFloat>,
                               using randomGenerator: inout R) -> CGVector {
-        return CGVector(dx: .random(within: dxRange, using: &randomGenerator),
-                        dy: .random(within: dyRange, using: &randomGenerator))
+        return CGVector(dx: .random(in: dxRange, using: &randomGenerator),
+                        dy: .random(in: dyRange, using: &randomGenerator))
     }
 
 }

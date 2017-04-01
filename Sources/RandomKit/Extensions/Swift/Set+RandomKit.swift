@@ -60,21 +60,21 @@ extension Set where Element: RandomThroughValue {
     }
 }
 
-extension Set where Element: RandomWithinRange {
-    /// Creates a set of random elements within `range` using `randomGenerator`.
-    public init<R: RandomGenerator>(randomCount: Int, within range: Range<Element>, using randomGenerator: inout R) {
+extension Set where Element: RandomInRange {
+    /// Creates a set of random elements in `range` using `randomGenerator`.
+    public init<R: RandomGenerator>(randomCount: Int, in range: Range<Element>, using randomGenerator: inout R) {
         if range.isEmpty {
             self.init()
         } else {
-            self.init(count: randomCount, from: Element.randoms(within: range, using: &randomGenerator))
+            self.init(count: randomCount, from: Element.randoms(in: range, using: &randomGenerator))
         }
     }
 }
 
-extension Set where Element: RandomWithinClosedRange {
-    /// Creates a set of random elements within `closedRange` using `randomGenerator`.
-    public init<R: RandomGenerator>(randomCount: Int, within closedRange: ClosedRange<Element>, using randomGenerator: inout R) {
-        self.init(count: randomCount, from: Element.randoms(within: closedRange, using: &randomGenerator))
+extension Set where Element: RandomInClosedRange {
+    /// Creates a set of random elements in `closedRange` using `randomGenerator`.
+    public init<R: RandomGenerator>(randomCount: Int, in closedRange: ClosedRange<Element>, using randomGenerator: inout R) {
+        self.init(count: randomCount, from: Element.randoms(in: closedRange, using: &randomGenerator))
     }
 }
 

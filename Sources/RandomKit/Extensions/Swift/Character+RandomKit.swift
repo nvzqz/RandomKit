@@ -29,21 +29,21 @@ extension Character: Random {
 
     /// Generates a random `Character`.
     ///
-    /// - returns: Random value within `UnicodeScalar.randomRange` from `UnicodeScalar.random()`.
+    /// - returns: Random value in `UnicodeScalar.randomRange` from `UnicodeScalar.random()`.
     public static func random<R: RandomGenerator>(using randomGenerator: inout R) -> Character {
         return Character(UnicodeScalar.random(using: &randomGenerator))
     }
 
     /// Returns an optional random value of `Self` inside of the range.
-    public static func random<R: RandomGenerator>(within range: Range<UnicodeScalar>,
+    public static func random<R: RandomGenerator>(in range: Range<UnicodeScalar>,
                                                   using randomGenerator: inout R) -> Character? {
-        return UnicodeScalar.random(within: range, using: &randomGenerator).map(Character.init)
+        return UnicodeScalar.random(in: range, using: &randomGenerator).map(Character.init)
     }
 
     /// Returns a random value of `Self` inside of the closed range.
-    public static func random<R: RandomGenerator>(within closedRange: ClosedRange<UnicodeScalar>,
+    public static func random<R: RandomGenerator>(in closedRange: ClosedRange<UnicodeScalar>,
                                                   using randomGenerator: inout R) -> Character {
-        return Character(UnicodeScalar.random(within: closedRange, using: &randomGenerator))
+        return Character(UnicodeScalar.random(in: closedRange, using: &randomGenerator))
     }
 
 }

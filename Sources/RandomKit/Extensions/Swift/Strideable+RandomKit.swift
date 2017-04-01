@@ -25,37 +25,37 @@
 //  THE SOFTWARE.
 //
 
-extension Strideable where Self: RandomWithinRange, Stride: RandomToValue {
+extension Strideable where Self: RandomInRange, Stride: RandomToValue {
 
     /// Returns a random value of `Self` inside of the unchecked range using `randomGenerator`.
-    public static func uncheckedRandom<R: RandomGenerator>(within range: Range<Self>, using randomGenerator: inout R) -> Self {
+    public static func uncheckedRandom<R: RandomGenerator>(in range: Range<Self>, using randomGenerator: inout R) -> Self {
         let distance = range.lowerBound.distance(to: range.upperBound)
         return range.lowerBound.advanced(by: .random(to: distance, using: &randomGenerator))
     }
 
 }
 
-extension Strideable where Self: RandomWithinClosedRange, Stride: RandomThroughValue {
+extension Strideable where Self: RandomInClosedRange, Stride: RandomThroughValue {
 
     /// Returns a random value of `Self` inside of the closed range using `randomGenerator`.
-    public static func random<R: RandomGenerator>(within closedRange: ClosedRange<Self>, using randomGenerator: inout R) -> Self {
+    public static func random<R: RandomGenerator>(in closedRange: ClosedRange<Self>, using randomGenerator: inout R) -> Self {
         let distance = closedRange.lowerBound.distance(to: closedRange.upperBound)
         return closedRange.lowerBound.advanced(by: .random(through: distance, using: &randomGenerator))
     }
 
 }
 
-extension String.UTF16Index: RandomWithinRange, RandomWithinClosedRange {
+extension String.UTF16Index: RandomInRange, RandomInClosedRange {
 }
 
-extension UnsafePointer: RandomWithinRange, RandomWithinClosedRange {
+extension UnsafePointer: RandomInRange, RandomInClosedRange {
 }
 
-extension UnsafeMutablePointer: RandomWithinRange, RandomWithinClosedRange {
+extension UnsafeMutablePointer: RandomInRange, RandomInClosedRange {
 }
 
-extension UnsafeRawPointer: RandomWithinRange, RandomWithinClosedRange {
+extension UnsafeRawPointer: RandomInRange, RandomInClosedRange {
 }
 
-extension UnsafeMutableRawPointer: RandomWithinRange, RandomWithinClosedRange {
+extension UnsafeMutableRawPointer: RandomInRange, RandomInClosedRange {
 }

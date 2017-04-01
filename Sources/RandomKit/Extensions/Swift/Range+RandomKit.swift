@@ -25,58 +25,58 @@
 //  THE SOFTWARE.
 //
 
-extension Range where Bound: RandomWithinRange {
+extension Range where Bound: RandomInRange {
 
     /// Returns a random bound of `self`, or `nil` if `self` is empty.
     public func random<R: RandomGenerator>(using randomGenerator: inout R) -> Bound? {
-        return Bound.random(within: self, using: &randomGenerator)
+        return Bound.random(in: self, using: &randomGenerator)
     }
 
     /// Returns a random bound of `self` without checking whether `self` is empty.
     public func uncheckedRandom<R: RandomGenerator>(using randomGenerator: inout R) -> Bound {
-        return Bound.uncheckedRandom(within: self, using: &randomGenerator)
+        return Bound.uncheckedRandom(in: self, using: &randomGenerator)
     }
 
 }
 
-extension CountableRange where Bound: RandomWithinRange {
+extension CountableRange where Bound: RandomInRange {
 
     /// Returns a random bound of `self`, or `nil` if `self` is empty.
     public func random<R: RandomGenerator>(using randomGenerator: inout R) -> Bound? {
-        return Bound.random(within: Range(self), using: &randomGenerator)
+        return Bound.random(in: Range(self), using: &randomGenerator)
     }
 
     /// Returns a random bound of `self` without checking whether `self` is empty.
     public func uncheckedRandom<R: RandomGenerator>(using randomGenerator: inout R) -> Bound {
-        return Bound.uncheckedRandom(within: Range(self), using: &randomGenerator)
+        return Bound.uncheckedRandom(in: Range(self), using: &randomGenerator)
     }
 
 }
 
-extension ClosedRange where Bound: RandomWithinClosedRange {
+extension ClosedRange where Bound: RandomInClosedRange {
 
     /// Returns a random bound of `self`, or `nil` if `self` is empty.
     public func random<R: RandomGenerator>(using randomGenerator: inout R) -> Bound? {
-        return Bound.random(within: self, using: &randomGenerator)
+        return Bound.random(in: self, using: &randomGenerator)
     }
 
     /// Returns a random bound of `self` without checking whether `self` is empty.
     public func uncheckedRandom<R: RandomGenerator>(using randomGenerator: inout R) -> Bound {
-        return Bound.random(within: self, using: &randomGenerator)
+        return Bound.random(in: self, using: &randomGenerator)
     }
 
 }
 
-extension CountableClosedRange where Bound: RandomWithinClosedRange {
+extension CountableClosedRange where Bound: RandomInClosedRange {
 
     /// Returns a random bound of `self`, or `nil` if `self` is empty.
     public func random<R: RandomGenerator>(using randomGenerator: inout R) -> Bound? {
-        return Bound.random(within: ClosedRange(self), using: &randomGenerator)
+        return Bound.random(in: ClosedRange(self), using: &randomGenerator)
     }
 
     /// Returns a random bound of `self` without checking whether `self` is empty.
     public func uncheckedRandom<R: RandomGenerator>(using randomGenerator: inout R) -> Bound {
-        return Bound.random(within: ClosedRange(self), using: &randomGenerator)
+        return Bound.random(in: ClosedRange(self), using: &randomGenerator)
     }
 
 }

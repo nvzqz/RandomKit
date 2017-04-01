@@ -29,58 +29,58 @@ extension String: Random {
 
     /// Generates a random `String`.
     ///
-    /// - returns: Random value within `UnicodeScalar.randomRange` with length of `10`.
+    /// - returns: Random value in `UnicodeScalar.randomRange` with length of `10`.
     public static func random<R: RandomGenerator>(using randomGenerator: inout R) -> String {
-        return random(ofLength: 10, within: UnicodeScalar.randomRange, using: &randomGenerator)
+        return random(ofLength: 10, in: UnicodeScalar.randomRange, using: &randomGenerator)
     }
 
     /// Generates a random `String` with a length of `10` inside of the range.
     ///
-    /// - parameter range: The range within which the string will be generated.
+    /// - parameter range: The range in which the string will be generated.
     /// - parameter randomGenerator: The random generator to use.
-    public static func random<R: RandomGenerator>(within range: Range<UnicodeScalar>,
+    public static func random<R: RandomGenerator>(in range: Range<UnicodeScalar>,
                               using randomGenerator: inout R) -> String? {
-        return random(ofLength: 10, within: range, using: &randomGenerator)
+        return random(ofLength: 10, in: range, using: &randomGenerator)
     }
 
     /// Generates a random `String` of a given length inside of the range.
     ///
     /// - parameter length: The length for the generated string.
-    /// - parameter range: The range within which the string will be generated.
+    /// - parameter range: The range in which the string will be generated.
     /// - parameter randomGenerator: The random generator to use.
     public static func random<I: ExpressibleByIntegerLiteral & Strideable, R: RandomGenerator>(ofLength length: I,
-                              within range: Range<UnicodeScalar>,
+                              in range: Range<UnicodeScalar>,
                               using randomGenerator: inout R) -> String? where I.Stride: SignedInteger {
         if range.isEmpty {
             return nil
         }
         var result = UnicodeScalarView()
         for _ in 0 ..< length {
-            result.append(UnicodeScalar.uncheckedRandom(within: range, using: &randomGenerator))
+            result.append(UnicodeScalar.uncheckedRandom(in: range, using: &randomGenerator))
         }
         return String(result)
     }
 
     /// Generates a random `String` with a length of `10` inside of the closed range.
     ///
-    /// - parameter closedRange: The range within which the string will be generated.
+    /// - parameter closedRange: The range in which the string will be generated.
     /// - parameter randomGenerator: The random generator to use.
-    public static func random<R: RandomGenerator>(within closedRange: ClosedRange<UnicodeScalar>,
+    public static func random<R: RandomGenerator>(in closedRange: ClosedRange<UnicodeScalar>,
                               using randomGenerator: inout R) -> String {
-        return random(ofLength: 10, within: closedRange, using: &randomGenerator)
+        return random(ofLength: 10, in: closedRange, using: &randomGenerator)
     }
 
     /// Generates a random `String` of a given length inside of the closed range.
     ///
     /// - parameter length: The length for the generated string.
-    /// - parameter closedRange: The range within which the string will be generated. The default is `UnicodeScalar.randomRange`.
+    /// - parameter closedRange: The range in which the string will be generated. The default is `UnicodeScalar.randomRange`.
     /// - parameter randomGenerator: The random generator to use.
     public static func random<I: ExpressibleByIntegerLiteral & Strideable, R: RandomGenerator>(ofLength length: I,
-                              within closedRange: ClosedRange<UnicodeScalar> = UnicodeScalar.randomRange,
+                              in closedRange: ClosedRange<UnicodeScalar> = UnicodeScalar.randomRange,
                               using randomGenerator: inout R) -> String where I.Stride: SignedInteger {
         var result = UnicodeScalarView()
         for _ in 0 ..< length {
-            result.append(.random(within: closedRange, using: &randomGenerator))
+            result.append(.random(in: closedRange, using: &randomGenerator))
         }
         return String(result)
     }
