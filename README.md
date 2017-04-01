@@ -25,8 +25,8 @@ RandomKit is a Swift framework that makes random data generation simple and easy
     - [Thread Safety](#thread-safety)
     - [Protocols](#protocols)
         - [Random](#random)
-        - [RandomWithinRange](#randomwithinrange)
-        - [RandomWithinClosedRange](#randomwithinclosedrange)
+        - [RandomInRange](#randominrange)
+        - [RandomInClosedRange](#randominclosedrange)
         - [RandomToValue](#randomtovalue)
         - [RandomThroughValue](#randomthroughvalue)
         - [Shuffleable](#shuffleable)
@@ -234,7 +234,7 @@ flexible and modular.
 
 A protocol for types that can generate random values using a `RandomGenerator`.
 
-#### RandomWithinRange
+#### RandomInRange
 
 A protocol for types that can generate optional random values within a range
 using a `RandomGenerator`.
@@ -243,7 +243,7 @@ using a `RandomGenerator`.
 Int.random(within: 0 ..< 0, using: &randomGenerator) // nil
 ```
 
-#### RandomWithinClosedRange
+#### RandomInClosedRange
 
 A protocol for types that can generate random values within a closed range
 using a `RandomGenerator`.
@@ -338,7 +338,7 @@ Float.random(within:   -10...10, using: &randomGenerator)  //  5.167088
 Float80.random(within: -10...10, using: &randomGenerator)  // -3.63204542399198874
 ```
 
-All `FloatingPoint` types can also conform to `RandomWithinClosedRange`
+All `FloatingPoint` types can also conform to `RandomInClosedRange`
 out-of-the-box.
 
 #### Bool
@@ -474,7 +474,7 @@ UIColor.random(alpha: true, using: &randomGenerator) // r 0.444 g 0.121 b 0.602 
 #### CGFloat
 
 Because `CGFloat` conforms to `FloatingPoint`, it conforms to
-`RandomWithinClosedRange` just like how `Double` and `Float` do.
+`RandomInClosedRange` just like how `Double` and `Float` do.
 
 ```swift
 CGFloat.random(using: &randomGenerator)           // 0.699803650379181
