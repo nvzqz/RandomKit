@@ -42,7 +42,7 @@ extension NSArray: RandomRetrievableInRange {
 
     /// Returns an optional random element in `range`. The result is `nil` if `self` or `range` is empty.
     public func random<R: RandomGenerator>(in range: Range<Int>, using randomGenerator: inout R) -> Any? {
-        guard count > 0 && range.upperBound > range.lowerBound else {
+        if range.lowerBound < 0 || range.upperBound > count {
             return nil
         }
         return uncheckedRandom(in: range, using: &randomGenerator)
