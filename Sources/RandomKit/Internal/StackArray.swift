@@ -44,6 +44,9 @@ internal typealias _Array312<T> = (
 /// A stack-allocated array of 16 elements.
 internal typealias _Array16<T> = (T, T, T, T, T, T, T, T, T, T, T, T, T, T, T, T)
 
+/// A stack-allocated array of 8 elements.
+internal typealias _Array8<T> = (T, T, T, T, T, T, T, T)
+
 /// Returns a stack-allocated array of 312 zeros.
 internal func _zero312<T: ExpressibleByIntegerLiteral>() -> _Array312<T> {
     return (
@@ -65,6 +68,11 @@ internal func _zero312<T: ExpressibleByIntegerLiteral>() -> _Array312<T> {
 /// Returns a stack-allocated array of 16 zeros.
 internal func _zero16<T: ExpressibleByIntegerLiteral>() -> _Array16<T> {
     return (0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+}
+
+/// Returns a stack-allocated array of 8 zeros.
+internal func _zero8<T: ExpressibleByIntegerLiteral>() -> _Array8<T> {
+    return (0, 0, 0, 0, 0, 0, 0, 0)
 }
 
 /// Returns a mutable pointer to the contents of `array`.

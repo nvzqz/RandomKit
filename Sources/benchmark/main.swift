@@ -110,6 +110,10 @@ if bench("--xorshift-star") {
     runBenchmarks(using: &XorshiftStar.default)
 }
 
+if bench("--chacha") {
+    runBenchmarks(using: &ChaCha.default)
+}
+
 if bench("--mersenne-twister") {
     runBenchmarks(using: &MersenneTwister.default)
 }
