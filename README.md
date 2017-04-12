@@ -111,7 +111,7 @@ to learn more.
     ```ruby
     use_frameworks!
 
-    pod 'RandomKit', '~> 4.4.1'
+    pod 'RandomKit', '~> 4.5.1'
     ```
 
     If you want to be on the bleeding edge, replace the last line with:
@@ -194,6 +194,8 @@ let value = Int.random(using: &Xoroshiro.default)
 
 - `XorshiftStar`
 
+- `ChaCha`
+
 #### SeedableRandomGenerator
 
 `SeedableRandomGenerator` is for types that can be seeded with some associated
@@ -224,6 +226,47 @@ let randomBytes = Xoroshiro.withThreadLocal { randomGenerator in
 
 Thread-local generators are deallocated upon thread exit, so there's no need to
 worry about cleanup.
+
+It's recommended to not call `withThreadLocal(_:)` or get the `threadLocal`
+pointer each individual time it's needed. Retrieving the thread-local instance
+incurs avoidable overhead.
+
+```swift
+// Bad
+let value = Int.random(using: &Xoroshiro.threadLocal.pointee)
+array.shuffle(using: &Xoroshiro.threadLocal.pointee)
+
+// Good
+let threadLocal = Xoroshiro.threadLocal
+let value = Int.random(using: &threadLocal.pointee)
+array.shuffle(using: &threadLocal.pointee)
+
+// Better
+Xoroshiro.withThreadLocal { randomGenerator in
+    let value = Int.random(using: &randomGenerator)
+    array.shuffle(using: &randomGenerator)
+}
+```
+
+Prior to [v4.4.0](https://github.com/nvzqz/RandomKit/releases/tag/v4.4.0),
+thread safety could be achieved by instantiating a new seeded instance of a
+given `RandomGenerator` type. The problem with this is that unnecessary seeding
+occurs each time. With this, the generator is seeded once and can then be reused
+at later points.
+
+Shortcuts to the reseeding version of a generator are also available:
+```swift
+Xoroshiro.withThreadLocalReseeding {
+    ...
+}
+```
+
+Which is *way* better than writing:
+```swift
+ReseedingRandomGenerator.withThreadLocal(createdWith: { Xoroshiro.reseeding }) {
+    ...
+}
+```
 
 ### Protocols
 
@@ -400,16 +443,17 @@ let unsafeRandoms = Array<Int>(unsafeRandomCount: 100, using: &randomGenerator) 
 
 ##### Arrays Benchmark
 
-A benchmark of generating 1000 random arrays of 10000 count:
+A benchmark of generating 1000 random `Int` arrays of 10000 count:
 
-| Generator                 | Safe (seconds)        | Unsafe (seconds)  |
-| ------------------------- | --------------------- | ----------------- |
-| `Xoroshiro`               | 0.0948                | 0.0271            |
-| `Xorshift`                | 0.1066                | 0.0568            |
-| `XorshiftStar`            | 0.1028                | 0.0341            |
-| `MersenneTwister`         | 0.1208                | 0.0432            |
-| `ARC4Random`              | 1.0034                | 0.2416            |
-| `DeviceRandom`            | 10.0906               | 5.3348            |
+| Generator                 | Time (in seconds) |
+| ------------------------- | ----------------- |
+| `Xoroshiro`               | 0.0271            |
+| `Xorshift`                | 0.0568            |
+| `XorshiftStar`            | 0.0319            |
+| `ChaCha`                  | 0.2027            |
+| `MersenneTwister`         | 0.0432            |
+| `ARC4Random`              | 0.2416            |
+| `DeviceRandom`            | 5.3348            |
 
 **Note:** Results may vary due to various factors.
 

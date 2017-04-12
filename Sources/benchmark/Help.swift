@@ -75,6 +75,7 @@ func printHelpAndExit() -> Never {
     message += "    " + sf("--xoroshiro") + "                 Use xoroshiro generator\n"
     message += "    " + sf("--xorshift") + "                  Use xorshift generator\n"
     message += "    " + sf("--xorshift-star") + "             Use xorshift1024* generator\n"
+    message += "    " + sf("--chacha") + "                    Use ChaCha20 generator\n"
     message += "    " + sf("--mersenne-twister") + "          Use mersenne twister generator\n"
     message += "    " + sf("--arc4random") + "                Use arc4random generator\n"
     message += "    " + sf("--dev") + "                       Use both /dev/random and /dev/urandom generators\n"

@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		520396751E9AFD8F0041FAA3 /* ChaCha.swift in Sources */ = {isa = PBXBuildFile; fileRef = 520396741E9AFD8F0041FAA3 /* ChaCha.swift */; };
+		520396761E9AFD8F0041FAA3 /* ChaCha.swift in Sources */ = {isa = PBXBuildFile; fileRef = 520396741E9AFD8F0041FAA3 /* ChaCha.swift */; };
+		520396771E9AFD8F0041FAA3 /* ChaCha.swift in Sources */ = {isa = PBXBuildFile; fileRef = 520396741E9AFD8F0041FAA3 /* ChaCha.swift */; };
+		520396781E9AFD8F0041FAA3 /* ChaCha.swift in Sources */ = {isa = PBXBuildFile; fileRef = 520396741E9AFD8F0041FAA3 /* ChaCha.swift */; };
 		522268EC1E4163EC00C8865A /* XorshiftStar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522268EB1E4163EC00C8865A /* XorshiftStar.swift */; };
 		522268ED1E4163EC00C8865A /* XorshiftStar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522268EB1E4163EC00C8865A /* XorshiftStar.swift */; };
 		522268EE1E4163EC00C8865A /* XorshiftStar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522268EB1E4163EC00C8865A /* XorshiftStar.swift */; };
@@ -229,6 +233,9 @@
 		52D47D921E3186EA0050588E /* ARC4Random.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D47D901E3186EA0050588E /* ARC4Random.swift */; };
 		52D47D931E3186EA0050588E /* ARC4Random.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D47D901E3186EA0050588E /* ARC4Random.swift */; };
 		52D47D941E3186EA0050588E /* ARC4Random.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D47D901E3186EA0050588E /* ARC4Random.swift */; };
+		52D5BF141E9E3E37006C1E60 /* ChaChaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D5BF0F1E9E3E1A006C1E60 /* ChaChaTests.swift */; };
+		52D5BF151E9E3E38006C1E60 /* ChaChaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D5BF0F1E9E3E1A006C1E60 /* ChaChaTests.swift */; };
+		52D5BF161E9E3E38006C1E60 /* ChaChaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D5BF0F1E9E3E1A006C1E60 /* ChaChaTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -284,6 +291,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		520396741E9AFD8F0041FAA3 /* ChaCha.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChaCha.swift; sourceTree = "<group>"; };
 		520DA1341DDF16FD00F265CE /* UnsafeRandom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnsafeRandom.swift; sourceTree = "<group>"; };
 		520DA1391DDF5FA800F265CE /* RandomEnum.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RandomEnum.swift; sourceTree = "<group>"; };
 		5217714E1DE6D5EF00DD4584 /* UniqueShuffleable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UniqueShuffleable.swift; sourceTree = "<group>"; };
@@ -355,6 +363,7 @@
 		52D47D861E317D6B0050588E /* SeedableRandomGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SeedableRandomGenerator.swift; sourceTree = "<group>"; };
 		52D47D8B1E3180B60050588E /* Xoroshiro.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Xoroshiro.swift; sourceTree = "<group>"; };
 		52D47D901E3186EA0050588E /* ARC4Random.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ARC4Random.swift; sourceTree = "<group>"; };
+		52D5BF0F1E9E3E1A006C1E60 /* ChaChaTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChaChaTests.swift; sourceTree = "<group>"; };
 		52F9E7601CA5BBBA00039162 /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
 		52FD11371DE2811C002EF43E /* RandomRawRepresentable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RandomRawRepresentable.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -598,6 +607,7 @@
 			isa = PBXGroup;
 			children = (
 				52BD45631E6E56D700E2C9A1 /* RandomKitTests.swift */,
+				52D5BF0F1E9E3E1A006C1E60 /* ChaChaTests.swift */,
 			);
 			path = RandomKitTests;
 			sourceTree = "<group>";
@@ -618,6 +628,7 @@
 				5290FC551E7C5AFA008CA2AA /* ReseedingRandomGenerator.swift */,
 				52D47D811E316B9A0050588E /* RandomBytesGenerator.swift */,
 				52D47D771E31654B0050588E /* DeviceRandom.swift */,
+				520396741E9AFD8F0041FAA3 /* ChaCha.swift */,
 				52D47D7C1E3165C50050588E /* MersenneTwister.swift */,
 				52D47D8B1E3180B60050588E /* Xoroshiro.swift */,
 				52CE98D01E4052ED00DA001B /* Xorshift.swift */,
@@ -1002,6 +1013,7 @@
 				52D47D8C1E3180B60050588E /* Xoroshiro.swift in Sources */,
 				524F1E4A1E31352B00BDE35F /* Bool+RandomKit.swift in Sources */,
 				52D47D491E315F7D0050588E /* Color+RandomKit.swift in Sources */,
+				520396751E9AFD8F0041FAA3 /* ChaCha.swift in Sources */,
 				52D47D7D1E3165C50050588E /* MersenneTwister.swift in Sources */,
 				52D47D731E3165360050588E /* RandomGenerator.swift in Sources */,
 			);
@@ -1062,6 +1074,7 @@
 				52D47D8D1E3180B60050588E /* Xoroshiro.swift in Sources */,
 				524F1E4B1E31352D00BDE35F /* Bool+RandomKit.swift in Sources */,
 				52D47D4A1E315F7E0050588E /* Color+RandomKit.swift in Sources */,
+				520396761E9AFD8F0041FAA3 /* ChaCha.swift in Sources */,
 				52D47D7E1E3165C50050588E /* MersenneTwister.swift in Sources */,
 				52D47D741E3165360050588E /* RandomGenerator.swift in Sources */,
 			);
@@ -1122,6 +1135,7 @@
 				52D47D8E1E3180B60050588E /* Xoroshiro.swift in Sources */,
 				524F1E4C1E31352D00BDE35F /* Bool+RandomKit.swift in Sources */,
 				52D47D4B1E315F7E0050588E /* Color+RandomKit.swift in Sources */,
+				520396771E9AFD8F0041FAA3 /* ChaCha.swift in Sources */,
 				52D47D7F1E3165C50050588E /* MersenneTwister.swift in Sources */,
 				52D47D751E3165360050588E /* RandomGenerator.swift in Sources */,
 			);
@@ -1132,6 +1146,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				52BD45681E6E572700E2C9A1 /* RandomKitTests.swift in Sources */,
+				52D5BF141E9E3E37006C1E60 /* ChaChaTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1140,6 +1155,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				52B64ADA1E885842000BBDDA /* RandomKitTests.swift in Sources */,
+				52D5BF151E9E3E38006C1E60 /* ChaChaTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1148,6 +1164,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				52B64ADB1E885843000BBDDA /* RandomKitTests.swift in Sources */,
+				52D5BF161E9E3E38006C1E60 /* ChaChaTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1206,6 +1223,7 @@
 				52D47D8F1E3180B60050588E /* Xoroshiro.swift in Sources */,
 				524F1E4D1E31352F00BDE35F /* Bool+RandomKit.swift in Sources */,
 				52D47D4C1E315F7F0050588E /* Color+RandomKit.swift in Sources */,
+				520396781E9AFD8F0041FAA3 /* ChaCha.swift in Sources */,
 				52D47D801E3165C50050588E /* MersenneTwister.swift in Sources */,
 				52D47D761E3165360050588E /* RandomGenerator.swift in Sources */,
 			);
