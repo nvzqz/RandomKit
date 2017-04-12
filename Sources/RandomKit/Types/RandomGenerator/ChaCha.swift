@@ -25,12 +25,13 @@
 //  THE SOFTWARE.
 //
 
-/// A generator that uses a [ChaCha20][1] algorithm.
+/// A generator that uses a [ChaCha20][1] algorithm. There is also a [Wikipedia section][2] describing this algorithm.
 ///
-/// This implementation is taken from that of [ChaCha][2] in the Rust `rand` crate.
+/// This implementation is taken from that of [ChaCha][3] in the Rust `rand` crate.
 ///
 /// [1]: http://cr.yp.to/chacha.html
-/// [2]: https://doc.rust-lang.org/rand/rand/chacha/struct.ChaChaRng.html
+/// [2]: https://en.wikipedia.org/wiki/Salsa20#ChaCha_variant
+/// [3]: https://doc.rust-lang.org/rand/rand/chacha/struct.ChaChaRng.html
 public struct ChaCha: RandomBytesGenerator, SeedableFromOtherRandomGenerator {
 
     private typealias _State = _Array16<UInt32>
