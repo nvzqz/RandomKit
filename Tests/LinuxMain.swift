@@ -30,4 +30,5 @@ import XCTest
 
 XCTMain([
      testCase(RandomKitTests.allTests),
+     testCase(ChaChaTests.allTests)
 ])
