@@ -194,6 +194,8 @@ let value = Int.random(using: &Xoroshiro.default)
 
 - `XorshiftStar`
 
+- `ChaCha`
+
 #### SeedableRandomGenerator
 
 `SeedableRandomGenerator` is for types that can be seeded with some associated
@@ -441,16 +443,17 @@ let unsafeRandoms = Array<Int>(unsafeRandomCount: 100, using: &randomGenerator) 
 
 ##### Arrays Benchmark
 
-A benchmark of generating 1000 random arrays of 10000 count:
+A benchmark of generating 1000 random `Int` arrays of 10000 count:
 
-| Generator                 | Safe (seconds)        | Unsafe (seconds)  |
-| ------------------------- | --------------------- | ----------------- |
-| `Xoroshiro`               | 0.0948                | 0.0271            |
-| `Xorshift`                | 0.1066                | 0.0568            |
-| `XorshiftStar`            | 0.1028                | 0.0341            |
-| `MersenneTwister`         | 0.1208                | 0.0432            |
-| `ARC4Random`              | 1.0034                | 0.2416            |
-| `DeviceRandom`            | 10.0906               | 5.3348            |
+| Generator                 | Time (in seconds) |
+| ------------------------- | ----------------- |
+| `Xoroshiro`               | 0.0271            |
+| `Xorshift`                | 0.0568            |
+| `XorshiftStar`            | 0.0319            |
+| `ChaCha`                  | 0.2027            |
+| `MersenneTwister`         | 0.0432            |
+| `ARC4Random`              | 0.2416            |
+| `DeviceRandom`            | 5.3348            |
 
 **Note:** Results may vary due to various factors.
 
