@@ -118,6 +118,7 @@ public struct ChaCha: RandomBytesGenerator, SeedableFromOtherRandomGenerator {
         _state.13 = 0
         _state.14 = 0
         _state.15 = 0
+        _index = ChaCha._stateCount
     }
 
     private mutating func _update() {
