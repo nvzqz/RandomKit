@@ -304,6 +304,9 @@
             <a class="nav-group-name-link" href="Structs.html">Structs</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Structs/ChaCha.html">ChaCha</a>
+              </li>
+              <li class="nav-group-task">
                 <a class="nav-group-task-link" href="Structs/LimitedRandoms.html">LimitedRandoms</a>
               </li>
               <li class="nav-group-task">
@@ -576,7 +579,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">struct</span> <span class="kt">Set</span><span class="o">&lt;</span><span class="kt">Element</span> <span class="p">:</span> <span class="kt">Hashable</span><span class="o">&gt;</span> <span class="p">:</span> <span class="kt">SetAlgebra</span><span class="p">,</span> <span class="kt">Hashable</span><span class="p">,</span> <span class="kt">Collection</span><span class="p">,</span> <span class="kt">ExpressibleByArrayLiteral</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">struct</span> <span class="kt">Set</span><span class="o">&lt;</span><span class="kt">Element</span><span class="o">&gt;</span> <span class="p">:</span> <span class="kt">SetAlgebra</span><span class="p">,</span> <span class="kt">Hashable</span><span class="p">,</span> <span class="kt">Collection</span><span class="p">,</span> <span class="kt">ExpressibleByArrayLiteral</span> <span class="k">where</span> <span class="kt">Element</span> <span class="p">:</span> <span class="kt">Hashable</span></code></pre>
 
                         </div>
                       </div>
@@ -1051,7 +1054,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">struct</span> <span class="kt">Range</span><span class="o">&lt;</span><span class="kt">Bound</span> <span class="p">:</span> <span class="kt">Comparable</span><span class="o">&gt;</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">struct</span> <span class="kt">Range</span><span class="o">&lt;</span><span class="kt">Bound</span><span class="o">&gt;</span> <span class="k">where</span> <span class="kt">Bound</span> <span class="p">:</span> <span class="kt">Comparable</span></code></pre>
 
                         </div>
                       </div>
@@ -1078,7 +1081,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">struct</span> <span class="kt">CountableRange</span><span class="o">&lt;</span><span class="kt">Bound</span> <span class="k">where</span> <span class="kt">Bound</span> <span class="p">:</span> <span class="n">_Strideable</span> <span class="o">&amp;</span> <span class="kt">Comparable</span><span class="p">,</span> <span class="kt">Bound</span><span class="o">.</span><span class="kt">Stride</span> <span class="p">:</span> <span class="kt">SignedInteger</span><span class="o">&gt;</span> <span class="p">:</span> <span class="kt">RandomAccessCollection</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">struct</span> <span class="kt">CountableRange</span><span class="o">&lt;</span><span class="kt">Bound</span><span class="o">&gt;</span> <span class="p">:</span> <span class="kt">RandomAccessCollection</span> <span class="k">where</span> <span class="kt">Bound</span> <span class="p">:</span> <span class="kt">Comparable</span><span class="p">,</span> <span class="kt">Bound</span> <span class="p">:</span> <span class="n">_Strideable</span><span class="p">,</span> <span class="kt">Bound</span><span class="o">.</span><span class="kt">Stride</span> <span class="p">:</span> <span class="kt">SignedInteger</span></code></pre>
 
                         </div>
                       </div>
@@ -1105,7 +1108,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">struct</span> <span class="kt">ClosedRange</span><span class="o">&lt;</span><span class="kt">Bound</span> <span class="p">:</span> <span class="kt">Comparable</span><span class="o">&gt;</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">struct</span> <span class="kt">ClosedRange</span><span class="o">&lt;</span><span class="kt">Bound</span><span class="o">&gt;</span> <span class="k">where</span> <span class="kt">Bound</span> <span class="p">:</span> <span class="kt">Comparable</span></code></pre>
 
                         </div>
                       </div>
@@ -1132,7 +1135,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">struct</span> <span class="kt">CountableClosedRange</span><span class="o">&lt;</span><span class="kt">Bound</span> <span class="k">where</span> <span class="kt">Bound</span> <span class="p">:</span> <span class="n">_Strideable</span> <span class="o">&amp;</span> <span class="kt">Comparable</span><span class="p">,</span> <span class="kt">Bound</span><span class="o">.</span><span class="kt">Stride</span> <span class="p">:</span> <span class="kt">SignedInteger</span><span class="o">&gt;</span> <span class="p">:</span> <span class="kt">RandomAccessCollection</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">struct</span> <span class="kt">CountableClosedRange</span><span class="o">&lt;</span><span class="kt">Bound</span><span class="o">&gt;</span> <span class="p">:</span> <span class="kt">RandomAccessCollection</span> <span class="k">where</span> <span class="kt">Bound</span> <span class="p">:</span> <span class="kt">Comparable</span><span class="p">,</span> <span class="kt">Bound</span> <span class="p">:</span> <span class="n">_Strideable</span><span class="p">,</span> <span class="kt">Bound</span><span class="o">.</span><span class="kt">Stride</span> <span class="p">:</span> <span class="kt">SignedInteger</span></code></pre>
 
                         </div>
                       </div>
@@ -1211,7 +1214,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">struct</span> <span class="kt">Dictionary</span><span class="o">&lt;</span><span class="kt">Key</span> <span class="p">:</span> <span class="kt">Hashable</span><span class="p">,</span> <span class="kt">Value</span><span class="o">&gt;</span> <span class="p">:</span> <span class="kt">Collection</span><span class="p">,</span> <span class="kt">ExpressibleByDictionaryLiteral</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">struct</span> <span class="kt">Dictionary</span><span class="o">&lt;</span><span class="kt">Key</span><span class="p">,</span> <span class="kt">Value</span><span class="o">&gt;</span> <span class="p">:</span> <span class="kt">Collection</span><span class="p">,</span> <span class="kt">ExpressibleByDictionaryLiteral</span> <span class="k">where</span> <span class="kt">Key</span> <span class="p">:</span> <span class="kt">Hashable</span></code></pre>
 
                         </div>
                       </div>
@@ -1314,7 +1317,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">protocol</span> <span class="kt">FloatingPoint</span> <span class="p">:</span> <span class="kt">Comparable</span><span class="p">,</span> <span class="kt">ExpressibleByIntegerLiteral</span><span class="p">,</span> <span class="kt">SignedNumber</span><span class="p">,</span> <span class="kt">AbsoluteValuable</span><span class="p">,</span> <span class="kt">Strideable</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">protocol</span> <span class="kt">FloatingPoint</span> <span class="p">:</span> <span class="kt">Comparable</span><span class="p">,</span> <span class="kt">AbsoluteValuable</span><span class="p">,</span> <span class="kt">SignedNumber</span><span class="p">,</span> <span class="kt">Strideable</span></code></pre>
 
                         </div>
                       </div>
@@ -1399,7 +1402,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">protocol</span> <span class="kt">Collection</span> <span class="p">:</span> <span class="kt">Indexable</span><span class="p">,</span> <span class="kt">Sequence</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">protocol</span> <span class="kt">Collection</span> <span class="p">:</span> <span class="kt">Sequence</span></code></pre>
 
                         </div>
                       </div>
@@ -1426,7 +1429,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">protocol</span> <span class="kt">MutableCollection</span> <span class="p">:</span> <span class="kt">MutableIndexable</span><span class="p">,</span> <span class="kt">Collection</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">protocol</span> <span class="kt">MutableCollection</span> <span class="p">:</span> <span class="kt">Collection</span></code></pre>
 
                         </div>
                       </div>
@@ -1453,7 +1456,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">struct</span> <span class="kt">UnsafeMutableBufferPointer</span><span class="o">&lt;</span><span class="kt">Element</span><span class="o">&gt;</span> <span class="p">:</span> <span class="kt">MutableIndexable</span><span class="p">,</span> <span class="kt">MutableCollection</span><span class="p">,</span> <span class="kt">RandomAccessCollection</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">struct</span> <span class="kt">UnsafeMutableBufferPointer</span><span class="o">&lt;</span><span class="kt">Element</span><span class="o">&gt;</span> <span class="p">:</span> <span class="kt">MutableCollection</span><span class="p">,</span> <span class="kt">RandomAccessCollection</span></code></pre>
 
                         </div>
                       </div>
@@ -1707,7 +1710,7 @@
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2017 <a class="link" href="https://github.com/nvzqz" target="_blank" rel="external">Nikolai Vazquez</a>. All rights reserved. (Last updated: 2017-03-30)</p>
+      <p>&copy; 2017 <a class="link" href="https://github.com/nvzqz" target="_blank" rel="external">Nikolai Vazquez</a>. All rights reserved. (Last updated: 2017-04-18)</p>
       <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.4</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
     </section>
   </body>

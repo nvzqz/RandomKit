@@ -304,6 +304,9 @@
             <a class="nav-group-name-link" href="Structs.html">Structs</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Structs/ChaCha.html">ChaCha</a>
+              </li>
+              <li class="nav-group-task">
                 <a class="nav-group-task-link" href="Structs/LimitedRandoms.html">LimitedRandoms</a>
               </li>
               <li class="nav-group-task">
@@ -514,7 +517,7 @@ to learn more.</p>
 <li><p>Add the project to your <a href="https://guides.cocoapods.org/using/the-podfile.html">Podfile</a>.</p>
 <pre class="highlight ruby"><code><span class="n">use_frameworks!</span>
 
-<span class="n">pod</span> <span class="s1">'RandomKit'</span><span class="p">,</span> <span class="s1">'~&gt; 4.4.0'</span>
+<span class="n">pod</span> <span class="s1">'RandomKit'</span><span class="p">,</span> <span class="s1">'~&gt; 4.5.2'</span>
 </code></pre>
 
 <p>If you want to be on the bleeding edge, replace the last line with:</p>
@@ -581,6 +584,7 @@ loaded at runtime.</li>
 <li><p><code>Xoroshiro</code></p></li>
 <li><p><code>Xorshift</code></p></li>
 <li><p><code>XorshiftStar</code></p></li>
+<li><p><code>ChaCha</code></p></li>
 </ul>
 <a href='#seedablerandomgenerator' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h4 id='seedablerandomgenerator'>SeedableRandomGenerator</h4>
 
@@ -608,6 +612,45 @@ a shared mutable state.</p>
 
 <p>Thread-local generators are deallocated upon thread exit, so there&rsquo;s no need to
 worry about cleanup.</p>
+
+<p>It&rsquo;s recommended to not call <code>withThreadLocal(_:)</code> or get the <code>threadLocal</code>
+pointer each individual time it&rsquo;s needed. Retrieving the thread-local instance
+incurs avoidable overhead.</p>
+<pre class="highlight swift"><code><span class="c1">// Bad</span>
+<span class="k">let</span> <span class="nv">value</span> <span class="o">=</span> <span class="kt">Int</span><span class="o">.</span><span class="nf">random</span><span class="p">(</span><span class="nv">using</span><span class="p">:</span> <span class="o">&amp;</span><span class="kt">Xoroshiro</span><span class="o">.</span><span class="n">threadLocal</span><span class="o">.</span><span class="n">pointee</span><span class="p">)</span>
+<span class="n">array</span><span class="o">.</span><span class="nf">shuffle</span><span class="p">(</span><span class="nv">using</span><span class="p">:</span> <span class="o">&amp;</span><span class="kt">Xoroshiro</span><span class="o">.</span><span class="n">threadLocal</span><span class="o">.</span><span class="n">pointee</span><span class="p">)</span>
+
+<span class="c1">// Good</span>
+<span class="k">let</span> <span class="nv">threadLocal</span> <span class="o">=</span> <span class="kt">Xoroshiro</span><span class="o">.</span><span class="n">threadLocal</span>
+<span class="k">let</span> <span class="nv">value</span> <span class="o">=</span> <span class="kt">Int</span><span class="o">.</span><span class="nf">random</span><span class="p">(</span><span class="nv">using</span><span class="p">:</span> <span class="o">&amp;</span><span class="n">threadLocal</span><span class="o">.</span><span class="n">pointee</span><span class="p">)</span>
+<span class="n">array</span><span class="o">.</span><span class="nf">shuffle</span><span class="p">(</span><span class="nv">using</span><span class="p">:</span> <span class="o">&amp;</span><span class="n">threadLocal</span><span class="o">.</span><span class="n">pointee</span><span class="p">)</span>
+
+<span class="c1">// Better</span>
+<span class="kt">Xoroshiro</span><span class="o">.</span><span class="n">withThreadLocal</span> <span class="p">{</span> <span class="n">randomGenerator</span> <span class="k">in</span>
+    <span class="k">let</span> <span class="nv">value</span> <span class="o">=</span> <span class="kt">Int</span><span class="o">.</span><span class="nf">random</span><span class="p">(</span><span class="nv">using</span><span class="p">:</span> <span class="o">&amp;</span><span class="n">randomGenerator</span><span class="p">)</span>
+    <span class="n">array</span><span class="o">.</span><span class="nf">shuffle</span><span class="p">(</span><span class="nv">using</span><span class="p">:</span> <span class="o">&amp;</span><span class="n">randomGenerator</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre>
+
+<p>Prior to <a href="https://github.com/nvzqz/RandomKit/releases/tag/v4.4.0">v4.4.0</a>,
+thread safety could be achieved by instantiating a new seeded instance of a
+given <code>RandomGenerator</code> type. The problem with this is that unnecessary seeding
+occurs each time. With this, the generator is seeded once and can then be reused
+at later points.</p>
+
+<p>Shortcuts to the reseeding version of a generator are also available:
+<code>swift
+Xoroshiro.withThreadLocalReseeding {
+    ...
+}
+</code></p>
+
+<p>Which is <em>way</em> better than writing:
+<code>swift
+ReseedingRandomGenerator.withThreadLocal(createdWith: { Xoroshiro.reseeding }) {
+    ...
+}
+</code></p>
 <a href='#protocols' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='protocols'>Protocols</h3>
 
 <p>RandomKit is very protocol-oriented, which gives it the ability to be very
@@ -742,43 +785,40 @@ This initializer fills the buffer directly rather than using <code>random(using:
 </code></pre>
 <a href='#arrays-benchmark' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h5 id='arrays-benchmark'>Arrays Benchmark</h5>
 
-<p>A benchmark of generating 1000 random arrays of 10000 count:</p>
+<p>A benchmark of generating 1000 random <code>Int</code> arrays of 10000 count:</p>
 
 <table><thead>
 <tr>
 <th>Generator</th>
-<th>Safe (seconds)</th>
-<th>Unsafe (seconds)</th>
+<th>Time (in seconds)</th>
 </tr>
 </thead><tbody>
 <tr>
 <td><code>Xoroshiro</code></td>
-<td>0.0948</td>
 <td>0.0271</td>
 </tr>
 <tr>
 <td><code>Xorshift</code></td>
-<td>0.1066</td>
 <td>0.0568</td>
 </tr>
 <tr>
 <td><code>XorshiftStar</code></td>
-<td>0.1028</td>
-<td>0.0341</td>
+<td>0.0319</td>
+</tr>
+<tr>
+<td><code>ChaCha</code></td>
+<td>0.2027</td>
 </tr>
 <tr>
 <td><code>MersenneTwister</code></td>
-<td>0.1208</td>
 <td>0.0432</td>
 </tr>
 <tr>
 <td><code>ARC4Random</code></td>
-<td>1.0034</td>
 <td>0.2416</td>
 </tr>
 <tr>
 <td><code>DeviceRandom</code></td>
-<td>10.0906</td>
 <td>5.3348</td>
 </tr>
 </tbody></table>
@@ -878,7 +918,7 @@ branch.</p>
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2017 <a class="link" href="https://github.com/nvzqz" target="_blank" rel="external">Nikolai Vazquez</a>. All rights reserved. (Last updated: 2017-03-30)</p>
+      <p>&copy; 2017 <a class="link" href="https://github.com/nvzqz" target="_blank" rel="external">Nikolai Vazquez</a>. All rights reserved. (Last updated: 2017-04-18)</p>
       <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.4</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
     </section>
   </body>
