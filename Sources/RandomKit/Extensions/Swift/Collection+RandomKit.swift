@@ -233,26 +233,16 @@ extension UnsafeMutableRawBufferPointer: RandomRetrievableInRange, ShuffleableIn
 
 extension Array: RandomRetrievableInRange, ShuffleableInRange, UniqueShuffleableInRange {
 
-    #if swift(>=3.1)
-
-    /// Returns a random element in `range` without checking whether `self` or `range` is empty.
-    public func uncheckedRandom<R: RandomGenerator>(in range: Range<Int>, using randomGenerator: inout R) -> Element {
-        return self[Int.uncheckedRandom(in: range, using: &randomGenerator)]
-    }
-
-    #else
-
     /// Returns a random element in `range` without checking whether `self` or `range` is empty.
     public func uncheckedRandom<R: RandomGenerator>(in range: Range<Int>, using randomGenerator: inout R) -> Element {
         let index = Int.uncheckedRandom(in: range, using: &randomGenerator)
-        if let address = _buffer.firstElementAddressIfContiguous {
-            return address[index]
-        } else {
-            return self[index]
-        }
+        #if !swift(>=3.1)
+            if let address = _buffer.firstElementAddressIfContiguous {
+                return address[index]
+            }
+        #endif
+        return self[index]
     }
-
-    #endif
 
     /// Shuffles the elements of `self`.
     public mutating func shuffle<R: RandomGenerator>(using randomGenerator: inout R) {
@@ -288,22 +278,15 @@ extension Array: RandomRetrievableInRange, ShuffleableInRange, UniqueShuffleable
 
 extension ContiguousArray: RandomRetrievableInRange, ShuffleableInRange, UniqueShuffleableInRange {
 
-    #if swift(>=3.1)
-
-    /// Returns a random element in `range` without checking whether `self` or `range` is empty.
-    public func uncheckedRandom<R: RandomGenerator>(in range: Range<Int>, using randomGenerator: inout R) -> Element {
-        return self[Int.uncheckedRandom(in: range, using: &randomGenerator)]
-    }
-
-    #else
-
     /// Returns a random element in `range` without checking whether `self` or `range` is empty.
     public func uncheckedRandom<R: RandomGenerator>(in range: Range<Int>, using randomGenerator: inout R) -> Element {
         let index = Int.uncheckedRandom(in: range, using: &randomGenerator)
-        return _buffer.firstElementAddress[index]
+        #if swift(>=3.1)
+            return self[index]
+        #else
+            return _buffer.firstElementAddress[index]
+        #endif
     }
-
-    #endif
 
     /// Shuffles the elements of `self`.
     public mutating func shuffle<R: RandomGenerator>(using randomGenerator: inout R) {
