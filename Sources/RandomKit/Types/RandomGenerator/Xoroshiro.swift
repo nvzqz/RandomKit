@@ -73,7 +73,7 @@ public struct Xoroshiro: RandomBytesGenerator, SeedableFromOtherRandomGenerator 
         @inline(__always)
         func doThings(with value: UInt64) {
             for i: UInt64 in 0 ..< 64 {
-                if (value & 1) << i != 0 {
+                if value & 1 << i != 0 {
                     s0 ^= _state.0
                     s1 ^= _state.1
                 }
