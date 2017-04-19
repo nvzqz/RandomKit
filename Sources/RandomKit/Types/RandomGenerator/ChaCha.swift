@@ -98,26 +98,14 @@ public struct ChaCha: RandomBytesGenerator, SeedableFromOtherRandomGenerator {
     }
 
     private mutating func _reset() {
-        _initialize(from: _zero8())
-    }
-
-    private mutating func _initialize(from key: _Array8<UInt32>) {
         _state.0 = 0x61707865
         _state.1 = 0x3320646E
         _state.2 = 0x79622D32
         _state.3 = 0x6B206574
-        _state.4 = key.0
-        _state.5 = key.1
-        _state.6 = key.2
-        _state.7 = key.3
-        _state.8 = key.4
-        _state.9 = key.5
-        _state.10 = key.6
-        _state.11 = key.7
-        _state.12 = 0
-        _state.13 = 0
-        _state.14 = 0
-        _state.15 = 0
+        let pointer = UnsafeMutablePointer(&_state.4)
+        for i in 0 ..< 12 {
+            pointer[i] = 0
+        }
         _index = ChaCha._stateCount
     }
 

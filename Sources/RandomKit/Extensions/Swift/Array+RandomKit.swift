@@ -48,9 +48,8 @@ extension Array {
     ///   and have no spare bits.
     public init<R: RandomGenerator>(unsafeRandomCount: Int, using randomGenerator: inout R) {
         let (array, pointer) = Array._uninitialized(count: unsafeRandomCount)
-        let buffer = UnsafeMutableRawPointer(pointer)
         let size = unsafeRandomCount &* MemoryLayout<Element>.stride
-        randomGenerator.randomize(buffer: buffer, size: size)
+        randomGenerator.randomize(buffer: pointer, size: size)
         self = array
     }
 }
