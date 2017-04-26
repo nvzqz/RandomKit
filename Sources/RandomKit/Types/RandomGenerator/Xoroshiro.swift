@@ -31,7 +31,7 @@
 ///
 /// [1]: http://xoroshiro.di.unimi.it/
 /// [2]: http://xoroshiro.di.unimi.it/xoroshiro128plus.c
-public struct Xoroshiro: RandomBytesGenerator, SeedableFromOtherRandomGenerator {
+public struct Xoroshiro: RandomBytesGenerator, SeedableFromRandomGenerator {
 
     /// A default global instance seeded with `DeviceRandom.default`.
     public static var `default` = seeded

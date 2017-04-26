@@ -26,7 +26,7 @@
 //
 
 /// A generator that generates values with a base generator that is reseeded by another generator.
-public struct ReseedingRandomGenerator<Base: SeedableFromOtherRandomGenerator, Reseeder: RandomGenerator> {
+public struct ReseedingRandomGenerator<Base: RandomGenerator & SeedableFromRandomGenerator, Reseeder: RandomGenerator> {
 
     fileprivate var _bytesGenerated: Int = 0
 
@@ -68,7 +68,7 @@ public struct ReseedingRandomGenerator<Base: SeedableFromOtherRandomGenerator, R
 
 }
 
-extension ReseedingRandomGenerator where Reseeder: SeedableFromOtherRandomGenerator {
+extension ReseedingRandomGenerator where Reseeder: SeedableFromRandomGenerator {
 
     /// Creates an instance with `threshold` by instantiating `base` from a `Reseeder` that was in turn seeded with
     /// `DeviceRandom.default`.

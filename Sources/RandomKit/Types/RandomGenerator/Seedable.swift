@@ -1,5 +1,5 @@
 //
-//  SeedableRandomGenerator.swift
+//  Seedable.swift
 //  RandomKit
 //
 //  The MIT License (MIT)
@@ -26,7 +26,7 @@
 //
 
 /// A random value generator type that can be instantiated with a `Seed`.
-public protocol SeedableRandomGenerator: RandomGenerator {
+public protocol Seedable {
 
     /// The seed type.
     associatedtype Seed
@@ -39,7 +39,7 @@ public protocol SeedableRandomGenerator: RandomGenerator {
 
 }
 
-extension SeedableRandomGenerator {
+extension Seedable {
 
     /// Reseeds `self` with `seed`.
     public mutating func reseed(with seed: Seed) {
@@ -49,7 +49,7 @@ extension SeedableRandomGenerator {
 }
 
 /// A random value generator type that can be seeded by another `randomGenerator`.
-public protocol SeedableFromOtherRandomGenerator: SeedableRandomGenerator, Random {
+public protocol SeedableFromRandomGenerator: Seedable, Random {
 
     /// The default byte threshold at which `self` is reseeded in a `ReseedingRandomGenerator`.
     static var reseedingThreshold: Int { get }
@@ -62,7 +62,7 @@ public protocol SeedableFromOtherRandomGenerator: SeedableRandomGenerator, Rando
 
 }
 
-extension SeedableFromOtherRandomGenerator {
+extension SeedableFromRandomGenerator {
 
     /// The default byte threshold at which `self` is reseeded in a `ReseedingRandomGenerator` (32KB).
     public static var reseedingThreshold: Int {
@@ -72,16 +72,6 @@ extension SeedableFromOtherRandomGenerator {
     /// Returns an instance seeded with `DeviceRandom.default`.
     public static var seeded: Self {
         return Self(seededWith: &DeviceRandom.default)
-    }
-
-    /// Returns an instance that reseeds itself with `DeviceRandom.default`.
-    public static var reseeding: ReseedingRandomGenerator<Self, DeviceRandom> {
-        return reseeding(with: .default)
-    }
-
-    /// Returns an instance that reseeds itself with `reseeder`.
-    public static func reseeding<R: RandomGenerator>(with reseeder: R) -> ReseedingRandomGenerator<Self, R> {
-        return ReseedingRandomGenerator(reseeder: reseeder)
     }
 
     /// Generates a random value of `Self` using `randomGenerator`.
@@ -101,7 +91,21 @@ extension SeedableFromOtherRandomGenerator {
 
 }
 
-extension SeedableRandomGenerator where Seed: Random {
+extension RandomGenerator where Self: SeedableFromRandomGenerator {
+
+    /// Returns an instance that reseeds itself with `DeviceRandom.default`.
+    public static var reseeding: ReseedingRandomGenerator<Self, DeviceRandom> {
+        return reseeding(with: .default)
+    }
+
+    /// Returns an instance that reseeds itself with `reseeder`.
+    public static func reseeding<R: RandomGenerator>(with reseeder: R) -> ReseedingRandomGenerator<Self, R> {
+        return ReseedingRandomGenerator(reseeder: reseeder)
+    }
+
+}
+
+extension Seedable where Seed: Random {
 
     /// Creates an instance seeded with `randomGenerator`.
     public init<R: RandomGenerator>(seededWith randomGenerator: inout R) {
@@ -110,7 +114,7 @@ extension SeedableRandomGenerator where Seed: Random {
 
 }
 
-extension SeedableRandomGenerator where Self: Random, Seed: Random {
+extension Seedable where Self: Random, Seed: Random {
 
     /// Generates a random value of `Self` using `randomGenerator`.
     public static func random<R: RandomGenerator>(using randomGenerator: inout R) -> Self {

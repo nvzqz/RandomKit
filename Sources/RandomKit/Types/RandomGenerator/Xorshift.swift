@@ -31,7 +31,7 @@
 ///
 /// [1]: http://www.jstatsoft.org/v08/i14/paper
 /// [2]: https://doc.rust-lang.org/rand/rand/struct.XorShiftRng.html
-public struct Xorshift: RandomBytesGenerator, SeedableFromOtherRandomGenerator {
+public struct Xorshift: RandomBytesGenerator, SeedableFromRandomGenerator {
 
     /// A default global instance seeded with `DeviceRandom.default`.
     public static var `default` = seeded

@@ -107,7 +107,7 @@ extension RandomGenerator {
 
 }
 
-extension SeedableFromOtherRandomGenerator {
+extension RandomGenerator where Self: SeedableFromRandomGenerator {
 
     /// Returns the boxed thread-local instance of `self` seeded with `DeviceRandom.default`.
     public static var threadLocal: UnsafeMutablePointer<Self> {

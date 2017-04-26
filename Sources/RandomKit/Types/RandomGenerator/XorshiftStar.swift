@@ -28,7 +28,7 @@
 /// A generator that uses the [Xorshift1024*][1] algorithm.
 ///
 /// [1]: http://xoroshiro.di.unimi.it/xorshift1024star.c
-public struct XorshiftStar: RandomBytesGenerator, SeedableFromOtherRandomGenerator {
+public struct XorshiftStar: RandomBytesGenerator, SeedableFromRandomGenerator {
 
     /// The seed type.
     public typealias Seed = (
