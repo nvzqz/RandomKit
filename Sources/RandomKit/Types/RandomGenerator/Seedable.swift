@@ -49,7 +49,7 @@ extension Seedable {
 }
 
 /// A type that can be seeded by another `randomGenerator`.
-public protocol SeedableFromRandomGenerator: Seedable, Random {
+public protocol SeedableFromRandomGenerator: Random {
 
     /// The default byte threshold at which `self` is reseeded in a `ReseedingRandomGenerator`.
     static var reseedingThreshold: Int { get }
@@ -105,20 +105,11 @@ extension RandomGenerator where Self: SeedableFromRandomGenerator {
 
 }
 
-extension Seedable where Seed: Random {
+extension Seedable where Self: SeedableFromRandomGenerator, Seed: Random {
 
     /// Creates an instance seeded with `randomGenerator`.
     public init<R: RandomGenerator>(seededWith randomGenerator: inout R) {
         self.init(seed: Seed.random(using: &randomGenerator))
-    }
-
-}
-
-extension Seedable where Self: Random, Seed: Random {
-
-    /// Generates a random value of `Self` using `randomGenerator`.
-    public static func random<R: RandomGenerator>(using randomGenerator: inout R) -> Self {
-        return Self(seededWith: &randomGenerator)
     }
 
 }

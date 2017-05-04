@@ -32,7 +32,7 @@
 /// [1]: http://cr.yp.to/chacha.html
 /// [2]: https://en.wikipedia.org/wiki/Salsa20#ChaCha_variant
 /// [3]: https://doc.rust-lang.org/rand/rand/chacha/struct.ChaChaRng.html
-public struct ChaCha: RandomBytesGenerator, SeedableFromRandomGenerator {
+public struct ChaCha: RandomBytesGenerator, Seedable, SeedableFromRandomGenerator {
 
     private typealias _State = _Array16<UInt32>
 
