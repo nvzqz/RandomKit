@@ -35,7 +35,7 @@
 public struct ChaCha: RandomBytesGenerator, Seedable, SeedableFromSequence, SeedableFromRandomGenerator {
 
     /// The seed type.
-    public typealias Seed = UnsafeBufferPointer<UInt32>
+    public typealias Seed = [UInt32]
 
     /// The seed sequence's element type.
     public typealias SeedSequenceElement = UInt32
