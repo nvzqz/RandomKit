@@ -40,12 +40,32 @@ public protocol Seedable {
 }
 
 extension Seedable {
-
     /// Reseeds `self` with `seed`.
     public mutating func reseed(with seed: Seed) {
         self = Self(seed: seed)
     }
+}
 
+/// A type that can be seeded by a sequence.
+public protocol SeedableFromSequence {
+
+    /// The seed sequence's element type.
+    associatedtype SeedSequenceElement
+
+    /// Creates an instance from `seed`.
+    init<S: Sequence>(seed: S) where S.Iterator.Element == SeedSequenceElement
+
+    /// Reseeds `self` with `seed`.
+    mutating func reseed<S: Sequence>(with seed: S) where S.Iterator.Element == SeedSequenceElement
+
+}
+
+
+extension SeedableFromSequence {
+    /// Reseeds `self` with `seed`.
+    public mutating func reseed<S: Sequence>(with sequence: S) where S.Iterator.Element == SeedSequenceElement {
+        self = Self(seed: sequence)
+    }
 }
 
 /// A type that can be seeded by another `randomGenerator`.
@@ -110,6 +130,32 @@ extension Seedable where Self: SeedableFromRandomGenerator, Seed: Random {
     /// Creates an instance seeded with `randomGenerator`.
     public init<R: RandomGenerator>(seededWith randomGenerator: inout R) {
         self.init(seed: Seed.random(using: &randomGenerator))
+    }
+
+}
+
+extension Seedable where Self: SeedableFromSequence, Seed: Sequence, Seed.Iterator.Element == Self.SeedSequenceElement {
+
+    @inline(__always)
+    private init<S: Sequence>(_seed: S) where S.Iterator.Element == SeedSequenceElement {
+        self.init(seed: _seed)
+    }
+
+    /// Creates an instance from `seed`.
+    public init(seed: Seed) {
+        // Required to specify initializer with same argument.
+        self.init(_seed: seed)
+    }
+
+    @inline(__always)
+    private mutating func _reseed<S: Sequence>(with _seed: S) where S.Iterator.Element == SeedSequenceElement {
+        reseed(with: _seed)
+    }
+
+    /// Reseeds `self` with `seed`.
+    public mutating func reseed(with seed: Seed) {
+        // Required to specify method with same name.
+        _reseed(with: seed)
     }
 
 }

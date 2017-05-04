@@ -32,7 +32,13 @@
 /// [1]: http://cr.yp.to/chacha.html
 /// [2]: https://en.wikipedia.org/wiki/Salsa20#ChaCha_variant
 /// [3]: https://doc.rust-lang.org/rand/rand/chacha/struct.ChaChaRng.html
-public struct ChaCha: RandomBytesGenerator, Seedable, SeedableFromRandomGenerator {
+public struct ChaCha: RandomBytesGenerator, Seedable, SeedableFromSequence, SeedableFromRandomGenerator {
+
+    /// The seed type.
+    public typealias Seed = UnsafeBufferPointer<UInt32>
+
+    /// The seed sequence's element type.
+    public typealias SeedSequenceElement = UInt32
 
     private typealias _State = _Array16<UInt32>
 
@@ -80,12 +86,6 @@ public struct ChaCha: RandomBytesGenerator, Seedable, SeedableFromRandomGenerato
     }
 
     /// Creates an instance from `seed`.
-    public init(seed: UnsafeBufferPointer<UInt32>) {
-        self = ._empty
-        reseed(with: seed)
-    }
-
-    /// Creates an instance from `seed`.
     public init<S: Sequence>(seed: S) where S.Iterator.Element == UInt32 {
         self = ._empty
         reseed(with: seed)
@@ -128,10 +128,6 @@ public struct ChaCha: RandomBytesGenerator, Seedable, SeedableFromRandomGenerato
         }
     }
 
-    private mutating func _reseed<S: Sequence>(with seed: S) where S.Iterator.Element == UInt32 {
-        reseed(with: seed)
-    }
-
     /// Sets the internal 128-bit counter.
     public mutating func setCounter(low: UInt64, high: UInt64) {
         _state.12 = UInt32(truncatingBitPattern: low)
@@ -139,12 +135,6 @@ public struct ChaCha: RandomBytesGenerator, Seedable, SeedableFromRandomGenerato
         _state.14 = UInt32(truncatingBitPattern: high)
         _state.15 = UInt32(truncatingBitPattern: high >> 32)
         _index = ChaCha._stateCount
-    }
-
-    /// Reseeds `self` with `seed`.
-    public mutating func reseed(with seed: UnsafeBufferPointer<UInt32>) {
-        // Required to specify method with same name.
-        _reseed(with: seed)
     }
 
     /// Reseeds `self` with `seed`.
