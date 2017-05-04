@@ -25,7 +25,7 @@
 //  THE SOFTWARE.
 //
 
-/// A random value generator type that can be instantiated with a `Seed`.
+/// A type that can be instantiated with a `Seed`.
 public protocol Seedable {
 
     /// The seed type.
@@ -48,7 +48,7 @@ extension Seedable {
 
 }
 
-/// A random value generator type that can be seeded by another `randomGenerator`.
+/// A type that can be seeded by another `randomGenerator`.
 public protocol SeedableFromRandomGenerator: Seedable, Random {
 
     /// The default byte threshold at which `self` is reseeded in a `ReseedingRandomGenerator`.
