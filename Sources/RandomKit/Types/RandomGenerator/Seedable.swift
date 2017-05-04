@@ -159,3 +159,17 @@ extension Seedable where Self: SeedableFromSequence, Seed: Sequence, Seed.Iterat
     }
 
 }
+
+extension Seedable where Self: SeedableFromSequence, Self.SeedSequenceElement == Seed {
+
+    /// Creates an instance from `seed`.
+    public init(seed: Seed) {
+        self.init(seed: CollectionOfOne(seed))
+    }
+
+    /// Reseeds `self` with `seed`.
+    public mutating func reseed(with seed: Seed) {
+        reseed(with: CollectionOfOne(seed))
+    }
+
+}
