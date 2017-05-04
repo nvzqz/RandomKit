@@ -77,10 +77,10 @@ internal func _zero8<T: ExpressibleByIntegerLiteral>() -> _Array8<T> {
 
 /// Returns a mutable pointer to the contents of `array`.
 internal func _contents<T>(of array: inout _Array312<T>) -> UnsafeMutablePointer<T> {
-    return _pointer(to: &array, as: T.self)
+    return UnsafeMutablePointer(&array.0)
 }
 
 /// Returns a mutable pointer to the contents of `array`.
 internal func _contents<T>(of array: inout _Array16<T>) -> UnsafeMutablePointer<T> {
-    return _pointer(to: &array, as: T.self)
+    return UnsafeMutablePointer(&array.0)
 }

@@ -72,11 +72,11 @@ public struct ChaCha: RandomBytesGenerator, Seedable, SeedableFromSequence, Seed
     private var _index: Int
 
     private var _bufferPointer: UnsafeMutablePointer<UInt32> {
-        mutating get { return _pointer(to: &_buffer) }
+        mutating get { return UnsafeMutablePointer(&_buffer.0) }
     }
 
     private var _statePointer: UnsafeMutablePointer<UInt32> {
-        mutating get { return _pointer(to: &_state) }
+        mutating get { return UnsafeMutablePointer(&_state.0) }
     }
 
     private init(_buffer: _State, _state: _State, _index: Int) {
@@ -94,7 +94,7 @@ public struct ChaCha: RandomBytesGenerator, Seedable, SeedableFromSequence, Seed
     /// Creates an instance seeded with `randomGenerator`.
     public init<R: RandomGenerator>(seededWith randomGenerator: inout R) {
         var seed: _Array8<UInt32> = randomGenerator.randomUnsafeValue()
-        self.init(seed: UnsafeBufferPointer(start: _pointer(to: &seed), count: ChaCha._keyCount))
+        self.init(seed: UnsafeBufferPointer(start: &seed.0, count: ChaCha._keyCount))
     }
 
     private mutating func _reset() {
