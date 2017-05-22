@@ -73,6 +73,7 @@ private func _key(for type: Any.Type) -> pthread_key_t {
     } else {
         var key = pthread_key_t()
         pthread_key_create(&key) {
+            // Cast required because argument is optional on some platforms (Linux) but not on others (macOS).
             guard let rawPointer = ($0 as UnsafeMutableRawPointer?) else {
                 return
             }
