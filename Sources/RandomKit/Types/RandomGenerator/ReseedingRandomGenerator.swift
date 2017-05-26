@@ -31,7 +31,7 @@ public struct ReseedingRandomGenerator<Base: RandomGenerator & SeedableFromRando
     fileprivate var _bytesGenerated: Int = 0
 
     /// The byte threshold indicating the maximum number of bytes that can be generated before `self` is reseeded.
-    public let threshold: Int
+    public var threshold: Int
 
     /// The base `RandomGenerator` from which to generate values.
     public var base: Base
