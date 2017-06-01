@@ -27,6 +27,14 @@
 
 import PackageDescription
 
+let deps: [Package.Dependency]
+
+#if swift(>=4)
+deps = []
+#else
+deps = [.Package(url: "https://github.com/nvzqz/ShiftOperations.git", majorVersion: 1)]
+#endif
+
 let package = Package(
     name: "RandomKit",
     targets: [
@@ -34,8 +42,5 @@ let package = Package(
         Target(name: "benchmark",
                dependencies: ["RandomKit"])
     ],
-    dependencies: [
-        .Package(url: "https://github.com/nvzqz/ShiftOperations.git",
-                 majorVersion: 1)
-    ]
+    dependencies: deps
 )
