@@ -36,7 +36,7 @@ extension ExpressibleByIntegerLiteral where Self: UnsafeRandom {
 
 }
 
-extension Integer where Self: RandomToValue & RandomThroughValue {
+extension ExpressibleByIntegerLiteral where Self: RandomToValue & RandomThroughValue {
 
     /// The random base from which to generate.
     public static var randomBase: Self {
