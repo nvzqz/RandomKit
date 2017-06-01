@@ -45,6 +45,20 @@ extension RandomInClosedRange where Self: Strideable & Comparable, Self.Stride :
 
 extension RandomInClosedRange {
 
+    #if swift(>=4)
+
+    /// Returns a sequence of random values in `closedRange` using `randomGenerator`.
+    public static func randoms<R>(in closedRange: ClosedRange<Self>, using randomGenerator: inout R) -> RandomsWithinClosedRange<Self, R> {
+        return RandomsWithinClosedRange(closedRange: closedRange, randomGenerator: &randomGenerator)
+    }
+
+    /// Returns a sequence of random values limited by `limit` in `closedRange` using `randomGenerator`.
+    public static func randoms<R>(limitedBy limit: Int, in closedRange: ClosedRange<Self>, using randomGenerator: inout R) -> LimitedRandomsWithinClosedRange<Self, R> {
+        return LimitedRandomsWithinClosedRange(limit: limit, closedRange: closedRange, randomGenerator: &randomGenerator)
+    }
+
+    #else
+
     /// Returns a sequence of random values in `closedRange` using `randomGenerator`.
     public static func randoms<R: RandomGenerator>(in closedRange: ClosedRange<Self>, using randomGenerator: inout R) -> RandomsWithinClosedRange<Self, R> {
         return RandomsWithinClosedRange(closedRange: closedRange, randomGenerator: &randomGenerator)
@@ -54,6 +68,8 @@ extension RandomInClosedRange {
     public static func randoms<R: RandomGenerator>(limitedBy limit: Int, in closedRange: ClosedRange<Self>, using randomGenerator: inout R) -> LimitedRandomsWithinClosedRange<Self, R> {
         return LimitedRandomsWithinClosedRange(limit: limit, closedRange: closedRange, randomGenerator: &randomGenerator)
     }
+
+    #endif
 
 }
 

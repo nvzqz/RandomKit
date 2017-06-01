@@ -63,12 +63,20 @@ public final class ARC4Random: RandomGenerator {
 
     /// Generates a random unsigned 16-bit integer.
     public func random16() -> UInt16 {
-        return UInt16(truncatingBitPattern: random32())
+        #if swift(>=4)
+            return UInt16(extendingOrTruncating: random32())
+        #else
+            return UInt16(truncatingBitPattern: random32())
+        #endif
     }
 
     /// Generates a random unsigned 8-bit integer.
     public func random8() -> UInt8 {
-        return UInt8(truncatingBitPattern: random32())
+        #if swift(>=4)
+            return UInt8(extendingOrTruncating: random32())
+        #else
+            return UInt8(truncatingBitPattern: random32())
+        #endif
     }
 
 }

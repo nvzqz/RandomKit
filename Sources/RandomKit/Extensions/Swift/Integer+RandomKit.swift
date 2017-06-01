@@ -25,7 +25,10 @@
 //  THE SOFTWARE.
 //
 
+// The '>>' and '<<' operators are covered by FixedWidthInteger
+#if !swift(>=4)
 import ShiftOperations
+#endif
 
 extension ExpressibleByIntegerLiteral where Self: UnsafeRandom {
 
@@ -44,6 +47,32 @@ extension ExpressibleByIntegerLiteral where Self: RandomToValue & RandomThroughV
     }
 
 }
+
+#if swift(>=4)
+
+private extension FixedWidthInteger where Self: Random {
+
+    @inline(__always)
+    static func _randomGreater<R: RandomGenerator>(to value: Self, using randomGenerator: inout R) -> Self {
+        var result: Self
+        repeat {
+            result = random(using: &randomGenerator)
+        } while result < max % value
+        return result % value
+    }
+
+    @inline(__always)
+    static func _randomLess<R: RandomGenerator>(to value: Self, using randomGenerator: inout R) -> Self {
+        var result: Self
+        repeat {
+            result = random(using: &randomGenerator)
+        } while result > min % value
+        return result % value
+    }
+
+}
+
+#else
 
 private extension Integer where Self: RandomWithMax {
 
@@ -70,6 +99,53 @@ private extension Integer where Self: RandomWithMin {
     }
 
 }
+
+#endif
+
+#if swift(>=4)
+
+extension SignedInteger where Self: FixedWidthInteger & Random & RandomToValue & RandomThroughValue {
+
+    /// Generates a random value of `Self` from `randomBase` to `value`.
+    public static func random<R: RandomGenerator>(to value: Self, using randomGenerator: inout R) -> Self {
+        if value == randomBase {
+            return value
+        } else if value < randomBase {
+            return _randomLess(to: value, using: &randomGenerator)
+        } else {
+            return _randomGreater(to: value, using: &randomGenerator)
+        }
+    }
+
+    /// Generates a random value of `Self` from `randomBase` through `value`.
+    public static func random<R: RandomGenerator>(through value: Self, using randomGenerator: inout R) -> Self {
+        switch value {
+        case randomBase:
+            return value
+        case min:
+            var result: Self
+            repeat {
+                result = random(using: &randomGenerator)
+            } while result > 0
+            return result
+        case max:
+            var result: Self
+            repeat {
+                result = random(using: &randomGenerator)
+            } while result < 0
+            return result
+        default:
+            if value < randomBase {
+                return _randomLess(to: value &- 1, using: &randomGenerator)
+            } else {
+                return _randomGreater(to: value &+ 1, using: &randomGenerator)
+            }
+        }
+    }
+
+}
+
+#else
 
 extension SignedInteger where Self: RandomWithMax & RandomWithMin & RandomToValue & RandomThroughValue {
 
@@ -112,8 +188,25 @@ extension SignedInteger where Self: RandomWithMax & RandomWithMin & RandomToValu
 
 }
 
-extension UnsignedInteger where Self: Random & RandomToValue & RandomWithMax {
+#endif
 
+#if swift(>=4)
+
+extension UnsignedInteger where Self: FixedWidthInteger & Random {
+    /// Generates a random value of `Self` from `randomBase` to `value`.
+    public static func random<R: RandomGenerator>(to value: Self, using randomGenerator: inout R) -> Self {
+        switch value {
+        case 0:
+            return value
+        default:
+            return _randomGreater(to: value, using: &randomGenerator)
+        }
+    }
+}
+
+#else
+
+extension UnsignedInteger where Self: Random & RandomToValue & RandomWithMax {
     /// Generates a random value of `Self` from `randomBase` to `value`.
     public static func random<R: RandomGenerator>(to value: Self, using randomGenerator: inout R) -> Self {
         switch value {
@@ -123,20 +216,33 @@ extension UnsignedInteger where Self: Random & RandomToValue & RandomWithMax {
             return _randomGreater(to: value, using: &randomGenerator)
         }
     }
-
 }
 
-extension UnsignedInteger where Self: RandomToValue & RandomInRange {
+#endif
 
+#if swift(>=4)
+
+extension UnsignedInteger where Self: FixedWidthInteger & RandomToValue & RandomInRange {
     /// Returns a random value of `Self` inside of the unchecked range using `randomGenerator`.
     public static func uncheckedRandom<R: RandomGenerator>(in range: Range<Self>, using randomGenerator: inout R) -> Self {
         return range.lowerBound &+ random(to: range.upperBound &- range.lowerBound, using: &randomGenerator)
     }
-
 }
 
-extension UnsignedInteger where Self: RandomWithMax & RandomThroughValue {
+#else
 
+extension UnsignedInteger where Self: RandomToValue & RandomInRange {
+    /// Returns a random value of `Self` inside of the unchecked range using `randomGenerator`.
+    public static func uncheckedRandom<R: RandomGenerator>(in range: Range<Self>, using randomGenerator: inout R) -> Self {
+        return range.lowerBound &+ random(to: range.upperBound &- range.lowerBound, using: &randomGenerator)
+    }
+}
+
+#endif
+
+#if swift(>=4)
+
+extension UnsignedInteger where Self: FixedWidthInteger & Random & RandomThroughValue {
     /// Generates a random value of `Self` from `randomBase` through `value`.
     public static func random<R: RandomGenerator>(through value: Self, using randomGenerator: inout R) -> Self {
         switch value {
@@ -148,22 +254,79 @@ extension UnsignedInteger where Self: RandomWithMax & RandomThroughValue {
             return _randomGreater(to: value &+ 1, using: &randomGenerator)
         }
     }
-
 }
 
-extension UnsignedInteger where Self: RandomThroughValue & RandomInClosedRange {
+#else
 
+extension UnsignedInteger where Self: RandomWithMax & RandomThroughValue {
+    /// Generates a random value of `Self` from `randomBase` through `value`.
+    public static func random<R: RandomGenerator>(through value: Self, using randomGenerator: inout R) -> Self {
+        switch value {
+        case randomBase:
+            return value
+        case max:
+            return random(using: &randomGenerator)
+        default:
+            return _randomGreater(to: value &+ 1, using: &randomGenerator)
+        }
+    }
+}
+
+#endif
+
+#if swift(>=4)
+
+extension UnsignedInteger where Self: FixedWidthInteger & RandomThroughValue & RandomInClosedRange {
     /// Returns a random value of `Self` inside of the closed range.
     public static func random<R: RandomGenerator>(in closedRange: ClosedRange<Self>, using randomGenerator: inout R) -> Self {
         let bound = closedRange.upperBound &- closedRange.lowerBound
         let value = random(through: bound, using: &randomGenerator)
         return closedRange.lowerBound &+ value
     }
-
 }
 
-extension UnsignedInteger where Self: ShiftOperations & RandomWithMax & RandomWithMaxWidth {
+#else
 
+extension UnsignedInteger where Self: RandomThroughValue & RandomInClosedRange {
+    /// Returns a random value of `Self` inside of the closed range.
+    public static func random<R: RandomGenerator>(in closedRange: ClosedRange<Self>, using randomGenerator: inout R) -> Self {
+        let bound = closedRange.upperBound &- closedRange.lowerBound
+        let value = random(through: bound, using: &randomGenerator)
+        return closedRange.lowerBound &+ value
+    }
+}
+
+#endif
+
+#if swift(>=4)
+
+extension UnsignedInteger where Self: FixedWidthInteger & Random & RandomWithMaxWidth {
+
+    /// Generates a random value of `Self` with a maximum width using `randomGenerator`.
+    public static func random<R: RandomGenerator>(withMaxWidth width: Int, using randomGenerator: inout R) -> Self {
+        guard width > 0 else {
+            return 0
+        }
+
+        let result = random(using: &randomGenerator)
+        let typeWidth = MemoryLayout<Self>.size * 8
+
+        if width > typeWidth {
+            return result
+        } else {
+            if (width % typeWidth) != 0 {
+                return result & (max &>> Self(typeWidth - width))
+            } else {
+                return result
+            }
+        }
+    }
+    
+}
+
+#else
+
+extension UnsignedInteger where Self: ShiftOperations & RandomWithMax & RandomWithMaxWidth {
     /// Generates a random value of `Self` with a maximum width using `randomGenerator`.
     public static func random<R: RandomGenerator>(withMaxWidth width: Int, using randomGenerator: inout R) -> Self {
         guard width > 0 else {
@@ -183,20 +346,31 @@ extension UnsignedInteger where Self: ShiftOperations & RandomWithMax & RandomWi
             }
         }
     }
-
 }
 
-extension UnsignedInteger where Self: ShiftOperations & RandomWithMaxWidth & RandomWithExactWidth {
+#endif
 
+#if swift(>=4)
+
+extension UnsignedInteger where Self: RandomWithMaxWidth & RandomWithExactWidth {
     /// Generates a random value of `Self` with an exact width using `randomGenerator`.
     public static func random<R: RandomGenerator>(withExactWidth width: Int, using randomGenerator: inout R) -> Self {
-        guard width > 0 else {
-            return 0
-        }
+        guard width > 0 else { return 0 }
+        return random(withMaxWidth: width, using: &randomGenerator) | (1 &<< Self(width - 1))
+    }
+}
+
+#else
+
+extension UnsignedInteger where Self: ShiftOperations & RandomWithMaxWidth & RandomWithExactWidth {
+    /// Generates a random value of `Self` with an exact width using `randomGenerator`.
+    public static func random<R: RandomGenerator>(withExactWidth width: Int, using randomGenerator: inout R) -> Self {
+        guard width > 0 else { return 0 }
         return random(withMaxWidth: width, using: &randomGenerator) | (1 << Self(UIntMax(width - 1)))
     }
-
 }
+
+#endif
 
 extension Int: UnsafeRandom, RandomWithMax, RandomWithMin, RandomToValue, RandomThroughValue, RandomInRange, RandomInClosedRange {
 
@@ -420,7 +594,11 @@ extension UInt: UnsafeRandom, RandomWithMax, RandomWithMin, RandomToValue, Rando
         #else
             bits = UInt(bitPattern: MemoryLayout<UInt>.size * 8 - 1)
         #endif
-        return self ^ (1 << bits)
+        #if swift(>=4)
+            return self ^ (1 &<< bits)
+        #else
+            return self ^ (1 << bits)
+        #endif
     }
 
 }
@@ -433,7 +611,11 @@ extension UInt64: UnsafeRandom, RandomWithMax, RandomWithMin, RandomToValue, Ran
     }
 
     fileprivate var _resigned: UInt64 {
-        return self ^ (1 << 63)
+        #if swift(>=4)
+            return self ^ (1 &<< 63)
+        #else
+            return self ^ (1 << 63)
+        #endif
     }
 
 }
@@ -446,7 +628,11 @@ extension UInt32: UnsafeRandom, RandomWithMax, RandomWithMin, RandomToValue, Ran
     }
 
     fileprivate var _resigned: UInt32 {
-        return self ^ (1 << 31)
+        #if swift(>=4)
+            return self ^ (1 &<< 31)
+        #else
+            return self ^ (1 << 31)
+        #endif
     }
 
 }
@@ -459,7 +645,11 @@ extension UInt16: UnsafeRandom, RandomWithMax, RandomWithMin, RandomToValue, Ran
     }
 
     fileprivate var _resigned: UInt16 {
-        return self ^ (1 << 15)
+        #if swift(>=4)
+            return self ^ (1 &<< 15)
+        #else
+            return self ^ (1 << 15)
+        #endif
     }
 
 }
@@ -472,7 +662,11 @@ extension UInt8: UnsafeRandom, RandomWithMax, RandomWithMin, RandomToValue, Rand
     }
 
     fileprivate var _resigned: UInt8 {
-        return self ^ (1 << 7)
+        #if swift(>=4)
+            return self ^ (1 &<< 7)
+        #else
+            return self ^ (1 << 7)
+        #endif
     }
 
 }

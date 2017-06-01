@@ -118,10 +118,21 @@ extension RandomGenerator where Self: SeedableFromRandomGenerator {
         return reseeding(with: .default)
     }
 
+    #if swift(>=4)
+
+    /// Returns an instance that reseeds itself with `reseeder`.
+    public static func reseeding<R>(with reseeder: R) -> ReseedingRandomGenerator<Self, R> {
+        return ReseedingRandomGenerator(reseeder: reseeder)
+    }
+
+    #else
+
     /// Returns an instance that reseeds itself with `reseeder`.
     public static func reseeding<R: RandomGenerator>(with reseeder: R) -> ReseedingRandomGenerator<Self, R> {
         return ReseedingRandomGenerator(reseeder: reseeder)
     }
+
+    #endif
 
 }
 

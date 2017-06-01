@@ -25,22 +25,30 @@
 //  THE SOFTWARE.
 //
 
+#if swift(>=4)
+
+/// A type with an associated raw type that can be randomly generated.
+public protocol RandomRawRepresentable: Random, RawRepresentable where RawValue: Random {
+    /// Creates a new instance with the specified raw value.
+    init(rawValue: RawValue)
+}
+
+#else
+
 /// A type with an associated raw type that can be randomly generated.
 public protocol RandomRawRepresentable: Random, RawRepresentable {
-
     /// The raw type that can be used to represent all values of the conforming type.
     associatedtype RawValue: Random
 
     /// Creates a new instance with the specified raw value.
     init(rawValue: RawValue)
-
 }
 
-extension RandomRawRepresentable {
+#endif
 
+extension RandomRawRepresentable {
     /// Generates a random value of `Self` using `randomGenerator`.
     public static func random<R: RandomGenerator>(using randomGenerator: inout R) -> Self {
         return Self(rawValue: .random(using: &randomGenerator))
     }
-
 }

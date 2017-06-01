@@ -56,6 +56,20 @@ extension RandomThroughValue where Self: RandomWithMin {
 
 extension RandomThroughValue {
 
+    #if swift(>=4)
+
+    /// Returns a sequence of random values through `value` using `randomGenerator`.
+    public static func randoms<R>(through value: Self, using randomGenerator: inout R) -> RandomsThroughValue<Self, R> {
+        return RandomsThroughValue(value: value, randomGenerator: &randomGenerator)
+    }
+
+    /// Returns a sequence of random values limited by `limit` through `value` using `randomGenerator`.
+    public static func randoms<R>(limitedBy limit: Int, through value: Self, using randomGenerator: inout R) -> LimitedRandomsThroughValue<Self, R> {
+        return LimitedRandomsThroughValue(limit: limit, value: value, randomGenerator: &randomGenerator)
+    }
+
+    #else
+
     /// Returns a sequence of random values through `value` using `randomGenerator`.
     public static func randoms<R: RandomGenerator>(through value: Self, using randomGenerator: inout R) -> RandomsThroughValue<Self, R> {
         return RandomsThroughValue(value: value, randomGenerator: &randomGenerator)
@@ -65,6 +79,8 @@ extension RandomThroughValue {
     public static func randoms<R: RandomGenerator>(limitedBy limit: Int, through value: Self, using randomGenerator: inout R) -> LimitedRandomsThroughValue<Self, R> {
         return LimitedRandomsThroughValue(limit: limit, value: value, randomGenerator: &randomGenerator)
     }
+
+    #endif
 
 }
 

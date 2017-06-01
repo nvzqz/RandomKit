@@ -45,17 +45,29 @@ extension RandomBytesGenerator where Bytes == UInt64 {
 
     /// Generates a random unsigned 32-bit integer.
     public mutating func random32() -> UInt32 {
-        return UInt32(truncatingBitPattern: randomBytes())
+        #if swift(>=4)
+            return UInt32(extendingOrTruncating: randomBytes())
+        #else
+            return UInt32(truncatingBitPattern: randomBytes())
+        #endif
     }
 
     /// Generates a random unsigned 16-bit integer.
     public mutating func random16() -> UInt16 {
-        return UInt16(truncatingBitPattern: randomBytes())
+        #if swift(>=4)
+            return UInt16(extendingOrTruncating: randomBytes())
+        #else
+            return UInt16(truncatingBitPattern: randomBytes())
+        #endif
     }
 
     /// Generates a random unsigned 8-bit integer.
     public mutating func random8() -> UInt8 {
-        return UInt8(truncatingBitPattern: randomBytes())
+        #if swift(>=4)
+            return UInt8(extendingOrTruncating: randomBytes())
+        #else
+            return UInt8(truncatingBitPattern: randomBytes())
+        #endif
     }
 
 }
@@ -74,12 +86,20 @@ extension RandomBytesGenerator where Bytes == UInt32 {
 
     /// Generates a random unsigned 16-bit integer.
     public mutating func random16() -> UInt16 {
-        return UInt16(truncatingBitPattern: randomBytes())
+        #if swift(>=4)
+            return UInt16(extendingOrTruncating: randomBytes())
+        #else
+            return UInt16(truncatingBitPattern: randomBytes())
+        #endif
     }
 
     /// Generates a random unsigned 8-bit integer.
     public mutating func random8() -> UInt8 {
-        return UInt8(truncatingBitPattern: randomBytes())
+        #if swift(>=4)
+            return UInt8(extendingOrTruncating: randomBytes())
+        #else
+            return UInt8(truncatingBitPattern: randomBytes())
+        #endif
     }
 
 }

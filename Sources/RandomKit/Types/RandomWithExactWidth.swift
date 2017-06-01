@@ -35,6 +35,20 @@ public protocol RandomWithExactWidth {
 
 extension RandomWithExactWidth {
 
+    #if swift(>=4)
+
+    /// Returns a sequence of random values with an exact width using `randomGenerator`.
+    public static func randoms<R>(withExactWidth width: Int, using randomGenerator: inout R) -> RandomsWithExactWidth<Self, R> {
+        return RandomsWithExactWidth(width: width, randomGenerator: &randomGenerator)
+    }
+
+    /// Returns a sequence of random values limited by `limit` with an exact width using `randomGenerator`.
+    public static func randoms<R>(limitedBy limit: Int, withExactWidth width: Int, using randomGenerator: inout R) -> LimitedRandomsWithExactWidth<Self, R> {
+        return LimitedRandomsWithExactWidth(limit: limit, width: width, randomGenerator: &randomGenerator)
+    }
+
+    #else
+
     /// Returns a sequence of random values with an exact width using `randomGenerator`.
     public static func randoms<R: RandomGenerator>(withExactWidth width: Int, using randomGenerator: inout R) -> RandomsWithExactWidth<Self, R> {
         return RandomsWithExactWidth(width: width, randomGenerator: &randomGenerator)
@@ -44,6 +58,8 @@ extension RandomWithExactWidth {
     public static func randoms<R: RandomGenerator>(limitedBy limit: Int, withExactWidth width: Int, using randomGenerator: inout R) -> LimitedRandomsWithExactWidth<Self, R> {
         return LimitedRandomsWithExactWidth(limit: limit, width: width, randomGenerator: &randomGenerator)
     }
+
+    #endif
 
 }
 

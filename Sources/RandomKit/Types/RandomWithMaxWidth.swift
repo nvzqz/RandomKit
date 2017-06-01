@@ -35,6 +35,20 @@ public protocol RandomWithMaxWidth {
 
 extension RandomWithMaxWidth {
 
+    #if swift(>=4)
+
+    /// Returns a sequence of random values with a max width using `randomGenerator`.
+    public static func randoms<R>(withMaxWidth width: Int, using randomGenerator: inout R) -> RandomsWithMaxWidth<Self, R> {
+        return RandomsWithMaxWidth(width: width, randomGenerator: &randomGenerator)
+    }
+
+    /// Returns a sequence of random values limited by `limit` with a max width using `randomGenerator`.
+    public static func randoms<R>(limitedBy limit: Int, withMaxWidth width: Int, using randomGenerator: inout R) -> LimitedRandomsWithMaxWidth<Self, R> {
+        return LimitedRandomsWithMaxWidth(limit: limit, width: width, randomGenerator: &randomGenerator)
+    }
+
+    #else
+
     /// Returns a sequence of random values with a max width using `randomGenerator`.
     public static func randoms<R: RandomGenerator>(withMaxWidth width: Int, using randomGenerator: inout R) -> RandomsWithMaxWidth<Self, R> {
         return RandomsWithMaxWidth(width: width, randomGenerator: &randomGenerator)
@@ -44,6 +58,8 @@ extension RandomWithMaxWidth {
     public static func randoms<R: RandomGenerator>(limitedBy limit: Int, withMaxWidth width: Int, using randomGenerator: inout R) -> LimitedRandomsWithMaxWidth<Self, R> {
         return LimitedRandomsWithMaxWidth(limit: limit, width: width, randomGenerator: &randomGenerator)
     }
+
+    #endif
 
 }
 

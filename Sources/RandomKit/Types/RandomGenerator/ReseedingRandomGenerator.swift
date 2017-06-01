@@ -59,7 +59,13 @@ public struct ReseedingRandomGenerator<Base: RandomGenerator & SeedableFromRando
     public mutating func reseedIfNecessary() -> Bool {
         if _bytesGenerated >= threshold {
             _bytesGenerated = 0
+            #if swift(>=4)
+                var base = self.base
+            #endif
             base.reseed(with: &reseeder)
+            #if swift(>=4)
+                self.base = base
+            #endif
             return true
         } else {
             return false
@@ -101,8 +107,13 @@ extension ReseedingRandomGenerator where Reseeder == ARC4Random {
 extension Int {
     @inline(__always)
     fileprivate func _saturatingAddPositive(_ other: Int) -> Int {
-        let (result, overflow) = Int.addWithOverflow(self, other)
-        return overflow ? .max : result
+        #if swift(>=4)
+            let (result, overflow) = addingReportingOverflow(other)
+            return overflow == .overflow ? .max : result
+        #else
+            let (result, overflow) = Int.addWithOverflow(self, other)
+            return overflow ? .max : result
+        #endif
     }
 }
 

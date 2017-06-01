@@ -56,6 +56,20 @@ extension RandomToValue where Self: RandomWithMin {
 
 extension RandomToValue {
 
+    #if swift(>=4)
+
+    /// Returns a sequence of random values to `value` using `randomGenerator`.
+    public static func randoms<R>(to value: Self, using randomGenerator: inout R) -> RandomsToValue<Self, R> {
+        return RandomsToValue(value: value, randomGenerator: &randomGenerator)
+    }
+
+    /// Returns a sequence of random values limited by `limit` to `value` using `randomGenerator`.
+    public static func randoms<R>(limitedBy limit: Int, to value: Self, using randomGenerator: inout R) -> LimitedRandomsToValue<Self, R> {
+        return LimitedRandomsToValue(limit: limit, value: value, randomGenerator: &randomGenerator)
+    }
+
+    #else
+
     /// Returns a sequence of random values to `value` using `randomGenerator`.
     public static func randoms<R: RandomGenerator>(to value: Self, using randomGenerator: inout R) -> RandomsToValue<Self, R> {
         return RandomsToValue(value: value, randomGenerator: &randomGenerator)
@@ -65,6 +79,8 @@ extension RandomToValue {
     public static func randoms<R: RandomGenerator>(limitedBy limit: Int, to value: Self, using randomGenerator: inout R) -> LimitedRandomsToValue<Self, R> {
         return LimitedRandomsToValue(limit: limit, value: value, randomGenerator: &randomGenerator)
     }
+
+    #endif
 
 }
 

@@ -120,6 +120,20 @@ extension RandomGenerator where Self: SeedableFromRandomGenerator {
         return threadLocalReseeding(seededFrom: DeviceRandom.default)
     }
 
+    #if swift(>=4)
+
+    /// Returns the thread-local instance of `self` that reseeds itself with `reseeder`.
+    public static func threadLocalReseeding<R>(
+        seededFrom reseeder: R,
+        threshold: Int = Self.reseedingThreshold
+    ) -> UnsafeMutablePointer<ReseedingRandomGenerator<Self, R>> {
+        return ReseedingRandomGenerator.threadLocal {
+            ReseedingRandomGenerator(reseeder: reseeder, threshold: threshold)
+        }
+    }
+
+    #else
+
     /// Returns the thread-local instance of `self` that reseeds itself with `reseeder`.
     public static func threadLocalReseeding<R: RandomGenerator>(
         seededFrom reseeder: R,
@@ -129,6 +143,8 @@ extension RandomGenerator where Self: SeedableFromRandomGenerator {
             ReseedingRandomGenerator(reseeder: reseeder, threshold: threshold)
         }
     }
+
+    #endif
 
     /// Returns the result of performing `body` on the thread-local instance of `self` seeded with
     /// `DeviceRandom.default`.
@@ -142,6 +158,20 @@ extension RandomGenerator where Self: SeedableFromRandomGenerator {
         return try body(&threadLocalReseeding.pointee)
     }
 
+    #if swift(>=4)
+
+    /// Returns the result of performing `body` on the thread-local instance of `self` that reseeds itself with
+    /// `reseeder`.
+    public static func withThreadLocalReseeding<R, T>(
+        seededFrom reseeder: R,
+        threshold: Int = Self.reseedingThreshold,
+        _ body: (inout ReseedingRandomGenerator<Self, R>) throws -> T
+    ) rethrows -> T {
+        return try body(&threadLocalReseeding(seededFrom: reseeder, threshold: threshold).pointee)
+    }
+
+    #else
+
     /// Returns the result of performing `body` on the thread-local instance of `self` that reseeds itself with
     /// `reseeder`.
     public static func withThreadLocalReseeding<R: RandomGenerator, T>(
@@ -151,5 +181,7 @@ extension RandomGenerator where Self: SeedableFromRandomGenerator {
     ) rethrows -> T {
         return try body(&threadLocalReseeding(seededFrom: reseeder, threshold: threshold).pointee)
     }
+
+    #endif
 
 }

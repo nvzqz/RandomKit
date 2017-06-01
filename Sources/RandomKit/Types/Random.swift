@@ -35,6 +35,20 @@ public protocol Random {
 
 extension Random {
 
+    #if swift(>=4)
+
+    /// Returns a sequence of random values using `randomGenerator`.
+    public static func randoms<R>(using randomGenerator: inout R) -> Randoms<Self, R> {
+        return Randoms(randomGenerator: &randomGenerator)
+    }
+
+    /// Returns a sequence of random values limited by `limit` using `randomGenerator`.
+    public static func randoms<R>(limitedBy limit: Int, using randomGenerator: inout R) -> LimitedRandoms<Self, R> {
+        return LimitedRandoms(limit: limit, randomGenerator: &randomGenerator)
+    }
+
+    #else
+
     /// Returns a sequence of random values using `randomGenerator`.
     public static func randoms<R: RandomGenerator>(using randomGenerator: inout R) -> Randoms<Self, R> {
         return Randoms(randomGenerator: &randomGenerator)
@@ -44,6 +58,8 @@ extension Random {
     public static func randoms<R: RandomGenerator>(limitedBy limit: Int, using randomGenerator: inout R) -> LimitedRandoms<Self, R> {
         return LimitedRandoms(limit: limit, randomGenerator: &randomGenerator)
     }
+
+    #endif
 
 }
 
