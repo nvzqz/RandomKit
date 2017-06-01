@@ -12,5 +12,5 @@ Pod::Spec.new do |s|
     s.tvos.deployment_target    = '9.0'
     s.source                    = { :git => "https://github.com/nvzqz/#{s.name}.git", :tag => "v#{s.version}" }
     s.source_files              = "Sources/#{s.name}/**/*.swift"
-    s.dependency "ShiftOperations"
+    s.dependency "ShiftOperations", "~> 1.0.1"
 end
