@@ -101,6 +101,9 @@
                 <a class="nav-group-task-link" href="../Extensions/Collection.html">Collection</a>
               </li>
               <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Extensions/CollectionOfOne.html">CollectionOfOne</a>
+              </li>
+              <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Extensions/ContiguousArray.html">ContiguousArray</a>
               </li>
               <li class="nav-group-task">
@@ -167,7 +170,7 @@
                 <a class="nav-group-task-link" href="../Extensions/Range.html">Range</a>
               </li>
               <li class="nav-group-task">
-                <a class="nav-group-task-link" href="../Extensions/Sequence.html">Sequence</a>
+                <a class="nav-group-task-link" href="../Extensions/Repeated.html">Repeated</a>
               </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Extensions/Set.html">Set</a>
@@ -249,7 +252,19 @@
                 <a class="nav-group-task-link" href="../Protocols/RandomGenerator.html">RandomGenerator</a>
               </li>
               <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/RandomInClosedRange.html">RandomInClosedRange</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/RandomInRange.html">RandomInRange</a>
+              </li>
+              <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Protocols/RandomRawRepresentable.html">RandomRawRepresentable</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/RandomRetrievable.html">RandomRetrievable</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/RandomRetrievableInRange.html">RandomRetrievableInRange</a>
               </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Protocols/RandomThroughValue.html">RandomThroughValue</a>
@@ -273,16 +288,13 @@
                 <a class="nav-group-task-link" href="../Protocols/RandomWithMin.html">RandomWithMin</a>
               </li>
               <li class="nav-group-task">
-                <a class="nav-group-task-link" href="../Protocols/RandomWithinClosedRange.html">RandomWithinClosedRange</a>
+                <a class="nav-group-task-link" href="../Protocols/Seedable.html">Seedable</a>
               </li>
               <li class="nav-group-task">
-                <a class="nav-group-task-link" href="../Protocols/RandomWithinRange.html">RandomWithinRange</a>
+                <a class="nav-group-task-link" href="../Protocols/SeedableFromRandomGenerator.html">SeedableFromRandomGenerator</a>
               </li>
               <li class="nav-group-task">
-                <a class="nav-group-task-link" href="../Protocols/SeedableFromOtherRandomGenerator.html">SeedableFromOtherRandomGenerator</a>
-              </li>
-              <li class="nav-group-task">
-                <a class="nav-group-task-link" href="../Protocols/SeedableRandomGenerator.html">SeedableRandomGenerator</a>
+                <a class="nav-group-task-link" href="../Protocols/SeedableFromSequence.html">SeedableFromSequence</a>
               </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Protocols/Shuffleable.html">Shuffleable</a>
@@ -375,7 +387,7 @@
             <h1>ChaCha</h1>
               <div class="declaration">
                 <div class="language">
-                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">ChaCha</span><span class="p">:</span> <span class="kt"><a href="../Protocols/RandomBytesGenerator.html">RandomBytesGenerator</a></span><span class="p">,</span> <span class="kt"><a href="../Protocols/SeedableFromOtherRandomGenerator.html">SeedableFromOtherRandomGenerator</a></span></code></pre>
+                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">ChaCha</span><span class="p">:</span> <span class="kt"><a href="../Protocols/RandomBytesGenerator.html">RandomBytesGenerator</a></span><span class="p">,</span> <span class="kt"><a href="../Protocols/Seedable.html">Seedable</a></span><span class="p">,</span> <span class="kt"><a href="../Protocols/SeedableFromSequence.html">SeedableFromSequence</a></span><span class="p">,</span> <span class="kt"><a href="../Protocols/SeedableFromRandomGenerator.html">SeedableFromRandomGenerator</a></span></code></pre>
 
                 </div>
               </div>
@@ -390,6 +402,60 @@
           <div class="section-content">
             <div class="task-group">
               <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:V9RandomKit6ChaCha19SeedSequenceElement"></a>
+                    <a name="//apple_ref/swift/Alias/SeedSequenceElement" class="dashAnchor"></a>
+                    <a class="token" href="#/s:V9RandomKit6ChaCha19SeedSequenceElement">SeedSequenceElement</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The seed sequence&rsquo;s element type.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">typealias</span> <span class="kt">SeedSequenceElement</span> <span class="o">=</span> <span class="kt">UInt32</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:V9RandomKit6ChaCha4Seed"></a>
+                    <a name="//apple_ref/swift/Alias/Seed" class="dashAnchor"></a>
+                    <a class="token" href="#/s:V9RandomKit6ChaCha4Seed">Seed</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The seed type.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">typealias</span> <span class="kt">Seed</span> <span class="o">=</span> <span class="p">[</span><span class="kt">UInt32</span><span class="p">]</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
                 <li class="item">
                   <div>
                     <code>
@@ -465,33 +531,6 @@
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">var</span> <span class="nv">unseeded</span><span class="p">:</span> <span class="kt">ChaCha</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:FV9RandomKit6ChaChacFT4seedGSRVs6UInt32__S0_"></a>
-                    <a name="//apple_ref/swift/Method/init(seed:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FV9RandomKit6ChaChacFT4seedGSRVs6UInt32__S0_">init(seed:)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Creates an instance from <code>seed</code>.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">seed</span><span class="p">:</span> <span class="kt">UnsafeBufferPointer</span><span class="o">&lt;</span><span class="kt">UInt32</span><span class="o">&gt;</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -582,33 +621,6 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FV9RandomKit6ChaCha6reseedFT4withGSRVs6UInt32__T_"></a>
-                    <a name="//apple_ref/swift/Method/reseed(with:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FV9RandomKit6ChaCha6reseedFT4withGSRVs6UInt32__T_">reseed(with:)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Reseeds <code>self</code> with <code>seed</code>.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">mutating</span> <span class="kd">func</span> <span class="nf">reseed</span><span class="p">(</span><span class="n">with</span> <span class="nv">seed</span><span class="p">:</span> <span class="kt">UnsafeBufferPointer</span><span class="o">&lt;</span><span class="kt">UInt32</span><span class="o">&gt;</span><span class="p">)</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
                     <a name="/s:FV9RandomKit6ChaCha6reseeduRxs8SequenceWx8Iterator7Element_zVs6UInt32rFT4withx_T_"></a>
                     <a name="//apple_ref/swift/Method/reseed(with:)" class="dashAnchor"></a>
                     <a class="token" href="#/s:FV9RandomKit6ChaCha6reseeduRxs8SequenceWx8Iterator7Element_zVs6UInt32rFT4withx_T_">reseed(with:)</a>
@@ -668,7 +680,7 @@
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2017 <a class="link" href="https://github.com/nvzqz" target="_blank" rel="external">Nikolai Vazquez</a>. All rights reserved. (Last updated: 2017-04-18)</p>
+      <p>&copy; 2017 <a class="link" href="https://github.com/nvzqz" target="_blank" rel="external">Nikolai Vazquez</a>. All rights reserved. (Last updated: 2017-06-01)</p>
       <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.4</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
     </section>
   </body>

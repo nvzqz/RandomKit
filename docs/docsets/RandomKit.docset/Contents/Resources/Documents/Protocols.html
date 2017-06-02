@@ -100,6 +100,9 @@
                 <a class="nav-group-task-link" href="Extensions/Collection.html">Collection</a>
               </li>
               <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Extensions/CollectionOfOne.html">CollectionOfOne</a>
+              </li>
+              <li class="nav-group-task">
                 <a class="nav-group-task-link" href="Extensions/ContiguousArray.html">ContiguousArray</a>
               </li>
               <li class="nav-group-task">
@@ -166,7 +169,7 @@
                 <a class="nav-group-task-link" href="Extensions/Range.html">Range</a>
               </li>
               <li class="nav-group-task">
-                <a class="nav-group-task-link" href="Extensions/Sequence.html">Sequence</a>
+                <a class="nav-group-task-link" href="Extensions/Repeated.html">Repeated</a>
               </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="Extensions/Set.html">Set</a>
@@ -248,7 +251,19 @@
                 <a class="nav-group-task-link" href="Protocols/RandomGenerator.html">RandomGenerator</a>
               </li>
               <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Protocols/RandomInClosedRange.html">RandomInClosedRange</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Protocols/RandomInRange.html">RandomInRange</a>
+              </li>
+              <li class="nav-group-task">
                 <a class="nav-group-task-link" href="Protocols/RandomRawRepresentable.html">RandomRawRepresentable</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Protocols/RandomRetrievable.html">RandomRetrievable</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Protocols/RandomRetrievableInRange.html">RandomRetrievableInRange</a>
               </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="Protocols/RandomThroughValue.html">RandomThroughValue</a>
@@ -272,16 +287,13 @@
                 <a class="nav-group-task-link" href="Protocols/RandomWithMin.html">RandomWithMin</a>
               </li>
               <li class="nav-group-task">
-                <a class="nav-group-task-link" href="Protocols/RandomWithinClosedRange.html">RandomWithinClosedRange</a>
+                <a class="nav-group-task-link" href="Protocols/Seedable.html">Seedable</a>
               </li>
               <li class="nav-group-task">
-                <a class="nav-group-task-link" href="Protocols/RandomWithinRange.html">RandomWithinRange</a>
+                <a class="nav-group-task-link" href="Protocols/SeedableFromRandomGenerator.html">SeedableFromRandomGenerator</a>
               </li>
               <li class="nav-group-task">
-                <a class="nav-group-task-link" href="Protocols/SeedableFromOtherRandomGenerator.html">SeedableFromOtherRandomGenerator</a>
-              </li>
-              <li class="nav-group-task">
-                <a class="nav-group-task-link" href="Protocols/SeedableRandomGenerator.html">SeedableRandomGenerator</a>
+                <a class="nav-group-task-link" href="Protocols/SeedableFromSequence.html">SeedableFromSequence</a>
               </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="Protocols/Shuffleable.html">Shuffleable</a>
@@ -528,9 +540,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:P9RandomKit23SeedableRandomGenerator"></a>
-                    <a name="//apple_ref/swift/Protocol/SeedableRandomGenerator" class="dashAnchor"></a>
-                    <a class="token" href="#/s:P9RandomKit23SeedableRandomGenerator">SeedableRandomGenerator</a>
+                    <a name="/s:P9RandomKit8Seedable"></a>
+                    <a name="//apple_ref/swift/Protocol/Seedable" class="dashAnchor"></a>
+                    <a class="token" href="#/s:P9RandomKit8Seedable">Seedable</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -538,15 +550,15 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>A random value generator type that can be instantiated with a <code>Seed</code>.</p>
+                        <p>A type that can be instantiated with a <code>Seed</code>.</p>
 
-                        <a href="Protocols/SeedableRandomGenerator.html" class="slightly-smaller">See more</a>
+                        <a href="Protocols/Seedable.html" class="slightly-smaller">See more</a>
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">SeedableRandomGenerator</span><span class="p">:</span> <span class="kt"><a href="Protocols/RandomGenerator.html">RandomGenerator</a></span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">Seedable</span></code></pre>
 
                         </div>
                       </div>
@@ -556,9 +568,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:P9RandomKit32SeedableFromOtherRandomGenerator"></a>
-                    <a name="//apple_ref/swift/Protocol/SeedableFromOtherRandomGenerator" class="dashAnchor"></a>
-                    <a class="token" href="#/s:P9RandomKit32SeedableFromOtherRandomGenerator">SeedableFromOtherRandomGenerator</a>
+                    <a name="/s:P9RandomKit20SeedableFromSequence"></a>
+                    <a name="//apple_ref/swift/Protocol/SeedableFromSequence" class="dashAnchor"></a>
+                    <a class="token" href="#/s:P9RandomKit20SeedableFromSequence">SeedableFromSequence</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -566,15 +578,75 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>A random value generator type that can be seeded by another <code>randomGenerator</code>.</p>
+                        <p>A type that can be seeded by a sequence.</p>
 
-                        <a href="Protocols/SeedableFromOtherRandomGenerator.html" class="slightly-smaller">See more</a>
+                        <a href="Protocols/SeedableFromSequence.html" class="slightly-smaller">See more</a>
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">SeedableFromOtherRandomGenerator</span><span class="p">:</span> <span class="kt"><a href="Protocols/SeedableRandomGenerator.html">SeedableRandomGenerator</a></span><span class="p">,</span> <span class="kt"><a href="Protocols/Random.html">Random</a></span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">SeedableFromSequence</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:P9RandomKit27SeedableFromRandomGenerator"></a>
+                    <a name="//apple_ref/swift/Protocol/SeedableFromRandomGenerator" class="dashAnchor"></a>
+                    <a class="token" href="#/s:P9RandomKit27SeedableFromRandomGenerator">SeedableFromRandomGenerator</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>A type that can be seeded by another <code>randomGenerator</code>.</p>
+
+                        <a href="Protocols/SeedableFromRandomGenerator.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">SeedableFromRandomGenerator</span><span class="p">:</span> <span class="kt"><a href="Protocols/Random.html">Random</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:P9RandomKit15RandomGenerator"></a>
+                    <a name="//apple_ref/swift/Protocol/RandomGenerator" class="dashAnchor"></a>
+                    <a class="token" href="#/s:P9RandomKit15RandomGenerator">RandomGenerator</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>A type that generates random values.</p>
+
+                        <a href="Protocols/RandomGenerator.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">RandomGenerator</span></code></pre>
 
                         </div>
                       </div>
@@ -620,9 +692,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:P9RandomKit15RandomGenerator"></a>
-                    <a name="//apple_ref/swift/Protocol/RandomGenerator" class="dashAnchor"></a>
-                    <a class="token" href="#/s:P9RandomKit15RandomGenerator">RandomGenerator</a>
+                    <a name="/s:P9RandomKit17RandomRetrievable"></a>
+                    <a name="//apple_ref/swift/Protocol/RandomRetrievable" class="dashAnchor"></a>
+                    <a class="token" href="#/s:P9RandomKit17RandomRetrievable">RandomRetrievable</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -630,15 +702,43 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>A type that generates random values.</p>
+                        <p>A type where a random element can be retrieved from an instance of <code>Self</code>.</p>
 
-                        <a href="Protocols/RandomGenerator.html" class="slightly-smaller">See more</a>
+                        <a href="Protocols/RandomRetrievable.html" class="slightly-smaller">See more</a>
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">RandomGenerator</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">RandomRetrievable</span><span class="p">:</span> <span class="kt">Sequence</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:P9RandomKit24RandomRetrievableInRange"></a>
+                    <a name="//apple_ref/swift/Protocol/RandomRetrievableInRange" class="dashAnchor"></a>
+                    <a class="token" href="#/s:P9RandomKit24RandomRetrievableInRange">RandomRetrievableInRange</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>A type where a random element can be retrieved from an instance of <code>Self</code> in an index range.</p>
+
+                        <a href="Protocols/RandomRetrievableInRange.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">RandomRetrievableInRange</span><span class="p">:</span> <span class="kt"><a href="Protocols/RandomRetrievable.html">RandomRetrievable</a></span></code></pre>
 
                         </div>
                       </div>
@@ -809,9 +909,9 @@ initial position.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:P9RandomKit23RandomWithinClosedRange"></a>
-                    <a name="//apple_ref/swift/Protocol/RandomWithinClosedRange" class="dashAnchor"></a>
-                    <a class="token" href="#/s:P9RandomKit23RandomWithinClosedRange">RandomWithinClosedRange</a>
+                    <a name="/s:P9RandomKit19RandomInClosedRange"></a>
+                    <a name="//apple_ref/swift/Protocol/RandomInClosedRange" class="dashAnchor"></a>
+                    <a class="token" href="#/s:P9RandomKit19RandomInClosedRange">RandomInClosedRange</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -819,15 +919,15 @@ initial position.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>A type that can generate an random value from within a closed range.</p>
+                        <p>A type that can generate an random value in a closed range.</p>
 
-                        <a href="Protocols/RandomWithinClosedRange.html" class="slightly-smaller">See more</a>
+                        <a href="Protocols/RandomInClosedRange.html" class="slightly-smaller">See more</a>
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">RandomWithinClosedRange</span><span class="p">:</span> <span class="kt">Comparable</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">RandomInClosedRange</span><span class="p">:</span> <span class="kt">Comparable</span></code></pre>
 
                         </div>
                       </div>
@@ -873,9 +973,9 @@ initial position.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:P9RandomKit17RandomWithinRange"></a>
-                    <a name="//apple_ref/swift/Protocol/RandomWithinRange" class="dashAnchor"></a>
-                    <a class="token" href="#/s:P9RandomKit17RandomWithinRange">RandomWithinRange</a>
+                    <a name="/s:P9RandomKit13RandomInRange"></a>
+                    <a name="//apple_ref/swift/Protocol/RandomInRange" class="dashAnchor"></a>
+                    <a class="token" href="#/s:P9RandomKit13RandomInRange">RandomInRange</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -883,15 +983,15 @@ initial position.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>A type that can generate an optional random value from within a range.</p>
+                        <p>A type that can generate an optional random value in a range.</p>
 
-                        <a href="Protocols/RandomWithinRange.html" class="slightly-smaller">See more</a>
+                        <a href="Protocols/RandomInRange.html" class="slightly-smaller">See more</a>
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">RandomWithinRange</span><span class="p">:</span> <span class="kt">Comparable</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">RandomInRange</span><span class="p">:</span> <span class="kt">Comparable</span></code></pre>
 
                         </div>
                       </div>
@@ -1113,7 +1213,7 @@ initial position.</p>
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2017 <a class="link" href="https://github.com/nvzqz" target="_blank" rel="external">Nikolai Vazquez</a>. All rights reserved. (Last updated: 2017-04-18)</p>
+      <p>&copy; 2017 <a class="link" href="https://github.com/nvzqz" target="_blank" rel="external">Nikolai Vazquez</a>. All rights reserved. (Last updated: 2017-06-01)</p>
       <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.4</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
     </section>
   </body>

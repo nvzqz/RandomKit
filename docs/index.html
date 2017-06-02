@@ -100,6 +100,9 @@
                 <a class="nav-group-task-link" href="Extensions/Collection.html">Collection</a>
               </li>
               <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Extensions/CollectionOfOne.html">CollectionOfOne</a>
+              </li>
+              <li class="nav-group-task">
                 <a class="nav-group-task-link" href="Extensions/ContiguousArray.html">ContiguousArray</a>
               </li>
               <li class="nav-group-task">
@@ -166,7 +169,7 @@
                 <a class="nav-group-task-link" href="Extensions/Range.html">Range</a>
               </li>
               <li class="nav-group-task">
-                <a class="nav-group-task-link" href="Extensions/Sequence.html">Sequence</a>
+                <a class="nav-group-task-link" href="Extensions/Repeated.html">Repeated</a>
               </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="Extensions/Set.html">Set</a>
@@ -248,7 +251,19 @@
                 <a class="nav-group-task-link" href="Protocols/RandomGenerator.html">RandomGenerator</a>
               </li>
               <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Protocols/RandomInClosedRange.html">RandomInClosedRange</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Protocols/RandomInRange.html">RandomInRange</a>
+              </li>
+              <li class="nav-group-task">
                 <a class="nav-group-task-link" href="Protocols/RandomRawRepresentable.html">RandomRawRepresentable</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Protocols/RandomRetrievable.html">RandomRetrievable</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Protocols/RandomRetrievableInRange.html">RandomRetrievableInRange</a>
               </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="Protocols/RandomThroughValue.html">RandomThroughValue</a>
@@ -272,16 +287,13 @@
                 <a class="nav-group-task-link" href="Protocols/RandomWithMin.html">RandomWithMin</a>
               </li>
               <li class="nav-group-task">
-                <a class="nav-group-task-link" href="Protocols/RandomWithinClosedRange.html">RandomWithinClosedRange</a>
+                <a class="nav-group-task-link" href="Protocols/Seedable.html">Seedable</a>
               </li>
               <li class="nav-group-task">
-                <a class="nav-group-task-link" href="Protocols/RandomWithinRange.html">RandomWithinRange</a>
+                <a class="nav-group-task-link" href="Protocols/SeedableFromRandomGenerator.html">SeedableFromRandomGenerator</a>
               </li>
               <li class="nav-group-task">
-                <a class="nav-group-task-link" href="Protocols/SeedableFromOtherRandomGenerator.html">SeedableFromOtherRandomGenerator</a>
-              </li>
-              <li class="nav-group-task">
-                <a class="nav-group-task-link" href="Protocols/SeedableRandomGenerator.html">SeedableRandomGenerator</a>
+                <a class="nav-group-task-link" href="Protocols/SeedableFromSequence.html">SeedableFromSequence</a>
               </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="Protocols/Shuffleable.html">Shuffleable</a>
@@ -407,8 +419,8 @@
 
 <ul>
 <li><a href="#random">Random</a></li>
-<li><a href="#randomwithinrange">RandomWithinRange</a></li>
-<li><a href="#randomwithinclosedrange">RandomWithinClosedRange</a></li>
+<li><a href="#randominrange">RandomInRange</a></li>
+<li><a href="#randominclosedrange">RandomInClosedRange</a></li>
 <li><a href="#randomtovalue">RandomToValue</a></li>
 <li><a href="#randomthroughvalue">RandomThroughValue</a></li>
 <li><a href="#shuffleable">Shuffleable</a></li>
@@ -517,7 +529,7 @@ to learn more.</p>
 <li><p>Add the project to your <a href="https://guides.cocoapods.org/using/the-podfile.html">Podfile</a>.</p>
 <pre class="highlight ruby"><code><span class="n">use_frameworks!</span>
 
-<span class="n">pod</span> <span class="s1">'RandomKit'</span><span class="p">,</span> <span class="s1">'~&gt; 4.5.2'</span>
+<span class="n">pod</span> <span class="s1">'RandomKit'</span><span class="p">,</span> <span class="s1">'~&gt; 5.0.0'</span>
 </code></pre>
 
 <p>If you want to be on the bleeding edge, replace the last line with:</p>
@@ -632,6 +644,10 @@ incurs avoidable overhead.</p>
 <span class="p">}</span>
 </code></pre>
 
+<p>As a shortcut, you can even apply a function directly as a parameter.</p>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">value</span> <span class="o">=</span> <span class="kt">Xoroshiro</span><span class="o">.</span><span class="nf">withThreadLocal</span><span class="p">(</span><span class="kt">Int</span><span class="o">.</span><span class="n">random</span><span class="p">)</span>
+</code></pre>
+
 <p>Prior to <a href="https://github.com/nvzqz/RandomKit/releases/tag/v4.4.0">v4.4.0</a>,
 thread safety could be achieved by instantiating a new seeded instance of a
 given <code>RandomGenerator</code> type. The problem with this is that unnecessary seeding
@@ -658,13 +674,13 @@ flexible and modular.</p>
 <a href='#random' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h4 id='random'>Random</h4>
 
 <p>A protocol for types that can generate random values using a <code>RandomGenerator</code>.</p>
-<a href='#randomwithinrange' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h4 id='randomwithinrange'>RandomWithinRange</h4>
+<a href='#randominrange' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h4 id='randominrange'>RandomInRange</h4>
 
 <p>A protocol for types that can generate optional random values within a range
 using a <code>RandomGenerator</code>.</p>
 <pre class="highlight swift"><code><span class="kt">Int</span><span class="o">.</span><span class="nf">random</span><span class="p">(</span><span class="nv">within</span><span class="p">:</span> <span class="mi">0</span> <span class="o">..&lt;</span> <span class="mi">0</span><span class="p">,</span> <span class="nv">using</span><span class="p">:</span> <span class="o">&amp;</span><span class="n">randomGenerator</span><span class="p">)</span> <span class="c1">// nil</span>
 </code></pre>
-<a href='#randomwithinclosedrange' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h4 id='randomwithinclosedrange'>RandomWithinClosedRange</h4>
+<a href='#randominclosedrange' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h4 id='randominclosedrange'>RandomInClosedRange</h4>
 
 <p>A protocol for types that can generate random values within a closed range
 using a <code>RandomGenerator</code>.</p>
@@ -738,7 +754,7 @@ default.</p>
 <span class="kt">Float80</span><span class="o">.</span><span class="nf">random</span><span class="p">(</span><span class="nv">within</span><span class="p">:</span> <span class="o">-</span><span class="mi">10</span><span class="o">...</span><span class="mi">10</span><span class="p">,</span> <span class="nv">using</span><span class="p">:</span> <span class="o">&amp;</span><span class="n">randomGenerator</span><span class="p">)</span>  <span class="c1">// -3.63204542399198874</span>
 </code></pre>
 
-<p>All <code>FloatingPoint</code> types can also conform to <code>RandomWithinClosedRange</code>
+<p>All <code>FloatingPoint</code> types can also conform to <code>RandomInClosedRange</code>
 out-of-the-box.</p>
 <a href='#bool' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h4 id='bool'>Bool</h4>
 
@@ -868,7 +884,7 @@ This initializer fills the buffer directly rather than using <code>random(using:
 <a href='#cgfloat' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h4 id='cgfloat'>CGFloat</h4>
 
 <p>Because <code>CGFloat</code> conforms to <code>FloatingPoint</code>, it conforms to
-<code>RandomWithinClosedRange</code> just like how <code>Double</code> and <code>Float</code> do.</p>
+<code>RandomInClosedRange</code> just like how <code>Double</code> and <code>Float</code> do.</p>
 <pre class="highlight swift"><code><span class="kt">CGFloat</span><span class="o">.</span><span class="nf">random</span><span class="p">(</span><span class="nv">using</span><span class="p">:</span> <span class="o">&amp;</span><span class="n">randomGenerator</span><span class="p">)</span>           <span class="c1">// 0.699803650379181</span>
 <span class="kt">CGFloat</span><span class="o">.</span><span class="nf">random</span><span class="p">(</span><span class="nv">within</span><span class="p">:</span> <span class="mi">0</span><span class="o">...</span><span class="mi">100</span><span class="p">,</span> <span class="nv">using</span><span class="p">:</span> <span class="o">&amp;</span><span class="n">randomGenerator</span><span class="p">)</span>  <span class="c1">// 43.27969591675319</span>
 </code></pre>
@@ -918,7 +934,7 @@ branch.</p>
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2017 <a class="link" href="https://github.com/nvzqz" target="_blank" rel="external">Nikolai Vazquez</a>. All rights reserved. (Last updated: 2017-04-18)</p>
+      <p>&copy; 2017 <a class="link" href="https://github.com/nvzqz" target="_blank" rel="external">Nikolai Vazquez</a>. All rights reserved. (Last updated: 2017-06-01)</p>
       <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.4</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
     </section>
   </body>

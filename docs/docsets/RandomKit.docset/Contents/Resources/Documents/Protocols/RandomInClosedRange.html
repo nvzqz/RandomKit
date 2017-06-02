@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>RandomWithinClosedRange Protocol Reference</title>
+    <title>RandomInClosedRange Protocol Reference</title>
     <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
     <meta charset="utf-8">
@@ -14,9 +14,9 @@
   </head>
   <body>
 
-    <a name="//apple_ref/swift/Protocol/RandomWithinClosedRange" class="dashAnchor"></a>
+    <a name="//apple_ref/swift/Protocol/RandomInClosedRange" class="dashAnchor"></a>
 
-    <a title="RandomWithinClosedRange Protocol Reference"></a>
+    <a title="RandomInClosedRange Protocol Reference"></a>
 
     <header class="header">
       <p class="header-col header-col--primary">
@@ -44,7 +44,7 @@
     <p class="breadcrumbs">
       <a class="breadcrumb" href="../index.html">RandomKit Reference</a>
       <img class="carat" src="../img/carat.png" />
-      RandomWithinClosedRange Protocol Reference
+      RandomInClosedRange Protocol Reference
     </p>
 
     <div class="content-wrapper">
@@ -99,6 +99,9 @@
               </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Extensions/Collection.html">Collection</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Extensions/CollectionOfOne.html">CollectionOfOne</a>
               </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Extensions/ContiguousArray.html">ContiguousArray</a>
@@ -167,7 +170,7 @@
                 <a class="nav-group-task-link" href="../Extensions/Range.html">Range</a>
               </li>
               <li class="nav-group-task">
-                <a class="nav-group-task-link" href="../Extensions/Sequence.html">Sequence</a>
+                <a class="nav-group-task-link" href="../Extensions/Repeated.html">Repeated</a>
               </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Extensions/Set.html">Set</a>
@@ -249,7 +252,19 @@
                 <a class="nav-group-task-link" href="../Protocols/RandomGenerator.html">RandomGenerator</a>
               </li>
               <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/RandomInClosedRange.html">RandomInClosedRange</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/RandomInRange.html">RandomInRange</a>
+              </li>
+              <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Protocols/RandomRawRepresentable.html">RandomRawRepresentable</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/RandomRetrievable.html">RandomRetrievable</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/RandomRetrievableInRange.html">RandomRetrievableInRange</a>
               </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Protocols/RandomThroughValue.html">RandomThroughValue</a>
@@ -273,16 +288,13 @@
                 <a class="nav-group-task-link" href="../Protocols/RandomWithMin.html">RandomWithMin</a>
               </li>
               <li class="nav-group-task">
-                <a class="nav-group-task-link" href="../Protocols/RandomWithinClosedRange.html">RandomWithinClosedRange</a>
+                <a class="nav-group-task-link" href="../Protocols/Seedable.html">Seedable</a>
               </li>
               <li class="nav-group-task">
-                <a class="nav-group-task-link" href="../Protocols/RandomWithinRange.html">RandomWithinRange</a>
+                <a class="nav-group-task-link" href="../Protocols/SeedableFromRandomGenerator.html">SeedableFromRandomGenerator</a>
               </li>
               <li class="nav-group-task">
-                <a class="nav-group-task-link" href="../Protocols/SeedableFromOtherRandomGenerator.html">SeedableFromOtherRandomGenerator</a>
-              </li>
-              <li class="nav-group-task">
-                <a class="nav-group-task-link" href="../Protocols/SeedableRandomGenerator.html">SeedableRandomGenerator</a>
+                <a class="nav-group-task-link" href="../Protocols/SeedableFromSequence.html">SeedableFromSequence</a>
               </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Protocols/Shuffleable.html">Shuffleable</a>
@@ -372,14 +384,14 @@
 
         <section class="section">
           <div class="section-content">
-            <h1>RandomWithinClosedRange</h1>
+            <h1>RandomInClosedRange</h1>
               <div class="declaration">
                 <div class="language">
-                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">RandomWithinClosedRange</span><span class="p">:</span> <span class="kt">Comparable</span></code></pre>
+                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">RandomInClosedRange</span><span class="p">:</span> <span class="kt">Comparable</span></code></pre>
 
                 </div>
               </div>
-            <p>A type that can generate an random value from within a closed range.</p>
+            <p>A type that can generate an random value in a closed range.</p>
 
           </div>
         </section>
@@ -391,9 +403,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:ZFP9RandomKit23RandomWithinClosedRange6randomuRd__S_15RandomGeneratorrFT6withinGVs11ClosedRangex_5usingRqd___x"></a>
-                    <a name="//apple_ref/swift/Method/random(within:using:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:ZFP9RandomKit23RandomWithinClosedRange6randomuRd__S_15RandomGeneratorrFT6withinGVs11ClosedRangex_5usingRqd___x">random(within:using:)</a>
+                    <a name="/s:ZFP9RandomKit19RandomInClosedRange6randomuRd__S_15RandomGeneratorrFT2inGVs11ClosedRangex_5usingRqd___x"></a>
+                    <a name="//apple_ref/swift/Method/random(in:using:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZFP9RandomKit19RandomInClosedRange6randomuRd__S_15RandomGeneratorrFT2inGVs11ClosedRangex_5usingRqd___x">random(in:using:)</a>
                     </code>
                       <span class="declaration-note">
                         Default implementation
@@ -416,7 +428,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">static</span> <span class="kd">func</span> <span class="n">random</span><span class="o">&lt;</span><span class="kt">R</span><span class="p">:</span> <span class="kt"><a href="../Protocols/RandomGenerator.html">RandomGenerator</a></span><span class="o">&gt;</span><span class="p">(</span><span class="n">within</span> <span class="nv">closedRange</span><span class="p">:</span> <span class="kt">ClosedRange</span><span class="o">&lt;</span><span class="k">Self</span><span class="o">&gt;</span><span class="p">,</span> <span class="n">using</span> <span class="nv">randomGenerator</span><span class="p">:</span> <span class="k">inout</span> <span class="kt">R</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="k">Self</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">static</span> <span class="kd">func</span> <span class="n">random</span><span class="o">&lt;</span><span class="kt">R</span><span class="p">:</span> <span class="kt"><a href="../Protocols/RandomGenerator.html">RandomGenerator</a></span><span class="o">&gt;</span><span class="p">(</span><span class="k">in</span> <span class="nv">closedRange</span><span class="p">:</span> <span class="kt">ClosedRange</span><span class="o">&lt;</span><span class="k">Self</span><span class="o">&gt;</span><span class="p">,</span> <span class="n">using</span> <span class="nv">randomGenerator</span><span class="p">:</span> <span class="k">inout</span> <span class="kt">R</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="k">Self</span></code></pre>
 
                         </div>
                       </div>
@@ -430,9 +442,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:ZFE9RandomKitPS_23RandomWithinClosedRange7randomsuRd__S_15RandomGeneratorrFT6withinGVs11ClosedRangex_5usingRqd___GVS_24RandomsWithinClosedRangexqd___"></a>
-                    <a name="//apple_ref/swift/Method/randoms(within:using:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:ZFE9RandomKitPS_23RandomWithinClosedRange7randomsuRd__S_15RandomGeneratorrFT6withinGVs11ClosedRangex_5usingRqd___GVS_24RandomsWithinClosedRangexqd___">randoms(within:using:)</a>
+                    <a name="/s:ZFE9RandomKitPS_19RandomInClosedRange7randomsuRd__S_15RandomGeneratorrFT2inGVs11ClosedRangex_5usingRqd___GVS_24RandomsWithinClosedRangexqd___"></a>
+                    <a name="//apple_ref/swift/Method/randoms(in:using:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZFE9RandomKitPS_19RandomInClosedRange7randomsuRd__S_15RandomGeneratorrFT2inGVs11ClosedRangex_5usingRqd___GVS_24RandomsWithinClosedRangexqd___">randoms(in:using:)</a>
                     </code>
                       <span class="declaration-note">
                         Extension method
@@ -443,14 +455,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Returns a sequence of random values within <code>closedRange</code> using <code>randomGenerator</code>.</p>
+                        <p>Returns a sequence of random values in <code>closedRange</code> using <code>randomGenerator</code>.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="n">randoms</span><span class="o">&lt;</span><span class="kt">R</span><span class="p">:</span> <span class="kt"><a href="../Protocols/RandomGenerator.html">RandomGenerator</a></span><span class="o">&gt;</span><span class="p">(</span><span class="n">within</span> <span class="nv">closedRange</span><span class="p">:</span> <span class="kt">ClosedRange</span><span class="o">&lt;</span><span class="k">Self</span><span class="o">&gt;</span><span class="p">,</span> <span class="n">using</span> <span class="nv">randomGenerator</span><span class="p">:</span> <span class="k">inout</span> <span class="kt">R</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Structs/RandomsWithinClosedRange.html">RandomsWithinClosedRange</a></span><span class="o">&lt;</span><span class="k">Self</span><span class="p">,</span> <span class="kt">R</span><span class="o">&gt;</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="n">randoms</span><span class="o">&lt;</span><span class="kt">R</span><span class="p">:</span> <span class="kt"><a href="../Protocols/RandomGenerator.html">RandomGenerator</a></span><span class="o">&gt;</span><span class="p">(</span><span class="k">in</span> <span class="nv">closedRange</span><span class="p">:</span> <span class="kt">ClosedRange</span><span class="o">&lt;</span><span class="k">Self</span><span class="o">&gt;</span><span class="p">,</span> <span class="n">using</span> <span class="nv">randomGenerator</span><span class="p">:</span> <span class="k">inout</span> <span class="kt">R</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Structs/RandomsWithinClosedRange.html">RandomsWithinClosedRange</a></span><span class="o">&lt;</span><span class="k">Self</span><span class="p">,</span> <span class="kt">R</span><span class="o">&gt;</span></code></pre>
 
                         </div>
                       </div>
@@ -460,9 +472,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:ZFE9RandomKitPS_23RandomWithinClosedRange7randomsuRd__S_15RandomGeneratorrFT9limitedBySi6withinGVs11ClosedRangex_5usingRqd___GVS_31LimitedRandomsWithinClosedRangexqd___"></a>
-                    <a name="//apple_ref/swift/Method/randoms(limitedBy:within:using:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:ZFE9RandomKitPS_23RandomWithinClosedRange7randomsuRd__S_15RandomGeneratorrFT9limitedBySi6withinGVs11ClosedRangex_5usingRqd___GVS_31LimitedRandomsWithinClosedRangexqd___">randoms(limitedBy:within:using:)</a>
+                    <a name="/s:ZFE9RandomKitPS_19RandomInClosedRange7randomsuRd__S_15RandomGeneratorrFT9limitedBySi2inGVs11ClosedRangex_5usingRqd___GVS_31LimitedRandomsWithinClosedRangexqd___"></a>
+                    <a name="//apple_ref/swift/Method/randoms(limitedBy:in:using:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZFE9RandomKitPS_19RandomInClosedRange7randomsuRd__S_15RandomGeneratorrFT9limitedBySi2inGVs11ClosedRangex_5usingRqd___GVS_31LimitedRandomsWithinClosedRangexqd___">randoms(limitedBy:in:using:)</a>
                     </code>
                       <span class="declaration-note">
                         Extension method
@@ -473,14 +485,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Returns a sequence of random values limited by <code>limit</code> within <code>closedRange</code> using <code>randomGenerator</code>.</p>
+                        <p>Returns a sequence of random values limited by <code>limit</code> in <code>closedRange</code> using <code>randomGenerator</code>.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="n">randoms</span><span class="o">&lt;</span><span class="kt">R</span><span class="p">:</span> <span class="kt"><a href="../Protocols/RandomGenerator.html">RandomGenerator</a></span><span class="o">&gt;</span><span class="p">(</span><span class="n">limitedBy</span> <span class="nv">limit</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span> <span class="n">within</span> <span class="nv">closedRange</span><span class="p">:</span> <span class="kt">ClosedRange</span><span class="o">&lt;</span><span class="k">Self</span><span class="o">&gt;</span><span class="p">,</span> <span class="n">using</span> <span class="nv">randomGenerator</span><span class="p">:</span> <span class="k">inout</span> <span class="kt">R</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Structs/LimitedRandomsWithinClosedRange.html">LimitedRandomsWithinClosedRange</a></span><span class="o">&lt;</span><span class="k">Self</span><span class="p">,</span> <span class="kt">R</span><span class="o">&gt;</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="n">randoms</span><span class="o">&lt;</span><span class="kt">R</span><span class="p">:</span> <span class="kt"><a href="../Protocols/RandomGenerator.html">RandomGenerator</a></span><span class="o">&gt;</span><span class="p">(</span><span class="n">limitedBy</span> <span class="nv">limit</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span> <span class="k">in</span> <span class="nv">closedRange</span><span class="p">:</span> <span class="kt">ClosedRange</span><span class="o">&lt;</span><span class="k">Self</span><span class="o">&gt;</span><span class="p">,</span> <span class="n">using</span> <span class="nv">randomGenerator</span><span class="p">:</span> <span class="k">inout</span> <span class="kt">R</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Structs/LimitedRandomsWithinClosedRange.html">LimitedRandomsWithinClosedRange</a></span><span class="o">&lt;</span><span class="k">Self</span><span class="p">,</span> <span class="kt">R</span><span class="o">&gt;</span></code></pre>
 
                         </div>
                       </div>
@@ -495,7 +507,7 @@
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2017 <a class="link" href="https://github.com/nvzqz" target="_blank" rel="external">Nikolai Vazquez</a>. All rights reserved. (Last updated: 2017-04-18)</p>
+      <p>&copy; 2017 <a class="link" href="https://github.com/nvzqz" target="_blank" rel="external">Nikolai Vazquez</a>. All rights reserved. (Last updated: 2017-06-01)</p>
       <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.4</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
     </section>
   </body>

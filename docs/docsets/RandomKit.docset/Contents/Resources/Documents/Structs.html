@@ -100,6 +100,9 @@
                 <a class="nav-group-task-link" href="Extensions/Collection.html">Collection</a>
               </li>
               <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Extensions/CollectionOfOne.html">CollectionOfOne</a>
+              </li>
+              <li class="nav-group-task">
                 <a class="nav-group-task-link" href="Extensions/ContiguousArray.html">ContiguousArray</a>
               </li>
               <li class="nav-group-task">
@@ -166,7 +169,7 @@
                 <a class="nav-group-task-link" href="Extensions/Range.html">Range</a>
               </li>
               <li class="nav-group-task">
-                <a class="nav-group-task-link" href="Extensions/Sequence.html">Sequence</a>
+                <a class="nav-group-task-link" href="Extensions/Repeated.html">Repeated</a>
               </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="Extensions/Set.html">Set</a>
@@ -248,7 +251,19 @@
                 <a class="nav-group-task-link" href="Protocols/RandomGenerator.html">RandomGenerator</a>
               </li>
               <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Protocols/RandomInClosedRange.html">RandomInClosedRange</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Protocols/RandomInRange.html">RandomInRange</a>
+              </li>
+              <li class="nav-group-task">
                 <a class="nav-group-task-link" href="Protocols/RandomRawRepresentable.html">RandomRawRepresentable</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Protocols/RandomRetrievable.html">RandomRetrievable</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Protocols/RandomRetrievableInRange.html">RandomRetrievableInRange</a>
               </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="Protocols/RandomThroughValue.html">RandomThroughValue</a>
@@ -272,16 +287,13 @@
                 <a class="nav-group-task-link" href="Protocols/RandomWithMin.html">RandomWithMin</a>
               </li>
               <li class="nav-group-task">
-                <a class="nav-group-task-link" href="Protocols/RandomWithinClosedRange.html">RandomWithinClosedRange</a>
+                <a class="nav-group-task-link" href="Protocols/Seedable.html">Seedable</a>
               </li>
               <li class="nav-group-task">
-                <a class="nav-group-task-link" href="Protocols/RandomWithinRange.html">RandomWithinRange</a>
+                <a class="nav-group-task-link" href="Protocols/SeedableFromRandomGenerator.html">SeedableFromRandomGenerator</a>
               </li>
               <li class="nav-group-task">
-                <a class="nav-group-task-link" href="Protocols/SeedableFromOtherRandomGenerator.html">SeedableFromOtherRandomGenerator</a>
-              </li>
-              <li class="nav-group-task">
-                <a class="nav-group-task-link" href="Protocols/SeedableRandomGenerator.html">SeedableRandomGenerator</a>
+                <a class="nav-group-task-link" href="Protocols/SeedableFromSequence.html">SeedableFromSequence</a>
               </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="Protocols/Shuffleable.html">Shuffleable</a>
@@ -402,7 +414,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">XorshiftStar</span><span class="p">:</span> <span class="kt"><a href="Protocols/RandomBytesGenerator.html">RandomBytesGenerator</a></span><span class="p">,</span> <span class="kt"><a href="Protocols/SeedableFromOtherRandomGenerator.html">SeedableFromOtherRandomGenerator</a></span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">XorshiftStar</span><span class="p">:</span> <span class="kt"><a href="Protocols/RandomBytesGenerator.html">RandomBytesGenerator</a></span><span class="p">,</span> <span class="kt"><a href="Protocols/Seedable.html">Seedable</a></span><span class="p">,</span> <span class="kt"><a href="Protocols/SeedableFromRandomGenerator.html">SeedableFromRandomGenerator</a></span></code></pre>
 
                         </div>
                       </div>
@@ -770,7 +782,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">ReseedingRandomGenerator</span><span class="o">&lt;</span><span class="kt">Base</span><span class="p">:</span> <span class="kt"><a href="Protocols/SeedableFromOtherRandomGenerator.html">SeedableFromOtherRandomGenerator</a></span><span class="p">,</span> <span class="kt">Reseeder</span><span class="p">:</span> <span class="kt"><a href="Protocols/RandomGenerator.html">RandomGenerator</a></span><span class="o">&gt;</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">ReseedingRandomGenerator</span><span class="o">&lt;</span><span class="kt">Base</span><span class="p">:</span> <span class="kt"><a href="Protocols/RandomGenerator.html">RandomGenerator</a></span> <span class="o">&amp;</span> <span class="kt"><a href="Protocols/SeedableFromRandomGenerator.html">SeedableFromRandomGenerator</a></span><span class="p">,</span> <span class="kt">Reseeder</span><span class="p">:</span> <span class="kt"><a href="Protocols/RandomGenerator.html">RandomGenerator</a></span><span class="o">&gt;</span></code></pre>
 
                         </div>
                       </div>
@@ -794,7 +806,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>A sequence of random values of a <code><a href="Protocols/RandomWithinClosedRange.html">RandomWithinClosedRange</a></code> type, generated by a <code><a href="Protocols/RandomGenerator.html">RandomGenerator</a></code>.</p>
+                        <p>A sequence of random values of a <code><a href="Protocols/RandomInClosedRange.html">RandomInClosedRange</a></code> type, generated by a <code><a href="Protocols/RandomGenerator.html">RandomGenerator</a></code>.</p>
 
 <div class="aside aside-warning">
     <p class="aside-title">Warning</p>
@@ -814,7 +826,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">RandomsWithinClosedRange</span><span class="o">&lt;</span><span class="kt">Element</span><span class="p">:</span> <span class="kt"><a href="Protocols/RandomWithinClosedRange.html">RandomWithinClosedRange</a></span><span class="p">,</span> <span class="kt">RG</span><span class="p">:</span> <span class="kt"><a href="Protocols/RandomGenerator.html">RandomGenerator</a></span><span class="o">&gt;</span><span class="p">:</span> <span class="kt">IteratorProtocol</span><span class="p">,</span> <span class="kt">Sequence</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">RandomsWithinClosedRange</span><span class="o">&lt;</span><span class="kt">Element</span><span class="p">:</span> <span class="kt"><a href="Protocols/RandomInClosedRange.html">RandomInClosedRange</a></span><span class="p">,</span> <span class="kt">RG</span><span class="p">:</span> <span class="kt"><a href="Protocols/RandomGenerator.html">RandomGenerator</a></span><span class="o">&gt;</span><span class="p">:</span> <span class="kt">IteratorProtocol</span><span class="p">,</span> <span class="kt">Sequence</span></code></pre>
 
                         </div>
                       </div>
@@ -834,7 +846,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>A limited sequence of random values of a <code><a href="Protocols/RandomWithinClosedRange.html">RandomWithinClosedRange</a></code> type, generated by a <code><a href="Protocols/RandomGenerator.html">RandomGenerator</a></code>.</p>
+                        <p>A limited sequence of random values of a <code><a href="Protocols/RandomInClosedRange.html">RandomInClosedRange</a></code> type, generated by a <code><a href="Protocols/RandomGenerator.html">RandomGenerator</a></code>.</p>
 
 <div class="aside aside-warning">
     <p class="aside-title">Warning</p>
@@ -854,7 +866,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">LimitedRandomsWithinClosedRange</span><span class="o">&lt;</span><span class="kt">Element</span><span class="p">:</span> <span class="kt"><a href="Protocols/RandomWithinClosedRange.html">RandomWithinClosedRange</a></span><span class="p">,</span> <span class="kt">RG</span><span class="p">:</span> <span class="kt"><a href="Protocols/RandomGenerator.html">RandomGenerator</a></span><span class="o">&gt;</span><span class="p">:</span> <span class="kt">IteratorProtocol</span><span class="p">,</span> <span class="kt">Sequence</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">LimitedRandomsWithinClosedRange</span><span class="o">&lt;</span><span class="kt">Element</span><span class="p">:</span> <span class="kt"><a href="Protocols/RandomInClosedRange.html">RandomInClosedRange</a></span><span class="p">,</span> <span class="kt">RG</span><span class="p">:</span> <span class="kt"><a href="Protocols/RandomGenerator.html">RandomGenerator</a></span><span class="o">&gt;</span><span class="p">:</span> <span class="kt">IteratorProtocol</span><span class="p">,</span> <span class="kt">Sequence</span></code></pre>
 
                         </div>
                       </div>
@@ -962,7 +974,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>A sequence of random values of a <code><a href="Protocols/RandomWithinRange.html">RandomWithinRange</a></code> type, generated by a <code><a href="Protocols/RandomGenerator.html">RandomGenerator</a></code>.</p>
+                        <p>A sequence of random values of a <code><a href="Protocols/RandomInRange.html">RandomInRange</a></code> type, generated by a <code><a href="Protocols/RandomGenerator.html">RandomGenerator</a></code>.</p>
 
 <div class="aside aside-warning">
     <p class="aside-title">Warning</p>
@@ -982,7 +994,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">RandomsWithinRange</span><span class="o">&lt;</span><span class="kt">Element</span><span class="p">:</span> <span class="kt"><a href="Protocols/RandomWithinRange.html">RandomWithinRange</a></span><span class="p">,</span> <span class="kt">RG</span><span class="p">:</span> <span class="kt"><a href="Protocols/RandomGenerator.html">RandomGenerator</a></span><span class="o">&gt;</span><span class="p">:</span> <span class="kt">IteratorProtocol</span><span class="p">,</span> <span class="kt">Sequence</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">RandomsWithinRange</span><span class="o">&lt;</span><span class="kt">Element</span><span class="p">:</span> <span class="kt"><a href="Protocols/RandomInRange.html">RandomInRange</a></span><span class="p">,</span> <span class="kt">RG</span><span class="p">:</span> <span class="kt"><a href="Protocols/RandomGenerator.html">RandomGenerator</a></span><span class="o">&gt;</span><span class="p">:</span> <span class="kt">IteratorProtocol</span><span class="p">,</span> <span class="kt">Sequence</span></code></pre>
 
                         </div>
                       </div>
@@ -1002,7 +1014,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>A limited sequence of random values of a <code><a href="Protocols/RandomWithinRange.html">RandomWithinRange</a></code> type, generated by a <code><a href="Protocols/RandomGenerator.html">RandomGenerator</a></code>.</p>
+                        <p>A limited sequence of random values of a <code><a href="Protocols/RandomInRange.html">RandomInRange</a></code> type, generated by a <code><a href="Protocols/RandomGenerator.html">RandomGenerator</a></code>.</p>
 
 <div class="aside aside-warning">
     <p class="aside-title">Warning</p>
@@ -1022,7 +1034,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">LimitedRandomsWithinRange</span><span class="o">&lt;</span><span class="kt">Element</span><span class="p">:</span> <span class="kt"><a href="Protocols/RandomWithinRange.html">RandomWithinRange</a></span><span class="p">,</span> <span class="kt">RG</span><span class="p">:</span> <span class="kt"><a href="Protocols/RandomGenerator.html">RandomGenerator</a></span><span class="o">&gt;</span><span class="p">:</span> <span class="kt">IteratorProtocol</span><span class="p">,</span> <span class="kt">Sequence</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">LimitedRandomsWithinRange</span><span class="o">&lt;</span><span class="kt">Element</span><span class="p">:</span> <span class="kt"><a href="Protocols/RandomInRange.html">RandomInRange</a></span><span class="p">,</span> <span class="kt">RG</span><span class="p">:</span> <span class="kt"><a href="Protocols/RandomGenerator.html">RandomGenerator</a></span><span class="o">&gt;</span><span class="p">:</span> <span class="kt">IteratorProtocol</span><span class="p">,</span> <span class="kt">Sequence</span></code></pre>
 
                         </div>
                       </div>
@@ -1056,7 +1068,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">Xorshift</span><span class="p">:</span> <span class="kt"><a href="Protocols/RandomBytesGenerator.html">RandomBytesGenerator</a></span><span class="p">,</span> <span class="kt"><a href="Protocols/SeedableFromOtherRandomGenerator.html">SeedableFromOtherRandomGenerator</a></span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">Xorshift</span><span class="p">:</span> <span class="kt"><a href="Protocols/RandomBytesGenerator.html">RandomBytesGenerator</a></span><span class="p">,</span> <span class="kt"><a href="Protocols/Seedable.html">Seedable</a></span><span class="p">,</span> <span class="kt"><a href="Protocols/SeedableFromRandomGenerator.html">SeedableFromRandomGenerator</a></span></code></pre>
 
                         </div>
                       </div>
@@ -1090,7 +1102,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">Xoroshiro</span><span class="p">:</span> <span class="kt"><a href="Protocols/RandomBytesGenerator.html">RandomBytesGenerator</a></span><span class="p">,</span> <span class="kt"><a href="Protocols/SeedableFromOtherRandomGenerator.html">SeedableFromOtherRandomGenerator</a></span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">Xoroshiro</span><span class="p">:</span> <span class="kt"><a href="Protocols/RandomBytesGenerator.html">RandomBytesGenerator</a></span><span class="p">,</span> <span class="kt"><a href="Protocols/Seedable.html">Seedable</a></span><span class="p">,</span> <span class="kt"><a href="Protocols/SeedableFromRandomGenerator.html">SeedableFromRandomGenerator</a></span></code></pre>
 
                         </div>
                       </div>
@@ -1124,7 +1136,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">ChaCha</span><span class="p">:</span> <span class="kt"><a href="Protocols/RandomBytesGenerator.html">RandomBytesGenerator</a></span><span class="p">,</span> <span class="kt"><a href="Protocols/SeedableFromOtherRandomGenerator.html">SeedableFromOtherRandomGenerator</a></span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">ChaCha</span><span class="p">:</span> <span class="kt"><a href="Protocols/RandomBytesGenerator.html">RandomBytesGenerator</a></span><span class="p">,</span> <span class="kt"><a href="Protocols/Seedable.html">Seedable</a></span><span class="p">,</span> <span class="kt"><a href="Protocols/SeedableFromSequence.html">SeedableFromSequence</a></span><span class="p">,</span> <span class="kt"><a href="Protocols/SeedableFromRandomGenerator.html">SeedableFromRandomGenerator</a></span></code></pre>
 
                         </div>
                       </div>
@@ -1156,7 +1168,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">MersenneTwister</span><span class="p">:</span> <span class="kt"><a href="Protocols/RandomBytesGenerator.html">RandomBytesGenerator</a></span><span class="p">,</span> <span class="kt"><a href="Protocols/SeedableFromOtherRandomGenerator.html">SeedableFromOtherRandomGenerator</a></span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">MersenneTwister</span><span class="p">:</span> <span class="kt"><a href="Protocols/RandomBytesGenerator.html">RandomBytesGenerator</a></span><span class="p">,</span> <span class="kt"><a href="Protocols/Seedable.html">Seedable</a></span><span class="p">,</span> <span class="kt"><a href="Protocols/SeedableFromRandomGenerator.html">SeedableFromRandomGenerator</a></span></code></pre>
 
                         </div>
                       </div>
@@ -1171,7 +1183,7 @@
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2017 <a class="link" href="https://github.com/nvzqz" target="_blank" rel="external">Nikolai Vazquez</a>. All rights reserved. (Last updated: 2017-04-18)</p>
+      <p>&copy; 2017 <a class="link" href="https://github.com/nvzqz" target="_blank" rel="external">Nikolai Vazquez</a>. All rights reserved. (Last updated: 2017-06-01)</p>
       <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.4</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
     </section>
   </body>

@@ -101,6 +101,9 @@
                 <a class="nav-group-task-link" href="../Extensions/Collection.html">Collection</a>
               </li>
               <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Extensions/CollectionOfOne.html">CollectionOfOne</a>
+              </li>
+              <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Extensions/ContiguousArray.html">ContiguousArray</a>
               </li>
               <li class="nav-group-task">
@@ -167,7 +170,7 @@
                 <a class="nav-group-task-link" href="../Extensions/Range.html">Range</a>
               </li>
               <li class="nav-group-task">
-                <a class="nav-group-task-link" href="../Extensions/Sequence.html">Sequence</a>
+                <a class="nav-group-task-link" href="../Extensions/Repeated.html">Repeated</a>
               </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Extensions/Set.html">Set</a>
@@ -249,7 +252,19 @@
                 <a class="nav-group-task-link" href="../Protocols/RandomGenerator.html">RandomGenerator</a>
               </li>
               <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/RandomInClosedRange.html">RandomInClosedRange</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/RandomInRange.html">RandomInRange</a>
+              </li>
+              <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Protocols/RandomRawRepresentable.html">RandomRawRepresentable</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/RandomRetrievable.html">RandomRetrievable</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/RandomRetrievableInRange.html">RandomRetrievableInRange</a>
               </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Protocols/RandomThroughValue.html">RandomThroughValue</a>
@@ -273,16 +288,13 @@
                 <a class="nav-group-task-link" href="../Protocols/RandomWithMin.html">RandomWithMin</a>
               </li>
               <li class="nav-group-task">
-                <a class="nav-group-task-link" href="../Protocols/RandomWithinClosedRange.html">RandomWithinClosedRange</a>
+                <a class="nav-group-task-link" href="../Protocols/Seedable.html">Seedable</a>
               </li>
               <li class="nav-group-task">
-                <a class="nav-group-task-link" href="../Protocols/RandomWithinRange.html">RandomWithinRange</a>
+                <a class="nav-group-task-link" href="../Protocols/SeedableFromRandomGenerator.html">SeedableFromRandomGenerator</a>
               </li>
               <li class="nav-group-task">
-                <a class="nav-group-task-link" href="../Protocols/SeedableFromOtherRandomGenerator.html">SeedableFromOtherRandomGenerator</a>
-              </li>
-              <li class="nav-group-task">
-                <a class="nav-group-task-link" href="../Protocols/SeedableRandomGenerator.html">SeedableRandomGenerator</a>
+                <a class="nav-group-task-link" href="../Protocols/SeedableFromSequence.html">SeedableFromSequence</a>
               </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Protocols/Shuffleable.html">Shuffleable</a>
@@ -528,9 +540,9 @@ integers. Otherwise it will call <code>Element.random(using:)</code> to generate
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:Fe9RandomKitRxS_17RandomWithinRangerSacuRd__S_15RandomGeneratorrFT11randomCountSi6withinGVs5Rangex_5usingRqd___GSax_"></a>
-                    <a name="//apple_ref/swift/Method/init(randomCount:within:using:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:Fe9RandomKitRxS_17RandomWithinRangerSacuRd__S_15RandomGeneratorrFT11randomCountSi6withinGVs5Rangex_5usingRqd___GSax_">init(randomCount:within:using:)</a>
+                    <a name="/s:Fe9RandomKitRxS_13RandomInRangerSacuRd__S_15RandomGeneratorrFT11randomCountSi2inGVs5Rangex_5usingRqd___GSax_"></a>
+                    <a name="//apple_ref/swift/Method/init(randomCount:in:using:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:Fe9RandomKitRxS_13RandomInRangerSacuRd__S_15RandomGeneratorrFT11randomCountSi2inGVs5Rangex_5usingRqd___GSax_">init(randomCount:in:using:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -538,14 +550,14 @@ integers. Otherwise it will call <code>Element.random(using:)</code> to generate
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Construct an Array of random elements from within the range.</p>
+                        <p>Construct an Array of random elements in the range.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">init</span><span class="o">&lt;</span><span class="kt">R</span><span class="p">:</span> <span class="kt"><a href="../Protocols/RandomGenerator.html">RandomGenerator</a></span><span class="o">&gt;</span><span class="p">(</span><span class="nv">randomCount</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span> <span class="n">within</span> <span class="nv">range</span><span class="p">:</span> <span class="kt">Range</span><span class="o">&lt;</span><span class="kt">Element</span><span class="o">&gt;</span><span class="p">,</span> <span class="n">using</span> <span class="nv">randomGenerator</span><span class="p">:</span> <span class="k">inout</span> <span class="kt">R</span><span class="p">)</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">init</span><span class="o">&lt;</span><span class="kt">R</span><span class="p">:</span> <span class="kt"><a href="../Protocols/RandomGenerator.html">RandomGenerator</a></span><span class="o">&gt;</span><span class="p">(</span><span class="nv">randomCount</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span> <span class="k">in</span> <span class="nv">range</span><span class="p">:</span> <span class="kt">Range</span><span class="o">&lt;</span><span class="kt">Element</span><span class="o">&gt;</span><span class="p">,</span> <span class="n">using</span> <span class="nv">randomGenerator</span><span class="p">:</span> <span class="k">inout</span> <span class="kt">R</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -559,9 +571,9 @@ integers. Otherwise it will call <code>Element.random(using:)</code> to generate
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:Fe9RandomKitRxS_23RandomWithinClosedRangerSacuRd__S_15RandomGeneratorrFT11randomCountSi6withinGVs11ClosedRangex_5usingRqd___GSax_"></a>
-                    <a name="//apple_ref/swift/Method/init(randomCount:within:using:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:Fe9RandomKitRxS_23RandomWithinClosedRangerSacuRd__S_15RandomGeneratorrFT11randomCountSi6withinGVs11ClosedRangex_5usingRqd___GSax_">init(randomCount:within:using:)</a>
+                    <a name="/s:Fe9RandomKitRxS_19RandomInClosedRangerSacuRd__S_15RandomGeneratorrFT11randomCountSi2inGVs11ClosedRangex_5usingRqd___GSax_"></a>
+                    <a name="//apple_ref/swift/Method/init(randomCount:in:using:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:Fe9RandomKitRxS_19RandomInClosedRangerSacuRd__S_15RandomGeneratorrFT11randomCountSi2inGVs11ClosedRangex_5usingRqd___GSax_">init(randomCount:in:using:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -569,14 +581,14 @@ integers. Otherwise it will call <code>Element.random(using:)</code> to generate
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Construct an Array of random elements from within the closed range.</p>
+                        <p>Construct an Array of random elements in the closed range.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">init</span><span class="o">&lt;</span><span class="kt">R</span><span class="p">:</span> <span class="kt"><a href="../Protocols/RandomGenerator.html">RandomGenerator</a></span><span class="o">&gt;</span><span class="p">(</span><span class="nv">randomCount</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span> <span class="n">within</span> <span class="nv">closedRange</span><span class="p">:</span> <span class="kt">ClosedRange</span><span class="o">&lt;</span><span class="kt">Element</span><span class="o">&gt;</span><span class="p">,</span> <span class="n">using</span> <span class="nv">randomGenerator</span><span class="p">:</span> <span class="k">inout</span> <span class="kt">R</span><span class="p">)</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">init</span><span class="o">&lt;</span><span class="kt">R</span><span class="p">:</span> <span class="kt"><a href="../Protocols/RandomGenerator.html">RandomGenerator</a></span><span class="o">&gt;</span><span class="p">(</span><span class="nv">randomCount</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span> <span class="k">in</span> <span class="nv">closedRange</span><span class="p">:</span> <span class="kt">ClosedRange</span><span class="o">&lt;</span><span class="kt">Element</span><span class="o">&gt;</span><span class="p">,</span> <span class="n">using</span> <span class="nv">randomGenerator</span><span class="p">:</span> <span class="k">inout</span> <span class="kt">R</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -731,6 +743,33 @@ integers. Otherwise it will call <code>Element.random(using:)</code> to generate
                 <li class="item">
                   <div>
                     <code>
+                    <a name="/s:FE9RandomKitSa15uncheckedRandomuRd__S_15RandomGeneratorrFT2inGVs5RangeSi_5usingRqd___x"></a>
+                    <a name="//apple_ref/swift/Method/uncheckedRandom(in:using:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FE9RandomKitSa15uncheckedRandomuRd__S_15RandomGeneratorrFT2inGVs5RangeSi_5usingRqd___x">uncheckedRandom(in:using:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Returns a random element in <code>range</code> without checking whether <code>self</code> or <code>range</code> is empty.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="n">uncheckedRandom</span><span class="o">&lt;</span><span class="kt">R</span><span class="p">:</span> <span class="kt"><a href="../Protocols/RandomGenerator.html">RandomGenerator</a></span><span class="o">&gt;</span><span class="p">(</span><span class="k">in</span> <span class="nv">range</span><span class="p">:</span> <span class="kt">Range</span><span class="o">&lt;</span><span class="kt">Int</span><span class="o">&gt;</span><span class="p">,</span> <span class="n">using</span> <span class="nv">randomGenerator</span><span class="p">:</span> <span class="k">inout</span> <span class="kt">R</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Element</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
                     <a name="/s:FE9RandomKitSa7shuffleuRd__S_15RandomGeneratorrFT5usingRqd___T_"></a>
                     <a name="//apple_ref/swift/Method/shuffle(using:)" class="dashAnchor"></a>
                     <a class="token" href="#/s:FE9RandomKitSa7shuffleuRd__S_15RandomGeneratorrFT5usingRqd___T_">shuffle(using:)</a>
@@ -844,7 +883,7 @@ integers. Otherwise it will call <code>Element.random(using:)</code> to generate
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2017 <a class="link" href="https://github.com/nvzqz" target="_blank" rel="external">Nikolai Vazquez</a>. All rights reserved. (Last updated: 2017-04-18)</p>
+      <p>&copy; 2017 <a class="link" href="https://github.com/nvzqz" target="_blank" rel="external">Nikolai Vazquez</a>. All rights reserved. (Last updated: 2017-06-01)</p>
       <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.4</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
     </section>
   </body>
