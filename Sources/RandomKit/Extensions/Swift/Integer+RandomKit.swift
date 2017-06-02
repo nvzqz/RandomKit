@@ -192,7 +192,7 @@ extension SignedInteger where Self: RandomWithMax & RandomWithMin & RandomToValu
 
 #if swift(>=4)
 
-extension UnsignedInteger where Self: FixedWidthInteger & Random {
+extension UnsignedInteger where Self: FixedWidthInteger & Random & RandomToValue {
     /// Generates a random value of `Self` from `randomBase` to `value`.
     public static func random<R: RandomGenerator>(to value: Self, using randomGenerator: inout R) -> Self {
         switch value {
