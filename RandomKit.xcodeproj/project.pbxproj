@@ -239,6 +239,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		525FEEDA1EE67B5D0015254D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 52ADBEDA1DE55CE9004CB28A /* ShiftOperations.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 52ADBE8B1DE55262004CB28A;
+			remoteInfo = "ShiftOperations macOS";
+		};
 		528200F71BC9FA42001FDD58 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 528200861BC9C460001FDD58 /* Project object */;
@@ -694,6 +701,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				525FEEDB1EE67B5D0015254D /* PBXTargetDependency */,
 			);
 			name = "RandomKit macOS";
 			productName = "RandomKit-OSX";
@@ -815,7 +823,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0830;
-				LastUpgradeCheck = 0810;
+				LastUpgradeCheck = 0900;
 				ORGANIZATIONNAME = "Nikolai Vazquez";
 				TargetAttributes = {
 					528200901BC9C4A2001FDD58 = {
@@ -1232,6 +1240,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		525FEEDB1EE67B5D0015254D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "ShiftOperations macOS";
+			targetProxy = 525FEEDA1EE67B5D0015254D /* PBXContainerItemProxy */;
+		};
 		528200F81BC9FA42001FDD58 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 528200901BC9C4A2001FDD58 /* RandomKit macOS */;
@@ -1253,12 +1266,18 @@
 		5282008A1BC9C460001FDD58 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -1282,12 +1301,18 @@
 		5282008B1BC9C460001FDD58 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
