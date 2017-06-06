@@ -45,7 +45,7 @@ extension RandomInClosedRange where Self: Strideable & Comparable, Self.Stride :
 
 extension RandomInClosedRange {
 
-    #if swift(>=4)
+    #if swift(>=3.2)
 
     /// Returns a sequence of random values in `closedRange` using `randomGenerator`.
     public static func randoms<R>(in closedRange: ClosedRange<Self>, using randomGenerator: inout R) -> RandomsWithinClosedRange<Self, R> {

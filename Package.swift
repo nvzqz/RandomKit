@@ -29,7 +29,7 @@ import PackageDescription
 
 let deps: [Package.Dependency]
 
-#if swift(>=4)
+#if swift(>=3.2)
 deps = []
 #else
 deps = [.Package(url: "https://github.com/nvzqz/ShiftOperations.git", majorVersion: 1)]

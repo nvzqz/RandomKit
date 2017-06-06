@@ -26,7 +26,7 @@
 //
 
 // The '>>' and '<<' operators are covered by FixedWidthInteger
-#if !swift(>=4)
+#if !swift(>=3.2)
 import ShiftOperations
 #endif
 
@@ -48,7 +48,7 @@ extension ExpressibleByIntegerLiteral where Self: RandomToValue & RandomThroughV
 
 }
 
-#if swift(>=4)
+#if swift(>=3.2)
 
 private extension FixedWidthInteger where Self: Random {
 
@@ -102,7 +102,7 @@ private extension Integer where Self: RandomWithMin {
 
 #endif
 
-#if swift(>=4)
+#if swift(>=3.2)
 
 extension SignedInteger where Self: FixedWidthInteger & Random & RandomToValue & RandomThroughValue {
 
@@ -190,7 +190,7 @@ extension SignedInteger where Self: RandomWithMax & RandomWithMin & RandomToValu
 
 #endif
 
-#if swift(>=4)
+#if swift(>=3.2)
 
 extension UnsignedInteger where Self: FixedWidthInteger & Random & RandomToValue {
     /// Generates a random value of `Self` from `randomBase` to `value`.
@@ -220,7 +220,7 @@ extension UnsignedInteger where Self: Random & RandomToValue & RandomWithMax {
 
 #endif
 
-#if swift(>=4)
+#if swift(>=3.2)
 
 extension UnsignedInteger where Self: FixedWidthInteger & RandomToValue & RandomInRange {
     /// Returns a random value of `Self` inside of the unchecked range using `randomGenerator`.
@@ -240,7 +240,7 @@ extension UnsignedInteger where Self: RandomToValue & RandomInRange {
 
 #endif
 
-#if swift(>=4)
+#if swift(>=3.2)
 
 extension UnsignedInteger where Self: FixedWidthInteger & Random & RandomThroughValue {
     /// Generates a random value of `Self` from `randomBase` through `value`.
@@ -274,7 +274,7 @@ extension UnsignedInteger where Self: RandomWithMax & RandomThroughValue {
 
 #endif
 
-#if swift(>=4)
+#if swift(>=3.2)
 
 extension UnsignedInteger where Self: FixedWidthInteger & RandomThroughValue & RandomInClosedRange {
     /// Returns a random value of `Self` inside of the closed range.
@@ -298,7 +298,7 @@ extension UnsignedInteger where Self: RandomThroughValue & RandomInClosedRange {
 
 #endif
 
-#if swift(>=4)
+#if swift(>=3.2)
 
 extension UnsignedInteger where Self: FixedWidthInteger & Random & RandomWithMaxWidth {
 
@@ -350,7 +350,7 @@ extension UnsignedInteger where Self: ShiftOperations & RandomWithMax & RandomWi
 
 #endif
 
-#if swift(>=4)
+#if swift(>=3.2)
 
 extension UnsignedInteger where Self: RandomWithMaxWidth & RandomWithExactWidth {
     /// Generates a random value of `Self` with an exact width using `randomGenerator`.
@@ -594,7 +594,7 @@ extension UInt: UnsafeRandom, RandomWithMax, RandomWithMin, RandomToValue, Rando
         #else
             bits = UInt(bitPattern: MemoryLayout<UInt>.size * 8 - 1)
         #endif
-        #if swift(>=4)
+        #if swift(>=3.2)
             return self ^ (1 &<< bits)
         #else
             return self ^ (1 << bits)
@@ -611,7 +611,7 @@ extension UInt64: UnsafeRandom, RandomWithMax, RandomWithMin, RandomToValue, Ran
     }
 
     fileprivate var _resigned: UInt64 {
-        #if swift(>=4)
+        #if swift(>=3.2)
             return self ^ (1 &<< 63)
         #else
             return self ^ (1 << 63)
@@ -628,7 +628,7 @@ extension UInt32: UnsafeRandom, RandomWithMax, RandomWithMin, RandomToValue, Ran
     }
 
     fileprivate var _resigned: UInt32 {
-        #if swift(>=4)
+        #if swift(>=3.2)
             return self ^ (1 &<< 31)
         #else
             return self ^ (1 << 31)
@@ -645,7 +645,7 @@ extension UInt16: UnsafeRandom, RandomWithMax, RandomWithMin, RandomToValue, Ran
     }
 
     fileprivate var _resigned: UInt16 {
-        #if swift(>=4)
+        #if swift(>=3.2)
             return self ^ (1 &<< 15)
         #else
             return self ^ (1 << 15)
@@ -662,7 +662,7 @@ extension UInt8: UnsafeRandom, RandomWithMax, RandomWithMin, RandomToValue, Rand
     }
 
     fileprivate var _resigned: UInt8 {
-        #if swift(>=4)
+        #if swift(>=3.2)
             return self ^ (1 &<< 7)
         #else
             return self ^ (1 << 7)

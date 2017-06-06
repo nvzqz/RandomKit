@@ -63,7 +63,7 @@ extension RandomInRange where Self: Strideable & Comparable, Self.Stride : Signe
 
 extension RandomInRange {
 
-    #if swift(>=4)
+    #if swift(>=3.2)
 
     /// Returns a sequence of random values in `range` using `randomGenerator`.
     public static func randoms<R>(in range: Range<Self>, using randomGenerator: inout R) -> RandomsWithinRange<Self, R> {

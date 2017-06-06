@@ -35,7 +35,7 @@ public protocol Random {
 
 extension Random {
 
-    #if swift(>=4)
+    #if swift(>=3.2)
 
     /// Returns a sequence of random values using `randomGenerator`.
     public static func randoms<R>(using randomGenerator: inout R) -> Randoms<Self, R> {

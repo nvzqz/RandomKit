@@ -120,7 +120,7 @@ extension RandomGenerator where Self: SeedableFromRandomGenerator {
         return threadLocalReseeding(seededFrom: DeviceRandom.default)
     }
 
-    #if swift(>=4)
+    #if swift(>=3.2)
 
     /// Returns the thread-local instance of `self` that reseeds itself with `reseeder`.
     public static func threadLocalReseeding<R>(
@@ -158,7 +158,7 @@ extension RandomGenerator where Self: SeedableFromRandomGenerator {
         return try body(&threadLocalReseeding.pointee)
     }
 
-    #if swift(>=4)
+    #if swift(>=3.2)
 
     /// Returns the result of performing `body` on the thread-local instance of `self` that reseeds itself with
     /// `reseeder`.

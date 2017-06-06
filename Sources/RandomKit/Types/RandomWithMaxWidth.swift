@@ -35,7 +35,7 @@ public protocol RandomWithMaxWidth {
 
 extension RandomWithMaxWidth {
 
-    #if swift(>=4)
+    #if swift(>=3.2)
 
     /// Returns a sequence of random values with a max width using `randomGenerator`.
     public static func randoms<R>(withMaxWidth width: Int, using randomGenerator: inout R) -> RandomsWithMaxWidth<Self, R> {

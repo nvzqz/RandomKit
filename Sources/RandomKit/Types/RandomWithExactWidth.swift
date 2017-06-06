@@ -35,7 +35,7 @@ public protocol RandomWithExactWidth {
 
 extension RandomWithExactWidth {
 
-    #if swift(>=4)
+    #if swift(>=3.2)
 
     /// Returns a sequence of random values with an exact width using `randomGenerator`.
     public static func randoms<R>(withExactWidth width: Int, using randomGenerator: inout R) -> RandomsWithExactWidth<Self, R> {

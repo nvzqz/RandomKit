@@ -130,7 +130,7 @@ public struct ChaCha: RandomBytesGenerator, Seedable, SeedableFromSequence, Seed
 
     /// Sets the internal 128-bit counter.
     public mutating func setCounter(low: UInt64, high: UInt64) {
-        #if swift(>=4)
+        #if swift(>=3.2)
             _state.12 = UInt32(extendingOrTruncating: low)
             _state.13 = UInt32(extendingOrTruncating: low &>> 32)
             _state.14 = UInt32(extendingOrTruncating: high)

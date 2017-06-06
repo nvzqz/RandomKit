@@ -25,7 +25,7 @@
 //  THE SOFTWARE.
 //
 
-#if swift(>=4)
+#if swift(>=3.2)
 
 /// A type with an associated raw type that can be randomly generated.
 public protocol RandomRawRepresentable: Random, RawRepresentable where RawValue: Random {
