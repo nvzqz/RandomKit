@@ -36,8 +36,10 @@ let package = Package(
     ]
 )
 
-#if swift(>=3.2)
+#if swift(>=3.1)
     package.swiftLanguageVersions = [3, 4]
-#else
+#endif
+
+#if !swift(>=3.2)
     package.dependencies = [.Package(url: "https://github.com/nvzqz/ShiftOperations.git", majorVersion: 1)]
 #endif
