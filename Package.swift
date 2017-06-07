@@ -27,20 +27,17 @@
 
 import PackageDescription
 
-let deps: [Package.Dependency]
-
-#if swift(>=3.2)
-deps = []
-#else
-deps = [.Package(url: "https://github.com/nvzqz/ShiftOperations.git", majorVersion: 1)]
-#endif
-
 let package = Package(
     name: "RandomKit",
     targets: [
         Target(name: "RandomKit"),
         Target(name: "benchmark",
                dependencies: ["RandomKit"])
-    ],
-    dependencies: deps
+    ]
 )
+
+#if swift(>=3.2)
+    package.swiftLanguageVersions = [3, 4]
+#else
+    package.dependencies = [.Package(url: "https://github.com/nvzqz/ShiftOperations.git", majorVersion: 1)]
+#endif
