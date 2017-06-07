@@ -27,6 +27,25 @@
 
 import RandomKit
 
+#if swift(>=3.2)
+
+extension FixedWidthInteger {
+    static var maxAdjusted: Self {
+        return max - (max / 8)
+    }
+    static var minAdjusted: Self {
+        return min - (min / 8)
+    }
+    static var minMaxRange: Range<Self> {
+        return minAdjusted ..< maxAdjusted
+    }
+    static var minMaxClosedRange: ClosedRange<Self> {
+        return minAdjusted ... maxAdjusted
+    }
+}
+
+#else
+
 extension Integer where Self: RandomWithMax {
     static var maxAdjusted: Self {
         return max - (max / 8)
@@ -47,6 +66,8 @@ extension Integer where Self: RandomWithMax & RandomWithMin {
         return minAdjusted ... maxAdjusted
     }
 }
+
+#endif
 
 extension Array {
     subscript(safe index: Int) -> Element? {
