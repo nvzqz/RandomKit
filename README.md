@@ -583,3 +583,6 @@ RandomKit extensions for Károly's [BigInt](https://github.com/lorentey/BigInt) 
 RandomKit and its assets are released under the [MIT License](LICENSE.md). Assets
 can be found in the [`assets`](https://github.com/nvzqz/RandomKit/tree/assets)
 branch.
+
+Parts of this project utilize code written by [Matt Gallagher](https://github.com/mattgallagher) and, in conjunction
+with the MIT License, are licensed with that found [here](https://www.cocoawithlove.com/about/).
