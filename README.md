@@ -91,7 +91,7 @@ decentralized dependency manager for Swift.
         name: "MyAwesomeProject",
         dependencies: [
             .Package(url: "https://github.com/nvzqz/RandomKit.git",
-                     majorVersion: 4)
+                     majorVersion: 5)
         ]
     )
     ```
