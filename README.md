@@ -5,6 +5,7 @@
 <img src="https://img.shields.io/badge/language-swift-orange.svg" alt="Language: Swift">
 <a href="https://cocoapods.org/pods/RandomKit"><img src="https://img.shields.io/cocoapods/v/RandomKit.svg" alt="CocoaPods - RandomKit"></a>
 <a href="https://github.com/Carthage/Carthage"><img src="https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat" alt="Carthage"></a>
+<img src="https://img.shields.io/cocoapods/dt/RandomKit.svg" alt="downloads">
 <a href="https://gitter.im/nvzqz/RandomKit?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge"><img src="https://badges.gitter.im/Join%20Chat.svg" alt="GITTER: join chat"></a>
 <a href="https://codebeat.co/projects/github-com-nvzqz-randomkit"><img src="https://codebeat.co/badges/256f6b2d-fd36-4b71-8bf0-b3cb31cb95ae" alt="codebeat badge"></a>
 <img src="https://img.shields.io/badge/license-MIT-000000.svg" alt="License">
