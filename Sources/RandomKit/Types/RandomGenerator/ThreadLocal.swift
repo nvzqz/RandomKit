@@ -26,79 +26,23 @@
 //
 
 import Foundation
+import Threadly
 
-private final class _Box<T> {
-    var value: T
-    init(_ value: T) {
-        self.value = value
-    }
-}
-
-/// A readers-writer lock.
-private final class _RWLock {
-
-    private var _lock: pthread_rwlock_t
-
-    init() {
-        _lock = pthread_rwlock_t()
-        pthread_rwlock_init(&_lock, nil)
-    }
-
-    deinit {
-        pthread_rwlock_destroy(&_lock)
-    }
-
-    func withReadLock<T>(_ body: () throws -> T) rethrows -> T {
-        pthread_rwlock_rdlock(&_lock)
-        defer { pthread_rwlock_unlock(&_lock) }
-        return try body()
-    }
-
-    func withWriteLock<T>(_ body: () throws -> T) rethrows -> T {
-        pthread_rwlock_wrlock(&_lock)
-        defer { pthread_rwlock_unlock(&_lock) }
-        return try body()
-    }
-
-}
-
-private var _keys = [ObjectIdentifier: pthread_key_t]()
-
-private let _keysLock = _RWLock()
-
-private func _key(for type: Any.Type) -> pthread_key_t {
-    let id = ObjectIdentifier(type)
-    if let key = _keysLock.withReadLock({ _keys[id] }) {
-        return key
-    } else {
-        var key = pthread_key_t()
-        pthread_key_create(&key) {
-            // Cast required because argument is optional on some platforms (Linux) but not on others (macOS).
-            guard let rawPointer = ($0 as UnsafeMutableRawPointer?) else {
-                return
-            }
-            Unmanaged<AnyObject>.fromOpaque(rawPointer).release()
-        }
-        _keysLock.withWriteLock {
-            _keys[id] = key
-        }
-        return key
-    }
-}
+private let _typeMap = ThreadLocal(value: [ObjectIdentifier: AnyObject]())
 
 extension RandomGenerator {
 
     /// Returns the thread-local instance of `self` created with `create`.
     public static func threadLocal(createdWith create: () throws -> Self) rethrows -> UnsafeMutablePointer<Self> {
-        let unmanaged: Unmanaged<_Box<Self>>
-        let key = _key(for: Self.self)
-        if let pointer = pthread_getspecific(key) {
-            unmanaged = Unmanaged.fromOpaque(pointer)
+        let map = _typeMap.inner
+        let key = ObjectIdentifier(Self.self)
+        if let obj = map.value[key] {
+            return UnsafeMutablePointer(&unsafeBitCast(obj, to: Box<Self>.self).value)
         } else {
-            unmanaged = Unmanaged.passRetained(_Box(try create()))
-            pthread_setspecific(key, unmanaged.toOpaque())
+            let box = try Box(create())
+            map.value[key] = box
+            return UnsafeMutablePointer(&box.value)
         }
-        return UnsafeMutablePointer(&unmanaged.takeUnretainedValue().value)
     }
 
     /// Returns the result of performing `body` on the thread-local instance of `self` created with `create`.

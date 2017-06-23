@@ -1,3 +1,6 @@
 [submodule "Carthage/Checkouts/ShiftOperations"]
 	path = Carthage/Checkouts/ShiftOperations
 	url = https://github.com/nvzqz/ShiftOperations.git
+[submodule "Carthage/Checkouts/Threadly"]
+	path = Carthage/Checkouts/Threadly
+	url = https://github.com/nvzqz/Threadly.git

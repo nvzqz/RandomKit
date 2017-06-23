@@ -15,6 +15,10 @@
 		522268ED1E4163EC00C8865A /* XorshiftStar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522268EB1E4163EC00C8865A /* XorshiftStar.swift */; };
 		522268EE1E4163EC00C8865A /* XorshiftStar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522268EB1E4163EC00C8865A /* XorshiftStar.swift */; };
 		522268EF1E4163EC00C8865A /* XorshiftStar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522268EB1E4163EC00C8865A /* XorshiftStar.swift */; };
+		524300A31EFC61D000333F46 /* Threadly.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5243009A1EFC61B600333F46 /* Threadly.framework */; };
+		524300AA1EFC61F800333F46 /* Threadly.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5243009C1EFC61B600333F46 /* Threadly.framework */; };
+		524300AF1EFC620900333F46 /* Threadly.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5243009E1EFC61B600333F46 /* Threadly.framework */; };
+		524300B41EFC622500333F46 /* Threadly.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 524300A01EFC61B600333F46 /* Threadly.framework */; };
 		5247B99D1E890BB200C6B60E /* RandomRetrievable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5247B99C1E890BB200C6B60E /* RandomRetrievable.swift */; };
 		5247B99E1E890BB200C6B60E /* RandomRetrievable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5247B99C1E890BB200C6B60E /* RandomRetrievable.swift */; };
 		5247B99F1E890BB200C6B60E /* RandomRetrievable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5247B99C1E890BB200C6B60E /* RandomRetrievable.swift */; };
@@ -239,6 +243,83 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		524300991EFC61B600333F46 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5243008F1EFC61B600333F46 /* Threadly.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 522AA4B61EFB1AFB003CFC76;
+			remoteInfo = "Threadly macOS";
+		};
+		5243009B1EFC61B600333F46 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5243008F1EFC61B600333F46 /* Threadly.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 522AA4C41EFB1B20003CFC76;
+			remoteInfo = "Threadly iOS";
+		};
+		5243009D1EFC61B600333F46 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5243008F1EFC61B600333F46 /* Threadly.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 522AA4D11EFB1B2C003CFC76;
+			remoteInfo = "Threadly watchOS";
+		};
+		5243009F1EFC61B600333F46 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5243008F1EFC61B600333F46 /* Threadly.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 522AA4EB1EFB1B4E003CFC76;
+			remoteInfo = "Threadly tvOS";
+		};
+		524300A11EFC61CB00333F46 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5243008F1EFC61B600333F46 /* Threadly.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 522AA4B51EFB1AFB003CFC76;
+			remoteInfo = "Threadly macOS";
+		};
+		524300A61EFC61E800333F46 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 52ADBEDA1DE55CE9004CB28A /* ShiftOperations.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 52ADBE991DE5526A004CB28A;
+			remoteInfo = "ShiftOperations iOS";
+		};
+		524300A81EFC61ED00333F46 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5243008F1EFC61B600333F46 /* Threadly.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 522AA4C31EFB1B20003CFC76;
+			remoteInfo = "Threadly iOS";
+		};
+		524300AB1EFC61FE00333F46 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 52ADBEDA1DE55CE9004CB28A /* ShiftOperations.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 52ADBEA61DE55272004CB28A;
+			remoteInfo = "ShiftOperations watchOS";
+		};
+		524300AD1EFC620500333F46 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5243008F1EFC61B600333F46 /* Threadly.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 522AA4D01EFB1B2C003CFC76;
+			remoteInfo = "Threadly watchOS";
+		};
+		524300B01EFC621600333F46 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 52ADBEDA1DE55CE9004CB28A /* ShiftOperations.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 52ADBEB31DE55279004CB28A;
+			remoteInfo = "ShiftOperations tvOS";
+		};
+		524300B21EFC621C00333F46 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5243008F1EFC61B600333F46 /* Threadly.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 522AA4EA1EFB1B4D003CFC76;
+			remoteInfo = "Threadly tvOS";
+		};
 		525FEEDA1EE67B5D0015254D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 52ADBEDA1DE55CE9004CB28A /* ShiftOperations.xcodeproj */;
@@ -316,6 +397,7 @@
 		523D8B101DBEADD1006FF58C /* CGVector+RandomKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGVector+RandomKit.swift"; sourceTree = "<group>"; };
 		524083961CA5B31E00AB8851 /* RandomKit.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = RandomKit.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		524083971CA5B35800AB8851 /* LICENSE.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = LICENSE.md; sourceTree = "<group>"; };
+		5243008F1EFC61B600333F46 /* Threadly.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Threadly.xcodeproj; path = Carthage/Checkouts/Threadly/Threadly.xcodeproj; sourceTree = "<group>"; };
 		5247B99C1E890BB200C6B60E /* RandomRetrievable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RandomRetrievable.swift; sourceTree = "<group>"; };
 		52485F661E3FEE11007C53AC /* StackArray.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StackArray.swift; sourceTree = "<group>"; };
 		525EB2BD1DBD607F00E8B246 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = RandomKit.xcodeproj/Info.plist; sourceTree = "<group>"; };
@@ -380,6 +462,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				524300A31EFC61D000333F46 /* Threadly.framework in Frameworks */,
 				52ADBEE91DE55D13004CB28A /* ShiftOperations.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -388,6 +471,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				524300AA1EFC61F800333F46 /* Threadly.framework in Frameworks */,
 				52ADBEEA1DE55D18004CB28A /* ShiftOperations.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -396,6 +480,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				524300AF1EFC620900333F46 /* Threadly.framework in Frameworks */,
 				52ADBEEB1DE55D1E004CB28A /* ShiftOperations.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -428,6 +513,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				524300B41EFC622500333F46 /* Threadly.framework in Frameworks */,
 				52ADBEEC1DE55D24004CB28A /* ShiftOperations.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -468,6 +554,17 @@
 				523D8B101DBEADD1006FF58C /* CGVector+RandomKit.swift */,
 			);
 			path = CoreGraphics;
+			sourceTree = "<group>";
+		};
+		524300901EFC61B600333F46 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				5243009A1EFC61B600333F46 /* Threadly.framework */,
+				5243009C1EFC61B600333F46 /* Threadly.framework */,
+				5243009E1EFC61B600333F46 /* Threadly.framework */,
+				524300A01EFC61B600333F46 /* Threadly.framework */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		525EB2BC1DBD606F00E8B246 /* Support */ = {
@@ -595,6 +692,7 @@
 			isa = PBXGroup;
 			children = (
 				52ADBEDA1DE55CE9004CB28A /* ShiftOperations.xcodeproj */,
+				5243008F1EFC61B600333F46 /* Threadly.xcodeproj */,
 			);
 			name = Dependencies;
 			sourceTree = "<group>";
@@ -701,6 +799,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				524300A21EFC61CB00333F46 /* PBXTargetDependency */,
 				525FEEDB1EE67B5D0015254D /* PBXTargetDependency */,
 			);
 			name = "RandomKit macOS";
@@ -720,6 +819,8 @@
 			buildRules = (
 			);
 			dependencies = (
+				524300A91EFC61ED00333F46 /* PBXTargetDependency */,
+				524300A71EFC61E800333F46 /* PBXTargetDependency */,
 			);
 			name = "RandomKit iOS";
 			productName = "RandomKit-iOS";
@@ -738,6 +839,8 @@
 			buildRules = (
 			);
 			dependencies = (
+				524300AE1EFC620500333F46 /* PBXTargetDependency */,
+				524300AC1EFC61FE00333F46 /* PBXTargetDependency */,
 			);
 			name = "RandomKit watchOS";
 			productName = "RandomKit-watchOS";
@@ -810,6 +913,8 @@
 			buildRules = (
 			);
 			dependencies = (
+				524300B31EFC621C00333F46 /* PBXTargetDependency */,
+				524300B11EFC621600333F46 /* PBXTargetDependency */,
 			);
 			name = "RandomKit tvOS";
 			productName = "RandomKit tvOS";
@@ -868,6 +973,10 @@
 					ProductGroup = 52ADBEDB1DE55CE9004CB28A /* Products */;
 					ProjectRef = 52ADBEDA1DE55CE9004CB28A /* ShiftOperations.xcodeproj */;
 				},
+				{
+					ProductGroup = 524300901EFC61B600333F46 /* Products */;
+					ProjectRef = 5243008F1EFC61B600333F46 /* Threadly.xcodeproj */;
+				},
 			);
 			projectRoot = "";
 			targets = (
@@ -883,6 +992,34 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
+		5243009A1EFC61B600333F46 /* Threadly.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Threadly.framework;
+			remoteRef = 524300991EFC61B600333F46 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		5243009C1EFC61B600333F46 /* Threadly.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Threadly.framework;
+			remoteRef = 5243009B1EFC61B600333F46 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		5243009E1EFC61B600333F46 /* Threadly.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Threadly.framework;
+			remoteRef = 5243009D1EFC61B600333F46 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		524300A01EFC61B600333F46 /* Threadly.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Threadly.framework;
+			remoteRef = 5243009F1EFC61B600333F46 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		52ADBEE21DE55CEA004CB28A /* ShiftOperations.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
@@ -1240,6 +1377,41 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		524300A21EFC61CB00333F46 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Threadly macOS";
+			targetProxy = 524300A11EFC61CB00333F46 /* PBXContainerItemProxy */;
+		};
+		524300A71EFC61E800333F46 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "ShiftOperations iOS";
+			targetProxy = 524300A61EFC61E800333F46 /* PBXContainerItemProxy */;
+		};
+		524300A91EFC61ED00333F46 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Threadly iOS";
+			targetProxy = 524300A81EFC61ED00333F46 /* PBXContainerItemProxy */;
+		};
+		524300AC1EFC61FE00333F46 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "ShiftOperations watchOS";
+			targetProxy = 524300AB1EFC61FE00333F46 /* PBXContainerItemProxy */;
+		};
+		524300AE1EFC620500333F46 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Threadly watchOS";
+			targetProxy = 524300AD1EFC620500333F46 /* PBXContainerItemProxy */;
+		};
+		524300B11EFC621600333F46 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "ShiftOperations tvOS";
+			targetProxy = 524300B01EFC621600333F46 /* PBXContainerItemProxy */;
+		};
+		524300B31EFC621C00333F46 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Threadly tvOS";
+			targetProxy = 524300B21EFC621C00333F46 /* PBXContainerItemProxy */;
+		};
 		525FEEDB1EE67B5D0015254D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = "ShiftOperations macOS";

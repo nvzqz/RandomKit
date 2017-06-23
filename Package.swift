@@ -33,6 +33,10 @@ let package = Package(
         Target(name: "RandomKit"),
         Target(name: "benchmark",
                dependencies: ["RandomKit"])
+    ],
+    dependencies: [
+        .Package(url: "https://github.com/nvzqz/Threadly.git",
+                 majorVersion: 1)
     ]
 )
 
@@ -41,5 +45,5 @@ let package = Package(
 #endif
 
 #if !swift(>=3.2)
-    package.dependencies = [.Package(url: "https://github.com/nvzqz/ShiftOperations.git", majorVersion: 1)]
+    package.dependencies.append(.Package(url: "https://github.com/nvzqz/ShiftOperations.git", majorVersion: 1))
 #endif
