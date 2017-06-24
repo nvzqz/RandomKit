@@ -574,6 +574,15 @@ extension Int8: UnsafeRandom, RandomWithMax, RandomWithMin, RandomToValue, Rando
 
 }
 
+#if swift(>=3.2)
+extension UnsignedInteger where Self: FixedWidthInteger {
+    fileprivate var _resigned: Self {
+        let bits = Self(extendingOrTruncating: MemoryLayout<Self>.size * 8 - 1)
+        return self ^ (1 &<< bits)
+    }
+}
+#endif
+
 extension UInt: UnsafeRandom, RandomWithMax, RandomWithMin, RandomToValue, RandomThroughValue, RandomInRange, RandomInClosedRange, RandomWithMaxWidth, RandomWithExactWidth {
 
     /// Generates a random value of `Self` using `randomGenerator`.
@@ -585,6 +594,7 @@ extension UInt: UnsafeRandom, RandomWithMax, RandomWithMin, RandomToValue, Rando
         }
     }
 
+    #if !swift(>=3.2)
     fileprivate var _resigned: UInt {
         let bits: UInt
         #if arch(i386) || arch(arm)
@@ -594,12 +604,9 @@ extension UInt: UnsafeRandom, RandomWithMax, RandomWithMin, RandomToValue, Rando
         #else
             bits = UInt(bitPattern: MemoryLayout<UInt>.size * 8 - 1)
         #endif
-        #if swift(>=3.2)
-            return self ^ (1 &<< bits)
-        #else
-            return self ^ (1 << bits)
-        #endif
+        return self ^ (1 << bits)
     }
+    #endif
 
 }
 
@@ -610,13 +617,11 @@ extension UInt64: UnsafeRandom, RandomWithMax, RandomWithMin, RandomToValue, Ran
         return randomGenerator.random64()
     }
 
+    #if !swift(>=3.2)
     fileprivate var _resigned: UInt64 {
-        #if swift(>=3.2)
-            return self ^ (1 &<< 63)
-        #else
-            return self ^ (1 << 63)
-        #endif
+        return self ^ (1 << 63)
     }
+    #endif
 
 }
 
@@ -627,13 +632,11 @@ extension UInt32: UnsafeRandom, RandomWithMax, RandomWithMin, RandomToValue, Ran
         return randomGenerator.random32()
     }
 
+    #if !swift(>=3.2)
     fileprivate var _resigned: UInt32 {
-        #if swift(>=3.2)
-            return self ^ (1 &<< 31)
-        #else
-            return self ^ (1 << 31)
-        #endif
+        return self ^ (1 << 31)
     }
+    #endif
 
 }
 
@@ -644,13 +647,11 @@ extension UInt16: UnsafeRandom, RandomWithMax, RandomWithMin, RandomToValue, Ran
         return randomGenerator.random16()
     }
 
+    #if !swift(>=3.2)
     fileprivate var _resigned: UInt16 {
-        #if swift(>=3.2)
-            return self ^ (1 &<< 15)
-        #else
-            return self ^ (1 << 15)
-        #endif
+        return self ^ (1 << 15)
     }
+    #endif
 
 }
 
@@ -661,12 +662,10 @@ extension UInt8: UnsafeRandom, RandomWithMax, RandomWithMin, RandomToValue, Rand
         return randomGenerator.random8()
     }
 
+    #if !swift(>=3.2)
     fileprivate var _resigned: UInt8 {
-        #if swift(>=3.2)
-            return self ^ (1 &<< 7)
-        #else
-            return self ^ (1 << 7)
-        #endif
+        return self ^ (1 << 7)
     }
+    #endif
 
 }
