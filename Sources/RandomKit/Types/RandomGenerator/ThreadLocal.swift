@@ -28,7 +28,7 @@
 import Foundation
 import Threadly
 
-private let _typeMap = ThreadLocal(value: [ObjectIdentifier: AnyObject]())
+private let _typeMap = ThreadLocal(create: [ObjectIdentifier: AnyObject].init)
 
 extension RandomGenerator {
 
