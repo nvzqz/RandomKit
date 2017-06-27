@@ -3,7 +3,9 @@
 set -e
 
 if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
-    git clone https://github.com/kylef/swiftenv.git "$SWIFTENV_ROOT"
+    if [[ ! -d "$SWIFTENV_ROOT" ]]; then
+        git clone https://github.com/kylef/swiftenv.git "$SWIFTENV_ROOT"
+    fi
 
     for version in $SWIFT_VERSIONS; do
         swiftenv install "$version"
