@@ -3,7 +3,7 @@
 set -e -o pipefail
 
 if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
-    for version in "$SWIFT_VERSIONS"; do
+    for version in $SWIFT_VERSIONS; do
         swiftenv global "$version"
         swiftenv version
 
