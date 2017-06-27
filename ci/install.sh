@@ -8,7 +8,9 @@ if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
     fi
 
     for version in $SWIFT_VERSIONS; do
-        swiftenv install "$version"
+        if ! swiftenv global $version;
+            then swiftenv install "$version"
+        fi
     done
 elif [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
     gem install xcpretty -N
