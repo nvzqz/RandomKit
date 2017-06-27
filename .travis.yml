@@ -9,6 +9,8 @@ matrix:
       dist: trusty
       env:
         - SWIFT_VERSIONS="3.0.2 3.1"
+        - SWIFTENV_ROOT="$HOME/.swiftenv"
+        - PATH="$SWIFTENV_ROOT/bin:$SWIFTENV_ROOT/shims:$PATH"
 env:
   global:
     - LC_CTYPE=en_US.UTF-8
