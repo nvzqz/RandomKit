@@ -58,11 +58,14 @@ class RandomKitTests: XCTestCase {
     let testCount = 100_000
 
     func testRandomInt() {
-        let min = -10
-        let max =  10
-        for _ in 0...testCount {
-            let r = Int.random(in: min...max, using: &RandomKitTests.generatorToTest.threadLocal.pointee)
-            XCTAssertTrue(r >= min && r <= max, "Random `Int` is out of bounds.")
+        RandomKitTests.generatorToTest.withThreadLocal { rng in
+            for max in stride(from: 1, through: Int.max - 128, by: Int.max / 128) {
+                for _ in 0 ..< testCount / 128 {
+                    let range = (-max)...max
+                    let num = Int.random(in: range, using: &rng)
+                    XCTAssertTrue(range ~= num, "\(num) is out of bounds of \(range).")
+                }
+            }
         }
     }
 
