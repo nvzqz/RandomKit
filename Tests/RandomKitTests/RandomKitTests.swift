@@ -92,10 +92,11 @@ class RandomKitTests: XCTestCase {
             XCTAssertGreaterThan(value, 0.0)
             XCTAssertLessThan(value, 1.0)
         }
-        let gen = RandomKitTests.generatorToTest.threadLocal
-        for _ in 0 ..< testCount {
-            test(with: gen.pointee.randomOpen32())
-            test(with: gen.pointee.randomOpen64())
+        RandomKitTests.generatorToTest.withThreadLocal { gen in
+            for _ in 0 ..< testCount {
+                test(with: gen.randomOpen32())
+                test(with: gen.randomOpen64())
+            }
         }
     }
 
@@ -104,150 +105,157 @@ class RandomKitTests: XCTestCase {
             XCTAssertGreaterThanOrEqual(value, 0.0)
             XCTAssertLessThanOrEqual(value, 1.0)
         }
-        let gen = RandomKitTests.generatorToTest.threadLocal
-        for _ in 0 ..< testCount {
-            test(with: gen.pointee.randomClosed32())
-            test(with: gen.pointee.randomClosed64())
+        RandomKitTests.generatorToTest.withThreadLocal { gen in
+            for _ in 0 ..< testCount {
+                test(with: gen.randomClosed32())
+                test(with: gen.randomClosed64())
+            }
         }
     }
 
     func testRandomDouble() {
         let min = -1.5
         let max =  0.5
-        for _ in 0...testCount {
-            let r = Double.random(in: min...max, using: &RandomKitTests.generatorToTest.threadLocal.pointee)
-            XCTAssertTrue(r >= min && r <= max, "Random `Double` is out of bounds.")
+        RandomKitTests.generatorToTest.withThreadLocal { gen in
+            for _ in 0 ..< testCount {
+                let r = Double.random(in: min...max, using: &gen)
+                XCTAssertTrue(r >= min && r <= max, "Random `Double` is out of bounds.")
+            }
         }
     }
 
     func testRandomFloat() {
         let min: Float = -1.5
         let max: Float =  0.5
-        for _ in 0...testCount {
-            let r = Float.random(in: min...max, using: &RandomKitTests.generatorToTest.threadLocal.pointee)
-            XCTAssertTrue(r >= min && r <= max, "Random `Float` is out of bounds.")
+        RandomKitTests.generatorToTest.withThreadLocal { gen in
+            for _ in 0 ..< testCount {
+                let r = Float.random(in: min...max, using: &gen)
+                XCTAssertTrue(r >= min && r <= max, "Random `Float` is out of bounds.")
+            }
         }
     }
 
     func testRandomBool() {
-        let falseCount = (0 ..< testCount).reduce(0) { count, _ in
-            Bool.random(using: &RandomKitTests.generatorToTest.threadLocal.pointee) ? count : count + 1
+        RandomKitTests.generatorToTest.withThreadLocal { gen in
+            let falseCount = (0 ..< testCount).reduce(0) { count, _ in
+                Bool.random(using: &gen) ? count : count + 1
+            }
+            let difference = 0.5
+            let percentRange = (50 - difference)...(50 + difference)
+            let percentFalse = Double(falseCount) / Double(testCount) * 100
+            XCTAssertTrue(percentRange ~= percentFalse, "One happens more often than the other.")
         }
-        let difference = 0.5
-        let percentRange = (50 - difference)...(50 + difference)
-        let percentFalse = Double(falseCount) / Double(testCount) * 100
-        XCTAssertTrue(percentRange ~= percentFalse, "One happens more often than the other.")
     }
 
     func testRandoms() {
-        do {
-            var iter = Int.randoms(using: &RandomKitTests.generatorToTest.threadLocal.pointee)
-            for _ in 0...10 {
-                XCTAssertNotNil(iter.next())
+        RandomKitTests.generatorToTest.withThreadLocal { gen in
+            do {
+                var iter = Int.randoms(using: &gen)
+                for _ in 0...10 {
+                    XCTAssertNotNil(iter.next())
+                }
             }
-        }
-        do {
-            let c = 10
-            var i = 0
-            var a = [Int]()
-            for v in Int.randoms(using: &RandomKitTests.generatorToTest.threadLocal.pointee) {
-                defer { i += 1 }
+            do {
+                let c = 10
+                var i = 0
+                var a = [Int]()
+                for v in Int.randoms(using: &gen) {
+                    defer { i += 1 }
 
-                if i >= c { break }
-                a.append(v)
+                    if i >= c { break }
+                    a.append(v)
+                }
+                XCTAssertEqual(a.count, c)
             }
-            XCTAssertEqual(a.count, c)
-        }
-        do {
-            var i = 0
-            let c = 10
-            var iter = Int.randoms(limitedBy: c, using: &RandomKitTests.generatorToTest.threadLocal.pointee)
-            while let _ = iter.next() {
-                i += 1
+            do {
+                var i = 0
+                let c = 10
+                var iter = Int.randoms(limitedBy: c, using: &gen)
+                while let _ = iter.next() {
+                    i += 1
+                }
+                XCTAssertEqual(i, c)
             }
-            XCTAssertEqual(i, c)
-        }
-        do {
-            let c = 10
-            let s = Int.randoms(limitedBy: c, using: &RandomKitTests.generatorToTest.threadLocal.pointee)
-            XCTAssertEqual(Array(s).count, c)
+            do {
+                let c = 10
+                let s = Int.randoms(limitedBy: c, using: &gen)
+                XCTAssertEqual(Array(s).count, c)
+            }
         }
     }
 
     func testRandomArray() {
-        let array: [Int] = Array(randomCount: 10, using: &RandomKitTests.generatorToTest.threadLocal.pointee)
-        XCTAssertEqual(array.count, 10)
+        RandomKitTests.generatorToTest.withThreadLocal { gen in
+            let array: [Int] = Array(randomCount: 10, using: &gen)
+            XCTAssertEqual(array.count, 10)
+        }
     }
 
     func testRandomSet() {
-        let set = Set<Int>(randomCount: 10, using: &RandomKitTests.generatorToTest.threadLocal.pointee)
-        XCTAssertEqual(set.count, 10)
+        RandomKitTests.generatorToTest.withThreadLocal { gen in
+            let set = Set<Int>(randomCount: 10, using: &gen)
+            XCTAssertEqual(set.count, 10)
+        }
     }
 
     func testRandomDictionary() {
-        let dict = [Int : String](randomCount: 10, using: &RandomKitTests.generatorToTest.threadLocal.pointee)
-        XCTAssertEqual(dict.count, 10)
+        RandomKitTests.generatorToTest.withThreadLocal { gen in
+            let dict = [Int : String](randomCount: 10, using: &gen)
+            XCTAssertEqual(dict.count, 10)
+        }
     }
 
     func testRandomArraySlice() {
-        let generator = RandomKitTests.generatorToTest.threadLocal
-        let count = 10
-        let array: [Int] = Array(randomCount: count, using: &generator.pointee)
-        let sliceCount = count / 2
+        RandomKitTests.generatorToTest.withThreadLocal { gen in
+            let count = 10
+            let array: [Int] = Array(randomCount: count, using: &gen)
+            let sliceCount = count / 2
 
-        var result = array.randomSlice(count: sliceCount, using: &generator.pointee)
-        XCTAssertEqual(result.count, sliceCount)
-        let simpleSlice = Array(array[0..<sliceCount])
-        XCTAssertNotEqual(result, simpleSlice)
-
-        result = array.randomSlice(count: count, using: &generator.pointee) // all
-        XCTAssertEqual(result.count, count)
-
-        result = array.randomSlice(count: count * 2, using: &generator.pointee) // too much
-        XCTAssertEqual(result.count, count)
-
-        result = array.randomSlice(count: 0, using: &generator.pointee) // nothing
-        XCTAssertEqual(result.count, 0)
-
-        let weightsArray: [[Double]] = [
-            Array(randomCount: count, using: &generator.pointee),
-            Array(randomCount: count, in: 0...100, using: &generator.pointee)
-        ]
-
-        for weights in weightsArray {
-            result = array.randomSlice(count: count, weights: weights, using: &generator.pointee) // all
-            XCTAssertEqual(result.count, count)
-
-            result = array.randomSlice(count: sliceCount, weights: weights, using: &generator.pointee)
+            var result = array.randomSlice(count: sliceCount, using: &gen)
             XCTAssertEqual(result.count, sliceCount)
-            //let simpleSlice = Array(array[0..<sliceCount])
-            // XCTAssertNotEqual(result, simpleSlice) // cannot be sure, depends and weights
+            let simpleSlice = Array(array[0..<sliceCount])
+            XCTAssertNotEqual(result, simpleSlice)
 
-            result = array.randomSlice(count: count * 2,
-                                       weights: weights,
-                                       using: &generator.pointee) // too much
+            result = array.randomSlice(count: count, using: &gen) // all
             XCTAssertEqual(result.count, count)
 
-            result = array.randomSlice(count: count * 2,
-                                       weights: Array(randomCount: count / 2, using: &generator.pointee),
-                                       using: &RandomKitTests.generatorToTest.threadLocal.pointee) // partial weights
+            result = array.randomSlice(count: count * 2, using: &gen) // too much
             XCTAssertEqual(result.count, count)
 
-            result = array.randomSlice(count: 0, weights: weights, using: &generator.pointee) // nothing
+            result = array.randomSlice(count: 0, using: &gen) // nothing
             XCTAssertEqual(result.count, 0)
+
+            let weightsArray: [[Double]] = [
+                Array(randomCount: count, using: &gen),
+                Array(randomCount: count, in: 0...100, using: &gen)
+            ]
+
+            for weights in weightsArray {
+                result = array.randomSlice(count: count, weights: weights, using: &gen) // all
+                XCTAssertEqual(result.count, count)
+
+                result = array.randomSlice(count: sliceCount, weights: weights, using: &gen)
+                XCTAssertEqual(result.count, sliceCount)
+                //let simpleSlice = Array(array[0..<sliceCount])
+                // XCTAssertNotEqual(result, simpleSlice) // cannot be sure, depends and weights
+
+                result = array.randomSlice(count: count * 2,
+                                           weights: weights,
+                                           using: &gen) // too much
+                XCTAssertEqual(result.count, count)
+
+                result = array.randomSlice(count: count * 2,
+                                           weights: Array(randomCount: count / 2, using: &gen),
+                                           using: &gen) // partial weights
+                XCTAssertEqual(result.count, count)
+                
+                result = array.randomSlice(count: 0, weights: weights, using: &gen) // nothing
+                XCTAssertEqual(result.count, 0)
+            }
         }
     }
 
     // MARK: utils
-
-    private static func randomDictionaryOfCount(_ count: Int) -> [Int : Int] {
-        return (0 ..< count).reduce(Dictionary(minimumCapacity: count)) { (dict, num) in
-            var mutableDict = dict
-
-            mutableDict[num] = num
-            return mutableDict
-        }
-    }
 
     private func roundToPlaces(_ value: Double, places: Int) -> Double {
         let divisor = pow(10.0, Double(places))
