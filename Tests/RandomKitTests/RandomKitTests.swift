@@ -255,27 +255,4 @@ class RandomKitTests: XCTestCase {
         }
     }
 
-    // MARK: utils
-
-    private func roundToPlaces(_ value: Double, places: Int) -> Double {
-        let divisor = pow(10.0, Double(places))
-        return round(value * divisor) / divisor
-    }
-
-    private func round10(_ value: Double) -> Double {
-        return roundToPlaces(value, places: 10)
-    }
-
-    private func discretMoment(_ array: [Int]) -> (mean: Double, variance: Double) {
-        let dCount = Double(array.count)
-        let mean = Double(array.reduce(0, +)) / dCount
-        let varianceSum = { (current: Double, val: Int) in
-            current + (Double(val) - mean) * (Double(val) - mean)
-        }
-        let variance = array.reduce(0.0, varianceSum) / dCount
-
-        return (mean: mean, variance: variance)
-    }
-
-    var discretAccuracy = 0.007
 }
