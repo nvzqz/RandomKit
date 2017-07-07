@@ -40,6 +40,13 @@ public struct XorshiftStar: RandomBytesGenerator, Seedable, SeedableFromRandomGe
 
     private typealias _State = _Array16<UInt64>
 
+    private static var _jump: _State = (
+        0x84242F96ECA9C41D, 0xA3C65B8776F96855, 0x5B34A39F070B5837, 0x4489AFFCE4F31A1E,
+        0x2FFEEB0A48316F40, 0xDC2D9891FE68C022, 0x3659132BB12FEA70, 0xAAC17D8EFA43CAB8,
+        0xC4CB815590989B13, 0x5EE975283D71C93B, 0x691548C86C1BD540, 0x7910C41D10A1E6A5,
+        0x0B5FC64563B3E2A8, 0x047F7684E9FC949D, 0xB99181F2D8F685CA, 0x284600E3F30E38C3
+    )
+
     /// A default global instance seeded with `DeviceRandom.default`.
     public static var `default` = seeded
 
@@ -85,16 +92,10 @@ public struct XorshiftStar: RandomBytesGenerator, Seedable, SeedableFromRandomGe
 
     /// Advances the generator 2^512 calls forward.
     public mutating func jump() {
-        var jump: _State = (
-            0x84242F96ECA9C41D, 0xA3C65B8776F96855, 0x5B34A39F070B5837, 0x4489AFFCE4F31A1E,
-            0x2FFEEB0A48316F40, 0xDC2D9891FE68C022, 0x3659132BB12FEA70, 0xAAC17D8EFA43CAB8,
-            0xC4CB815590989B13, 0x5EE975283D71C93B, 0x691548C86C1BD540, 0x7910C41D10A1E6A5,
-            0x0B5FC64563B3E2A8, 0x047F7684E9FC949D, 0xB99181F2D8F685CA, 0x284600E3F30E38C3
-        )
         var table: _State = _zero16()
         let statePtr = _contents(of: &_state)
         let tablePtr = _contents(of: &table)
-        let jumpPtr = _contents(of: &jump)
+        let jumpPtr = _contents(of: &XorshiftStar._jump)
         for i in 0 ..< 16 {
             for b: UInt64 in 0 ..< 64 {
                 if (jumpPtr[i] & 1) << b != 0 {
