@@ -56,11 +56,14 @@ class ChaChaTests: XCTestCase {
                         0x7621b729, 0x434ee69c, 0xb03371d5, 0xd539d874,
                         0x281fed31, 0x45fb0a51, 0x1f0ae1ac, 0x6f4d794b])
 
-        rng = ChaCha(seed: 0...7)
+        rng.reseed(with: 0...7)
+        let num = 16
         var arr = [UInt32]()
-        for _ in 0 ..< 16 {
+        arr.reserveCapacity(num)
+
+        for _ in 0 ..< num {
             arr.append(rng.random32())
-            for _ in 0 ..< 16 {
+            for _ in 0 ..< num {
                 _ = rng.random32()
             }
         }
