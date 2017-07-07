@@ -99,4 +99,13 @@ public struct Xoroshiro: RandomBytesGenerator, Seedable, SeedableFromRandomGener
         _state = (s0, s1)
     }
 
+    /// Advances the generator `count` * (2^64) calls forward.
+    ///
+    /// - parameter count: The number of jumps to make.
+    public mutating func jump(count: UInt) {
+        for _ in 0 ..< count {
+            jump()
+        }
+    }
+
 }
