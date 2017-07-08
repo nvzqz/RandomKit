@@ -73,9 +73,7 @@ RandomKit is a Swift framework that makes random data generation simple and easy
     - tvOS 9.0+
     - Linux
 - Xcode 8.0+
-- Swift
-    - 3.x
-    - 4.0
+- Swift 3.0.2+ & 4.0
 
 RandomKit is possibly also compatible with FreeBSD, Android, and Windows
 (under Cygwin) but has not been tested for those platforms.
