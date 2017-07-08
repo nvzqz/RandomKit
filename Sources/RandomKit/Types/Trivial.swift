@@ -25,17 +25,20 @@
 //  THE SOFTWARE.
 //
 
-/// A marker protocol demonstrating that conforming types have no references nor spare bits and can thus have their bits
-/// safely randomized.
-internal protocol _Trivial {}
+/// A marker protocol demonstrating that instances of conforming types can
+/// have their bits safely randomized, which allows for certain optimizations.
+///
+/// - warning: Conforming types **must** have no references nor spare bits. It
+///   is extremely unsafe to not meet this condition.
+public protocol Trivial {}
 
-extension Int: _Trivial {}
-extension Int64: _Trivial {}
-extension Int32: _Trivial {}
-extension Int16: _Trivial {}
-extension Int8: _Trivial {}
-extension UInt: _Trivial {}
-extension UInt64: _Trivial {}
-extension UInt32: _Trivial {}
-extension UInt16: _Trivial {}
-extension UInt8: _Trivial {}
+extension Int: Trivial {}
+extension Int64: Trivial {}
+extension Int32: Trivial {}
+extension Int16: Trivial {}
+extension Int8: Trivial {}
+extension UInt: Trivial {}
+extension UInt64: Trivial {}
+extension UInt32: Trivial {}
+extension UInt16: Trivial {}
+extension UInt8: Trivial {}

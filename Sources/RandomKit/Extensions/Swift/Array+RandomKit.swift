@@ -68,10 +68,10 @@ extension ContiguousArray {
 extension Array where Element: Random {
     /// Construct an Array of random elements.
     ///
-    /// For better performance, this initializer uses `init(unsafeRandomCount:using:)` for trivial types such as native
-    /// integers. Otherwise it will call `Element.random(using:)` to generate values.
+    /// For better performance, this initializer uses `init(unsafeRandomCount:using:)` for `Trivial` types such as
+    /// native integers. Otherwise it will call `Element.random(using:)` to generate values.
     public init<R: RandomGenerator>(randomCount: Int, using randomGenerator: inout R) {
-        if Element.self is _Trivial.Type {
+        if Element.self is Trivial.Type {
             self = Array(unsafeRandomCount: randomCount, using: &randomGenerator)
         } else {
             var pointer: UnsafeMutablePointer<Element>
