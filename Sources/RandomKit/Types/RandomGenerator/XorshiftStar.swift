@@ -111,4 +111,13 @@ public struct XorshiftStar: RandomBytesGenerator, Seedable, SeedableFromRandomGe
         }
     }
 
+    /// Advances the generator `count` * (2^512) calls forward.
+    ///
+    /// - parameter count: The number of jumps to make.
+    public mutating func jump(count: UInt) {
+        for _ in 0 ..< count {
+            jump()
+        }
+    }
+
 }
