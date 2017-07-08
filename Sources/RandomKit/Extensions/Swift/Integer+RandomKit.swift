@@ -30,15 +30,6 @@
 import ShiftOperations
 #endif
 
-extension ExpressibleByIntegerLiteral where Self: UnsafeRandom {
-
-    /// The base randomizable value for `Self`. Always zero.
-    public static var randomizableValue: Self {
-        return 0
-    }
-
-}
-
 extension ExpressibleByIntegerLiteral where Self: RandomToValue & RandomThroughValue {
 
     /// The random base from which to generate.
@@ -372,7 +363,7 @@ extension UnsignedInteger where Self: ShiftOperations & RandomWithMaxWidth & Ran
 
 #endif
 
-extension Int: UnsafeRandom, RandomWithMax, RandomWithMin, RandomToValue, RandomThroughValue, RandomInRange, RandomInClosedRange {
+extension Int: RandomWithMax, RandomWithMin, RandomToValue, RandomThroughValue, RandomInRange, RandomInClosedRange {
 
     @inline(__always)
     private static func _resignedRange(from range: Range<Int>) -> Range<UInt> {
@@ -410,7 +401,7 @@ extension Int: UnsafeRandom, RandomWithMax, RandomWithMin, RandomToValue, Random
 
 }
 
-extension Int64: UnsafeRandom, RandomWithMax, RandomWithMin, RandomToValue, RandomThroughValue, RandomInRange, RandomInClosedRange {
+extension Int64: RandomWithMax, RandomWithMin, RandomToValue, RandomThroughValue, RandomInRange, RandomInClosedRange {
 
     @inline(__always)
     private static func _resignedRange(from range: Range<Int64>) -> Range<UInt64> {
@@ -451,7 +442,7 @@ extension Int64: UnsafeRandom, RandomWithMax, RandomWithMin, RandomToValue, Rand
 
 }
 
-extension Int32: UnsafeRandom, RandomWithMax, RandomWithMin, RandomToValue, RandomThroughValue, RandomInRange, RandomInClosedRange {
+extension Int32: RandomWithMax, RandomWithMin, RandomToValue, RandomThroughValue, RandomInRange, RandomInClosedRange {
 
     @inline(__always)
     private static func _resignedRange(from range: Range<Int32>) -> Range<UInt32> {
@@ -492,7 +483,7 @@ extension Int32: UnsafeRandom, RandomWithMax, RandomWithMin, RandomToValue, Rand
 
 }
 
-extension Int16: UnsafeRandom, RandomWithMax, RandomWithMin, RandomToValue, RandomThroughValue, RandomInRange, RandomInClosedRange {
+extension Int16: RandomWithMax, RandomWithMin, RandomToValue, RandomThroughValue, RandomInRange, RandomInClosedRange {
 
     @inline(__always)
     private static func _resignedRange(from range: Range<Int16>) -> Range<UInt16> {
@@ -533,7 +524,7 @@ extension Int16: UnsafeRandom, RandomWithMax, RandomWithMin, RandomToValue, Rand
 
 }
 
-extension Int8: UnsafeRandom, RandomWithMax, RandomWithMin, RandomToValue, RandomThroughValue, RandomInRange, RandomInClosedRange {
+extension Int8: RandomWithMax, RandomWithMin, RandomToValue, RandomThroughValue, RandomInRange, RandomInClosedRange {
 
     @inline(__always)
     private static func _resignedRange(from range: Range<Int8>) -> Range<UInt8> {
@@ -583,7 +574,7 @@ extension UnsignedInteger where Self: FixedWidthInteger {
 }
 #endif
 
-extension UInt: UnsafeRandom, RandomWithMax, RandomWithMin, RandomToValue, RandomThroughValue, RandomInRange, RandomInClosedRange, RandomWithMaxWidth, RandomWithExactWidth {
+extension UInt: RandomWithMax, RandomWithMin, RandomToValue, RandomThroughValue, RandomInRange, RandomInClosedRange, RandomWithMaxWidth, RandomWithExactWidth {
 
     /// Generates a random value of `Self` using `randomGenerator`.
     public static func random<R: RandomGenerator>(using randomGenerator: inout R) -> UInt {
@@ -610,7 +601,7 @@ extension UInt: UnsafeRandom, RandomWithMax, RandomWithMin, RandomToValue, Rando
 
 }
 
-extension UInt64: UnsafeRandom, RandomWithMax, RandomWithMin, RandomToValue, RandomThroughValue, RandomInRange, RandomInClosedRange, RandomWithMaxWidth, RandomWithExactWidth {
+extension UInt64: RandomWithMax, RandomWithMin, RandomToValue, RandomThroughValue, RandomInRange, RandomInClosedRange, RandomWithMaxWidth, RandomWithExactWidth {
 
     /// Generates a random value of `Self` using `randomGenerator`.
     public static func random<R: RandomGenerator>(using randomGenerator: inout R) -> UInt64 {
@@ -625,7 +616,7 @@ extension UInt64: UnsafeRandom, RandomWithMax, RandomWithMin, RandomToValue, Ran
 
 }
 
-extension UInt32: UnsafeRandom, RandomWithMax, RandomWithMin, RandomToValue, RandomThroughValue, RandomInRange, RandomInClosedRange, RandomWithMaxWidth, RandomWithExactWidth {
+extension UInt32: RandomWithMax, RandomWithMin, RandomToValue, RandomThroughValue, RandomInRange, RandomInClosedRange, RandomWithMaxWidth, RandomWithExactWidth {
 
     /// Generates a random value of `Self` using `randomGenerator`.
     public static func random<R: RandomGenerator>(using randomGenerator: inout R) -> UInt32 {
@@ -640,7 +631,7 @@ extension UInt32: UnsafeRandom, RandomWithMax, RandomWithMin, RandomToValue, Ran
 
 }
 
-extension UInt16: UnsafeRandom, RandomWithMax, RandomWithMin, RandomToValue, RandomThroughValue, RandomInRange, RandomInClosedRange, RandomWithMaxWidth, RandomWithExactWidth {
+extension UInt16: RandomWithMax, RandomWithMin, RandomToValue, RandomThroughValue, RandomInRange, RandomInClosedRange, RandomWithMaxWidth, RandomWithExactWidth {
 
     /// Generates a random value of `Self` using `randomGenerator`.
     public static func random<R: RandomGenerator>(using randomGenerator: inout R) -> UInt16 {
@@ -655,7 +646,7 @@ extension UInt16: UnsafeRandom, RandomWithMax, RandomWithMin, RandomToValue, Ran
 
 }
 
-extension UInt8: UnsafeRandom, RandomWithMax, RandomWithMin, RandomToValue, RandomThroughValue, RandomInRange, RandomInClosedRange, RandomWithMaxWidth, RandomWithExactWidth {
+extension UInt8: RandomWithMax, RandomWithMin, RandomToValue, RandomThroughValue, RandomInRange, RandomInClosedRange, RandomWithMaxWidth, RandomWithExactWidth {
 
     /// Generates a random value of `Self` using `randomGenerator`.
     public static func random<R: RandomGenerator>(using randomGenerator: inout R) -> UInt8 {

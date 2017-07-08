@@ -145,7 +145,7 @@ func benchmarkSafeRandomArray<T: Random, R: RandomGenerator>(for type: T.Type, r
     print("")
 }
 
-func benchmarkUnsafeRandomArray<T: UnsafeRandom, R: RandomGenerator>(for type: T.Type,
+func benchmarkUnsafeRandomArray<T, R: RandomGenerator>(for type: T.Type,
                                 randomCount: Int,
                                 count: Int = count,
                                 using randomGenerator: inout R) {

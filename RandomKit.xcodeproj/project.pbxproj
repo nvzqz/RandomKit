@@ -75,10 +75,6 @@
 		524F1E2E1E31301600BDE35F /* RandomRawRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FD11371DE2811C002EF43E /* RandomRawRepresentable.swift */; };
 		524F1E2F1E31301700BDE35F /* RandomRawRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FD11371DE2811C002EF43E /* RandomRawRepresentable.swift */; };
 		524F1E301E31301700BDE35F /* RandomRawRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FD11371DE2811C002EF43E /* RandomRawRepresentable.swift */; };
-		524F1E311E31303F00BDE35F /* UnsafeRandom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 520DA1341DDF16FD00F265CE /* UnsafeRandom.swift */; };
-		524F1E321E31303F00BDE35F /* UnsafeRandom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 520DA1341DDF16FD00F265CE /* UnsafeRandom.swift */; };
-		524F1E331E31304000BDE35F /* UnsafeRandom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 520DA1341DDF16FD00F265CE /* UnsafeRandom.swift */; };
-		524F1E341E31304100BDE35F /* UnsafeRandom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 520DA1341DDF16FD00F265CE /* UnsafeRandom.swift */; };
 		524F1E391E31312800BDE35F /* Integer+RandomKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52737DF51DBEBEED009B5E9D /* Integer+RandomKit.swift */; };
 		524F1E3A1E31312900BDE35F /* Integer+RandomKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52737DF51DBEBEED009B5E9D /* Integer+RandomKit.swift */; };
 		524F1E3B1E31312900BDE35F /* Integer+RandomKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52737DF51DBEBEED009B5E9D /* Integer+RandomKit.swift */; };
@@ -383,7 +379,6 @@
 
 /* Begin PBXFileReference section */
 		520396741E9AFD8F0041FAA3 /* ChaCha.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChaCha.swift; sourceTree = "<group>"; };
-		520DA1341DDF16FD00F265CE /* UnsafeRandom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnsafeRandom.swift; sourceTree = "<group>"; };
 		520DA1391DDF5FA800F265CE /* RandomEnum.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RandomEnum.swift; sourceTree = "<group>"; };
 		5217714E1DE6D5EF00DD4584 /* UniqueShuffleable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UniqueShuffleable.swift; sourceTree = "<group>"; };
 		521771671DE6DF9C00DD4584 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
@@ -598,7 +593,6 @@
 				5217714E1DE6D5EF00DD4584 /* UniqueShuffleable.swift */,
 				52FD11371DE2811C002EF43E /* RandomRawRepresentable.swift */,
 				5268B1881F10551E00983C33 /* Trivial.swift */,
-				520DA1341DDF16FD00F265CE /* UnsafeRandom.swift */,
 				520DA1391DDF5FA800F265CE /* RandomEnum.swift */,
 			);
 			path = Types;
@@ -1112,7 +1106,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				524F1E311E31303F00BDE35F /* UnsafeRandom.swift in Sources */,
 				524F1E3D1E3132F800BDE35F /* RandomEnum.swift in Sources */,
 				522268EC1E4163EC00C8865A /* XorshiftStar.swift in Sources */,
 				524F1E111E312E6000BDE35F /* RandomThroughValue.swift in Sources */,
@@ -1173,7 +1166,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				524F1E321E31303F00BDE35F /* UnsafeRandom.swift in Sources */,
 				524F1E3E1E3132F900BDE35F /* RandomEnum.swift in Sources */,
 				522268ED1E4163EC00C8865A /* XorshiftStar.swift in Sources */,
 				524F1E121E312E6100BDE35F /* RandomThroughValue.swift in Sources */,
@@ -1234,7 +1226,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				524F1E331E31304000BDE35F /* UnsafeRandom.swift in Sources */,
 				524F1E3F1E3132F900BDE35F /* RandomEnum.swift in Sources */,
 				522268EE1E4163EC00C8865A /* XorshiftStar.swift in Sources */,
 				524F1E131E312E6100BDE35F /* RandomThroughValue.swift in Sources */,
@@ -1325,7 +1316,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				524F1E341E31304100BDE35F /* UnsafeRandom.swift in Sources */,
 				524F1E401E3132FA00BDE35F /* RandomEnum.swift in Sources */,
 				522268EF1E4163EC00C8865A /* XorshiftStar.swift in Sources */,
 				524F1E141E312E6100BDE35F /* RandomThroughValue.swift in Sources */,
