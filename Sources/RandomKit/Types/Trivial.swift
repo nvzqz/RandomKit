@@ -42,3 +42,10 @@ extension UInt64: Trivial {}
 extension UInt32: Trivial {}
 extension UInt16: Trivial {}
 extension UInt8: Trivial {}
+
+extension Trivial where Self: Random {
+    /// Generates a random value of `Self` using `randomGenerator`.
+    public static func random<R: RandomGenerator>(using randomGenerator: inout R) -> Self {
+        return randomGenerator.randomUnsafeValue()
+    }
+}
