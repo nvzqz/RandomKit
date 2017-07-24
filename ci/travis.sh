@@ -3,9 +3,7 @@
 set -e -o pipefail
 
 if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
-    swiftenv global "$SWIFT_VERSION"
     swiftenv version
-
     swift test
 elif [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
     xcodebuild -version
