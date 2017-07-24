@@ -30,6 +30,8 @@ RandomKit is a Swift framework that makes random data generation simple and easy
         - [RandomInClosedRange](#randominclosedrange)
         - [RandomToValue](#randomtovalue)
         - [RandomThroughValue](#randomthroughvalue)
+        - [RandomRetrievable](#randomretrievable)
+        - [RandomRetrievableInRange](#randomretrievableinrange)
         - [Shuffleable](#shuffleable)
         - [UniqueShuffleable](#uniqueshuffleable)
     - [Swift Types](#swift-types)
@@ -37,7 +39,6 @@ RandomKit is a Swift framework that makes random data generation simple and easy
         - [Floating Point Numbers](#floating-point-numbers)
         - [Bool](#bool)
         - [String, Character, and UnicodeScalar](#string-character-and-unicodescalar)
-        - [Sequence and Collection](#sequence-and-collection)
         - [Arrays](#arrays)
         - [Arrays Benchmark](#arrays-benchmark)
     - [Foundation Types](#foundation-types)
@@ -328,6 +329,27 @@ another value, inclusive.
 The same rules regarding the base value of `RandomToValue` apply to
 `RandomThroughValue`.
 
+#### RandomRetrievable
+
+A protocol for types whose instances can have random elements retrieved.
+
+```swift
+["Bob", "Cindy", "May", "Charles", "Javier"].random(using: &randomGenerator)  // "Charles"
+
+"Hello".characters.random(using: &randomGenerator)  // "e"
+```
+
+Some Foundation types like `NSArray` conform to this protocol.
+
+#### RandomRetrievableInRange
+
+A protocol for types whose instances can have random elements retrieved from
+within a `Range<Index>`.
+
+```swift
+[20, 37, 42].random(in: 1 ..< 3, using: &randomGenerator)  // Either 37 or 42
+```
+
 #### Shuffleable
 
 A protocol for types whose elements can be shuffled.
@@ -409,25 +431,6 @@ String.random(ofLength: 10, in: "A"..."z", using: &randomGenerator)  // "poUtXJI
 
 Character.random(using: &randomGenerator)                 // "#"
 Character.random(in: "A"..."z", using: &randomGenerator)  // "s"
-```
-
-#### Sequence and Collection
-
-All types that conform to `Sequence` and/or `Collection` have a `random`
-property that returns a random element, or `nil` if the collection is empty.
-
-```swift
-["Bob", "Cindy", "May", "Charles", "Javier"].random(using: &randomGenerator)  // "Charles"
-
-"Hello".characters.random(using: &randomGenerator)  // "e"
-```
-
-Even Foundation types that conform to either protocol get this property.
-
-```swift
-NSDictionary(dictionary: ["k1":"v1", "k2":"v2"]).random(using: &randomGenerator)      // (k1, v1)
-
-NSSet(array: ["First", "Second", "Third", "Fourth"]).random(using: &randomGenerator)  // "Third"
 ```
 
 #### Arrays
