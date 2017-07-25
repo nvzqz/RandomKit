@@ -39,13 +39,15 @@
 //  THE USE OR PERFORMANCE OF THIS SOFTWARE.
 //
 
+import Threadly
+
 /// A generator that uses the [Xoroshiro][1] algorithm.
 ///
 /// Its source is located [here][2].
 ///
 /// [1]: http://xoroshiro.di.unimi.it/
 /// [2]: http://xoroshiro.di.unimi.it/xoroshiro128plus.c
-public struct Xoroshiro: RandomBytesGenerator, Seedable, SeedableFromRandomGenerator {
+public struct Xoroshiro: RandomBytesGenerator, Seedable, SeedableFromRandomGenerator, ThreadLocalRetrievable {
 
     /// A default global instance seeded with `DeviceRandom.default`.
     public static var `default` = seeded

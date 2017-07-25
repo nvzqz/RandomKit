@@ -25,13 +25,15 @@
 //  THE SOFTWARE.
 //
 
+import Threadly
+
 /// A generator that uses a [Xorshift][1] algorithm.
 ///
 /// This implementation is taken from [XorShiftRng][2] in the Rust `rand` crate.
 ///
 /// [1]: http://www.jstatsoft.org/v08/i14/paper
 /// [2]: https://doc.rust-lang.org/rand/rand/struct.XorShiftRng.html
-public struct Xorshift: RandomBytesGenerator, Seedable, SeedableFromRandomGenerator {
+public struct Xorshift: RandomBytesGenerator, Seedable, SeedableFromRandomGenerator, ThreadLocalRetrievable {
 
     /// A default global instance seeded with `DeviceRandom.default`.
     public static var `default` = seeded
