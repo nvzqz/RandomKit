@@ -36,7 +36,7 @@ let package = Package(
     ],
     dependencies: [
         .Package(url: "https://github.com/nvzqz/Threadly.git",
-                 majorVersion: 1)
+                 majorVersion: 2)
     ]
 )
 

@@ -1,2 +1,2 @@
 github "nvzqz/ShiftOperations" ~> 1.0.2
-github "nvzqz/Threadly" ~> 1.0
+github "nvzqz/Threadly" ~> 2.0.1

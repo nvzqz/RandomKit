@@ -14,5 +14,5 @@ Pod::Spec.new do |s|
     s.source                    = { :git => "https://github.com/nvzqz/#{s.name}.git", :tag => "v#{s.version}" }
     s.source_files              = "Sources/#{s.name}/**/*.swift"
     s.dependency "ShiftOperations", "~> 1.0.2"
-    s.dependency "Threadly", "~> 1.0"
+    s.dependency "Threadly", "~> 2.0.1"
 end
