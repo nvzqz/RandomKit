@@ -147,8 +147,12 @@ public struct ChaCha: RandomBytesGenerator, Seedable, SeedableFromSequence, Seed
     /// Reseeds `self` with `seed`.
     public mutating func reseed<S: Sequence>(with seed: S) where S.Iterator.Element == UInt32 {
         _reset()
+        var iter = seed.makeIterator()
         let keyPointer = _statePointer
-        for (i, s) in zip(4 ..< ChaCha._keyCount + 4, seed) {
+        for i in 4 ..< ChaCha._keyCount + 4 {
+            guard let s = iter.next() else {
+                break
+            }
             keyPointer[i] = s
         }
     }

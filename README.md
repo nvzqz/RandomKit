@@ -30,6 +30,8 @@ RandomKit is a Swift framework that makes random data generation simple and easy
         - [RandomInClosedRange](#randominclosedrange)
         - [RandomToValue](#randomtovalue)
         - [RandomThroughValue](#randomthroughvalue)
+        - [RandomRetrievable](#randomretrievable)
+        - [RandomRetrievableInRange](#randomretrievableinrange)
         - [Shuffleable](#shuffleable)
         - [UniqueShuffleable](#uniqueshuffleable)
     - [Swift Types](#swift-types)
@@ -37,7 +39,6 @@ RandomKit is a Swift framework that makes random data generation simple and easy
         - [Floating Point Numbers](#floating-point-numbers)
         - [Bool](#bool)
         - [String, Character, and UnicodeScalar](#string-character-and-unicodescalar)
-        - [Sequence and Collection](#sequence-and-collection)
         - [Arrays](#arrays)
         - [Arrays Benchmark](#arrays-benchmark)
     - [Foundation Types](#foundation-types)
@@ -112,7 +113,7 @@ to learn more.
     ```ruby
     use_frameworks!
 
-    pod 'RandomKit', '~> 5.1.0'
+    pod 'RandomKit', '~> 5.2.0'
     ```
 
     If you want to be on the bleeding edge, replace the last line with:
@@ -290,7 +291,7 @@ A protocol for types that can generate optional random values within a range
 using a `RandomGenerator`.
 
 ```swift
-Int.random(within: 0 ..< 0, using: &randomGenerator) // nil
+Int.random(in: 0 ..< 0, using: &randomGenerator) // nil
 ```
 
 #### RandomInClosedRange
@@ -299,7 +300,7 @@ A protocol for types that can generate random values within a closed range
 using a `RandomGenerator`.
 
 ```swift
-Int.random(within: -100 ... 100, using: &randomGenerator)       // -79
+Int.random(in: -100 ... 100, using: &randomGenerator) // -79
 ```
 
 #### RandomToValue
@@ -327,6 +328,27 @@ another value, inclusive.
 
 The same rules regarding the base value of `RandomToValue` apply to
 `RandomThroughValue`.
+
+#### RandomRetrievable
+
+A protocol for types whose instances can have random elements retrieved.
+
+```swift
+["Bob", "Cindy", "May", "Charles", "Javier"].random(using: &randomGenerator)  // "Charles"
+
+"Hello".characters.random(using: &randomGenerator)  // "e"
+```
+
+Some Foundation types like `NSArray` conform to this protocol.
+
+#### RandomRetrievableInRange
+
+A protocol for types whose instances can have random elements retrieved from
+within a `Range<Index>`.
+
+```swift
+[20, 37, 42].random(in: 1 ..< 3, using: &randomGenerator)  // Either 37 or 42
+```
 
 #### Shuffleable
 
@@ -359,8 +381,8 @@ The `random(using:)` function creates an integer of any value. As a result,
 negative values can result for signed integers.
 
 ```swift
-Int.random(using: &randomGenerator)                   // An Int within Int.min and Int.max
-Int.random(within: 10...20, using: &randomGenerator)  // An Int within 10 and 20
+Int.random(using: &randomGenerator)               // An Int within Int.min and Int.max
+Int.random(in: 10...20, using: &randomGenerator)  // An Int within 10 and 20
 ```
 
 To create a positive signed integer, use `random(to:using:)` or `random(through:using:)`.
@@ -373,7 +395,7 @@ Int.random(through: 10, using: &randomGenerator)  // 4
 Signed integers can be created from any range, without danger of overflow.
 
 ```swift
-Int.random(within: (.min + 1000)...(.max - 200), using: &randomGenerator)  // 5698527899712144154
+Int.random(in: (.min + 1000)...(.max - 200), using: &randomGenerator)  // 5698527899712144154
 ```
 
 #### Floating Point Numbers
@@ -382,10 +404,10 @@ Generate a random floating point value from within a range or `0.0...1.0` by
 default.
 
 ```swift
-Double.random(using: &randomGenerator)                     //  0.9813615573117475
-Double.random(within:  -10...10, using: &randomGenerator)  // -4.03042337718197
-Float.random(within:   -10...10, using: &randomGenerator)  //  5.167088
-Float80.random(within: -10...10, using: &randomGenerator)  // -3.63204542399198874
+Double.random(using: &randomGenerator)                 //  0.9813615573117475
+Double.random(in:  -10...10, using: &randomGenerator)  // -4.03042337718197
+Float.random(in:   -10...10, using: &randomGenerator)  //  5.167088
+Float80.random(in: -10...10, using: &randomGenerator)  // -3.63204542399198874
 ```
 
 All `FloatingPoint` types can also conform to `RandomInClosedRange`
@@ -404,30 +426,11 @@ which has 1 in `weight` chance of being `true`.
 default.
 
 ```swift
-String.random(ofLength: 10, using: &randomGenerator)                     // "}+[=Ng>$w1"
-String.random(ofLength: 10, within: "A"..."z", using: &randomGenerator)  // "poUtXJIbv["
+String.random(ofLength: 10, using: &randomGenerator)                 // "}+[=Ng>$w1"
+String.random(ofLength: 10, in: "A"..."z", using: &randomGenerator)  // "poUtXJIbv["
 
-Character.random(using: &randomGenerator)                     // "#"
-Character.random(within: "A"..."z", using: &randomGenerator)  // "s"
-```
-
-#### Sequence and Collection
-
-All types that conform to `Sequence` and/or `Collection` have a `random`
-property that returns a random element, or `nil` if the collection is empty.
-
-```swift
-["Bob", "Cindy", "May", "Charles", "Javier"].random(using: &randomGenerator)  // "Charles"
-
-"Hello".characters.random(using: &randomGenerator)  // "e"
-```
-
-Even Foundation types that conform to either protocol get this property.
-
-```swift
-NSDictionary(dictionary: ["k1":"v1", "k2":"v2"]).random(using: &randomGenerator)      // (k1, v1)
-
-NSSet(array: ["First", "Second", "Third", "Fourth"]).random(using: &randomGenerator)  // "Third"
+Character.random(using: &randomGenerator)                 // "#"
+Character.random(in: "A"..."z", using: &randomGenerator)  // "s"
 ```
 
 #### Arrays
@@ -481,7 +484,7 @@ The default `random(using:)` function returns a `Date` within `Date.distantPast`
 
 ```swift
 Date.random(using: &randomGenerator)  // "Aug 28, 2006, 3:38 AM"
-Date.random(within: Date.distantPast...Date(), using: &randomGenerator)  // "Feb 7, 472, 5:40 AM"
+Date.random(in: Date.distantPast...Date(), using: &randomGenerator)  // "Feb 7, 472, 5:40 AM"
 ```
 
 #### Decimal
@@ -491,8 +494,8 @@ The `Decimal` type conforms to various `Random-` protocols.
 The `random(using:)` function returns a `Decimal` between 0 and 1 by default.
 
 ```swift
-Decimal.random(using: &randomGenerator)                      // 0.87490000409886706715888973957833129437
-Decimal.random(within: 0.0...10.0, using: &randomGenerator)  // 6.5464639772070720738747790627821299859
+Decimal.random(using: &randomGenerator)                  // 0.87490000409886706715888973957833129437
+Decimal.random(in: 0.0...10.0, using: &randomGenerator)  // 6.5464639772070720738747790627821299859
 ```
 
 #### NSNumber
@@ -501,9 +504,9 @@ A random number can be generated from within an integer or double range, or
 `0...100` by default.
 
 ```swift
-NSNumber.random(using: &randomGenerator)                     // 79
-NSNumber.random(within: -50...100, using: &randomGenerator)  // -27
-NSNumber.random(within: 100...200, using: &randomGenerator)  // 149.6156950363926
+NSNumber.random(using: &randomGenerator)                 // 79
+NSNumber.random(in: -50...100, using: &randomGenerator)  // -27
+NSNumber.random(in: 100...200, using: &randomGenerator)  // 149.6156950363926
 ```
 
 #### Cocoa and UIKit Types
@@ -528,8 +531,8 @@ Because `CGFloat` conforms to `FloatingPoint`, it conforms to
 `RandomInClosedRange` just like how `Double` and `Float` do.
 
 ```swift
-CGFloat.random(using: &randomGenerator)           // 0.699803650379181
-CGFloat.random(within: 0...100, using: &randomGenerator)  // 43.27969591675319
+CGFloat.random(using: &randomGenerator)               // 0.699803650379181
+CGFloat.random(in: 0...100, using: &randomGenerator)  // 43.27969591675319
 ```
 
 #### CGPoint
