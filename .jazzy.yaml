@@ -1,5 +1,5 @@
 module: RandomKit
-module_version: 4.0.0
+module_version: 5.2.0
 github_url: https://github.com/nvzqz/RandomKit
 swift_version: "4.0"
 author: Nikolai Vazquez
