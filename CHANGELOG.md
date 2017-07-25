@@ -1,4 +1,4 @@
-# Changelog
+# Change Log
 
 All releases of RandomKit adhere to [Semantic Versioning](http://semver.org/).
 
