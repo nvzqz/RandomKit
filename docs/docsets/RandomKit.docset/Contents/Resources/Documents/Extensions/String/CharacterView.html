@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Source Enum Reference</title>
+    <title>CharacterView Extension Reference</title>
     <link rel="stylesheet" type="text/css" href="../../css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="../../css/highlight.css" />
     <meta charset="utf-8">
@@ -14,9 +14,9 @@
   </head>
   <body>
 
-    <a name="//apple_ref/swift/Enum/Source" class="dashAnchor"></a>
+    <a name="//apple_ref/swift/Extension/CharacterView" class="dashAnchor"></a>
 
-    <a title="Source Enum Reference"></a>
+    <a title="CharacterView Extension Reference"></a>
 
     <header class="header">
       <p class="header-col header-col--primary">
@@ -44,7 +44,7 @@
     <p class="breadcrumbs">
       <a class="breadcrumb" href="../../index.html">RandomKit Reference</a>
       <img class="carat" src="../../img/carat.png" />
-      Source Enum Reference
+      CharacterView Extension Reference
     </p>
 
     <div class="content-wrapper">
@@ -387,15 +387,14 @@
 
         <section class="section">
           <div class="section-content">
-            <h1>Source</h1>
+            <h1>CharacterView</h1>
               <div class="declaration">
                 <div class="language">
-                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">Source</span><span class="p">:</span> <span class="kt">String</span></code></pre>
+                  <pre class="highlight"><code><span class="kd">struct</span> <span class="kt">CharacterView</span></code></pre>
 
                 </div>
               </div>
-            <p>The device source.</p>
-
+            
           </div>
         </section>
 
@@ -406,9 +405,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:9RandomKit06DeviceA0C6SourceO6randomA2EmF"></a>
-                    <a name="//apple_ref/swift/Element/random" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9RandomKit06DeviceA0C6SourceO6randomA2EmF">random</a>
+                    <a name="/s:SS13CharacterViewV9RandomKitE8shuffledABxz5using_tAC0C9GeneratorRzlF"></a>
+                    <a name="//apple_ref/swift/Method/shuffled(using:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:SS13CharacterViewV9RandomKitE8shuffledABxz5using_tAC0C9GeneratorRzlF">shuffled(using:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -416,30 +415,26 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>random device.</p>
+                        <p>Shuffles the elements in <code>self</code> and returns the result.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="k">case</span> <span class="n">random</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="n">shuffled</span><span class="o">&lt;</span><span class="kt">R</span><span class="p">:</span> <span class="kt"><a href="../../Protocols/RandomGenerator.html">RandomGenerator</a></span><span class="o">&gt;</span><span class="p">(</span><span class="n">using</span> <span class="nv">randomGenerator</span><span class="p">:</span> <span class="k">inout</span> <span class="kt">R</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">String</span><span class="o">.</span><span class="kt">CharacterView</span></code></pre>
 
                         </div>
                       </div>
                     </section>
                   </div>
                 </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <ul class="item-container">
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:9RandomKit06DeviceA0C6SourceO7urandomA2EmF"></a>
-                    <a name="//apple_ref/swift/Element/urandom" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9RandomKit06DeviceA0C6SourceO7urandomA2EmF">urandom</a>
+                    <a name="/s:SS13CharacterViewV9RandomKitE14shuffledUniqueABxz5using_tAC0C9GeneratorRzlF"></a>
+                    <a name="//apple_ref/swift/Method/shuffledUnique(using:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:SS13CharacterViewV9RandomKitE14shuffledUniqueABxz5using_tAC0C9GeneratorRzlF">shuffledUnique(using:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -447,45 +442,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>urandom device.</p>
+                        <p>Shuffles the elements in <code>self</code> in a unique order and returns the result.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="k">case</span> <span class="n">urandom</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <ul class="item-container">
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:9RandomKit06DeviceA0C6SourceO4pathSSv"></a>
-                    <a name="//apple_ref/swift/Property/path" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9RandomKit06DeviceA0C6SourceO4pathSSv">path</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>The path for the device.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">path</span><span class="p">:</span> <span class="kt">String</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="n">shuffledUnique</span><span class="o">&lt;</span><span class="kt">R</span><span class="p">:</span> <span class="kt"><a href="../../Protocols/RandomGenerator.html">RandomGenerator</a></span><span class="o">&gt;</span><span class="p">(</span><span class="n">using</span> <span class="nv">randomGenerator</span><span class="p">:</span> <span class="k">inout</span> <span class="kt">R</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">String</span><span class="o">.</span><span class="kt">CharacterView</span></code></pre>
 
                         </div>
                       </div>
