@@ -4,6 +4,22 @@ All releases of RandomKit adhere to [Semantic Versioning](http://semver.org/).
 
 ---
 
+## [v5.2.0](https://github.com/nvzqz/RandomKit/tree/v5.2.0) (2017-07-25)
+
+- [Changes](https://github.com/nvzqz/RandomKit/compare/v5.1.0...v5.2.0)
+- [Release](https://github.com/nvzqz/RandomKit/releases/tag/v5.2.0)
+
+### New Features
+- Made `Trivial` protocol public, allowing for library users to enable related optimizations for their own types
+- Added `jump(count:)` variant of `jump()` to `Xoroshiro` and `XorshiftStar`
+
+### Improvements
+- Made `jump()` for `XorshiftStar` 20%+ faster
+- Made `reseed(with:)` for `ChaCha` 550%+ faster
+    - `init(seed:)` is also faster due to reliance on `reseed(with:)`
+
+---
+
 ## [v5.1.0](https://github.com/nvzqz/RandomKit/tree/v5.1.0) (2017-06-24)
 
 - [Changes](https://github.com/nvzqz/RandomKit/compare/v5.0.0...v5.1.0)
