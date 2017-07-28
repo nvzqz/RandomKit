@@ -45,10 +45,29 @@ extension Strideable where Self: RandomInClosedRange, Stride: RandomThroughValue
 
 }
 
-#if !swift(>=3.2)
 extension String.UTF16Index: RandomInRange, RandomInClosedRange {
+
+    #if swift(>=3.2)
+
+    /// Returns a random value of `Self` inside of the unchecked range using `randomGenerator`.
+    public static func uncheckedRandom<R: RandomGenerator>(in range: Range<String.Index>, using randomGenerator: inout R) -> String.Index {
+        let lo = range.lowerBound.encodedOffset
+        let hi = range.upperBound.encodedOffset
+        let rg = Range(uncheckedBounds: (lo, hi))
+        return String.Index(encodedOffset: rg.uncheckedRandom(using: &randomGenerator))
+    }
+
+    /// Returns a random value of `Self` inside of the closed range using `randomGenerator`.
+    public static func random<R: RandomGenerator>(in closedRange: ClosedRange<String.Index>, using randomGenerator: inout R) -> String.Index {
+        let lo = closedRange.lowerBound.encodedOffset
+        let hi = closedRange.upperBound.encodedOffset
+        let cr = ClosedRange(uncheckedBounds: (lo, hi))
+        return String.Index(encodedOffset: cr.uncheckedRandom(using: &randomGenerator))
+    }
+
+    #endif
+
 }
-#endif
 
 extension UnsafePointer: RandomInRange, RandomInClosedRange {
 }
