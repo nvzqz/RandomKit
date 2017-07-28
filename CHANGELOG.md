@@ -10,7 +10,7 @@ All releases of RandomKit adhere to [Semantic Versioning](http://semver.org/).
 - [Release](https://github.com/nvzqz/RandomKit/releases/tag/v5.2.2)
 
 ### Fixes
-- Removed `String.UTF16Index` conformances to `RandomInRange` and `RandomInClosedRange`.
+- Reimplement `String.UTF16Index` conformances to `RandomInRange` and `RandomInClosedRange`.
 
 ---
 
