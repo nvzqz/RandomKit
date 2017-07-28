@@ -45,8 +45,10 @@ extension Strideable where Self: RandomInClosedRange, Stride: RandomThroughValue
 
 }
 
+#if !swift(>=3.2)
 extension String.UTF16Index: RandomInRange, RandomInClosedRange {
 }
+#endif
 
 extension UnsafePointer: RandomInRange, RandomInClosedRange {
 }
