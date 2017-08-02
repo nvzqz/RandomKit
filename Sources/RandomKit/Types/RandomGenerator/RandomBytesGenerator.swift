@@ -29,7 +29,7 @@
 public protocol RandomBytesGenerator: RandomGenerator {
 
     /// A type that stores bytes within its own value.
-    associatedtype Bytes
+    associatedtype Bytes: Trivial
 
     /// Returns random `Bytes`.
     mutating func randomBytes() -> Bytes
