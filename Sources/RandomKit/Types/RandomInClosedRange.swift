@@ -87,7 +87,7 @@ public struct RandomsWithinClosedRange<Element: RandomInClosedRange, Source: Ran
     public var closedRange: ClosedRange<Element>
 
     /// Creates an instance with `closedRange` and `source`.
-    public init(closedRange: ClosedRange<Element>, source: inout Source) {
+    fileprivate init(closedRange: ClosedRange<Element>, source: inout Source) {
         _sourcePointer = UnsafeMutablePointer(&source)
         self.closedRange = closedRange
     }
@@ -128,7 +128,7 @@ public struct LimitedRandomsWithinClosedRange<Element: RandomInClosedRange, Sour
     }
 
     /// Creates an instance with `limit`, `closedRange`, and `source`.
-    public init(limit: Int, closedRange: ClosedRange<Element>, source: inout Source) {
+    fileprivate init(limit: Int, closedRange: ClosedRange<Element>, source: inout Source) {
         _sourcePointer = UnsafeMutablePointer(&source)
         self.limit = limit
         self.closedRange = closedRange

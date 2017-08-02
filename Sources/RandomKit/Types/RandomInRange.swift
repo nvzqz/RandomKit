@@ -105,7 +105,7 @@ public struct RandomsWithinRange<Element: RandomInRange, Source: RandomGenerator
     public var range: Range<Element>
 
     /// Creates an instance with `range` and `source`.
-    public init(range: Range<Element>, source: inout Source) {
+    fileprivate init(range: Range<Element>, source: inout Source) {
         _sourcePointer = UnsafeMutablePointer(&source)
         self.range = range
     }
@@ -146,7 +146,7 @@ public struct LimitedRandomsWithinRange<Element: RandomInRange, Source: RandomGe
     }
 
     /// Creates an instance with `limit`, `range`, and `source`.
-    public init(limit: Int, range: Range<Element>, source: inout Source) {
+    fileprivate init(limit: Int, range: Range<Element>, source: inout Source) {
         _sourcePointer = UnsafeMutablePointer(&source)
         self.limit = limit
         self.range = range

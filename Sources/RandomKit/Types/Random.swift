@@ -74,7 +74,7 @@ public struct Randoms<Element: Random, Source: RandomGenerator>: IteratorProtoco
     private let _sourcePointer: UnsafeMutablePointer<Source>
 
     /// Creates an instance with `source`.
-    public init(source: inout Source) {
+    fileprivate init(source: inout Source) {
         _sourcePointer = UnsafeMutablePointer(&source)
     }
 
@@ -111,7 +111,7 @@ public struct LimitedRandoms<Element: Random, Source: RandomGenerator>: Iterator
     }
 
     /// Creates an instance with `limit` and `source`.
-    public init(limit: Int, source: inout Source) {
+    fileprivate init(limit: Int, source: inout Source) {
         _sourcePointer = UnsafeMutablePointer(&source)
         self.limit = limit
     }

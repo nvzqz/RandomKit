@@ -98,7 +98,7 @@ public struct RandomsThroughValue<Element: RandomThroughValue, Source: RandomGen
     public var value: Element
 
     /// Creates an instance with `value` and `source`.
-    public init(value: Element, source: inout Source) {
+    fileprivate init(value: Element, source: inout Source) {
         _sourcePointer = UnsafeMutablePointer(&source)
         self.value = value
     }
@@ -139,7 +139,7 @@ public struct LimitedRandomsThroughValue<Element: RandomThroughValue, Source: Ra
     }
 
     /// Creates an instance with `limit`, `value`, and `source`.
-    public init(limit: Int, value: Element, source: inout Source) {
+    fileprivate init(limit: Int, value: Element, source: inout Source) {
         _sourcePointer = UnsafeMutablePointer(&source)
         self.limit = limit
         self.value = value

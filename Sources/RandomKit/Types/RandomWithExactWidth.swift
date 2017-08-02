@@ -77,7 +77,7 @@ public struct RandomsWithExactWidth<Element: RandomWithExactWidth, Source: Rando
     public var width: Int
 
     /// Creates an instance with `width` and `source`.
-    public init(width: Int, source: inout Source) {
+    fileprivate init(width: Int, source: inout Source) {
         _sourcePointer = UnsafeMutablePointer(&source)
         self.width = width
     }
@@ -118,7 +118,7 @@ public struct LimitedRandomsWithExactWidth<Element: RandomWithExactWidth, Source
     }
 
     /// Creates an instance with `limit`, `width`, and `source`.
-    public init(limit: Int, width: Int, source: inout Source) {
+    fileprivate init(limit: Int, width: Int, source: inout Source) {
         _sourcePointer = UnsafeMutablePointer(&source)
         self.limit = limit
         self.width = width
