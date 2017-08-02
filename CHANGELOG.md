@@ -1,6 +1,27 @@
-# Changelog
+# Change Log
 
 All releases of RandomKit adhere to [Semantic Versioning](http://semver.org/).
+
+---
+
+## [v5.2.2](https://github.com/nvzqz/RandomKit/tree/v5.2.2) (2017-07-28)
+
+- [Changes](https://github.com/nvzqz/RandomKit/compare/v5.2.1...v5.2.2)
+- [Release](https://github.com/nvzqz/RandomKit/releases/tag/v5.2.2)
+
+### Fixes
+- Reimplement `String.UTF16Index` conformances to `RandomInRange` and `RandomInClosedRange`.
+
+---
+
+## [v5.2.1](https://github.com/nvzqz/RandomKit/tree/v5.2.1) (2017-07-28)
+
+- [Changes](https://github.com/nvzqz/RandomKit/compare/v5.2.0...v5.2.1)
+- [Release](https://github.com/nvzqz/RandomKit/releases/tag/v5.2.1)
+
+### Fixes
+- Removed `String.UTF16Index` conformances to `RandomInRange` and `RandomInClosedRange` for Swift 3.2 and after
+    - This was enabled by an implementation based on `Strideable`, which the type no longer conforms to as of Swift 3.2
 
 ---
 
