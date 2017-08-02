@@ -39,24 +39,24 @@ extension RandomWithMaxWidth {
 
     /// Returns a sequence of random values with a max width using `randomGenerator`.
     public static func randoms<R>(withMaxWidth width: Int, using randomGenerator: inout R) -> RandomsWithMaxWidth<Self, R> {
-        return RandomsWithMaxWidth(width: width, randomGenerator: &randomGenerator)
+        return RandomsWithMaxWidth(width: width, source: &randomGenerator)
     }
 
     /// Returns a sequence of random values limited by `limit` with a max width using `randomGenerator`.
     public static func randoms<R>(limitedBy limit: Int, withMaxWidth width: Int, using randomGenerator: inout R) -> LimitedRandomsWithMaxWidth<Self, R> {
-        return LimitedRandomsWithMaxWidth(limit: limit, width: width, randomGenerator: &randomGenerator)
+        return LimitedRandomsWithMaxWidth(limit: limit, width: width, source: &randomGenerator)
     }
 
     #else
 
     /// Returns a sequence of random values with a max width using `randomGenerator`.
     public static func randoms<R: RandomGenerator>(withMaxWidth width: Int, using randomGenerator: inout R) -> RandomsWithMaxWidth<Self, R> {
-        return RandomsWithMaxWidth(width: width, randomGenerator: &randomGenerator)
+        return RandomsWithMaxWidth(width: width, source: &randomGenerator)
     }
 
     /// Returns a sequence of random values limited by `limit` with a max width using `randomGenerator`.
     public static func randoms<R: RandomGenerator>(limitedBy limit: Int, withMaxWidth width: Int, using randomGenerator: inout R) -> LimitedRandomsWithMaxWidth<Self, R> {
-        return LimitedRandomsWithMaxWidth(limit: limit, width: width, randomGenerator: &randomGenerator)
+        return LimitedRandomsWithMaxWidth(limit: limit, width: width, source: &randomGenerator)
     }
 
     #endif
@@ -68,24 +68,24 @@ extension RandomWithMaxWidth {
 /// - warning: An instance *should not* outlive its `RandomGenerator`.
 ///
 /// - seealso: `LimitedRandomsWithMaxWidth`
-public struct RandomsWithMaxWidth<Element: RandomWithMaxWidth, RG: RandomGenerator>: IteratorProtocol, Sequence {
+public struct RandomsWithMaxWidth<Element: RandomWithMaxWidth, Source: RandomGenerator>: IteratorProtocol, Sequence {
 
-    /// A pointer to the `RandomGenerator`
-    private let _randomGenerator: UnsafeMutablePointer<RG>
+    /// A pointer to the source `RandomGenerator`.
+    private let _sourcePointer: UnsafeMutablePointer<Source>
 
     /// The max width to generate in.
     public var width: Int
 
-    /// Creates an instance with `width` and `randomGenerator`.
-    public init(width: Int, randomGenerator: inout RG) {
-        _randomGenerator = UnsafeMutablePointer(&randomGenerator)
+    /// Creates an instance with `width` and `source`.
+    public init(width: Int, source: inout Source) {
+        _sourcePointer = UnsafeMutablePointer(&source)
         self.width = width
     }
 
     /// Advances to the next element and returns it, or `nil` if no next element
     /// exists. Once `nil` has been returned, all subsequent calls return `nil`.
     public mutating func next() -> Element? {
-        return Element.random(withMaxWidth: width, using: &_randomGenerator.pointee)
+        return Element.random(withMaxWidth: width, using: &_sourcePointer.pointee)
     }
 
 }
@@ -95,10 +95,10 @@ public struct RandomsWithMaxWidth<Element: RandomWithMaxWidth, RG: RandomGenerat
 /// - warning: An instance *should not* outlive its `RandomGenerator`.
 ///
 /// - seealso: `RandomsWithMaxWidth`
-public struct LimitedRandomsWithMaxWidth<Element: RandomWithMaxWidth, RG: RandomGenerator>: IteratorProtocol, Sequence {
+public struct LimitedRandomsWithMaxWidth<Element: RandomWithMaxWidth, Source: RandomGenerator>: IteratorProtocol, Sequence {
 
-    /// A pointer to the `RandomGenerator`
-    private let _randomGenerator: UnsafeMutablePointer<RG>
+    /// A pointer to the source `RandomGenerator`.
+    private let _sourcePointer: UnsafeMutablePointer<Source>
 
     /// The iteration for the random value generation.
     private var _iteration: Int = 0
@@ -117,9 +117,9 @@ public struct LimitedRandomsWithMaxWidth<Element: RandomWithMaxWidth, RG: Random
         return limit &- _iteration
     }
 
-    /// Creates an instance with `limit`, `width`, and `randomGenerator`.
-    public init(limit: Int, width: Int, randomGenerator: inout RG) {
-        _randomGenerator = UnsafeMutablePointer(&randomGenerator)
+    /// Creates an instance with `limit`, `width`, and `source`.
+    public init(limit: Int, width: Int, source: inout Source) {
+        _sourcePointer = UnsafeMutablePointer(&source)
         self.limit = limit
         self.width = width
     }
@@ -129,7 +129,7 @@ public struct LimitedRandomsWithMaxWidth<Element: RandomWithMaxWidth, RG: Random
     public mutating func next() -> Element? {
         guard _iteration < limit else { return nil }
         _iteration = _iteration &+ 1
-        return Element.random(withMaxWidth: width, using: &_randomGenerator.pointee)
+        return Element.random(withMaxWidth: width, using: &_sourcePointer.pointee)
     }
 
 }

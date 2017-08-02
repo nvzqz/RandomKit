@@ -39,24 +39,24 @@ extension Random {
 
     /// Returns a sequence of random values using `randomGenerator`.
     public static func randoms<R>(using randomGenerator: inout R) -> Randoms<Self, R> {
-        return Randoms(randomGenerator: &randomGenerator)
+        return Randoms(source: &randomGenerator)
     }
 
     /// Returns a sequence of random values limited by `limit` using `randomGenerator`.
     public static func randoms<R>(limitedBy limit: Int, using randomGenerator: inout R) -> LimitedRandoms<Self, R> {
-        return LimitedRandoms(limit: limit, randomGenerator: &randomGenerator)
+        return LimitedRandoms(limit: limit, source: &randomGenerator)
     }
 
     #else
 
     /// Returns a sequence of random values using `randomGenerator`.
     public static func randoms<R: RandomGenerator>(using randomGenerator: inout R) -> Randoms<Self, R> {
-        return Randoms(randomGenerator: &randomGenerator)
+        return Randoms(source: &randomGenerator)
     }
 
     /// Returns a sequence of random values limited by `limit` using `randomGenerator`.
     public static func randoms<R: RandomGenerator>(limitedBy limit: Int, using randomGenerator: inout R) -> LimitedRandoms<Self, R> {
-        return LimitedRandoms(limit: limit, randomGenerator: &randomGenerator)
+        return LimitedRandoms(limit: limit, source: &randomGenerator)
     }
 
     #endif
@@ -68,20 +68,20 @@ extension Random {
 /// - warning: An instance *should not* outlive its `RandomGenerator`.
 ///
 /// - seealso: `LimitedRandoms`
-public struct Randoms<Element: Random, RG: RandomGenerator>: IteratorProtocol, Sequence {
+public struct Randoms<Element: Random, Source: RandomGenerator>: IteratorProtocol, Sequence {
 
-    /// A pointer to the `RandomGenerator`
-    private let _randomGenerator: UnsafeMutablePointer<RG>
+    /// A pointer to the source `RandomGenerator`.
+    private let _sourcePointer: UnsafeMutablePointer<Source>
 
-    /// Creates an instance with `randomGenerator`.
-    public init(randomGenerator: inout RG) {
-        _randomGenerator = UnsafeMutablePointer(&randomGenerator)
+    /// Creates an instance with `source`.
+    public init(source: inout Source) {
+        _sourcePointer = UnsafeMutablePointer(&source)
     }
 
     /// Advances to the next element and returns it, or `nil` if no next element
     /// exists. Once `nil` has been returned, all subsequent calls return `nil`.
     public mutating func next() -> Element? {
-        return Element.random(using: &_randomGenerator.pointee)
+        return Element.random(using: &_sourcePointer.pointee)
     }
 
 }
@@ -91,10 +91,10 @@ public struct Randoms<Element: Random, RG: RandomGenerator>: IteratorProtocol, S
 /// - warning: An instance *should not* outlive its `RandomGenerator`.
 ///
 /// - seealso: `Randoms`
-public struct LimitedRandoms<Element: Random, RG: RandomGenerator>: IteratorProtocol, Sequence {
+public struct LimitedRandoms<Element: Random, Source: RandomGenerator>: IteratorProtocol, Sequence {
 
-    /// A pointer to the `RandomGenerator`
-    private let _randomGenerator: UnsafeMutablePointer<RG>
+    /// A pointer to the source `RandomGenerator`.
+    private let _sourcePointer: UnsafeMutablePointer<Source>
 
     /// The iteration for the random value generation.
     private var _iteration: Int = 0
@@ -110,9 +110,9 @@ public struct LimitedRandoms<Element: Random, RG: RandomGenerator>: IteratorProt
         return limit &- _iteration
     }
 
-    /// Creates an instance with `limit` and `randomGenerator`.
-    public init(limit: Int, randomGenerator: inout RG) {
-        _randomGenerator = UnsafeMutablePointer(&randomGenerator)
+    /// Creates an instance with `limit` and `source`.
+    public init(limit: Int, source: inout Source) {
+        _sourcePointer = UnsafeMutablePointer(&source)
         self.limit = limit
     }
 
@@ -121,7 +121,7 @@ public struct LimitedRandoms<Element: Random, RG: RandomGenerator>: IteratorProt
     public mutating func next() -> Element? {
         guard _iteration < limit else { return nil }
         _iteration = _iteration &+ 1
-        return Element.random(using: &_randomGenerator.pointee)
+        return Element.random(using: &_sourcePointer.pointee)
     }
 
 }

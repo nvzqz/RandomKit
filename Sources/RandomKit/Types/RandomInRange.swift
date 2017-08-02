@@ -67,24 +67,24 @@ extension RandomInRange {
 
     /// Returns a sequence of random values in `range` using `randomGenerator`.
     public static func randoms<R>(in range: Range<Self>, using randomGenerator: inout R) -> RandomsWithinRange<Self, R> {
-        return RandomsWithinRange(range: range, randomGenerator: &randomGenerator)
+        return RandomsWithinRange(range: range, source: &randomGenerator)
     }
 
     /// Returns a sequence of random values limited by `limit` in `range` using `randomGenerator`.
     public static func randoms<R>(limitedBy limit: Int, in range: Range<Self>, using randomGenerator: inout R) -> LimitedRandomsWithinRange<Self, R> {
-        return LimitedRandomsWithinRange(limit: limit, range: range, randomGenerator: &randomGenerator)
+        return LimitedRandomsWithinRange(limit: limit, range: range, source: &randomGenerator)
     }
 
     #else
 
     /// Returns a sequence of random values in `range` using `randomGenerator`.
     public static func randoms<R: RandomGenerator>(in range: Range<Self>, using randomGenerator: inout R) -> RandomsWithinRange<Self, R> {
-        return RandomsWithinRange(range: range, randomGenerator: &randomGenerator)
+        return RandomsWithinRange(range: range, source: &randomGenerator)
     }
 
     /// Returns a sequence of random values limited by `limit` in `range` using `randomGenerator`.
     public static func randoms<R: RandomGenerator>(limitedBy limit: Int, in range: Range<Self>, using randomGenerator: inout R) -> LimitedRandomsWithinRange<Self, R> {
-        return LimitedRandomsWithinRange(limit: limit, range: range, randomGenerator: &randomGenerator)
+        return LimitedRandomsWithinRange(limit: limit, range: range, source: &randomGenerator)
     }
 
     #endif
@@ -96,24 +96,24 @@ extension RandomInRange {
 /// - warning: An instance *should not* outlive its `RandomGenerator`.
 ///
 /// - seealso: `LimitedRandomsWithinRange`
-public struct RandomsWithinRange<Element: RandomInRange, RG: RandomGenerator>: IteratorProtocol, Sequence {
+public struct RandomsWithinRange<Element: RandomInRange, Source: RandomGenerator>: IteratorProtocol, Sequence {
 
-    /// A pointer to the `RandomGenerator`
-    private let _randomGenerator: UnsafeMutablePointer<RG>
+    /// A pointer to the source `RandomGenerator`.
+    private let _sourcePointer: UnsafeMutablePointer<Source>
 
     /// The range to generate in.
     public var range: Range<Element>
 
-    /// Creates an instance with `range` and `randomGenerator`.
-    public init(range: Range<Element>, randomGenerator: inout RG) {
-        _randomGenerator = UnsafeMutablePointer(&randomGenerator)
+    /// Creates an instance with `range` and `source`.
+    public init(range: Range<Element>, source: inout Source) {
+        _sourcePointer = UnsafeMutablePointer(&source)
         self.range = range
     }
 
     /// Advances to the next element and returns it, or `nil` if no next element
     /// exists. Once `nil` has been returned, all subsequent calls return `nil`.
     public mutating func next() -> Element? {
-        return Element.random(in: range, using: &_randomGenerator.pointee)
+        return Element.random(in: range, using: &_sourcePointer.pointee)
     }
 
 }
@@ -123,10 +123,10 @@ public struct RandomsWithinRange<Element: RandomInRange, RG: RandomGenerator>: I
 /// - warning: An instance *should not* outlive its `RandomGenerator`.
 ///
 /// - seealso: `RandomsWithinRange`
-public struct LimitedRandomsWithinRange<Element: RandomInRange, RG: RandomGenerator>: IteratorProtocol, Sequence {
+public struct LimitedRandomsWithinRange<Element: RandomInRange, Source: RandomGenerator>: IteratorProtocol, Sequence {
 
-    /// A pointer to the `RandomGenerator`
-    private let _randomGenerator: UnsafeMutablePointer<RG>
+    /// A pointer to the source `RandomGenerator`.
+    private let _sourcePointer: UnsafeMutablePointer<Source>
 
     /// The iteration for the random value generation.
     private var _iteration: Int = 0
@@ -145,9 +145,9 @@ public struct LimitedRandomsWithinRange<Element: RandomInRange, RG: RandomGenera
         return limit &- _iteration
     }
 
-    /// Creates an instance with `limit`, `range`, and `randomGenerator`.
-    public init(limit: Int, range: Range<Element>, randomGenerator: inout RG) {
-        _randomGenerator = UnsafeMutablePointer(&randomGenerator)
+    /// Creates an instance with `limit`, `range`, and `source`.
+    public init(limit: Int, range: Range<Element>, source: inout Source) {
+        _sourcePointer = UnsafeMutablePointer(&source)
         self.limit = limit
         self.range = range
     }
@@ -157,7 +157,7 @@ public struct LimitedRandomsWithinRange<Element: RandomInRange, RG: RandomGenera
     public mutating func next() -> Element? {
         guard _iteration < limit else { return nil }
         _iteration = _iteration &+ 1
-        return Element.random(in: range, using: &_randomGenerator.pointee)
+        return Element.random(in: range, using: &_sourcePointer.pointee)
     }
 
 }

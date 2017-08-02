@@ -39,24 +39,24 @@ extension RandomWithExactWidth {
 
     /// Returns a sequence of random values with an exact width using `randomGenerator`.
     public static func randoms<R>(withExactWidth width: Int, using randomGenerator: inout R) -> RandomsWithExactWidth<Self, R> {
-        return RandomsWithExactWidth(width: width, randomGenerator: &randomGenerator)
+        return RandomsWithExactWidth(width: width, source: &randomGenerator)
     }
 
     /// Returns a sequence of random values limited by `limit` with an exact width using `randomGenerator`.
     public static func randoms<R>(limitedBy limit: Int, withExactWidth width: Int, using randomGenerator: inout R) -> LimitedRandomsWithExactWidth<Self, R> {
-        return LimitedRandomsWithExactWidth(limit: limit, width: width, randomGenerator: &randomGenerator)
+        return LimitedRandomsWithExactWidth(limit: limit, width: width, source: &randomGenerator)
     }
 
     #else
 
     /// Returns a sequence of random values with an exact width using `randomGenerator`.
     public static func randoms<R: RandomGenerator>(withExactWidth width: Int, using randomGenerator: inout R) -> RandomsWithExactWidth<Self, R> {
-        return RandomsWithExactWidth(width: width, randomGenerator: &randomGenerator)
+        return RandomsWithExactWidth(width: width, source: &randomGenerator)
     }
 
     /// Returns a sequence of random values limited by `limit` with an exact width using `randomGenerator`.
     public static func randoms<R: RandomGenerator>(limitedBy limit: Int, withExactWidth width: Int, using randomGenerator: inout R) -> LimitedRandomsWithExactWidth<Self, R> {
-        return LimitedRandomsWithExactWidth(limit: limit, width: width, randomGenerator: &randomGenerator)
+        return LimitedRandomsWithExactWidth(limit: limit, width: width, source: &randomGenerator)
     }
 
     #endif
@@ -68,24 +68,24 @@ extension RandomWithExactWidth {
 /// - warning: An instance *should not* outlive its `RandomGenerator`.
 ///
 /// - seealso: `LimitedRandomsWithExactWidth`
-public struct RandomsWithExactWidth<Element: RandomWithExactWidth, RG: RandomGenerator>: IteratorProtocol, Sequence {
+public struct RandomsWithExactWidth<Element: RandomWithExactWidth, Source: RandomGenerator>: IteratorProtocol, Sequence {
 
-    /// A pointer to the `RandomGenerator`
-    private let _randomGenerator: UnsafeMutablePointer<RG>
+    /// A pointer to the source `RandomGenerator`.
+    private let _sourcePointer: UnsafeMutablePointer<Source>
 
     /// The exact width to generate in.
     public var width: Int
 
-    /// Creates an instance with `width` and `randomGenerator`.
-    public init(width: Int, randomGenerator: inout RG) {
-        _randomGenerator = UnsafeMutablePointer(&randomGenerator)
+    /// Creates an instance with `width` and `source`.
+    public init(width: Int, source: inout Source) {
+        _sourcePointer = UnsafeMutablePointer(&source)
         self.width = width
     }
 
     /// Advances to the next element and returns it, or `nil` if no next element
     /// exists. Once `nil` has been returned, all subsequent calls return `nil`.
     public mutating func next() -> Element? {
-        return Element.random(withExactWidth: width, using: &_randomGenerator.pointee)
+        return Element.random(withExactWidth: width, using: &_sourcePointer.pointee)
     }
 
 }
@@ -95,10 +95,10 @@ public struct RandomsWithExactWidth<Element: RandomWithExactWidth, RG: RandomGen
 /// - warning: An instance *should not* outlive its `RandomGenerator`.
 ///
 /// - seealso: `RandomsWithExactWidth`
-public struct LimitedRandomsWithExactWidth<Element: RandomWithExactWidth, RG: RandomGenerator>: IteratorProtocol, Sequence {
+public struct LimitedRandomsWithExactWidth<Element: RandomWithExactWidth, Source: RandomGenerator>: IteratorProtocol, Sequence {
 
-    /// A pointer to the `RandomGenerator`
-    private let _randomGenerator: UnsafeMutablePointer<RG>
+    /// A pointer to the source `RandomGenerator`.
+    private let _sourcePointer: UnsafeMutablePointer<Source>
 
     /// The iteration for the random value generation.
     private var _iteration: Int = 0
@@ -117,9 +117,9 @@ public struct LimitedRandomsWithExactWidth<Element: RandomWithExactWidth, RG: Ra
         return limit &- _iteration
     }
 
-    /// Creates an instance with `limit`, `width`, and `randomGenerator`.
-    public init(limit: Int, width: Int, randomGenerator: inout RG) {
-        _randomGenerator = UnsafeMutablePointer(&randomGenerator)
+    /// Creates an instance with `limit`, `width`, and `source`.
+    public init(limit: Int, width: Int, source: inout Source) {
+        _sourcePointer = UnsafeMutablePointer(&source)
         self.limit = limit
         self.width = width
     }
@@ -129,7 +129,7 @@ public struct LimitedRandomsWithExactWidth<Element: RandomWithExactWidth, RG: Ra
     public mutating func next() -> Element? {
         guard _iteration < limit else { return nil }
         _iteration = _iteration &+ 1
-        return Element.random(withExactWidth: width, using: &_randomGenerator.pointee)
+        return Element.random(withExactWidth: width, using: &_sourcePointer.pointee)
     }
 
 }

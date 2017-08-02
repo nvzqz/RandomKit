@@ -60,24 +60,24 @@ extension RandomThroughValue {
 
     /// Returns a sequence of random values through `value` using `randomGenerator`.
     public static func randoms<R>(through value: Self, using randomGenerator: inout R) -> RandomsThroughValue<Self, R> {
-        return RandomsThroughValue(value: value, randomGenerator: &randomGenerator)
+        return RandomsThroughValue(value: value, source: &randomGenerator)
     }
 
     /// Returns a sequence of random values limited by `limit` through `value` using `randomGenerator`.
     public static func randoms<R>(limitedBy limit: Int, through value: Self, using randomGenerator: inout R) -> LimitedRandomsThroughValue<Self, R> {
-        return LimitedRandomsThroughValue(limit: limit, value: value, randomGenerator: &randomGenerator)
+        return LimitedRandomsThroughValue(limit: limit, value: value, source: &randomGenerator)
     }
 
     #else
 
     /// Returns a sequence of random values through `value` using `randomGenerator`.
     public static func randoms<R: RandomGenerator>(through value: Self, using randomGenerator: inout R) -> RandomsThroughValue<Self, R> {
-        return RandomsThroughValue(value: value, randomGenerator: &randomGenerator)
+        return RandomsThroughValue(value: value, source: &randomGenerator)
     }
 
     /// Returns a sequence of random values limited by `limit` through `value` using `randomGenerator`.
     public static func randoms<R: RandomGenerator>(limitedBy limit: Int, through value: Self, using randomGenerator: inout R) -> LimitedRandomsThroughValue<Self, R> {
-        return LimitedRandomsThroughValue(limit: limit, value: value, randomGenerator: &randomGenerator)
+        return LimitedRandomsThroughValue(limit: limit, value: value, source: &randomGenerator)
     }
 
     #endif
@@ -89,24 +89,24 @@ extension RandomThroughValue {
 /// - warning: An instance *should not* outlive its `RandomGenerator`.
 ///
 /// - seealso: `LimitedRandomsThroughValue`
-public struct RandomsThroughValue<Element: RandomThroughValue, RG: RandomGenerator>: IteratorProtocol, Sequence {
+public struct RandomsThroughValue<Element: RandomThroughValue, Source: RandomGenerator>: IteratorProtocol, Sequence {
 
-    /// A pointer to the `RandomGenerator`
-    private let _randomGenerator: UnsafeMutablePointer<RG>
+    /// A pointer to the source `RandomGenerator`.
+    private let _sourcePointer: UnsafeMutablePointer<Source>
 
     /// The value to generate through.
     public var value: Element
 
-    /// Creates an instance with `value` and `randomGenerator`.
-    public init(value: Element, randomGenerator: inout RG) {
-        _randomGenerator = UnsafeMutablePointer(&randomGenerator)
+    /// Creates an instance with `value` and `source`.
+    public init(value: Element, source: inout Source) {
+        _sourcePointer = UnsafeMutablePointer(&source)
         self.value = value
     }
 
     /// Advances to the next element and returns it, or `nil` if no next element
     /// exists. Once `nil` has been returned, all subsequent calls return `nil`.
     public mutating func next() -> Element? {
-        return Element.random(through: value, using: &_randomGenerator.pointee)
+        return Element.random(through: value, using: &_sourcePointer.pointee)
     }
 
 }
@@ -116,10 +116,10 @@ public struct RandomsThroughValue<Element: RandomThroughValue, RG: RandomGenerat
 /// - warning: An instance *should not* outlive its `RandomGenerator`.
 ///
 /// - seealso: `RandomsThroughValue`
-public struct LimitedRandomsThroughValue<Element: RandomThroughValue, RG: RandomGenerator>: IteratorProtocol, Sequence {
+public struct LimitedRandomsThroughValue<Element: RandomThroughValue, Source: RandomGenerator>: IteratorProtocol, Sequence {
 
-    /// A pointer to the `RandomGenerator`
-    private let _randomGenerator: UnsafeMutablePointer<RG>
+    /// A pointer to the source `RandomGenerator`.
+    private let _sourcePointer: UnsafeMutablePointer<Source>
 
     /// The iteration for the random value generation.
     private var _iteration: Int = 0
@@ -138,9 +138,9 @@ public struct LimitedRandomsThroughValue<Element: RandomThroughValue, RG: Random
         return limit &- _iteration
     }
 
-    /// Creates an instance with `limit`, `value`, and `randomGenerator`.
-    public init(limit: Int, value: Element, randomGenerator: inout RG) {
-        _randomGenerator = UnsafeMutablePointer(&randomGenerator)
+    /// Creates an instance with `limit`, `value`, and `source`.
+    public init(limit: Int, value: Element, source: inout Source) {
+        _sourcePointer = UnsafeMutablePointer(&source)
         self.limit = limit
         self.value = value
     }
@@ -150,7 +150,7 @@ public struct LimitedRandomsThroughValue<Element: RandomThroughValue, RG: Random
     public mutating func next() -> Element? {
         guard _iteration < limit else { return nil }
         _iteration = _iteration &+ 1
-        return Element.random(through: value, using: &_randomGenerator.pointee)
+        return Element.random(through: value, using: &_sourcePointer.pointee)
     }
 
 }
