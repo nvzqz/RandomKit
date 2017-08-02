@@ -47,6 +47,11 @@
 /// [2]: http://xoroshiro.di.unimi.it/xoroshiro128plus.c
 public struct Xoroshiro: RandomBytesGenerator, Seedable, SeedableFromRandomGenerator {
 
+    // Inferred in Swift 3.1+
+    #if !swift(>=3.1)
+    public typealias Iterator = RandomBytesIterator<Xoroshiro>
+    #endif
+
     /// A default global instance seeded with `DeviceRandom.default`.
     public static var `default` = seeded
 

@@ -44,6 +44,11 @@
 /// [MT]: https://en.wikipedia.org/wiki/Mersenne_Twister
 public struct MersenneTwister: RandomBytesGenerator, Seedable, SeedableFromRandomGenerator {
 
+    // Inferred in Swift 3.1+
+    #if !swift(>=3.1)
+    public typealias Iterator = RandomBytesIterator<MersenneTwister>
+    #endif
+
     /// The number of `UInt64` values in a `_State`.
     private static let _stateCount: Int = 312
 

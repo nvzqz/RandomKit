@@ -33,6 +33,11 @@
 /// [2]: https://doc.rust-lang.org/rand/rand/struct.XorShiftRng.html
 public struct Xorshift: RandomBytesGenerator, Seedable, SeedableFromRandomGenerator {
 
+    // Inferred in Swift 3.1+
+    #if !swift(>=3.1)
+    public typealias Iterator = RandomBytesIterator<Xorshift>
+    #endif
+
     /// A default global instance seeded with `DeviceRandom.default`.
     public static var `default` = seeded
 
