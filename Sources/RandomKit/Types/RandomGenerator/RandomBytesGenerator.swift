@@ -25,8 +25,15 @@
 //  THE SOFTWARE.
 //
 
+#if swift(>=3.1)
+/// A workaround to make `RandomBytesGenerator` a `Sequence` for Swift 3.1+.
+public typealias _RandomBytesGeneratorComposition = RandomGenerator & Sequence
+#else
+public typealias _RandomBytesGeneratorComposition = RandomGenerator
+#endif
+
 /// A type that specializes in generating random bytes in the form of a `Bytes` type.
-public protocol RandomBytesGenerator: RandomGenerator, Sequence {
+public protocol RandomBytesGenerator: _RandomBytesGeneratorComposition {
 
     /// A type that stores bytes within its own value.
     associatedtype Bytes
@@ -34,10 +41,14 @@ public protocol RandomBytesGenerator: RandomGenerator, Sequence {
     /// Returns random `Bytes`.
     mutating func randomBytes() -> Bytes
 
+    #if swift(>=3.1)
     /// Returns an iterator over the elements of this sequence.
     func makeIterator() -> RandomBytesIterator<Self>
+    #endif
 
 }
+
+#if swift(>=3.1)
 
 /// An iterator over the `Byte`s of a `RandomBytesGenerator` source.
 ///
@@ -71,6 +82,8 @@ extension RandomBytesGenerator {
         return RandomBytesIterator(source: self)
     }
 }
+
+#endif
 
 extension RandomBytesGenerator where Bytes == UInt64 {
 

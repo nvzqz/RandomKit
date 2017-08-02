@@ -34,11 +34,6 @@
 /// [3]: https://doc.rust-lang.org/rand/rand/chacha/struct.ChaChaRng.html
 public struct ChaCha: RandomBytesGenerator, Seedable, SeedableFromSequence, SeedableFromRandomGenerator {
 
-    // Inferred in Swift 3.1+
-    #if !swift(>=3.1)
-    public typealias Iterator = RandomBytesIterator<ChaCha>
-    #endif
-
     /// The seed type.
     public typealias Seed = [UInt32]
 

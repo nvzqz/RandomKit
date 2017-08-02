@@ -30,11 +30,6 @@
 /// [1]: http://xoroshiro.di.unimi.it/xorshift1024star.c
 public struct XorshiftStar: RandomBytesGenerator, Seedable, SeedableFromRandomGenerator {
 
-    // Inferred in Swift 3.1+
-    #if !swift(>=3.1)
-    public typealias Iterator = RandomBytesIterator<XorshiftStar>
-    #endif
-
     /// The seed type.
     public typealias Seed = (
         UInt64, UInt64, UInt64, UInt64,
