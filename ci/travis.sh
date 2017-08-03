@@ -34,6 +34,9 @@ elif [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
 
     if $QUICK_POD_LINT; then
         QUICK_ARG="--quick"
+    else
+        pod repo list
+        pod repo update
     fi
 
     pod lib lint --allow-warnings $QUICK_ARG
