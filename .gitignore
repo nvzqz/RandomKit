@@ -1,30 +1,13 @@
 
-# Created by https://www.gitignore.io/api/macos,linux,swift,vagrant,xcode
+# Created by https://www.gitignore.io/api/macos,linux,swift,vagrant,xcode,cocoapods
 
-### macOS ###
-*.DS_Store
-.AppleDouble
-.LSOverride
+### CocoaPods ###
+## CocoaPods GitIgnore Template
 
-# Icon must end with two \r
-Icon
-# Thumbnails
-._*
-# Files that might appear in the root of a volume
-.DocumentRevisions-V100
-.fseventsd
-.Spotlight-V100
-.TemporaryItems
-.Trashes
-.VolumeIcon.icns
-.com.apple.timemachine.donotpresent
-# Directories potentially created on remote AFP share
-.AppleDB
-.AppleDesktop
-Network Trash Folder
-Temporary Items
-.apdisk
-
+# CocoaPods - Only use to conserve bandwidth / Save time on Pushing
+#           - Also handy if you have a lage number of dependant pods
+#           - AS PER https://guides.cocoapods.org/using/using-cocoapods.html NEVER IGONRE THE LOCK FILE
+Pods/
 
 ### Linux ###
 *~
@@ -41,6 +24,32 @@ Temporary Items
 # .nfs files are created when an open file is removed but is still being accessed
 .nfs*
 
+### macOS ###
+*.DS_Store
+.AppleDouble
+.LSOverride
+
+# Icon must end with two \r
+Icon
+
+# Thumbnails
+._*
+
+# Files that might appear in the root of a volume
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+
+# Directories potentially created on remote AFP share
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
 
 ### Swift ###
 # Xcode
@@ -64,7 +73,8 @@ xcuserdata/
 
 ## Other
 *.moved-aside
-*.xcuserstate
+*.xccheckout
+*.xcscmblueprint
 
 ## Obj-C/Swift specific
 *.hmap
@@ -79,40 +89,28 @@ playground.xcworkspace
 # Swift Package Manager
 #
 # Add this line if you want to avoid checking in source code from Swift Package Manager dependencies.
-Packages/
+# Packages/
+# Package.pins
 .build/
 
-# CocoaPods
-#
-# We recommend against adding the Pods directory to your .gitignore. However
-# you should judge for yourself, the pros and cons are mentioned at:
-# https://guides.cocoapods.org/using/using-cocoapods.html#should-i-check-the-pods-directory-into-source-control
-#
-# Pods/
+# CocoaPods - Refactored to standalone file
 
-# Carthage
-#
-# Add this line if you want to avoid checking in source code from Carthage dependencies.
-# Carthage/Checkouts
-
-Carthage/Build
+# Carthage - Refactored to standalone file
 
 # fastlane
 #
 # It is recommended to not store the screenshots in the git repo. Instead, use fastlane to re-generate the
 # screenshots whenever they are needed.
 # For more information about the recommended setup visit:
-# https://github.com/fastlane/fastlane/blob/master/fastlane/docs/Gitignore.md
+# https://docs.fastlane.tools/best-practices/source-control/#source-control
 
 fastlane/report.xml
 fastlane/Preview.html
 fastlane/screenshots
 fastlane/test_output
 
-
 ### Vagrant ###
 .vagrant/
-
 
 ### Xcode ###
 # Xcode
@@ -124,5 +122,12 @@ fastlane/test_output
 ## Various settings
 
 ## Other
-*.xccheckout
-*.xcscmblueprint
+
+### Xcode Patch ###
+*.xcodeproj/*
+!*.xcodeproj/project.pbxproj
+!*.xcodeproj/xcshareddata/
+!*.xcworkspace/contents.xcworkspacedata
+/*.gcno
+
+# End of https://www.gitignore.io/api/macos,linux,swift,vagrant,xcode,cocoapods
