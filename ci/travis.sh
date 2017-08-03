@@ -7,6 +7,7 @@ if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
     swift test
 elif [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
     xcodebuild -version
+    xcodebuild -showsdks
 
     xcodebuild \
         -project $FRAMEWORK_NAME.xcodeproj \
