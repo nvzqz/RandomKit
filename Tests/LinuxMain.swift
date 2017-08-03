@@ -29,7 +29,7 @@ import XCTest
 @testable import RandomKitTests
 
 XCTMain([
-     testCase(RandomKitTests.allTests),
+     testCase(ConstantTests.allTests),
      testCase(ChaChaTests.allTests),
      testCase(XoroshiroTests.allTests)
 ])
