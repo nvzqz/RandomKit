@@ -180,6 +180,6 @@ extension Tester {
 
 extension Tester where Gen: SeedableFromRandomGenerator {
     func withTestGenerator(_ body: (UnsafeMutablePointer<Gen>) throws -> ()) rethrows {
-        try body(Gen.threadLocal)
+        try body(&Gen.threadLocal.value)
     }
 }
