@@ -10,7 +10,7 @@ elif [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
     xcodebuild -showsdks
 
     function build() {
-        if [[ $3 == "YES" ]]; then
+        if $3; then
             XC_CMD="test"
         else
             XC_CMD="build"
@@ -27,10 +27,10 @@ elif [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
     }
 
     # ----- OS: --- Destination: ---------------------- Tests:
-    build   macOS   "arch=x86_64"                       YES
-    build   iOS     "OS=8.1,name=iPhone 4S"             YES
-    build   tvOS    "OS=9.0,name=Apple TV 1080p"        YES
-    build   watchOS "OS=2.0,name=Apple Watch - 42mm"    NO
+    build   macOS   "arch=x86_64"                       true
+    build   iOS     "OS=8.1,name=iPhone 4S"             true
+    build   tvOS    "OS=9.0,name=Apple TV 1080p"        true
+    build   watchOS "OS=2.0,name=Apple Watch - 42mm"    false
 
     pod lib lint --quick
 fi
