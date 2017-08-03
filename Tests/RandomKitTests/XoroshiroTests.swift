@@ -28,9 +28,9 @@
 import XCTest
 import RandomKit
 
-let seeded = Xoroshiro(seed: (0xCAFEBABE, 0xDEADBEEF))
+private let seeded = Xoroshiro(seed: (0xCAFEBABE, 0xDEADBEEF))
 
-let initialValues: [UInt64] = [
+private let initialValues: [UInt64] = [
     0x00000001A9AC79AD, 0xA4304A24D5223B0D, 0xDE42A620748FEA5D, 0xB01B3C241344C99F,
     0xC18AB4F4E0478824, 0xC436CCE98D461624, 0x0B0DD23E077302D6, 0xF748D10BEEDEB1DB,
     0x992D2C12F71F5763, 0x8C6EA4B413685AFD, 0x19761EDEAC1F40EB, 0xEF33591D055F5219,
@@ -41,7 +41,7 @@ let initialValues: [UInt64] = [
     0x62A73B5BB4960287, 0x62015EE3CB9AEBC8, 0xBBDECC4A746B9195, 0xEA470BEBEB7B5631
 ]
 
-let jumpValues: [UInt64] = [
+private let jumpValues: [UInt64] = [
     0x3AF10035D5FC2E18, 0x1360B353D9255303, 0x050ED3FDD1CCF08F, 0x0EA5541FE327DA68,
     0x438FEC4BBDADF3C0, 0x0126EBD568F23FC7, 0x8C2A7B5F7B614695, 0x80E3B1500BD8A70E,
     0xFC00A1F1AFF67F9C, 0x4AB2B9C3C46A3E8C, 0xE35C2A8B4FCD20A2, 0x0C1298D48F7F0B72,
@@ -52,10 +52,12 @@ let jumpValues: [UInt64] = [
     0x8AF2782C9DF5AFDD, 0x42D0D803ABB9F6FA, 0x853F8D87C336E774, 0x9EE90EFA7541E134
 ]
 
-class XoroshiroTests: XCTestCase {
+class XoroshiroTests: XCTestCase, Tester {
 
-    static let allTests = [("testValues", testValues),
-                           ("testJump", testJump)]
+    typealias Gen = Xoroshiro
+
+    static let allTests = tests + [("testValues", testValues),
+                                   ("testJump", testJump)]
 
     func testValues() {
         var gen = seeded
@@ -66,6 +68,34 @@ class XoroshiroTests: XCTestCase {
         var gen = seeded
         gen.jump()
         XCTAssertEqual([UInt64](randomCount: 32, using: &gen), jumpValues)
+    }
+
+    func testRandomInt() {
+        testRandomInt(count: defaultTestCount)
+    }
+
+    func testRandomOpen() {
+        testRandomOpen(count: defaultTestCount)
+    }
+
+    func testRandomClosed() {
+        testRandomClosed(count: defaultTestCount)
+    }
+
+    func testRandomDouble() {
+        testRandomDouble(count: defaultTestCount)
+    }
+
+    func testRandomFloat() {
+        testRandomFloat(count: defaultTestCount)
+    }
+
+    func testRandomBool() {
+        testRandomBool(count: defaultTestCount)
+    }
+
+    func testRandomArraySlice() {
+        testRandomArraySliceImpl()
     }
 
 }

@@ -29,10 +29,12 @@ import XCTest
 import Foundation
 import RandomKit
 
-class ChaChaTests: XCTestCase {
+class ChaChaTests: XCTestCase, Tester {
 
-    static let allTests = [("testReseed", testReseed),
-                           ("testValues", testValues)]
+    typealias Gen = ChaCha
+
+    static let allTests = tests + [("testReseed", testReseed),
+                                   ("testValues", testValues)]
 
     func testReseed() {
         let seed = [UInt32](randomCount: 8, using: &DeviceRandom.default)
@@ -73,6 +75,34 @@ class ChaChaTests: XCTestCase {
                         0x49884684, 0x64efec72, 0x4be2d186, 0x3615b384,
                         0x11cfa18e, 0xd3c50049, 0x75c775f6, 0x434c6530,
                         0x2c5bad8f, 0x898881dc, 0x5f1c86d9, 0xc1f8e7f4])
+    }
+
+    func testRandomInt() {
+        testRandomInt(count: defaultTestCount)
+    }
+
+    func testRandomOpen() {
+        testRandomOpen(count: defaultTestCount)
+    }
+
+    func testRandomClosed() {
+        testRandomClosed(count: defaultTestCount)
+    }
+
+    func testRandomDouble() {
+        testRandomDouble(count: defaultTestCount)
+    }
+
+    func testRandomFloat() {
+        testRandomFloat(count: defaultTestCount)
+    }
+
+    func testRandomBool() {
+        testRandomBool(count: defaultTestCount)
+    }
+
+    func testRandomArraySlice() {
+        testRandomArraySliceImpl()
     }
 
 }
