@@ -1,5 +1,13 @@
 
-# Created by https://www.gitignore.io/api/macos,linux,swift,vagrant,xcode,cocoapods
+# Created by https://www.gitignore.io/api/macos,linux,swift,vagrant,xcode,cocoapods,carthage
+
+### Carthage ###
+# Carthage
+#
+# Add this line if you want to avoid checking in source code from Carthage dependencies.
+# Carthage/Checkouts
+
+Carthage/Build
 
 ### CocoaPods ###
 ## CocoaPods GitIgnore Template
@@ -130,4 +138,4 @@ fastlane/test_output
 !*.xcworkspace/contents.xcworkspacedata
 /*.gcno
 
-# End of https://www.gitignore.io/api/macos,linux,swift,vagrant,xcode,cocoapods
+# End of https://www.gitignore.io/api/macos,linux,swift,vagrant,xcode,cocoapods,carthage
