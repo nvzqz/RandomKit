@@ -1,5 +1,5 @@
 //
-//  LinuxMain.swift
+//  ConstantTests.swift
 //  RandomKitTests
 //
 //  The MIT License (MIT)
@@ -26,10 +26,42 @@
 //
 
 import XCTest
-@testable import RandomKitTests
+import Foundation
+import RandomKit
 
-XCTMain([
-     testCase(ConstantTests.allTests),
-     testCase(ChaChaTests.allTests),
-     testCase(XoroshiroTests.allTests)
-])
+struct ConstantRandomGenerator: RandomBytesGenerator {
+    var value: UInt64
+    mutating func randomBytes() -> UInt64 {
+        return value
+    }
+}
+
+class ConstantTests: XCTestCase {
+
+    static let allTests = [("testRandomHalfOpenEdgeCase", testRandomHalfOpenEdgeCase),
+                           ("testRandomClosedEdgeCase", testRandomClosedEdgeCase),
+                           ("testRandomOpenEdgeCase", testRandomOpenEdgeCase)]
+
+    static let generatorToTest = Xoroshiro.self
+
+    let testCount: UInt = 100_000
+
+    func testRandomHalfOpenEdgeCase() {
+        var gen = ConstantRandomGenerator(value: .max)
+        XCTAssertNotEqual(gen.randomHalfOpen32(), 1.0)
+        XCTAssertNotEqual(gen.randomHalfOpen64(), 1.0)
+    }
+
+    func testRandomClosedEdgeCase() {
+        var gen = ConstantRandomGenerator(value: .max)
+        XCTAssertEqual(gen.randomClosed32(), 1.0)
+        XCTAssertEqual(gen.randomClosed64(), 1.0)
+    }
+
+    func testRandomOpenEdgeCase() {
+        var gen = ConstantRandomGenerator(value: 0)
+        XCTAssertNotEqual(gen.randomOpen32(), 0.0)
+        XCTAssertNotEqual(gen.randomOpen64(), 0.0)
+    }
+
+}
