@@ -32,5 +32,9 @@ elif [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
     build   tvOS    "OS=9.0,name=Apple TV 1080p"        true
     build   watchOS "OS=2.0,name=Apple Watch - 42mm"    false
 
-    pod lib lint --quick
+    if $QUICK_POD_LINT; then
+        QUICK_ARG="--quick"
+    fi
+
+    pod lib lint --allow-warnings $QUICK_ARG
 fi
