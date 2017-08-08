@@ -46,7 +46,7 @@ extension RandomBytesGenerator where Bytes == UInt64 {
     /// Generates a random unsigned 32-bit integer.
     public mutating func random32() -> UInt32 {
         #if swift(>=3.2)
-            return UInt32(extendingOrTruncating: randomBytes())
+            return UInt32(truncatingIfNeeded: randomBytes())
         #else
             return UInt32(truncatingBitPattern: randomBytes())
         #endif
@@ -55,7 +55,7 @@ extension RandomBytesGenerator where Bytes == UInt64 {
     /// Generates a random unsigned 16-bit integer.
     public mutating func random16() -> UInt16 {
         #if swift(>=3.2)
-            return UInt16(extendingOrTruncating: randomBytes())
+            return UInt16(truncatingIfNeeded: randomBytes())
         #else
             return UInt16(truncatingBitPattern: randomBytes())
         #endif
@@ -64,7 +64,7 @@ extension RandomBytesGenerator where Bytes == UInt64 {
     /// Generates a random unsigned 8-bit integer.
     public mutating func random8() -> UInt8 {
         #if swift(>=3.2)
-            return UInt8(extendingOrTruncating: randomBytes())
+            return UInt8(truncatingIfNeeded: randomBytes())
         #else
             return UInt8(truncatingBitPattern: randomBytes())
         #endif
@@ -87,7 +87,7 @@ extension RandomBytesGenerator where Bytes == UInt32 {
     /// Generates a random unsigned 16-bit integer.
     public mutating func random16() -> UInt16 {
         #if swift(>=3.2)
-            return UInt16(extendingOrTruncating: randomBytes())
+            return UInt16(truncatingIfNeeded: randomBytes())
         #else
             return UInt16(truncatingBitPattern: randomBytes())
         #endif
@@ -96,7 +96,7 @@ extension RandomBytesGenerator where Bytes == UInt32 {
     /// Generates a random unsigned 8-bit integer.
     public mutating func random8() -> UInt8 {
         #if swift(>=3.2)
-            return UInt8(extendingOrTruncating: randomBytes())
+            return UInt8(truncatingIfNeeded: randomBytes())
         #else
             return UInt8(truncatingBitPattern: randomBytes())
         #endif

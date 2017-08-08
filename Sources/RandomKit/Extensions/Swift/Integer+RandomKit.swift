@@ -356,7 +356,7 @@ extension UnsignedInteger where Self: RandomWithMaxWidth & RandomWithExactWidth 
     /// Generates a random value of `Self` with an exact width using `randomGenerator`.
     public static func random<R: RandomGenerator>(withExactWidth width: Int, using randomGenerator: inout R) -> Self {
         guard width > 0 else { return 0 }
-        return random(withMaxWidth: width, using: &randomGenerator) | (1 &<< Self(width - 1))
+        return random(withMaxWidth: width, using: &randomGenerator) | Self(1 &<< Self(width - 1))
     }
 }
 
@@ -577,7 +577,7 @@ extension Int8: UnsafeRandom, RandomWithMax, RandomWithMin, RandomToValue, Rando
 #if swift(>=3.2)
 extension UnsignedInteger where Self: FixedWidthInteger {
     fileprivate var _resigned: Self {
-        let bits = Self(extendingOrTruncating: MemoryLayout<Self>.size * 8 - 1)
+        let bits = Self(truncatingIfNeeded: MemoryLayout<Self>.size * 8 - 1)
         return self ^ (1 &<< bits)
     }
 }

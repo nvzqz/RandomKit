@@ -109,11 +109,10 @@ extension Int {
     fileprivate func _saturatingAddPositive(_ other: Int) -> Int {
         #if swift(>=3.2)
             let (result, overflow) = addingReportingOverflow(other)
-            return overflow == .overflow ? .max : result
         #else
             let (result, overflow) = Int.addWithOverflow(self, other)
-            return overflow ? .max : result
         #endif
+        return overflow ? .max : result
     }
 }
 
