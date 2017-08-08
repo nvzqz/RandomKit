@@ -4,6 +4,16 @@ All releases of RandomKit adhere to [Semantic Versioning](http://semver.org/).
 
 ---
 
+## [v5.2.3](https://github.com/nvzqz/RandomKit/tree/v5.2.3) (2017-08-08)
+
+- [Changes](https://github.com/nvzqz/RandomKit/compare/v5.2.2...v5.2.3)
+- [Release](https://github.com/nvzqz/RandomKit/releases/tag/v5.2.3)
+
+### Fixes
+- Fixed compilation errors Xcode 9 Beta 5
+
+---
+
 ## [v5.2.2](https://github.com/nvzqz/RandomKit/tree/v5.2.2) (2017-07-28)
 
 - [Changes](https://github.com/nvzqz/RandomKit/compare/v5.2.1...v5.2.2)

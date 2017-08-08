@@ -113,7 +113,7 @@ to learn more.
     ```ruby
     use_frameworks!
 
-    pod 'RandomKit', '~> 5.2.2'
+    pod 'RandomKit', '~> 5.2.3'
     ```
 
     If you want to be on the bleeding edge, replace the last line with:
