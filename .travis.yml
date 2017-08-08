@@ -38,7 +38,7 @@ matrix:
       sudo: required
       dist: trusty
       env:
-        - SWIFT_VERSION="4.0-DEVELOPMENT-SNAPSHOT-2017-07-26-a"
+        - SWIFT_VERSION="4.0-DEVELOPMENT-SNAPSHOT-2017-08-04-a"
 env:
   global:
     - LC_CTYPE=en_US.UTF-8
