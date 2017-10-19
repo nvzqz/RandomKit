@@ -32,6 +32,13 @@
 /// [1]: http://www.jstatsoft.org/v08/i14/paper
 /// [2]: https://doc.rust-lang.org/rand/rand/struct.XorShiftRng.html
 public struct Xorshift: RandomBytesGenerator, Seedable, SeedableFromRandomGenerator {
+    /// The seed type.
+    public typealias Seed = (UInt32, UInt32, UInt32, UInt32)
+
+    /// The seed value.
+    public var seed: Seed {
+        return (x, y, z, w)
+    }
 
     /// A default global instance seeded with `DeviceRandom.default`.
     public static var `default` = seeded
@@ -49,7 +56,7 @@ public struct Xorshift: RandomBytesGenerator, Seedable, SeedableFromRandomGenera
     /// Creates an instance from `seed`.
     ///
     /// - precondition: `seed` is nonzero.
-    public init(seed: (UInt32, UInt32, UInt32, UInt32)) {
+    public init(seed: Seed) {
         (x, y, z, w) = seed
     }
 

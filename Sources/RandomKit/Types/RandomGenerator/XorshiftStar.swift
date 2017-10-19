@@ -29,7 +29,6 @@
 ///
 /// [1]: http://xoroshiro.di.unimi.it/xorshift1024star.c
 public struct XorshiftStar: RandomBytesGenerator, Seedable, SeedableFromRandomGenerator {
-
     /// The seed type.
     public typealias Seed = (
         UInt64, UInt64, UInt64, UInt64,
@@ -37,6 +36,11 @@ public struct XorshiftStar: RandomBytesGenerator, Seedable, SeedableFromRandomGe
         UInt64, UInt64, UInt64, UInt64,
         UInt64, UInt64, UInt64, UInt64
     )
+
+    /// The seed value.
+    public var seed: Seed {
+        return _state
+    }
 
     private typealias _State = _Array16<UInt64>
 

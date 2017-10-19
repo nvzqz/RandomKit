@@ -46,6 +46,13 @@
 /// [1]: http://xoroshiro.di.unimi.it/
 /// [2]: http://xoroshiro.di.unimi.it/xoroshiro128plus.c
 public struct Xoroshiro: RandomBytesGenerator, Seedable, SeedableFromRandomGenerator {
+    /// The seed type.
+    public typealias Seed = (UInt64, UInt64)
+
+    /// The seed value.
+    public var seed: Seed {
+        return _state
+    }
 
     /// A default global instance seeded with `DeviceRandom.default`.
     public static var `default` = seeded
@@ -54,10 +61,10 @@ public struct Xoroshiro: RandomBytesGenerator, Seedable, SeedableFromRandomGener
     public static var defaultReseeding = reseeding
 
     /// The internal state.
-    private var _state: (UInt64, UInt64)
+    private var _state: Seed
 
     /// Creates an instance from `seed`.
-    public init(seed: (UInt64, UInt64)) {
+    public init(seed: Seed) {
         _state = seed
     }
 

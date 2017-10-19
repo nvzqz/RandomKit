@@ -31,6 +31,9 @@ public protocol Seedable {
     /// The seed type.
     associatedtype Seed
 
+    /// Current seed value.
+    var seed: Seed { get }
+
     /// Creates an instance from `seed`.
     init(seed: Seed)
 
