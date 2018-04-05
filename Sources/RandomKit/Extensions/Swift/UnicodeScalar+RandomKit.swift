@@ -78,6 +78,10 @@ extension UnicodeScalar: Random, RandomInRange, RandomInClosedRange {
         }
     }
 
+}
+
+extension UnicodeScalar {
+
     /// Returns an optional random value of `Self` inside of the range.
     public static func random<R: RandomGenerator>(in range: Range<UInt8>,
                                                   using randomGenerator: inout R) -> UnicodeScalar? {

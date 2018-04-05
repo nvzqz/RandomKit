@@ -85,6 +85,9 @@ extension String: Random {
         return String(result)
     }
 
+    #if swift(>=4.0)
+    // No character view for you
+    #else
     /// Generates a random `String` with a length of `10` from `characters`.
     ///
     /// - parameter characters: The characters from which the string will be generated.
@@ -104,13 +107,12 @@ extension String: Random {
                               using randomGenerator: inout R) -> String? where I.Stride: SignedInteger {
         var result = ""
         for _ in 0 ..< length {
-            guard let random = characters.random(using: &randomGenerator) else {
-                return nil
-            }
+            let random = self.random(using: &randomGenerator)
             result.append(random)
         }
         return result
     }
+    #endif
 
     /// Generates a random `String` with a length of `10` from `scalars`.
     ///
@@ -156,13 +158,18 @@ extension String: Random {
     public static func random<I: ExpressibleByIntegerLiteral & Strideable, R: RandomGenerator>(ofLength length: I,
                               from string: String,
                               using randomGenerator: inout R) -> String? where I.Stride: SignedInteger {
-        return random(ofLength: length, from: string.characters, using: &randomGenerator)
+        return random(ofLength: length, from: string, using: &randomGenerator)
     }
 
 }
 
-extension String.UnicodeScalarView: RandomRetrievableInRange {}
+#if swift(>=4.0)
+extension String: RandomRetrievableInRange {}
+#else
 extension String.CharacterView: RandomRetrievableInRange {}
+#endif
+
+extension String.UnicodeScalarView: RandomRetrievableInRange {}
 extension String.UTF8View: RandomRetrievableInRange {}
 extension String.UTF16View: RandomRetrievableInRange {}
 
@@ -170,26 +177,12 @@ extension String: Shuffleable, UniqueShuffleable {
 
     /// Shuffles the elements in `self` and returns the result.
     public func shuffled<R: RandomGenerator>(using randomGenerator: inout R) -> String {
-        return String(Array(characters).shuffled(using: &randomGenerator))
+        return String(self.shuffled(using: &randomGenerator))
     }
 
     /// Shuffles the elements in `self` in a unique order and returns the result.
     public func shuffledUnique<R: RandomGenerator>(using randomGenerator: inout R) -> String {
-        return String(Array(characters).shuffledUnique(using: &randomGenerator))
-    }
-
-}
-
-extension String.CharacterView: Shuffleable, UniqueShuffleable {
-
-    /// Shuffles the elements in `self` and returns the result.
-    public func shuffled<R: RandomGenerator>(using randomGenerator: inout R) -> String.CharacterView {
-        return String.CharacterView(Array(self).shuffled(using: &randomGenerator))
-    }
-
-    /// Shuffles the elements in `self` in a unique order and returns the result.
-    public func shuffledUnique<R: RandomGenerator>(using randomGenerator: inout R) -> String.CharacterView {
-        return String.CharacterView(Array(self).shuffledUnique(using: &randomGenerator))
+        return String(self.shuffledUnique(using: &randomGenerator))
     }
 
 }

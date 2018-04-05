@@ -36,6 +36,10 @@ extension CGFloat: Random, RandomToValue, RandomThroughValue, RandomInRange, Ran
         return CGFloat(NativeType.random(using: &randomGenerator))
     }
 
+}
+
+extension CGFloat {
+
     /// Generates a random `CGFloat` in the closed range using `randomGenerator`.
     ///
     /// - parameter closedRange: The range in which the number will be generated.
