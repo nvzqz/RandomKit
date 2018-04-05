@@ -116,7 +116,11 @@ extension RandomBytesGenerator {
         if remainder > 0 {
             var remaining = randomBytes()
             let remainingBuffer = buffer.advanced(by: size &- remainder)
+            #if swift(>=4.1)
+            remainingBuffer.copyMemory(from: &remaining, byteCount: remainder)
+            #else
             remainingBuffer.copyBytes(from: &remaining, count: remainder)
+            #endif
         }
     }
 
