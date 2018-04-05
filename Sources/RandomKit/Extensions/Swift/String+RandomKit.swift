@@ -158,7 +158,7 @@ extension String: Random {
     public static func random<I: ExpressibleByIntegerLiteral & Strideable, R: RandomGenerator>(ofLength length: I,
                               from string: String,
                               using randomGenerator: inout R) -> String? where I.Stride: SignedInteger {
-        return random(ofLength: length, from: string, using: &randomGenerator)
+        return random(ofLength: length, from: string.unicodeScalars, using: &randomGenerator)
     }
 
 }
