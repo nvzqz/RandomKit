@@ -1,16 +1,24 @@
 [![RandomKit](https://github.com/nvzqz/RandomKit/raw/assets/banner.png)](https://github.com/nvzqz/RandomKit)
 
-<p align="center">
-<img src="https://img.shields.io/badge/platform-ios%20%7C%20macos%20%7C%20watchos%20%7C%20tvos%20%7C%20linux-lightgrey.svg" alt="Platform">
-<img src="https://img.shields.io/badge/language-swift-orange.svg" alt="Language: Swift">
-<a href="https://cocoapods.org/pods/RandomKit"><img src="https://img.shields.io/cocoapods/v/RandomKit.svg" alt="CocoaPods - RandomKit"></a>
-<a href="https://github.com/Carthage/Carthage"><img src="https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat" alt="Carthage"></a>
-<img src="https://img.shields.io/cocoapods/dt/RandomKit.svg" alt="downloads">
-<a href="https://gitter.im/nvzqz/RandomKit?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge"><img src="https://badges.gitter.im/Join%20Chat.svg" alt="GITTER: join chat"></a>
-<a href="https://codebeat.co/projects/github-com-nvzqz-randomkit"><img src="https://codebeat.co/badges/256f6b2d-fd36-4b71-8bf0-b3cb31cb95ae" alt="codebeat badge"></a>
-<img src="https://img.shields.io/badge/license-MIT-000000.svg" alt="License">
-<a href="https://nvzqz.github.io/RandomKit/docs/"><img alt="Documented" src="https://img.shields.io/badge/documented-%E2%9C%93-brightgreen.svg"></a>
-</p>
+<div align="center">
+    <img src="https://img.shields.io/badge/platform-ios%20%7C%20macos%20%7C%20watchos%20%7C%20tvos%20%7C%20linux-lightgrey.svg" alt="Platform">
+    <img src="https://img.shields.io/badge/language-swift-orange.svg" alt="Language: Swift">
+    <img src="https://img.shields.io/cocoapods/dt/RandomKit.svg" alt="downloads">
+    <br>
+    <a href="https://cocoapods.org/pods/RandomKit"><img src="https://img.shields.io/cocoapods/v/RandomKit.svg" alt="CocoaPods - RandomKit"></a>
+    <a href="https://github.com/Carthage/Carthage"><img src="https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat" alt="Carthage"></a>
+    <a href="https://gitter.im/nvzqz/RandomKit?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge"><img src="https://badges.gitter.im/Join%20Chat.svg" alt="GITTER: join chat"></a>
+    <a href="https://codebeat.co/projects/github-com-nvzqz-randomkit"><img src="https://codebeat.co/badges/256f6b2d-fd36-4b71-8bf0-b3cb31cb95ae" alt="codebeat badge"></a>
+    <img src="https://img.shields.io/badge/license-MIT-000000.svg" alt="License">
+    <a href="https://nvzqz.github.io/RandomKit/docs/"><img alt="Documented" src="https://img.shields.io/badge/documented-%E2%9C%93-brightgreen.svg"></a>
+    <br>
+    <a href="https://www.patreon.com/nvzqz">
+        <img src="https://c5.patreon.com/external/logo/become_a_patron_button.png" alt="Become a Patron!" height="35">
+    </a>
+    <a href="https://www.paypal.me/nvzqz">
+        <img src="https://buymecoffee.intm.org/img/button-paypal-white.png" alt="Buy me a coffee" height="35">
+    </a>
+</div>
 
 RandomKit is a Swift framework that makes random data generation simple and easy.
 
