@@ -33,9 +33,18 @@
 /// [2]: https://en.wikipedia.org/wiki/Salsa20#ChaCha_variant
 /// [3]: https://doc.rust-lang.org/rand/rand/chacha/struct.ChaChaRng.html
 public struct ChaCha: RandomBytesGenerator, Seedable, SeedableFromSequence, SeedableFromRandomGenerator {
-
     /// The seed type.
     public typealias Seed = [UInt32]
+
+    /// The seed value
+    public var seed: Seed {
+        return [
+            _state.0,  _state.1,  _state.2,  _state.3,
+            _state.4,  _state.5,  _state.6,  _state.7,
+            _state.8,  _state.9,  _state.10, _state.11,
+            _state.12, _state.13, _state.14, _state.15,
+        ]
+    }
 
     /// The seed sequence's element type.
     public typealias SeedSequenceElement = UInt32
