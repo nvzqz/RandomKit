@@ -25,8 +25,15 @@
 //  THE SOFTWARE.
 //
 
+#if swift(>=3.1)
+/// A workaround to make `RandomBytesGenerator` a `Sequence` for Swift 3.1+.
+public typealias _RandomBytesGeneratorComposition = RandomGenerator & Sequence
+#else
+public typealias _RandomBytesGeneratorComposition = RandomGenerator
+#endif
+
 /// A type that specializes in generating random bytes in the form of a `Bytes` type.
-public protocol RandomBytesGenerator: RandomGenerator {
+public protocol RandomBytesGenerator: _RandomBytesGeneratorComposition {
 
     /// A type that stores bytes within its own value.
     associatedtype Bytes
@@ -34,7 +41,49 @@ public protocol RandomBytesGenerator: RandomGenerator {
     /// Returns random `Bytes`.
     mutating func randomBytes() -> Bytes
 
+    #if swift(>=3.1)
+    /// Returns an iterator over the elements of this sequence.
+    func makeIterator() -> RandomBytesIterator<Self>
+    #endif
+
 }
+
+#if swift(>=3.1)
+
+/// An iterator over the `Byte`s of a `RandomBytesGenerator` source.
+///
+/// ```
+/// func perform(with randomValue: UInt64) -> Bool {
+///     ...
+/// }
+///
+/// for x in Xoroshiro.seeded {
+///     guard perform(with: x) else {
+///         break
+///     }
+///     ...
+/// }
+/// ```
+public struct RandomBytesIterator<Source: RandomBytesGenerator>: IteratorProtocol {
+
+    /// The source generator from which `next()` retrieves values.
+    public var source: Source
+
+    /// Advances to the next element and returns it.
+    public mutating func next() -> Source.Bytes? {
+        return source.randomBytes()
+    }
+
+}
+
+extension RandomBytesGenerator {
+    /// Returns an iterator over the elements of this sequence.
+    public func makeIterator() -> RandomBytesIterator<Self> {
+        return RandomBytesIterator(source: self)
+    }
+}
+
+#endif
 
 extension RandomBytesGenerator where Bytes == UInt64 {
 
